@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Lexend:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Baloo 2', cursive, sans-serif;
+  --font-sans: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+
+  /* PRISMA DESIGN SYSTEM PALETTE (prisma_design_system.md) */
+  /* Utama */
+  --color-prisma-mint: #7FD4C4;
+  --color-prisma-mint-dark: #1E7A6F;
+
+  /* Aksen */
+  --color-prisma-peach: #FFB899;
+  --color-prisma-langit: #94C6FF;
+  --color-prisma-kuning: #FFDE7A;
+
+  /* Netral */
+  --color-prisma-krem: #FFF8F0;
+  --color-prisma-putih: #FFFFFF;
+  --color-prisma-garis: #8F8575;
+  --color-prisma-abu: #5B6474;
+  --color-prisma-tinta: #2B3445;
+}
+
+body {
+  font-family: 'Lexend', var(--font-sans);
+  background-color: #FFF8F0;
+  color: #2B3445;
+  overflow-x: hidden;
+}
+
+/* Enforce Lexend as primary interface & reading typeface across all elements */
+html,
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: 'Lexend', var(--font-sans);
+}
+
+/* Heading: Baloo 2 (Karakter: Bulat, tebal, ramah anak) */
+h1,
+h2,
+.font-heading {
+  font-family: 'Baloo 2', var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Sub-heading & Bodycopy: Lexend */
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li,
+label,
+a {
+  font-family: 'Lexend', var(--font-sans);
+}
+
+/* ============================================================
+   CUSTOM ANIMATIONS
+   ============================================================ */
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+@keyframes float-medium {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(-2deg);
+  }
+}
+
+@keyframes blob-drift {
+
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  33% {
+    transform: scale(1.05) translate(10px, -12px);
+  }
+
+  66% {
+    transform: scale(0.97) translate(-8px, 8px);
+  }
+}
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes wiggle-bounce {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  25% {
+    transform: scale(1.08) rotate(-6deg);
+  }
+
+  50% {
+    transform: scale(1.05) rotate(4deg);
+  }
+
+  75% {
+    transform: scale(1.07) rotate(-3deg);
+  }
+}
+
+@keyframes pop-bubble {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(8px);
+  }
+
+  70% {
+    transform: scale(1.04) translateY(-2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes soft-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4.5s ease-in-out infinite;
+}
+
+.animate-blob {
+  animation: blob-drift 8s ease-in-out infinite;
+}
+
+.animate-blob-delay {
+  animation: blob-drift 11s ease-in-out infinite 2s;
+}
+
+.animate-slide-up {
+  animation: slide-up-fade 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-soft-pop {
+  animation: soft-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-wiggle {
+  animation: wiggle-bounce 0.6s ease-in-out;
+}
+
+.animate-bubble-pop {
+  animation: pop-bubble 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   PRISMA DESIGN SYSTEM BUTTON & CARD UTILITIES (prisma_design_system.md)
+   ============================================================ */
+/* Primary Mint Button */
+.btn-prisma-mint {
+  background-color: #7FD4C4;
+  color: #2B3445;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 4px 0 #1E7A6F;
+  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-prisma-mint:hover {
+  background-color: #70cbba;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #1E7A6F;
+}
+
+.btn-prisma-mint:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #1E7A6F;
+}
+
+/* Mint Tua Solid Button */
+.btn-prisma-mint-dark {
+  background-color: #1E7A6F;
+  color: #FFFFFF;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 4px 0 #134e47;
+  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-prisma-mint-dark:hover {
+  background-color: #23897d;
+  transform: translateY(-1px);
+}
+
+.btn-prisma-mint-dark:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #134e47;
+}
+
+/* Neutral White / Border Button */
+.btn-prisma-white {
+  background-color: #FFFFFF;
+  color: #2B3445;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
+  border: 1.5px solid #8F8575;
+  border-radius: 9999px;
+  box-shadow: 0 3px 0 rgba(143, 133, 117, 0.3);
+  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-prisma-white:hover {
+  background-color: #FFF8F0;
+  transform: translateY(-1px);
+}
+
+.btn-prisma-white:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(143, 133, 117, 0.2);
+}
+
+/* Card Container with Prisma border & Putih background */
+.card-prisma {
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(143, 133, 117, 0.22);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(43, 52, 69, 0.05);
+}
+
+/* Backward compatibility tactile buttons mapped to design system */
+.btn-tactile-orange {
+  background: #7FD4C4;
+  color: #2B3445;
+  border-radius: 9999px;
+  box-shadow: 0 4px 0 #1E7A6F;
+  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-tactile-orange:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #1E7A6F;
+  background: #70cbba;
+}
+
+.btn-tactile-orange:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #1E7A6F;
+}
+
+/* Blue Pair */
+.btn-tactile-blue {
+  background: #1E7A6F;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  box-shadow: 0 4px 0 #134e47;
+  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-tactile-blue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #134e47;
+  background: #23897d;
+}
+
+.btn-tactile-blue:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #134e47;
+}
+
+/* White Pair */
+.btn-tactile-white {
+  background: #FFFFFF;
+  color: #2B3445;
+  border: 1.5px solid #8F8575;
+  border-radius: 9999px;
+  box-shadow: 0 3px 0 rgba(143, 133, 117, 0.25);
+  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-tactile-white:hover {
+  transform: translateY(-2px);
+  background-color: #FFF8F0;
+}
+
+.btn-tactile-white:active {
+  transform: translateY(2px);
+}
+
+/* ============================================================
+   GLASS CARD UTILITY
+   ============================================================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-card-dark {
+  background: rgba(15, 50, 97, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================================
+   GRADIENT TEXT UTILITY
+   ============================================================ */
+.text-gradient-blue {
+  background: linear-gradient(135deg, #3DA5FF, #0F3261);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FF7315, #E86105);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   SCROLLBAR STYLING
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0F7FF;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3DA5FF;
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3587CE;
+}
+
+/* ============================================================
+   THEME STYLES & PREFERENCES
+   ============================================================ */
+/* Soft / Warm Sepia Theme (Eye comfort) */
+html.theme-soft {
+  filter: sepia(0.2) saturate(0.92) brightness(0.98);
+}
+
+/* Dark Theme */
+html.theme-dark {
+  filter: invert(0.92) hue-rotate(180deg);
+  background-color: #0b1329;
+}
+
+html.theme-dark img,
+html.theme-dark video,
+html.theme-dark iframe,
+html.theme-dark [role="img"],
+html.theme-dark .no-theme-invert {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* High Contrast Theme */
+html.theme-contrast {
+  filter: contrast(1.28) saturate(1.15);
+}
+
+/* ============================================================
+   ACCESSIBILITY EXTENSIONS
+   ============================================================ */
+/* Dyslexic Font Mode */
+html.font-dyslexic {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif !important;
+  letter-spacing: 0.04em;
+  word-spacing: 0.08em;
+}
+
+/* Font Sizing */
+html.font-size-lg {
+  font-size: 108%;
+}
+
+html.font-size-xl {
+  font-size: 118%;
+}
+
+/* Reduced Motion Mode */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001s !important;
+}
+
+/* ============================================================
+   SCROLL REVEAL (INTERSECTION OBSERVER) ANIMATIONS
+   ============================================================ */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.92) translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Revealed active state */
+.reveal-on-scroll.is-revealed,
+.reveal-left.is-revealed,
+.reveal-right.is-revealed,
+.reveal-zoom.is-revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Stagger Delays */
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
