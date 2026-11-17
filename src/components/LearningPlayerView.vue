@@ -24,7 +24,11 @@ import {
   VolumeX,
   Headphones,
   Mic,
-  Music
+  Music,
+  MousePointerClick,
+  Link,
+  ArrowUpDown,
+  Undo2
 } from '@lucide/vue'
 import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel } from '../lib/materiService'
 import { playMascotChime, playButtonPop } from '../lib/soundEffects'
@@ -258,6 +262,104 @@ const currentQuestionIndex = ref(0)
 const selectedAnswers = ref({})
 const isQuizSubmitted = ref(false)
 
+// State khusus untuk Tipe Soal Menjodohkan / Matching
+const activeMatchingLeft = ref(null)
+
+const getMatchingAnswersForCurrent = () => {
+  const cur = selectedAnswers.value[currentQuestionIndex.value]
+  if (cur && typeof cur === 'object' && !Array.isArray(cur)) {
+    return cur
+  }
+  return {}
+}
+
+const selectMatchingLeft = (leftItem) => {
+  playButtonPop()
+  if (activeMatchingLeft.value === leftItem) {
+    activeMatchingLeft.value = null
+  } else {
+    activeMatchingLeft.value = leftItem
+  }
+}
+
+const selectMatchingRight = (rightItem) => {
+  if (!activeMatchingLeft.value) return
+  playButtonPop()
+  const currentMap = { ...getMatchingAnswersForCurrent() }
+  // Hapus jika rightItem sudah terhubung dengan item kiri lain
+  for (const [k, v] of Object.entries(currentMap)) {
+    if (v === rightItem) delete currentMap[k]
+  }
+  currentMap[activeMatchingLeft.value] = rightItem
+  selectedAnswers.value[currentQuestionIndex.value] = currentMap
+  activeMatchingLeft.value = null
+}
+
+const removeMatchingPair = (leftItem) => {
+  playButtonPop()
+  const currentMap = { ...getMatchingAnswersForCurrent() }
+  delete currentMap[leftItem]
+  selectedAnswers.value[currentQuestionIndex.value] = currentMap
+}
+
+const resetMatching = () => {
+  playButtonPop()
+  selectedAnswers.value[currentQuestionIndex.value] = {}
+  activeMatchingLeft.value = null
+}
+
+const matchingPairColors = [
+  { border: 'border-[#1E7A6F]', bg: 'bg-[#7FD4C4]/20', text: 'text-[#1E7A6F]', badgeBg: 'bg-[#1E7A6F]', label: 'Pasangan 1' },
+  { border: 'border-[#D97706]', bg: 'bg-[#FFDE7A]/35', text: 'text-[#B45309]', badgeBg: 'bg-[#D97706]', label: 'Pasangan 2' },
+  { border: 'border-[#2563EB]', bg: 'bg-[#94C6FF]/25', text: 'text-[#1D4ED8]', badgeBg: 'bg-[#2563EB]', label: 'Pasangan 3' },
+  { border: 'border-[#9333EA]', bg: 'bg-[#E9D5FF]/35', text: 'text-[#7E22CE]', badgeBg: 'bg-[#9333EA]', label: 'Pasangan 4' }
+]
+
+const getPairColor = (leftItem) => {
+  const pairs = getMatchingAnswersForCurrent()
+  const keys = Object.keys(pairs)
+  const idx = keys.indexOf(leftItem)
+  if (idx < 0) return matchingPairColors[0]
+  return matchingPairColors[idx % matchingPairColors.length]
+}
+
+const getPairColorForRight = (rightItem) => {
+  const pairs = getMatchingAnswersForCurrent()
+  for (const [left, right] of Object.entries(pairs)) {
+    if (right === rightItem) {
+      return getPairColor(left)
+    }
+  }
+  return null
+}
+
+// State khusus untuk Tipe Soal Mengurutkan / Ordering
+const getOrderingAnswersForCurrent = () => {
+  const cur = selectedAnswers.value[currentQuestionIndex.value]
+  if (Array.isArray(cur)) return cur
+  return []
+}
+
+const addToOrdering = (item) => {
+  playButtonPop()
+  const cur = [...getOrderingAnswersForCurrent()]
+  if (!cur.includes(item)) {
+    cur.push(item)
+    selectedAnswers.value[currentQuestionIndex.value] = cur
+  }
+}
+
+const removeFromOrdering = (item) => {
+  playButtonPop()
+  const cur = getOrderingAnswersForCurrent().filter(i => i !== item)
+  selectedAnswers.value[currentQuestionIndex.value] = cur
+}
+
+const resetOrdering = () => {
+  playButtonPop()
+  selectedAnswers.value[currentQuestionIndex.value] = []
+}
+
 const currentQuestion = computed(() => {
   return questions.value[currentQuestionIndex.value] || {}
 })
@@ -271,8 +373,38 @@ const selectAnswer = (optionIdx) => {
   selectedAnswers.value[currentQuestionIndex.value] = optionIdx
 }
 
+const isQuestionAnswered = (idx) => {
+  const q = questions.value[idx]
+  if (!q) return false
+  const ans = selectedAnswers.value[idx]
+  if (ans === undefined || ans === null) return false
+  if (q.type === 'matching') {
+    return typeof ans === 'object' && !Array.isArray(ans) && Object.keys(ans).length === (q.pairs?.length || 0)
+  }
+  if (q.type === 'ordering') {
+    return Array.isArray(ans) && ans.length === (q.orderItems?.length || 0)
+  }
+  return true
+}
+
+const checkAnswerCorrectness = (q, ans) => {
+  if (ans === undefined || ans === null) return false
+  if (q.type === 'matching' && q.pairs?.length) {
+    if (typeof ans !== 'object' || Array.isArray(ans)) return false
+    return q.pairs.every(p => ans[p.left] === p.right)
+  }
+  if (q.type === 'ordering' && q.correctOrder?.length) {
+    if (Array.isArray(ans)) {
+      return JSON.stringify(ans) === JSON.stringify(q.correctOrder)
+    }
+    return false
+  }
+  return ans === q.correctOptionIndex
+}
+
 const nextQuestion = () => {
   playButtonPop()
+  activeMatchingLeft.value = null
   if (currentQuestionIndex.value < questions.value.length - 1) {
     currentQuestionIndex.value++
   }
@@ -280,16 +412,17 @@ const nextQuestion = () => {
 
 const prevQuestion = () => {
   playButtonPop()
+  activeMatchingLeft.value = null
   if (currentQuestionIndex.value > 0) {
     currentQuestionIndex.value--
   }
 }
 
-// Perhitungan Hasil Kuis
+// Perhitungan Hasil Kuis Komprehensif
 const quizScore = computed(() => {
   let score = 0
   questions.value.forEach((q, idx) => {
-    if (selectedAnswers.value[idx] === q.correctOptionIndex) {
+    if (checkAnswerCorrectness(q, selectedAnswers.value[idx])) {
       score += Number(q.points) || 25
     }
   })
@@ -299,7 +432,7 @@ const quizScore = computed(() => {
 const correctCount = computed(() => {
   let count = 0
   questions.value.forEach((q, idx) => {
-    if (selectedAnswers.value[idx] === q.correctOptionIndex) {
+    if (checkAnswerCorrectness(q, selectedAnswers.value[idx])) {
       count++
     }
   })
@@ -334,6 +467,7 @@ const resetQuiz = () => {
   playButtonPop()
   selectedAnswers.value = {}
   currentQuestionIndex.value = 0
+  activeMatchingLeft.value = null
   isQuizSubmitted.value = false
 }
 
@@ -902,15 +1036,33 @@ onBeforeUnmount(() => {
           </div>
 
           <!-- Question Card Box -->
-          <div class="bg-[#FFF8F0] rounded-2xl p-6 sm:p-8 border border-[#8F8575]/25 space-y-6 text-left">
+          <div class="bg-[#FFF8F0] rounded-3xl p-6 sm:p-8 border-2 border-[#8F8575]/25 space-y-6 text-left">
             
-            <!-- Question Badge & Points -->
-            <div class="flex items-center justify-between">
-              <span class="px-3.5 py-1.5 rounded-xl bg-[#1E7A6F] text-white text-xs font-semibold">
-                Pertanyaan {{ currentQuestionIndex + 1 }}
-              </span>
+            <!-- Question Badge, Type & Points -->
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="px-3.5 py-1.5 rounded-xl bg-[#1E7A6F] text-white text-xs font-semibold">
+                  Pertanyaan {{ currentQuestionIndex + 1 }}
+                </span>
+                <span
+                  class="px-3 py-1 rounded-xl text-xs font-semibold border flex items-center gap-1.5"
+                  :class="
+                    currentQuestion.type === 'image_choice' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
+                    currentQuestion.type === 'matching' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
+                    currentQuestion.type === 'ordering' ? 'bg-[#7FD4C4]/40 text-[#2B3445] border-[#8F8575]/30' :
+                    currentQuestion.type === 'true_false' ? 'bg-[#FFB899]/40 text-[#2B3445] border-[#8F8575]/30' :
+                    'bg-white text-[#5B6474] border-[#8F8575]/25'
+                  "
+                >
+                  <Sparkles v-if="currentQuestion.type === 'image_choice'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                  <Link v-else-if="currentQuestion.type === 'matching'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                  <ArrowUpDown v-else-if="currentQuestion.type === 'ordering'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                  <span>{{ currentQuestion.instructionBadge || 'Kuis Pilihan Ganda' }}</span>
+                </span>
+              </div>
+
               <span class="px-3 py-1 rounded-xl bg-[#FFDE7A]/50 text-[#2B3445] border border-[#8F8575]/30 text-xs font-semibold">
-                +{{ currentQuestion.points || 25 }} Poin
+                +{{ currentQuestion.points || 50 }} Poin
               </span>
             </div>
 
@@ -919,8 +1071,8 @@ onBeforeUnmount(() => {
               {{ currentQuestion.questionText }}
             </h3>
 
-            <!-- Question Image (Gambar Soal) -->
-            <div v-if="currentQuestion.image" class="w-full flex justify-center py-2">
+            <!-- Optional Question Banner Image (if any) -->
+            <div v-if="currentQuestion.image && currentQuestion.type !== 'image_choice'" class="w-full flex justify-center py-2">
               <div class="max-w-md w-full aspect-video sm:aspect-16/10 rounded-2xl overflow-hidden shadow-sm border border-[#8F8575]/25 bg-white relative">
                 <img
                   :src="currentQuestion.image"
@@ -930,17 +1082,382 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <!-- Multiple Choice Options (A, B, C, D) -->
-            <div class="grid grid-cols-1 gap-3 pt-2">
+            <!-- ==================== MODE 1: IMAGE CHOICE ("LINGKARI GAMBAR") ==================== -->
+            <div v-if="currentQuestion.type === 'image_choice'" class="space-y-4 pt-2">
+              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2 rounded-xl border border-[#7FD4C4]/40">
+                <MousePointerClick class="w-4 h-4 shrink-0" />
+                <span>Ketuk langsung gambar di bawah untuk melingkari jawaban pilihanmu!</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div
+                  v-for="(opt, optIdx) in currentQuestion.imageOptions || []"
+                  :key="optIdx"
+                  @click="selectAnswer(optIdx)"
+                  :class="[
+                    'relative rounded-3xl p-4 transition-all duration-200 cursor-pointer flex flex-col items-center text-center bg-white border-2 select-none group',
+                    selectedAnswers[currentQuestionIndex] === optIdx
+                      ? 'border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/40 bg-[#7FD4C4]/5 scale-[1.02]'
+                      : 'border-[#8F8575]/25 hover:border-[#1E7A6F]/60 hover:shadow-sm'
+                  ]"
+                >
+                  <!-- Animated Hand-Drawn Crayon Circle SVG Overlay ("Lingkari") -->
+                  <svg
+                    v-if="selectedAnswers[currentQuestionIndex] === optIdx"
+                    class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    <ellipse
+                      cx="50"
+                      cy="50"
+                      rx="47"
+                      ry="45"
+                      fill="none"
+                      stroke="#1E7A6F"
+                      stroke-width="4.5"
+                      stroke-linecap="round"
+                      class="animate-draw-circle"
+                    />
+                  </svg>
+
+                  <!-- Selected Badge in top right corner -->
+                  <div
+                    v-if="selectedAnswers[currentQuestionIndex] === optIdx"
+                    class="absolute top-3 right-3 z-30 px-2.5 py-1 rounded-full bg-[#1E7A6F] text-white text-xs font-bold shadow-sm flex items-center gap-1"
+                  >
+                    <Check class="w-3.5 h-3.5" />
+                    <span>Dilingkari</span>
+                  </div>
+
+                  <!-- Choice Letter Badge -->
+                  <span
+                    :class="[
+                      'absolute top-3 left-3 w-7 h-7 rounded-lg font-bold text-xs flex items-center justify-center transition-colors z-30',
+                      selectedAnswers[currentQuestionIndex] === optIdx
+                        ? 'bg-[#1E7A6F] text-white'
+                        : 'bg-[#FFF8F0] text-[#2B3445] border border-[#8F8575]/25'
+                    ]"
+                  >
+                    {{ String.fromCharCode(65 + optIdx) }}
+                  </span>
+
+                  <!-- Image Container -->
+                  <div class="w-full aspect-square max-h-44 rounded-2xl overflow-hidden bg-[#FFF8F0] flex items-center justify-center p-3 my-2">
+                    <img
+                      :src="opt.image"
+                      :alt="opt.label"
+                      class="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <!-- Image Label -->
+                  <p class="font-['Baloo_2'] text-base sm:text-lg font-bold text-[#2B3445] mt-1 leading-snug">
+                    {{ opt.label }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 2: MATCHING ("TARIK GARIS / PASANGKAN") ==================== -->
+            <div v-else-if="currentQuestion.type === 'matching'" class="space-y-4 pt-2">
+              <div class="flex items-center justify-between bg-[#94C6FF]/20 px-4 py-2.5 rounded-xl border border-[#94C6FF]/40">
+                <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445]">
+                  <Link class="w-4 h-4 text-[#1E7A6F] shrink-0" />
+                  <span>
+                    {{ activeMatchingLeft ? `Memilih pasangan untuk "${activeMatchingLeft}" 👉 Ketuk salah satu di Kolom Kanan` : 'Ketuk item di Kolom Kiri, lalu pasangkan dengan item di Kolom Kanan!' }}
+                  </span>
+                </div>
+                <button
+                  v-if="Object.keys(getMatchingAnswersForCurrent()).length > 0"
+                  @click="resetMatching"
+                  class="text-xs font-semibold text-[#B45309] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <Undo2 class="w-3 h-3" /> Reset
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
+                <!-- Kolom Kiri (A) -->
+                <div class="space-y-3">
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-[#5B6474] px-1 flex items-center justify-between">
+                    <span>Kolom A</span>
+                    <span class="text-[11px] font-normal">Pilih Item</span>
+                  </h4>
+                  <div class="space-y-2.5">
+                    <div
+                      v-for="(item, idx) in currentQuestion.leftItems || []"
+                      :key="idx"
+                      @click="selectMatchingLeft(item)"
+                      :class="[
+                        'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none',
+                        activeMatchingLeft === item
+                          ? 'border-[#1E7A6F] bg-[#7FD4C4]/25 ring-2 ring-[#1E7A6F] scale-[1.02] shadow-sm text-[#1E7A6F]'
+                          : getMatchingAnswersForCurrent()[item]
+                          ? `${getPairColor(item).border} ${getPairColor(item).bg} text-[#2B3445]`
+                          : 'bg-white border-[#8F8575]/25 hover:border-[#1E7A6F] text-[#2B3445]'
+                      ]"
+                    >
+                      <div class="flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-[#FFF8F0] border border-[#8F8575]/25 text-xs font-bold flex items-center justify-center text-[#5B6474]">
+                          {{ idx + 1 }}
+                        </span>
+                        <span>{{ item }}</span>
+                      </div>
+
+                      <div class="flex items-center gap-2">
+                        <span
+                          v-if="getMatchingAnswersForCurrent()[item]"
+                          :class="['px-2.5 py-1 rounded-lg text-xs font-bold text-white', getPairColor(item).badgeBg]"
+                        >
+                          {{ getPairColor(item).label }}
+                        </span>
+                        <button
+                          v-if="getMatchingAnswersForCurrent()[item]"
+                          @click.stop="removeMatchingPair(item)"
+                          class="w-6 h-6 rounded-full hover:bg-black/10 flex items-center justify-center text-xs text-[#5B6474]"
+                          title="Lepas pasangan"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Kolom Kanan (B) -->
+                <div class="space-y-3">
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-[#5B6474] px-1 flex items-center justify-between">
+                    <span>Kolom B</span>
+                    <span class="text-[11px] font-normal">Pasangannya</span>
+                  </h4>
+                  <div class="space-y-2.5">
+                    <div
+                      v-for="(item, idx) in currentQuestion.rightItems || []"
+                      :key="idx"
+                      @click="selectMatchingRight(item)"
+                      :class="[
+                        'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none',
+                        getPairColorForRight(item)
+                          ? `${getPairColorForRight(item).border} ${getPairColorForRight(item).bg} text-[#2B3445]`
+                          : activeMatchingLeft
+                          ? 'bg-white border-dashed border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:scale-[1.01] text-[#2B3445]'
+                          : 'bg-white border-[#8F8575]/25 text-[#2B3445]'
+                      ]"
+                    >
+                      <div class="flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-[#FFF8F0] border border-[#8F8575]/25 text-xs font-bold flex items-center justify-center text-[#5B6474]">
+                          {{ String.fromCharCode(65 + idx) }}
+                        </span>
+                        <span>{{ item }}</span>
+                      </div>
+
+                      <span
+                        v-if="getPairColorForRight(item)"
+                        :class="['px-2.5 py-1 rounded-lg text-xs font-bold text-white', getPairColorForRight(item).badgeBg]"
+                      >
+                        {{ getPairColorForRight(item).label }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 3: ORDERING ("URUTKAN KOTAK") ==================== -->
+            <div v-else-if="currentQuestion.type === 'ordering'" class="space-y-5 pt-2">
+              <div class="flex items-center justify-between bg-[#7FD4C4]/20 px-4 py-2.5 rounded-xl border border-[#7FD4C4]/40">
+                <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445]">
+                  <ArrowUpDown class="w-4 h-4 text-[#1E7A6F] shrink-0" />
+                  <span>Ketuk kartu di bawah untuk menyusun urutan dari kotak 1 ke kotak berikutnya!</span>
+                </div>
+                <button
+                  v-if="getOrderingAnswersForCurrent().length > 0"
+                  @click="resetOrdering"
+                  class="text-xs font-semibold text-[#B45309] hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <Undo2 class="w-3 h-3" /> Reset Urutan
+                </button>
+              </div>
+
+              <!-- Kotak Hasil Urutan (Slots) -->
+              <div class="space-y-2">
+                <span class="text-xs font-bold text-[#5B6474] block">Kotak Susunan Urutan:</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                  <div
+                    v-for="(_, slotIdx) in currentQuestion.orderItems || []"
+                    :key="slotIdx"
+                    class="min-h-18 rounded-2xl border-2 p-3 flex flex-col justify-between transition-all"
+                    :class="getOrderingAnswersForCurrent()[slotIdx]
+                      ? 'bg-white border-[#1E7A6F] shadow-sm'
+                      : 'border-dashed border-[#8F8575]/35 bg-[#FFF8F0]/70 items-center justify-center'"
+                  >
+                    <div class="flex items-center justify-between w-full">
+                      <span class="w-6 h-6 rounded-lg bg-[#1E7A6F] text-white text-xs font-bold flex items-center justify-center">
+                        {{ slotIdx + 1 }}
+                      </span>
+                      <button
+                        v-if="getOrderingAnswersForCurrent()[slotIdx]"
+                        @click="removeFromOrdering(getOrderingAnswersForCurrent()[slotIdx])"
+                        class="w-5 h-5 rounded-full hover:bg-black/10 text-xs text-[#5B6474] flex items-center justify-center"
+                        title="Keluarkan dari kotak"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <p v-if="getOrderingAnswersForCurrent()[slotIdx]" class="font-bold text-sm text-[#2B3445] mt-2 leading-snug">
+                      {{ getOrderingAnswersForCurrent()[slotIdx] }}
+                    </p>
+                    <span v-else class="text-xs font-medium text-[#8F8575] py-2">
+                      Kotak {{ slotIdx + 1 }} Kosong
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bank Pilihan Kartu Tersedia -->
+              <div class="space-y-2 pt-2 border-t border-[#8F8575]/20">
+                <span class="text-xs font-bold text-[#5B6474] block">Pilihan Kartu yang Belum Masuk Kotak:</span>
+                <div class="flex flex-wrap gap-2.5">
+                  <button
+                    v-for="(item, idx) in currentQuestion.orderItems || []"
+                    :key="idx"
+                    @click="addToOrdering(item)"
+                    :disabled="getOrderingAnswersForCurrent().includes(item)"
+                    :class="[
+                      'px-4 py-2.5 rounded-xl font-semibold text-sm transition-all border flex items-center gap-2 cursor-pointer',
+                      getOrderingAnswersForCurrent().includes(item)
+                        ? 'opacity-35 bg-[#E0E0E0] border-transparent text-[#8F8575] cursor-not-allowed line-through'
+                        : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 text-[#2B3445] shadow-xs'
+                    ]"
+                  >
+                    <span>{{ item }}</span>
+                    <span v-if="!getOrderingAnswersForCurrent().includes(item)" class="text-xs text-[#1E7A6F]">＋</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 4: TRUE / FALSE ("LINGKARI B ATAU S") ==================== -->
+            <div v-else-if="currentQuestion.type === 'true_false'" class="space-y-4 pt-2">
+              <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445] bg-[#FFB899]/25 px-3.5 py-2 rounded-xl border border-[#FFB899]/40">
+                <Sparkles class="w-4 h-4 text-[#1E7A6F] shrink-0" />
+                <span>Lingkari B jika pernyataan ini Benar, atau lingkari S jika pernyataan ini Salah!</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-1">
+                <!-- Opsi B (Benar) -->
+                <button
+                  @click="selectAnswer(0)"
+                  :class="[
+                    'relative p-6 rounded-3xl border-2 transition-all flex items-center gap-5 cursor-pointer text-left select-none',
+                    selectedAnswers[currentQuestionIndex] === 0
+                      ? 'bg-[#7FD4C4]/20 border-[#1E7A6F] ring-4 ring-[#7FD4C4]/40 shadow-sm scale-[1.02]'
+                      : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F]'
+                  ]"
+                >
+                  <!-- Animated Marker Ring SVG -->
+                  <svg
+                    v-if="selectedAnswers[currentQuestionIndex] === 0"
+                    class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    <ellipse
+                      cx="50"
+                      cy="50"
+                      rx="47"
+                      ry="45"
+                      fill="none"
+                      stroke="#1E7A6F"
+                      stroke-width="4.5"
+                      stroke-linecap="round"
+                      class="animate-draw-circle"
+                    />
+                  </svg>
+
+                  <div
+                    :class="[
+                      'w-14 h-14 rounded-2xl font-bold font-[\'Baloo_2\'] text-2xl flex items-center justify-center shrink-0 transition-colors',
+                      selectedAnswers[currentQuestionIndex] === 0
+                        ? 'bg-[#1E7A6F] text-white'
+                        : 'bg-[#FFF8F0] text-[#1E7A6F] border border-[#8F8575]/25'
+                    ]"
+                  >
+                    B
+                  </div>
+
+                  <div class="flex-1">
+                    <p class="font-['Baloo_2'] text-xl font-bold text-[#2B3445]">BENAR</p>
+                    <p class="text-xs text-[#5B6474] font-normal">Pernyataan pada soal adalah tepat</p>
+                  </div>
+
+                  <Check v-if="selectedAnswers[currentQuestionIndex] === 0" class="w-6 h-6 text-[#1E7A6F] shrink-0" />
+                </button>
+
+                <!-- Opsi S (Salah) -->
+                <button
+                  @click="selectAnswer(1)"
+                  :class="[
+                    'relative p-6 rounded-3xl border-2 transition-all flex items-center gap-5 cursor-pointer text-left select-none',
+                    selectedAnswers[currentQuestionIndex] === 1
+                      ? 'bg-[#FFDE7A]/30 border-[#D97706] ring-4 ring-[#FFDE7A]/50 shadow-sm scale-[1.02]'
+                      : 'bg-white border-[#8F8575]/30 hover:border-[#D97706]'
+                  ]"
+                >
+                  <!-- Animated Marker Ring SVG -->
+                  <svg
+                    v-if="selectedAnswers[currentQuestionIndex] === 1"
+                    class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    <ellipse
+                      cx="50"
+                      cy="50"
+                      rx="47"
+                      ry="45"
+                      fill="none"
+                      stroke="#D97706"
+                      stroke-width="4.5"
+                      stroke-linecap="round"
+                      class="animate-draw-circle"
+                    />
+                  </svg>
+
+                  <div
+                    :class="[
+                      'w-14 h-14 rounded-2xl font-bold font-[\'Baloo_2\'] text-2xl flex items-center justify-center shrink-0 transition-colors',
+                      selectedAnswers[currentQuestionIndex] === 1
+                        ? 'bg-[#D97706] text-white'
+                        : 'bg-[#FFF8F0] text-[#D97706] border border-[#8F8575]/25'
+                    ]"
+                  >
+                    S
+                  </div>
+
+                  <div class="flex-1">
+                    <p class="font-['Baloo_2'] text-xl font-bold text-[#2B3445]">SALAH</p>
+                    <p class="text-xs text-[#5B6474] font-normal">Pernyataan pada soal kurang tepat</p>
+                  </div>
+
+                  <Check v-if="selectedAnswers[currentQuestionIndex] === 1" class="w-6 h-6 text-[#D97706] shrink-0" />
+                </button>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 5: MULTIPLE CHOICE DEFAULT ==================== -->
+            <div v-else class="grid grid-cols-1 gap-3 pt-2">
               <button
                 v-for="(opt, optIdx) in currentQuestion.options"
                 :key="optIdx"
                 @click="selectAnswer(optIdx)"
                 :class="[
-                  'w-full p-4 sm:p-5 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-4 transition-all duration-150 cursor-pointer text-left border',
+                  'w-full p-4 sm:p-5 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-4 transition-all duration-150 cursor-pointer text-left border-2',
                   selectedAnswers[currentQuestionIndex] === optIdx
-                    ? 'bg-white border-2 border-[#1E7A6F] text-[#2B3445] shadow-sm'
-                    : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F] text-[#2B3445]'
+                    ? 'bg-white border-[#1E7A6F] text-[#2B3445] shadow-sm ring-2 ring-[#7FD4C4]/30'
+                    : 'bg-white border-[#8F8575]/25 hover:border-[#1E7A6F] text-[#2B3445]'
                 ]"
               >
                 <!-- Option Letter Badge (A, B, C, D) -->
@@ -994,7 +1511,7 @@ onBeforeUnmount(() => {
                   'w-8 h-8 rounded-xl text-xs font-semibold transition cursor-pointer border',
                   currentQuestionIndex === qIdx
                     ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]'
-                    : selectedAnswers[qIdx] !== undefined
+                    : isQuestionAnswered(qIdx)
                     ? 'bg-[#7FD4C4] text-[#2B3445] border-[#7FD4C4]'
                     : 'bg-white text-[#5B6474] border-[#8F8575]/30 hover:border-[#1E7A6F]'
                 ]"
@@ -1016,12 +1533,12 @@ onBeforeUnmount(() => {
             <button
               v-else
               @click="submitQuiz"
-              :disabled="selectedAnswers[currentQuestionIndex] === undefined"
+              :disabled="!isQuestionAnswered(currentQuestionIndex)"
               :class="[
                 'px-7 py-3.5 rounded-2xl font-semibold text-sm flex items-center gap-2 transition cursor-pointer shadow-sm',
-                selectedAnswers[currentQuestionIndex] !== undefined
+                isQuestionAnswered(currentQuestionIndex)
                   ? 'btn-prisma-mint'
-                  : 'bg-white border border-[#8F8575]/25 text-[#5B6474] cursor-not-allowed'
+                  : 'bg-white border border-[#8F8575]/25 text-[#5B6474] opacity-50 cursor-not-allowed'
               ]"
             >
               <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
@@ -1070,20 +1587,20 @@ onBeforeUnmount(() => {
                 v-for="(q, idx) in questions"
                 :key="q.id || idx"
                 class="p-5 sm:p-6 rounded-2xl border bg-white space-y-3"
-                :class="selectedAnswers[idx] === q.correctOptionIndex ? 'border-[#7FD4C4]' : 'border-[#FFDE7A]'"
+                :class="checkAnswerCorrectness(q, selectedAnswers[idx]) ? 'border-[#7FD4C4]' : 'border-[#FFDE7A]'"
               >
                 <div class="flex items-center justify-between">
                   <!-- Umpan Balik: Benar = Mint, Belum Tepat = Kuning Ramah Anak -->
                   <span
                     class="text-xs font-semibold px-3 py-1 rounded-lg border"
-                    :class="selectedAnswers[idx] === q.correctOptionIndex
+                    :class="checkAnswerCorrectness(q, selectedAnswers[idx])
                       ? 'bg-[#7FD4C4]/20 border-[#7FD4C4] text-[#2B3445]'
                       : 'bg-[#FFDE7A]/30 border-[#FFDE7A] text-[#2B3445]'"
                   >
-                    Soal {{ idx + 1 }}: {{ selectedAnswers[idx] === q.correctOptionIndex ? '✓ Jawabanmu Tepat' : '💡 Coba Perhatikan Lagi' }}
+                    Soal {{ idx + 1 }}: {{ checkAnswerCorrectness(q, selectedAnswers[idx]) ? '✓ Jawabanmu Tepat' : '💡 Coba Perhatikan Lagi' }}
                   </span>
                   <span class="text-xs font-semibold text-[#5B6474]">
-                    {{ selectedAnswers[idx] === q.correctOptionIndex ? `+${q.points || 25} Poin` : '0 Poin' }}
+                    {{ checkAnswerCorrectness(q, selectedAnswers[idx]) ? `+${q.points || 50} Poin` : '0 Poin' }}
                   </span>
                 </div>
 
@@ -1091,34 +1608,118 @@ onBeforeUnmount(() => {
                   {{ q.questionText }}
                 </p>
 
-                <!-- Gambar Soal di Pembahasan -->
-                <div v-if="q.image" class="w-full flex justify-start py-1">
+                <!-- Gambar Soal di Pembahasan (jika bukan image_choice) -->
+                <div v-if="q.image && q.type !== 'image_choice'" class="w-full flex justify-start py-1">
                   <img :src="q.image" alt="Gambar Soal" class="max-h-48 rounded-xl border border-[#8F8575]/25 object-contain" />
                 </div>
 
-                <!-- Detail Pilihan Jawaban -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-medium pt-2">
+                <!-- Detail Pilihan Jawaban di Review -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-medium pt-2">
                   <div
-                    class="p-3 rounded-xl border"
-                    :class="selectedAnswers[idx] === q.correctOptionIndex
+                    class="p-3.5 rounded-2xl border"
+                    :class="checkAnswerCorrectness(q, selectedAnswers[idx])
                       ? 'bg-[#7FD4C4]/15 border-[#7FD4C4]'
-                      : 'bg-[#FFDE7A]/20 border-[#FFDE7A]'"
+                      : 'bg-[#FFDE7A]/25 border-[#FFDE7A]'"
                   >
-                    <span class="text-[#5B6474] block mb-0.5">Jawabanmu:</span>
-                    <span class="text-[#2B3445] font-semibold">
+                    <span class="text-[#5B6474] block mb-1.5 font-semibold">Jawabanmu:</span>
+                    
+                    <!-- Image Choice Review -->
+                    <div v-if="q.type === 'image_choice'" class="flex items-center gap-2.5">
+                      <img
+                        v-if="q.imageOptions?.[selectedAnswers[idx]]?.image"
+                        :src="q.imageOptions[selectedAnswers[idx]].image"
+                        class="w-12 h-12 rounded-xl object-contain bg-white border border-[#8F8575]/25 p-1"
+                      />
+                      <span class="text-[#2B3445] font-bold text-sm">
+                        {{ q.imageOptions?.[selectedAnswers[idx]]?.label || 'Tidak dijawab' }}
+                      </span>
+                    </div>
+
+                    <!-- Matching Review -->
+                    <div v-else-if="q.type === 'matching'" class="space-y-1">
+                      <div v-for="(right, left) in (selectedAnswers[idx] || {})" :key="left" class="flex items-center gap-1.5 text-[#2B3445]">
+                        <span class="font-semibold">{{ left }}</span>
+                        <span>👉</span>
+                        <span class="font-bold">{{ right }}</span>
+                      </div>
+                      <span v-if="!selectedAnswers[idx] || Object.keys(selectedAnswers[idx]).length === 0" class="text-[#8F8575]">Belum dipasangkan</span>
+                    </div>
+
+                    <!-- Ordering Review -->
+                    <div v-else-if="q.type === 'ordering'" class="space-y-1">
+                      <div class="flex flex-wrap gap-1.5 items-center">
+                        <span
+                          v-for="(item, oIdx) in (selectedAnswers[idx] || [])"
+                          :key="oIdx"
+                          class="px-2 py-0.5 rounded-md bg-white border border-[#8F8575]/25 font-bold text-[#2B3445]"
+                        >
+                          {{ oIdx + 1 }}. {{ item }}
+                        </span>
+                      </div>
+                      <span v-if="!selectedAnswers[idx] || selectedAnswers[idx].length === 0" class="text-[#8F8575]">Belum diurutkan</span>
+                    </div>
+
+                    <!-- True False Review -->
+                    <span v-else-if="q.type === 'true_false'" class="text-[#2B3445] font-bold text-sm">
+                      {{ selectedAnswers[idx] === 0 ? 'Benar (B)' : selectedAnswers[idx] === 1 ? 'Salah (S)' : 'Tidak dijawab' }}
+                    </span>
+
+                    <!-- Multiple Choice Review -->
+                    <span v-else class="text-[#2B3445] font-bold text-sm">
                       {{ selectedAnswers[idx] !== undefined ? `${String.fromCharCode(65 + selectedAnswers[idx])}. ${q.options[selectedAnswers[idx]]}` : 'Tidak dijawab' }}
                     </span>
                   </div>
 
-                  <div class="p-3 rounded-xl bg-[#7FD4C4]/20 border border-[#7FD4C4]">
-                    <span class="text-[#1E7A6F] block mb-0.5">Kunci Jawaban Tepat:</span>
-                    <span class="text-[#2B3445] font-semibold">
+                  <div class="p-3.5 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4]">
+                    <span class="text-[#1E7A6F] block mb-1.5 font-semibold">Kunci Jawaban Tepat:</span>
+                    
+                    <!-- Image Choice Correct -->
+                    <div v-if="q.type === 'image_choice'" class="flex items-center gap-2.5">
+                      <img
+                        v-if="q.imageOptions?.[q.correctOptionIndex]?.image"
+                        :src="q.imageOptions[q.correctOptionIndex].image"
+                        class="w-12 h-12 rounded-xl object-contain bg-white border border-[#1E7A6F]/30 p-1"
+                      />
+                      <span class="text-[#2B3445] font-bold text-sm">
+                        {{ q.imageOptions?.[q.correctOptionIndex]?.label }}
+                      </span>
+                    </div>
+
+                    <!-- Matching Correct -->
+                    <div v-else-if="q.type === 'matching'" class="space-y-1">
+                      <div v-for="(p, pIdx) in (q.pairs || [])" :key="pIdx" class="flex items-center gap-1.5 text-[#2B3445]">
+                        <span class="font-semibold">{{ p.left }}</span>
+                        <span>👉</span>
+                        <span class="font-bold text-[#1E7A6F]">{{ p.right }}</span>
+                      </div>
+                    </div>
+
+                    <!-- Ordering Correct -->
+                    <div v-else-if="q.type === 'ordering'" class="space-y-1">
+                      <div class="flex flex-wrap gap-1.5 items-center">
+                        <span
+                          v-for="(item, oIdx) in (q.correctOrder || [])"
+                          :key="oIdx"
+                          class="px-2 py-0.5 rounded-md bg-white border border-[#1E7A6F]/40 font-bold text-[#1E7A6F]"
+                        >
+                          {{ oIdx + 1 }}. {{ item }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- True False Correct -->
+                    <span v-else-if="q.type === 'true_false'" class="text-[#2B3445] font-bold text-sm">
+                      {{ q.correctOptionIndex === 0 ? 'Benar (B)' : 'Salah (S)' }}
+                    </span>
+
+                    <!-- Multiple Choice Correct -->
+                    <span v-else class="text-[#2B3445] font-bold text-sm">
                       {{ String.fromCharCode(65 + q.correctOptionIndex) }}. {{ q.options[q.correctOptionIndex] }}
                     </span>
                   </div>
                 </div>
 
-                <p v-if="q.explanation" class="text-xs text-[#2B3445] font-normal bg-[#FFF8F0] p-3 rounded-xl border border-[#8F8575]/20">
+                <p v-if="q.explanation" class="text-xs text-[#2B3445] font-normal bg-[#FFF8F0] p-3.5 rounded-xl border border-[#8F8575]/20 leading-relaxed">
                   <strong class="text-[#1E7A6F]">💡 Petunjuk Belajar:</strong> {{ q.explanation }}
                 </p>
               </div>
@@ -1169,3 +1770,27 @@ onBeforeUnmount(() => {
 
   </div>
 </template>
+
+<style scoped>
+@keyframes drawCircle {
+  0% {
+    stroke-dashoffset: 400;
+    opacity: 0.3;
+    transform: scale(0.96) rotate(-4deg);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: scale(1) rotate(-1deg);
+  }
+}
+
+.animate-draw-circle {
+  stroke-dasharray: 400;
+  animation: drawCircle 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  transform-origin: center;
+}
+</style>

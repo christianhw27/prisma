@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 190" width="100%" height="100%">
+    <rect width="220" height="190" rx="28" fill="#FFF8F0"/>
+    <!-- Sarang Jerami -->
+    <ellipse cx="110" cy="130" rx="80" ry="32" fill="#D7CCC8"/>
+    <ellipse cx="110" cy="125" rx="72" ry="26" fill="#FFE082"/>
+    <!-- 9 Butir Telur Cokelat Terhitung -->
+    <!-- Baris Bawah (5 butir) -->
+    <ellipse cx="62" cy="115" rx="12" ry="16" fill="#FFE0B2" stroke="#FFB74D" stroke-width="2"/>
+    <ellipse cx="86" cy="118" rx="12" ry="16" fill="#FFE0B2" stroke="#FFB74D" stroke-width="2"/>
+    <ellipse cx="110" cy="120" rx="12" ry="16" fill="#FFE0B2" stroke="#FFB74D" stroke-width="2"/>
+    <ellipse cx="134" cy="118" rx="12" ry="16" fill="#FFE0B2" stroke="#FFB74D" stroke-width="2"/>
+    <ellipse cx="158" cy="115" rx="12" ry="16" fill="#FFE0B2" stroke="#FFB74D" stroke-width="2"/>
+    <!-- Baris Atas (4 butir) -->
+    <ellipse cx="74" cy="98" rx="12" ry="16" fill="#FFF3E0" stroke="#FFB74D" stroke-width="2"/>
+    <ellipse cx="98" cy="100" rx="12" ry="16" fill="#FFF3E0" stroke="#FFB74D" stroke-width="2"/>
+    <ellipse cx="122" cy="100" rx="12" ry="16" fill="#FFF3E0" stroke="#FFB74D" stroke-width="2"/>
+    <ellipse cx="146" cy="98" rx="12" ry="16" fill="#FFF3E0" stroke="#FFB74D" stroke-width="2"/>
+    <!-- Badge Label -->
+    <rect x="55" y="18" width="110" height="34" rx="12" fill="#1E7A6F"/>
+    <text x="110" y="41" font-family="'Baloo 2', cursive, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Kandang Kiri</text>
+    <text x="110" y="174" font-family="'Lexend', sans-serif" font-size="14" font-weight="bold" fill="#D84315" text-anchor="middle">Ada 9 Butir Telur</text>
+  </svg>

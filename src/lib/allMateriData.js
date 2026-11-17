@@ -1,9 +1,5 @@
-/**
- * Dataset Seluruh Materi PRISMA Kelas 1 s/d 6 SD (Terstruktur)
- * Berisi 48 Modul Pembelajaran Interaktif (8 Bab per Kelas).
- * Sesuai PRISMA Design System: 100% Gratis, Ramah Anak, dan Sistem 3 Tab.
- */
-
+// Database Komprehensif Seluruh Materi Resmi PRISMA (Kelas 1 - 6 SD, Bab 1 - 8 per Kelas)
+// Total 48 Modul Materi Terstruktur dengan Kurikulum Lengkap & Kuis Interaktif Resmi
 export const allStructuredMateri = [
   {
     "id": "materi-k1-b1",
@@ -70,11 +66,13 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 1: Panen Tomat di Kebun Nenek",
+      "title": "Kuis Interaktif: Bab 1: Panen Tomat di Kebun Nenek",
       "questions": [
         {
-          "id": "q-k1b1-1",
+          "id": "q-materi-k1-b1-1",
           "questionText": "Sari punya 5 tomat. Nenek punya 4 tomat. Berapa semua tomatnya?",
+          "instructionBadge": "Hitung dan Lingkari",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
@@ -82,21 +80,48 @@ export const allStructuredMateri = [
             "9 tomat",
             "10 tomat"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 1,
           "explanation": "Hitung terus dari 5: 6, 7, 8, 9 tomat (5 + 4 = 9)."
         },
         {
-          "id": "q-k1b1-2",
-          "questionText": "Perhatikan gambar di bawah! Manakah gambar buah TOMAT?",
-          "image": "/quiz/k1-b1-tomat.svg",
+          "id": "q-materi-k1-b1-2",
+          "questionText": "Lingkari gambar TOMAT yang segar!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
+          "image": "",
           "points": 50,
           "options": [
-            "Gambar (A) Tomat Merah",
-            "Gambar (B) Wortel",
-            "Gambar (C) Apel"
+            "Tomat Segar",
+            "Wortel Oranye",
+            "Apel Manis"
           ],
+          "imageOptions": [
+            {
+              "label": "Tomat Segar",
+              "image": "/quiz/items/tomat.svg"
+            },
+            {
+              "label": "Wortel Oranye",
+              "image": "/quiz/items/wortel.svg"
+            },
+            {
+              "label": "Apel Manis",
+              "image": "/quiz/items/apel.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Tomat itu bulat dan merah dengan daun hijau segar di atasnya."
+          "explanation": "Tomat berbentuk bulat, berwarna merah cerah, dan memiliki kelopak daun hijau di atasnya."
         }
       ]
     },
@@ -134,11 +159,13 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T06:17:22.270Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 1: Panen Tomat di Kebun Nenek",
+      "title": "Kuis Interaktif: Bab 1: Panen Tomat di Kebun Nenek",
       "questions": [
         {
-          "id": "q-k1b1-1",
+          "id": "q-materi-k1-b1-1",
           "questionText": "Sari punya 5 tomat. Nenek punya 4 tomat. Berapa semua tomatnya?",
+          "instructionBadge": "Hitung dan Lingkari",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
@@ -146,21 +173,48 @@ export const allStructuredMateri = [
             "9 tomat",
             "10 tomat"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 1,
           "explanation": "Hitung terus dari 5: 6, 7, 8, 9 tomat (5 + 4 = 9)."
         },
         {
-          "id": "q-k1b1-2",
-          "questionText": "Perhatikan gambar di bawah! Manakah gambar buah TOMAT?",
-          "image": "/quiz/k1-b1-tomat.svg",
+          "id": "q-materi-k1-b1-2",
+          "questionText": "Lingkari gambar TOMAT yang segar!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
+          "image": "",
           "points": 50,
           "options": [
-            "Gambar (A) Tomat Merah",
-            "Gambar (B) Wortel",
-            "Gambar (C) Apel"
+            "Tomat Segar",
+            "Wortel Oranye",
+            "Apel Manis"
           ],
+          "imageOptions": [
+            {
+              "label": "Tomat Segar",
+              "image": "/quiz/items/tomat.svg"
+            },
+            {
+              "label": "Wortel Oranye",
+              "image": "/quiz/items/wortel.svg"
+            },
+            {
+              "label": "Apel Manis",
+              "image": "/quiz/items/apel.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Tomat itu bulat dan merah dengan daun hijau segar di atasnya."
+          "explanation": "Tomat berbentuk bulat, berwarna merah cerah, dan memiliki kelopak daun hijau di atasnya."
         }
       ]
     }
@@ -225,23 +279,33 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 2: Kue untuk Bu Tini",
+      "title": "Kuis Interaktif: Bab 2: Kue untuk Bu Tini",
       "questions": [
         {
-          "id": "q-k1b2-1",
-          "questionText": "Berdasarkan cerita: Ibu berkata, \"Ada 12 kue. Berikan 5 kue untuk Bu Tini.\" Apakah Dimas memberi 5 kue kepada Bu Tini?",
+          "id": "q-materi-k1-b2-1",
+          "questionText": "Ibu berkata, \"Ada 12 kue. Berikan 5 kue untuk Bu Tini.\" Apakah Dimas memberi 5 kue kepada Bu Tini?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Ibu berkata: \"Berikan 5 kue untuk Bu Tini\" dan Dimas melaksanakannya."
+          "explanation": "Benar! Ibu menyuruh memberikan 5 kue kepada Bu Tini dan Dimas mematuhinya."
         },
         {
-          "id": "q-k1b2-2",
+          "id": "q-materi-k1-b2-2",
           "questionText": "Ada 12 kue. Dimas memberikan 5 kue kepada Bu Tini. Sisa berapa kue sekarang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
@@ -249,6 +313,12 @@ export const allStructuredMateri = [
             "7 kue",
             "8 kue"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 1,
           "explanation": "Hitung mundur dari 12: 11, 10, 9, 8, 7 kue tersisa (12 - 5 = 7)."
         }
@@ -283,23 +353,33 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T07:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 2: Kue untuk Bu Tini",
+      "title": "Kuis Interaktif: Bab 2: Kue untuk Bu Tini",
       "questions": [
         {
-          "id": "q-k1b2-1",
-          "questionText": "Berdasarkan cerita: Ibu berkata, \"Ada 12 kue. Berikan 5 kue untuk Bu Tini.\" Apakah Dimas memberi 5 kue kepada Bu Tini?",
+          "id": "q-materi-k1-b2-1",
+          "questionText": "Ibu berkata, \"Ada 12 kue. Berikan 5 kue untuk Bu Tini.\" Apakah Dimas memberi 5 kue kepada Bu Tini?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Ibu berkata: \"Berikan 5 kue untuk Bu Tini\" dan Dimas melaksanakannya."
+          "explanation": "Benar! Ibu menyuruh memberikan 5 kue kepada Bu Tini dan Dimas mematuhinya."
         },
         {
-          "id": "q-k1b2-2",
+          "id": "q-materi-k1-b2-2",
           "questionText": "Ada 12 kue. Dimas memberikan 5 kue kepada Bu Tini. Sisa berapa kue sekarang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
@@ -307,6 +387,12 @@ export const allStructuredMateri = [
             "7 kue",
             "8 kue"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 1,
           "explanation": "Hitung mundur dari 12: 11, 10, 9, 8, 7 kue tersisa (12 - 5 = 7)."
         }
@@ -373,33 +459,67 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 3: Kamar Rapi Rina",
+      "title": "Kuis Interaktif: Bab 3: Kamar Rapi Rina",
       "questions": [
         {
-          "id": "q-k1b3-1",
-          "questionText": "Perhatikan gambar benda kamar Rina di bawah! Bentuk bangun datar apakah jam dinding?",
+          "id": "q-materi-k1-b3-1",
+          "questionText": "Pasangkan benda di kamar Rina dengan bentuk bangun datarnya yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "/quiz/k1-b3-kamar-bentuk.svg",
           "points": 50,
           "options": [
-            "Lingkaran",
-            "Persegi",
-            "Segitiga"
+            "Jam = Lingkaran, Jendela = Persegi, Atap = Segitiga"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Jam Dinding",
+              "right": "Lingkaran"
+            },
+            {
+              "left": "Jendela Kamar",
+              "right": "Persegi"
+            },
+            {
+              "left": "Atap Rumah",
+              "right": "Segitiga"
+            }
+          ],
+          "leftItems": [
+            "Jam Dinding",
+            "Jendela Kamar",
+            "Atap Rumah"
+          ],
+          "rightItems": [
+            "Segitiga",
+            "Lingkaran",
+            "Persegi"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Jam dinding berbentuk lingkaran yang tidak memiliki sudut."
+          "explanation": "Jam dinding berbentuk lingkaran bulat, jendela persegi, dan atap rumah berbentuk segitiga."
         },
         {
-          "id": "q-k1b3-2",
-          "questionText": "Berdasarkan info bacaan: Bantal ada di atas kasur, sedangkan sandal ada di mana?",
+          "id": "q-materi-k1-b3-2",
+          "questionText": "Info: Bantal ada di atas kasur. Sandal ada di bawah kasur. Di manakah letak sandal Rina?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Di bawah kasur",
             "Di atas kasur",
-            "Di dalam lemari"
+            "Di bawah kasur"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Sesuai bacaan: \"Sandal ada di bawah kasur.\""
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sandal diletakkan rapi di lantai bawah kasur."
         }
       ]
     },
@@ -432,33 +552,67 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T08:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 3: Kamar Rapi Rina",
+      "title": "Kuis Interaktif: Bab 3: Kamar Rapi Rina",
       "questions": [
         {
-          "id": "q-k1b3-1",
-          "questionText": "Perhatikan gambar benda kamar Rina di bawah! Bentuk bangun datar apakah jam dinding?",
+          "id": "q-materi-k1-b3-1",
+          "questionText": "Pasangkan benda di kamar Rina dengan bentuk bangun datarnya yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "/quiz/k1-b3-kamar-bentuk.svg",
           "points": 50,
           "options": [
-            "Lingkaran",
-            "Persegi",
-            "Segitiga"
+            "Jam = Lingkaran, Jendela = Persegi, Atap = Segitiga"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Jam Dinding",
+              "right": "Lingkaran"
+            },
+            {
+              "left": "Jendela Kamar",
+              "right": "Persegi"
+            },
+            {
+              "left": "Atap Rumah",
+              "right": "Segitiga"
+            }
+          ],
+          "leftItems": [
+            "Jam Dinding",
+            "Jendela Kamar",
+            "Atap Rumah"
+          ],
+          "rightItems": [
+            "Segitiga",
+            "Lingkaran",
+            "Persegi"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Jam dinding berbentuk lingkaran yang tidak memiliki sudut."
+          "explanation": "Jam dinding berbentuk lingkaran bulat, jendela persegi, dan atap rumah berbentuk segitiga."
         },
         {
-          "id": "q-k1b3-2",
-          "questionText": "Berdasarkan info bacaan: Bantal ada di atas kasur, sedangkan sandal ada di mana?",
+          "id": "q-materi-k1-b3-2",
+          "questionText": "Info: Bantal ada di atas kasur. Sandal ada di bawah kasur. Di manakah letak sandal Rina?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Di bawah kasur",
             "Di atas kasur",
-            "Di dalam lemari"
+            "Di bawah kasur"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Sesuai bacaan: \"Sandal ada di bawah kasur.\""
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sandal diletakkan rapi di lantai bawah kasur."
         }
       ]
     }
@@ -518,24 +672,42 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 4: Telur di Kandang Ayam",
+      "title": "Kuis Interaktif: Bab 4: Telur di Kandang Ayam",
       "questions": [
         {
-          "id": "q-k1b4-1",
-          "questionText": "Perhatikan gambar di bawah! Kandang ayam manakah yang memiliki telur lebih banyak?",
-          "image": "/quiz/k1-b4-telur-kandang.svg",
+          "id": "q-materi-k1-b4-1",
+          "questionText": "Perhatikan kedua kandang ayam! Lingkari kandang yang telurnya LEBIH BANYAK!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
+          "image": "",
           "points": 50,
           "options": [
-            "Kandang Kanan (12 telur)",
-            "Kandang Kiri (9 telur)",
-            "Kedua kandang sama banyak"
+            "Kandang Kiri (9 Telur)",
+            "Kandang Kanan (12 Telur)"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "12 butir telur di kandang kanan lebih banyak daripada 9 butir telur di kandang kiri."
+          "imageOptions": [
+            {
+              "label": "Kandang Kiri (9 Telur)",
+              "image": "/quiz/items/kandang-9-telur.svg"
+            },
+            {
+              "label": "Kandang Kanan (12 Telur)",
+              "image": "/quiz/items/kandang-12-telur.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "12 telur lebih banyak daripada 9 telur, jadi kandang kanan memiliki telur terbanyak."
         },
         {
-          "id": "q-k1b4-2",
-          "questionText": "Urutkan bilangan 14, 8, dan 11 dari yang paling kecil!",
+          "id": "q-materi-k1-b4-2",
+          "questionText": "Urutkan bilangan telur berikut dari yang PALING KECIL ke yang paling besar!",
+          "instructionBadge": "Urutkan Angka",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
@@ -543,8 +715,22 @@ export const allStructuredMateri = [
             "14, 11, 8",
             "11, 8, 14"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "14",
+            "8",
+            "11"
+          ],
+          "correctOrder": [
+            "8",
+            "11",
+            "14"
+          ],
           "correctOptionIndex": 0,
-          "explanation": "Saat berhitung maju, bilangan 8 disebut paling awal, lalu 11, kemudian 14."
+          "explanation": "Urutan dari yang terkecil adalah 8 telur, lalu 11 telur, kemudian 14 telur."
         }
       ]
     },
@@ -572,24 +758,42 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T09:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 4: Telur di Kandang Ayam",
+      "title": "Kuis Interaktif: Bab 4: Telur di Kandang Ayam",
       "questions": [
         {
-          "id": "q-k1b4-1",
-          "questionText": "Perhatikan gambar di bawah! Kandang ayam manakah yang memiliki telur lebih banyak?",
-          "image": "/quiz/k1-b4-telur-kandang.svg",
+          "id": "q-materi-k1-b4-1",
+          "questionText": "Perhatikan kedua kandang ayam! Lingkari kandang yang telurnya LEBIH BANYAK!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
+          "image": "",
           "points": 50,
           "options": [
-            "Kandang Kanan (12 telur)",
-            "Kandang Kiri (9 telur)",
-            "Kedua kandang sama banyak"
+            "Kandang Kiri (9 Telur)",
+            "Kandang Kanan (12 Telur)"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "12 butir telur di kandang kanan lebih banyak daripada 9 butir telur di kandang kiri."
+          "imageOptions": [
+            {
+              "label": "Kandang Kiri (9 Telur)",
+              "image": "/quiz/items/kandang-9-telur.svg"
+            },
+            {
+              "label": "Kandang Kanan (12 Telur)",
+              "image": "/quiz/items/kandang-12-telur.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "12 telur lebih banyak daripada 9 telur, jadi kandang kanan memiliki telur terbanyak."
         },
         {
-          "id": "q-k1b4-2",
-          "questionText": "Urutkan bilangan 14, 8, dan 11 dari yang paling kecil!",
+          "id": "q-materi-k1-b4-2",
+          "questionText": "Urutkan bilangan telur berikut dari yang PALING KECIL ke yang paling besar!",
+          "instructionBadge": "Urutkan Angka",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
@@ -597,8 +801,22 @@ export const allStructuredMateri = [
             "14, 11, 8",
             "11, 8, 14"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "14",
+            "8",
+            "11"
+          ],
+          "correctOrder": [
+            "8",
+            "11",
+            "14"
+          ],
           "correctOptionIndex": 0,
-          "explanation": "Saat berhitung maju, bilangan 8 disebut paling awal, lalu 11, kemudian 14."
+          "explanation": "Urutan dari yang terkecil adalah 8 telur, lalu 11 telur, kemudian 14 telur."
         }
       ]
     }
@@ -663,24 +881,47 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 5: Pola Gelang Manik-Manik",
+      "title": "Kuis Interaktif: Bab 5: Pola Gelang Manik-Manik",
       "questions": [
         {
-          "id": "q-k1b5-1",
-          "questionText": "Perhatikan pola gelang di bawah: Merah, Kuning, Kuning, Merah, Kuning, Kuning, ... Manik apakah berikutnya?",
+          "id": "q-materi-k1-b5-1",
+          "questionText": "Pola manik gelang: Merah, Kuning, Kuning, Merah, Kuning, Kuning, ... Manik apa berikutnya?",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "/quiz/k1-b5-pola-gelang.svg",
           "points": 50,
           "options": [
-            "Merah",
-            "Kuning",
-            "Hijau"
+            "Manik Merah",
+            "Manik Kuning",
+            "Manik Hijau"
           ],
+          "imageOptions": [
+            {
+              "label": "Manik Merah",
+              "image": "/quiz/items/manik-merah.svg"
+            },
+            {
+              "label": "Manik Kuning",
+              "image": "/quiz/items/manik-kuning.svg"
+            },
+            {
+              "label": "Manik Hijau",
+              "image": "/quiz/items/manik-hijau.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Inti polanya adalah (merah, kuning, kuning), sehingga setelah dua kuning polanya diulang lagi dari merah."
+          "explanation": "Polanya berulang: satu merah diikuti dua kuning. Setelah dua kuning, pola kembali ke manik merah."
         },
         {
-          "id": "q-k1b5-2",
-          "questionText": "Perhatikan barisan bilangan: 2, 4, 6, ... Bilangan berapakah berikutnya?",
+          "id": "q-materi-k1-b5-2",
+          "questionText": "2, 4, 6, … Bilangan berapakah berikutnya pada pola loncat 2 ini?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
@@ -688,8 +929,14 @@ export const allStructuredMateri = [
             "8",
             "10"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 1,
-          "explanation": "Setiap langkah bertambah 2: 6 + 2 = 8."
+          "explanation": "Pola selalu ditambah 2: 6 + 2 = 8."
         }
       ]
     },
@@ -722,24 +969,47 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T10:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 5: Pola Gelang Manik-Manik",
+      "title": "Kuis Interaktif: Bab 5: Pola Gelang Manik-Manik",
       "questions": [
         {
-          "id": "q-k1b5-1",
-          "questionText": "Perhatikan pola gelang di bawah: Merah, Kuning, Kuning, Merah, Kuning, Kuning, ... Manik apakah berikutnya?",
+          "id": "q-materi-k1-b5-1",
+          "questionText": "Pola manik gelang: Merah, Kuning, Kuning, Merah, Kuning, Kuning, ... Manik apa berikutnya?",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "/quiz/k1-b5-pola-gelang.svg",
           "points": 50,
           "options": [
-            "Merah",
-            "Kuning",
-            "Hijau"
+            "Manik Merah",
+            "Manik Kuning",
+            "Manik Hijau"
           ],
+          "imageOptions": [
+            {
+              "label": "Manik Merah",
+              "image": "/quiz/items/manik-merah.svg"
+            },
+            {
+              "label": "Manik Kuning",
+              "image": "/quiz/items/manik-kuning.svg"
+            },
+            {
+              "label": "Manik Hijau",
+              "image": "/quiz/items/manik-hijau.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Inti polanya adalah (merah, kuning, kuning), sehingga setelah dua kuning polanya diulang lagi dari merah."
+          "explanation": "Polanya berulang: satu merah diikuti dua kuning. Setelah dua kuning, pola kembali ke manik merah."
         },
         {
-          "id": "q-k1b5-2",
-          "questionText": "Perhatikan barisan bilangan: 2, 4, 6, ... Bilangan berapakah berikutnya?",
+          "id": "q-materi-k1-b5-2",
+          "questionText": "2, 4, 6, … Bilangan berapakah berikutnya pada pola loncat 2 ini?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
@@ -747,8 +1017,14 @@ export const allStructuredMateri = [
             "8",
             "10"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 1,
-          "explanation": "Setiap langkah bertambah 2: 6 + 2 = 8."
+          "explanation": "Pola selalu ditambah 2: 6 + 2 = 8."
         }
       ]
     }
@@ -813,33 +1089,67 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 6: Pita untuk Lomba",
+      "title": "Kuis Interaktif: Bab 6: Pita untuk Lomba",
       "questions": [
         {
-          "id": "q-k1b6-1",
-          "questionText": "Pasangkan kata dengan lawannya: Lawan kata (antonim) dari \"panjang\" adalah...",
+          "id": "q-materi-k1-b6-1",
+          "questionText": "Pasangkan kata ukuran pita lomba dengan lawan katanya yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Pendek",
-            "Ringan",
-            "Rendah"
+            "Panjang - Pendek, Berat - Ringan, Tinggi - Rendah"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Panjang",
+              "right": "Pendek"
+            },
+            {
+              "left": "Berat",
+              "right": "Ringan"
+            },
+            {
+              "left": "Tinggi",
+              "right": "Rendah"
+            }
+          ],
+          "leftItems": [
+            "Panjang",
+            "Berat",
+            "Tinggi"
+          ],
+          "rightItems": [
+            "Ringan",
+            "Rendah",
+            "Pendek"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Lawan kata dari panjang adalah pendek."
+          "explanation": "Lawan kata panjang adalah pendek, berat lawannya ringan, dan tinggi lawannya rendah."
         },
         {
-          "id": "q-k1b6-2",
-          "questionText": "Kotak besar berisi balon. Kotak kecil berisi kelereng. Manakah kotak yang lebih berat?",
+          "id": "q-materi-k1-b6-2",
+          "questionText": "Kotak besar berisi balon. Kotak kecil berisi kelereng. Benda manakah yang lebih berat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Kotak kecil (isi kelereng)",
-            "Kotak besar (isi balon)",
-            "Sama beratnya"
+            "Kotak besar berisi balon",
+            "Kotak kecil berisi kelereng"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kelereng lebih berat daripada balon meskipun ukuran kotaknya lebih kecil."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Kelereng terbuat dari kaca padat sehingga lebih berat daripada balon yang hanya berisi udara."
         }
       ]
     },
@@ -872,33 +1182,67 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T11:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 6: Pita untuk Lomba",
+      "title": "Kuis Interaktif: Bab 6: Pita untuk Lomba",
       "questions": [
         {
-          "id": "q-k1b6-1",
-          "questionText": "Pasangkan kata dengan lawannya: Lawan kata (antonim) dari \"panjang\" adalah...",
+          "id": "q-materi-k1-b6-1",
+          "questionText": "Pasangkan kata ukuran pita lomba dengan lawan katanya yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Pendek",
-            "Ringan",
-            "Rendah"
+            "Panjang - Pendek, Berat - Ringan, Tinggi - Rendah"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Panjang",
+              "right": "Pendek"
+            },
+            {
+              "left": "Berat",
+              "right": "Ringan"
+            },
+            {
+              "left": "Tinggi",
+              "right": "Rendah"
+            }
+          ],
+          "leftItems": [
+            "Panjang",
+            "Berat",
+            "Tinggi"
+          ],
+          "rightItems": [
+            "Ringan",
+            "Rendah",
+            "Pendek"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Lawan kata dari panjang adalah pendek."
+          "explanation": "Lawan kata panjang adalah pendek, berat lawannya ringan, dan tinggi lawannya rendah."
         },
         {
-          "id": "q-k1b6-2",
-          "questionText": "Kotak besar berisi balon. Kotak kecil berisi kelereng. Manakah kotak yang lebih berat?",
+          "id": "q-materi-k1-b6-2",
+          "questionText": "Kotak besar berisi balon. Kotak kecil berisi kelereng. Benda manakah yang lebih berat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Kotak kecil (isi kelereng)",
-            "Kotak besar (isi balon)",
-            "Sama beratnya"
+            "Kotak besar berisi balon",
+            "Kotak kecil berisi kelereng"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kelereng lebih berat daripada balon meskipun ukuran kotaknya lebih kecil."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Kelereng terbuat dari kaca padat sehingga lebih berat daripada balon yang hanya berisi udara."
         }
       ]
     }
@@ -968,33 +1312,56 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 7: Hari-Hariku",
+      "title": "Kuis Interaktif: Bab 7: Hari-Hariku",
       "questions": [
         {
-          "id": "q-k1b7-1",
-          "questionText": "Urutkan kegiatan Bima dari pagi hingga malam hari yang benar:",
+          "id": "q-materi-k1-b7-1",
+          "questionText": "Urutkan kegiatan harian Bima dari PAGI ke MALAM!",
+          "instructionBadge": "Urutkan Kegiatan",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
-            "Mandi pagi, berangkat sekolah, lalu tidur malam",
-            "Tidur malam, mandi pagi, berangkat sekolah",
-            "Berangkat sekolah, tidur malam, mandi pagi"
+            "Mandi pagi, Berangkat sekolah, Tidur malam",
+            "Tidur malam, Mandi pagi, Berangkat sekolah"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "Tidur malam",
+            "Mandi pagi",
+            "Berangkat sekolah"
+          ],
+          "correctOrder": [
+            "Mandi pagi",
+            "Berangkat sekolah",
+            "Tidur malam"
           ],
           "correctOptionIndex": 0,
-          "explanation": "Pagi mandi, siang bersekolah, dan malam tidur."
+          "explanation": "Kegiatan berurutan dari mandi pagi, lalu berangkat sekolah, dan diakhiri dengan tidur saat malam tiba."
         },
         {
-          "id": "q-k1b7-2",
-          "questionText": "Hari setelah hari Kamis adalah hari...",
+          "id": "q-materi-k1-b7-2",
+          "questionText": "Sekarang hari Rabu. Hari apakah besok lusa (dua hari lagi)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
+            "Kamis",
             "Jumat",
-            "Rabu",
             "Sabtu"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Urutan hari: Rabu, Kamis, lalu Jumat."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Rabu -> besoknya Kamis -> lusa (dua hari lagi) adalah hari Jumat."
         }
       ]
     },
@@ -1032,33 +1399,56 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T12:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 7: Hari-Hariku",
+      "title": "Kuis Interaktif: Bab 7: Hari-Hariku",
       "questions": [
         {
-          "id": "q-k1b7-1",
-          "questionText": "Urutkan kegiatan Bima dari pagi hingga malam hari yang benar:",
+          "id": "q-materi-k1-b7-1",
+          "questionText": "Urutkan kegiatan harian Bima dari PAGI ke MALAM!",
+          "instructionBadge": "Urutkan Kegiatan",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
-            "Mandi pagi, berangkat sekolah, lalu tidur malam",
-            "Tidur malam, mandi pagi, berangkat sekolah",
-            "Berangkat sekolah, tidur malam, mandi pagi"
+            "Mandi pagi, Berangkat sekolah, Tidur malam",
+            "Tidur malam, Mandi pagi, Berangkat sekolah"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "Tidur malam",
+            "Mandi pagi",
+            "Berangkat sekolah"
+          ],
+          "correctOrder": [
+            "Mandi pagi",
+            "Berangkat sekolah",
+            "Tidur malam"
           ],
           "correctOptionIndex": 0,
-          "explanation": "Pagi mandi, siang bersekolah, dan malam tidur."
+          "explanation": "Kegiatan berurutan dari mandi pagi, lalu berangkat sekolah, dan diakhiri dengan tidur saat malam tiba."
         },
         {
-          "id": "q-k1b7-2",
-          "questionText": "Hari setelah hari Kamis adalah hari...",
+          "id": "q-materi-k1-b7-2",
+          "questionText": "Sekarang hari Rabu. Hari apakah besok lusa (dua hari lagi)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
+            "Kamis",
             "Jumat",
-            "Rabu",
             "Sabtu"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Urutan hari: Rabu, Kamis, lalu Jumat."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Rabu -> besoknya Kamis -> lusa (dua hari lagi) adalah hari Jumat."
         }
       ]
     }
@@ -1123,35 +1513,67 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 8: Buah Kesukaan Teman Sekelas",
+      "title": "Kuis Interaktif: Bab 8: Buah Kesukaan Teman Sekelas",
       "questions": [
         {
-          "id": "q-k1b8-1",
-          "questionText": "Perhatikan piktogram buah di bawah! Buah apakah yang paling disukai teman sekelas?",
+          "id": "q-materi-k1-b8-1",
+          "questionText": "Lihat piktogram buah kesukaan! Lingkari gambar buah yang PALING BANYAK disukai teman sekelas!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "/quiz/k1-b8-piktogram-buah.svg",
           "points": 50,
           "options": [
-            "Mangga (7 anak)",
-            "Pisang (5 anak)",
-            "Jeruk (3 anak)",
-            "Semangka (2 anak)"
+            "Pisang",
+            "Jeruk",
+            "Mangga",
+            "Semangka"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Baris mangga paling panjang, ada 7 anak yang menyukainya."
+          "imageOptions": [
+            {
+              "label": "Pisang (3 anak)",
+              "image": "/quiz/items/pisang.svg"
+            },
+            {
+              "label": "Jeruk (5 anak)",
+              "image": "/quiz/items/jeruk.svg"
+            },
+            {
+              "label": "Mangga",
+              "image": "/quiz/items/mangga.svg"
+            },
+            {
+              "label": "Semangka (2 anak)",
+              "image": "/quiz/items/semangka.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Buah jeruk memiliki 5 simbol piktogram, paling banyak di antara semua buah."
         },
         {
-          "id": "q-k1b8-2",
-          "questionText": "Berdasarkan piktogram buah kesukaan, berapa anak yang menyukai buah pisang?",
+          "id": "q-materi-k1-b8-2",
+          "questionText": "Berapa banyak anak yang menyukai buah apel pada piktogram?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k1-b8-piktogram-buah.svg",
           "points": 50,
           "options": [
-            "5 anak",
             "3 anak",
-            "7 anak",
-            "2 anak"
+            "4 anak",
+            "5 anak"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Hitung lingkaran di baris pisang: terdapat 5 lingkaran (5 anak)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Pada baris buah apel terdapat 4 simbol gambar apel."
         }
       ]
     },
@@ -1184,35 +1606,67 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T13:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 8: Buah Kesukaan Teman Sekelas",
+      "title": "Kuis Interaktif: Bab 8: Buah Kesukaan Teman Sekelas",
       "questions": [
         {
-          "id": "q-k1b8-1",
-          "questionText": "Perhatikan piktogram buah di bawah! Buah apakah yang paling disukai teman sekelas?",
+          "id": "q-materi-k1-b8-1",
+          "questionText": "Lihat piktogram buah kesukaan! Lingkari gambar buah yang PALING BANYAK disukai teman sekelas!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "/quiz/k1-b8-piktogram-buah.svg",
           "points": 50,
           "options": [
-            "Mangga (7 anak)",
-            "Pisang (5 anak)",
-            "Jeruk (3 anak)",
-            "Semangka (2 anak)"
+            "Pisang",
+            "Jeruk",
+            "Mangga",
+            "Semangka"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Baris mangga paling panjang, ada 7 anak yang menyukainya."
+          "imageOptions": [
+            {
+              "label": "Pisang (3 anak)",
+              "image": "/quiz/items/pisang.svg"
+            },
+            {
+              "label": "Jeruk (5 anak)",
+              "image": "/quiz/items/jeruk.svg"
+            },
+            {
+              "label": "Mangga",
+              "image": "/quiz/items/mangga.svg"
+            },
+            {
+              "label": "Semangka (2 anak)",
+              "image": "/quiz/items/semangka.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Buah jeruk memiliki 5 simbol piktogram, paling banyak di antara semua buah."
         },
         {
-          "id": "q-k1b8-2",
-          "questionText": "Berdasarkan piktogram buah kesukaan, berapa anak yang menyukai buah pisang?",
+          "id": "q-materi-k1-b8-2",
+          "questionText": "Berapa banyak anak yang menyukai buah apel pada piktogram?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k1-b8-piktogram-buah.svg",
           "points": 50,
           "options": [
-            "5 anak",
             "3 anak",
-            "7 anak",
-            "2 anak"
+            "4 anak",
+            "5 anak"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Hitung lingkaran di baris pisang: terdapat 5 lingkaran (5 anak)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Pada baris buah apel terdapat 4 simbol gambar apel."
         }
       ]
     }
@@ -1282,32 +1736,48 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 1: Sarapan Sehat, Badan Kuat",
+      "title": "Kuis Interaktif: Bab 1: Sarapan Sehat, Badan Kuat",
       "questions": [
         {
-          "id": "q-k2b1-1",
-          "questionText": "Sarapan membuat badan kuat dan pikiran segar. Apakah pernyataan tersebut benar?",
+          "id": "q-materi-k2-b1-1",
+          "questionText": "Apakah sarapan pagi membuat badan kuat dan pikiran menjadi segar?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Itu manfaat sarapan bergizi menurut bacaan."
+          "explanation": "Benar! Sarapan bergizi memberikan energi bagi tubuh dan otak untuk belajar dengan fokus."
         },
         {
-          "id": "q-k2b1-2",
-          "questionText": "Bilangan 45 buah jeruk terdiri dari...",
+          "id": "q-materi-k2-b1-2",
+          "questionText": "Beni makan 15 suap nasi. Edo makan 18 suap nasi. Siapakah yang makan lebih banyak?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "4 puluhan dan 5 satuan",
-            "5 puluhan dan 4 satuan",
-            "40 puluhan dan 5 satuan"
+            "Beni",
+            "Edo",
+            "Sama banyak"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Angka di sebelah kiri adalah puluhan (4 bernilai 40) dan angka di kanan adalah satuan (5)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "18 suapan lebih besar daripada 15 suapan, jadi Edo makan lebih banyak."
         }
       ]
     },
@@ -1345,32 +1815,48 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T14:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 1: Sarapan Sehat, Badan Kuat",
+      "title": "Kuis Interaktif: Bab 1: Sarapan Sehat, Badan Kuat",
       "questions": [
         {
-          "id": "q-k2b1-1",
-          "questionText": "Sarapan membuat badan kuat dan pikiran segar. Apakah pernyataan tersebut benar?",
+          "id": "q-materi-k2-b1-1",
+          "questionText": "Apakah sarapan pagi membuat badan kuat dan pikiran menjadi segar?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Itu manfaat sarapan bergizi menurut bacaan."
+          "explanation": "Benar! Sarapan bergizi memberikan energi bagi tubuh dan otak untuk belajar dengan fokus."
         },
         {
-          "id": "q-k2b1-2",
-          "questionText": "Bilangan 45 buah jeruk terdiri dari...",
+          "id": "q-materi-k2-b1-2",
+          "questionText": "Beni makan 15 suap nasi. Edo makan 18 suap nasi. Siapakah yang makan lebih banyak?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "4 puluhan dan 5 satuan",
-            "5 puluhan dan 4 satuan",
-            "40 puluhan dan 5 satuan"
+            "Beni",
+            "Edo",
+            "Sama banyak"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Angka di sebelah kiri adalah puluhan (4 bernilai 40) dan angka di kanan adalah satuan (5)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "18 suapan lebih besar daripada 15 suapan, jadi Edo makan lebih banyak."
         }
       ]
     }
@@ -1435,33 +1921,62 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 2: Kue Bolu untuk Berbagi",
+      "title": "Kuis Interaktif: Bab 2: Kue Bolu untuk Berbagi",
       "questions": [
         {
-          "id": "q-k2b2-1",
-          "questionText": "Perhatikan gambar kue bolu di bawah! Gambar manakah yang menunjukkan pecahan setengah (1/2)?",
-          "image": "/quiz/k2-b2-pecahan-kue.svg",
-          "points": 50,
-          "options": [
-            "Gambar (A) Kue dibagi 2 sama besar, 1 diwarnai",
-            "Gambar (B) Kue dibagi 2 tidak sama",
-            "Gambar (C) Kue dibagi 4, 1 diwarnai"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "Setengah (1/2) adalah 1 bagian dari 2 bagian yang sama besar."
-        },
-        {
-          "id": "q-k2b2-2",
-          "questionText": "Manakah penulisan kalimat yang benar menggunakan huruf kapital dan tanda titik?",
+          "id": "q-materi-k2-b2-1",
+          "questionText": "Lingkari gambar kue yang menunjukkan pecahan SETENGAH (1/2) sama besar!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Raka makan kue.",
-            "raka makan kue.",
-            "Raka makan kue"
+            "Kue dibagi 2 sama besar",
+            "Kue dibagi 2 tidak sama",
+            "Kue dibagi 4"
           ],
+          "imageOptions": [
+            {
+              "label": "Pecahan 1/2 (Sama Besar)",
+              "image": "/quiz/items/kue-setengah.svg"
+            },
+            {
+              "label": "Kue Tidak Sama Besar",
+              "image": "/quiz/items/kue-tidak-sama.svg"
+            },
+            {
+              "label": "Kue Dibagi 4 (Pecahan 1/4)",
+              "image": "/quiz/items/kue-seperempat.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Awal kalimat dan nama orang wajib menggunakan huruf kapital serta diakhiri tanda titik."
+          "explanation": "Pecahan 1/2 terjadi saat 1 kue utuh dibagi tepat menjadi 2 potong yang SAMA BESAR."
+        },
+        {
+          "id": "q-materi-k2-b2-2",
+          "questionText": "1 kue bolu dipotong menjadi 4 bagian sama besar. Berapakah nilai 1 potong kue tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
+          "image": "/quiz/k2-b2-pecahan-kue.svg",
+          "points": 50,
+          "options": [
+            "1/2",
+            "1/3",
+            "1/4"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Satu potong dari empat potongan sama besar bernilai pecahan seperempat (1/4)."
         }
       ]
     },
@@ -1494,33 +2009,62 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T15:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 2: Kue Bolu untuk Berbagi",
+      "title": "Kuis Interaktif: Bab 2: Kue Bolu untuk Berbagi",
       "questions": [
         {
-          "id": "q-k2b2-1",
-          "questionText": "Perhatikan gambar kue bolu di bawah! Gambar manakah yang menunjukkan pecahan setengah (1/2)?",
-          "image": "/quiz/k2-b2-pecahan-kue.svg",
-          "points": 50,
-          "options": [
-            "Gambar (A) Kue dibagi 2 sama besar, 1 diwarnai",
-            "Gambar (B) Kue dibagi 2 tidak sama",
-            "Gambar (C) Kue dibagi 4, 1 diwarnai"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "Setengah (1/2) adalah 1 bagian dari 2 bagian yang sama besar."
-        },
-        {
-          "id": "q-k2b2-2",
-          "questionText": "Manakah penulisan kalimat yang benar menggunakan huruf kapital dan tanda titik?",
+          "id": "q-materi-k2-b2-1",
+          "questionText": "Lingkari gambar kue yang menunjukkan pecahan SETENGAH (1/2) sama besar!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Raka makan kue.",
-            "raka makan kue.",
-            "Raka makan kue"
+            "Kue dibagi 2 sama besar",
+            "Kue dibagi 2 tidak sama",
+            "Kue dibagi 4"
           ],
+          "imageOptions": [
+            {
+              "label": "Pecahan 1/2 (Sama Besar)",
+              "image": "/quiz/items/kue-setengah.svg"
+            },
+            {
+              "label": "Kue Tidak Sama Besar",
+              "image": "/quiz/items/kue-tidak-sama.svg"
+            },
+            {
+              "label": "Kue Dibagi 4 (Pecahan 1/4)",
+              "image": "/quiz/items/kue-seperempat.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Awal kalimat dan nama orang wajib menggunakan huruf kapital serta diakhiri tanda titik."
+          "explanation": "Pecahan 1/2 terjadi saat 1 kue utuh dibagi tepat menjadi 2 potong yang SAMA BESAR."
+        },
+        {
+          "id": "q-materi-k2-b2-2",
+          "questionText": "1 kue bolu dipotong menjadi 4 bagian sama besar. Berapakah nilai 1 potong kue tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
+          "image": "/quiz/k2-b2-pecahan-kue.svg",
+          "points": 50,
+          "options": [
+            "1/2",
+            "1/3",
+            "1/4"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Satu potong dari empat potongan sama besar bernilai pecahan seperempat (1/4)."
         }
       ]
     }
@@ -1585,33 +2129,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 3: Siapa yang Lebih Panjang?",
+      "title": "Kuis Interaktif: Bab 3: Siapa yang Lebih Panjang?",
       "questions": [
         {
-          "id": "q-k2b3-1",
-          "questionText": "Pensil Ani 5 klip kertas. Pensil Edo 8 klip kertas. Pensil siapakah yang lebih panjang?",
+          "id": "q-materi-k2-b3-1",
+          "questionText": "Ibu membeli 3 kantong jeruk. Setiap kantong berisi 4 jeruk. Berapa total seluruh jeruk?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Pensil Edo",
-            "Pensil Ani",
-            "Sama panjang"
+            "7 jeruk",
+            "10 jeruk",
+            "12 jeruk"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "8 klip kertas lebih panjang dari 5 klip kertas (8 > 5)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Perkalian adalah penjumlahan berulang: 3 × 4 = 4 + 4 + 4 = 12 jeruk."
         },
         {
-          "id": "q-k2b3-2",
-          "questionText": "Cara bertanya yang sopan kepada guru di kelas adalah...",
+          "id": "q-materi-k2-b3-2",
+          "questionText": "Ada 12 kue mangkok yang dibagikan sama rata kepada 3 anak. Berapa kue yang diterima setiap anak?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Maaf, Bu, boleh saya bertanya?\"",
-            "\"Bu, ini kenapa sih!\"",
-            "\"Cepat jelaskan ini, Bu!\""
+            "3 kue",
+            "4 kue",
+            "5 kue"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Bertanya dengan santun diawali dengan kata maaf, sapaan hormat, dan izin bertanya."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Pembagian: 12 dibagi 3 anak = 4 kue untuk setiap anak."
         }
       ]
     },
@@ -1644,33 +2204,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T16:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 3: Siapa yang Lebih Panjang?",
+      "title": "Kuis Interaktif: Bab 3: Siapa yang Lebih Panjang?",
       "questions": [
         {
-          "id": "q-k2b3-1",
-          "questionText": "Pensil Ani 5 klip kertas. Pensil Edo 8 klip kertas. Pensil siapakah yang lebih panjang?",
+          "id": "q-materi-k2-b3-1",
+          "questionText": "Ibu membeli 3 kantong jeruk. Setiap kantong berisi 4 jeruk. Berapa total seluruh jeruk?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Pensil Edo",
-            "Pensil Ani",
-            "Sama panjang"
+            "7 jeruk",
+            "10 jeruk",
+            "12 jeruk"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "8 klip kertas lebih panjang dari 5 klip kertas (8 > 5)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Perkalian adalah penjumlahan berulang: 3 × 4 = 4 + 4 + 4 = 12 jeruk."
         },
         {
-          "id": "q-k2b3-2",
-          "questionText": "Cara bertanya yang sopan kepada guru di kelas adalah...",
+          "id": "q-materi-k2-b3-2",
+          "questionText": "Ada 12 kue mangkok yang dibagikan sama rata kepada 3 anak. Berapa kue yang diterima setiap anak?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Maaf, Bu, boleh saya bertanya?\"",
-            "\"Bu, ini kenapa sih!\"",
-            "\"Cepat jelaskan ini, Bu!\""
+            "3 kue",
+            "4 kue",
+            "5 kue"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Bertanya dengan santun diawali dengan kata maaf, sapaan hormat, dan izin bertanya."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Pembagian: 12 dibagi 3 anak = 4 kue untuk setiap anak."
         }
       ]
     }
@@ -1730,34 +2306,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 4: Lompat Katak di Pematang Sawah",
+      "title": "Kuis Interaktif: Bab 4: Lompat Katak di Pematang Sawah",
       "questions": [
         {
-          "id": "q-k2b4-1",
-          "questionText": "Perhatikan gambar batu lompat katak: 0, 2, 4, 6, ... Bilangan berapakah pada batu selanjutnya?",
+          "id": "q-materi-k2-b4-1",
+          "questionText": "Katak melompat 3 langkah setiap kali melompat. Jika katak melompat 4 kali dari angka 0, di manakah katak mendarat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k2-b4-lompat-katak.svg",
           "points": 50,
           "options": [
-            "8",
-            "7",
-            "9",
-            "10"
+            "Angka 7",
+            "Angka 9",
+            "Angka 12"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Setiap lompatan bertambah 2: setelah 6 adalah 6 + 2 = 8."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Lompatan: 0 -> 3 -> 6 -> 9 -> 12 (4 lompatan × 3 langkah = 12)."
         },
         {
-          "id": "q-k2b4-2",
-          "questionText": "Perhatikan barisan bilangan: 10, 20, 30, ... Bilangan berikutnya adalah...",
+          "id": "q-materi-k2-b4-2",
+          "questionText": "Berdasarkan cerita: Siapa nama katak kecil yang ramah dan suka melompat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "40",
-            "31",
-            "50"
+            "Koko",
+            "Boni",
+            "Riri"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Setiap langkah bertambah 10: 30 + 10 = 40."
+          "explanation": "Katak kecil yang melompat di garis bilangan bernama Koko."
         }
       ]
     },
@@ -1785,34 +2376,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T17:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 4: Lompat Katak di Pematang Sawah",
+      "title": "Kuis Interaktif: Bab 4: Lompat Katak di Pematang Sawah",
       "questions": [
         {
-          "id": "q-k2b4-1",
-          "questionText": "Perhatikan gambar batu lompat katak: 0, 2, 4, 6, ... Bilangan berapakah pada batu selanjutnya?",
+          "id": "q-materi-k2-b4-1",
+          "questionText": "Katak melompat 3 langkah setiap kali melompat. Jika katak melompat 4 kali dari angka 0, di manakah katak mendarat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k2-b4-lompat-katak.svg",
           "points": 50,
           "options": [
-            "8",
-            "7",
-            "9",
-            "10"
+            "Angka 7",
+            "Angka 9",
+            "Angka 12"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Setiap lompatan bertambah 2: setelah 6 adalah 6 + 2 = 8."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Lompatan: 0 -> 3 -> 6 -> 9 -> 12 (4 lompatan × 3 langkah = 12)."
         },
         {
-          "id": "q-k2b4-2",
-          "questionText": "Perhatikan barisan bilangan: 10, 20, 30, ... Bilangan berikutnya adalah...",
+          "id": "q-materi-k2-b4-2",
+          "questionText": "Berdasarkan cerita: Siapa nama katak kecil yang ramah dan suka melompat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "40",
-            "31",
-            "50"
+            "Koko",
+            "Boni",
+            "Riri"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Setiap langkah bertambah 10: 30 + 10 = 40."
+          "explanation": "Katak kecil yang melompat di garis bilangan bernama Koko."
         }
       ]
     }
@@ -1872,33 +2478,48 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 5: Timbangan Kelereng",
+      "title": "Kuis Interaktif: Bab 5: Timbangan Kelereng",
       "questions": [
         {
-          "id": "q-k2b5-1",
-          "questionText": "Pada timbangan seimbang: 8 + 5 = 10 + ___. Bilangan berapakah yang tepat untuk mengisi titik-titik tersebut?",
+          "id": "q-materi-k2-b5-1",
+          "questionText": "Berapakah nilai titik-titik pada persamaan timbangan: 6 + 4 = 5 + ...?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "3",
-            "2",
             "4",
-            "5"
+            "5",
+            "6"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Sisi kiri bernilai 8 + 5 = 13. Supaya sisi kanan juga bernilai 13, maka 10 + 3 = 13."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Ruas kiri: 6 + 4 = 10. Agar setimbang, ruas kanan harus bernilai 10 (5 + 5 = 10)."
         },
         {
-          "id": "q-k2b5-2",
-          "questionText": "Apakah pernyataan persamaan matematika 6 + 4 = 5 + 5 bernilai seimbang?",
+          "id": "q-materi-k2-b5-2",
+          "questionText": "Apakah persamaan 6 + 4 = 5 + 5 bernilai BENAR atau SALAH?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Kedua sisi sama-sama bernilai 10 (6 + 4 = 10 dan 5 + 5 = 10)."
+          "explanation": "Benar! Keduanya bernilai sama yaitu 10 (10 = 10)."
         }
       ]
     },
@@ -1926,33 +2547,48 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T18:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 5: Timbangan Kelereng",
+      "title": "Kuis Interaktif: Bab 5: Timbangan Kelereng",
       "questions": [
         {
-          "id": "q-k2b5-1",
-          "questionText": "Pada timbangan seimbang: 8 + 5 = 10 + ___. Bilangan berapakah yang tepat untuk mengisi titik-titik tersebut?",
+          "id": "q-materi-k2-b5-1",
+          "questionText": "Berapakah nilai titik-titik pada persamaan timbangan: 6 + 4 = 5 + ...?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "3",
-            "2",
             "4",
-            "5"
+            "5",
+            "6"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Sisi kiri bernilai 8 + 5 = 13. Supaya sisi kanan juga bernilai 13, maka 10 + 3 = 13."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Ruas kiri: 6 + 4 = 10. Agar setimbang, ruas kanan harus bernilai 10 (5 + 5 = 10)."
         },
         {
-          "id": "q-k2b5-2",
-          "questionText": "Apakah pernyataan persamaan matematika 6 + 4 = 5 + 5 bernilai seimbang?",
+          "id": "q-materi-k2-b5-2",
+          "questionText": "Apakah persamaan 6 + 4 = 5 + 5 bernilai BENAR atau SALAH?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Kedua sisi sama-sama bernilai 10 (6 + 4 = 10 dan 5 + 5 = 10)."
+          "explanation": "Benar! Keduanya bernilai sama yaitu 10 (10 = 10)."
         }
       ]
     }
@@ -2017,34 +2653,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 6: Tangram Kakek",
+      "title": "Kuis Interaktif: Bab 6: Tangram Kakek",
       "questions": [
         {
-          "id": "q-k2b6-1",
-          "questionText": "Dua segitiga sama besar ditempel pada sisi miringnya. Bangun baru apakah yang dapat terbentuk?",
+          "id": "q-materi-k2-b6-1",
+          "questionText": "Berapakah panjang pensil Lani jika diukur menggunakan penggaris dari angka 0 sampai 12?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Persegi",
-            "Lingkaran",
-            "Segilima"
+            "10 cm",
+            "12 cm",
+            "14 cm"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Gabungkan sisi terpanjangnya, jadilah sebuah bangun persegi."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Ujung pensil dimulai tepat di angka 0 dan berakhir di angka 12, maka panjangnya 12 cm."
         },
         {
-          "id": "q-k2b6-2",
-          "questionText": "Bangun datar segi enam memiliki berapa sisi lurus?",
+          "id": "q-materi-k2-b6-2",
+          "questionText": "Benda manakah di dalam kelas yang lebih tepat diukur menggunakan meteran gulung daripada penggaris saku 15 cm?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "6 sisi",
-            "5 sisi",
-            "7 sisi",
-            "8 sisi"
+            "Penghapus",
+            "Papan tulis kelas",
+            "Buku tulis"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Nama bangun segi enam sesuai dengan banyaknya sisinya, yaitu 6 sisi."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Papan tulis kelas berukuran panjang lebih dari 1 meter sehingga membutuhkan meteran."
         }
       ]
     },
@@ -2077,34 +2728,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T19:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 6: Tangram Kakek",
+      "title": "Kuis Interaktif: Bab 6: Tangram Kakek",
       "questions": [
         {
-          "id": "q-k2b6-1",
-          "questionText": "Dua segitiga sama besar ditempel pada sisi miringnya. Bangun baru apakah yang dapat terbentuk?",
+          "id": "q-materi-k2-b6-1",
+          "questionText": "Berapakah panjang pensil Lani jika diukur menggunakan penggaris dari angka 0 sampai 12?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Persegi",
-            "Lingkaran",
-            "Segilima"
+            "10 cm",
+            "12 cm",
+            "14 cm"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Gabungkan sisi terpanjangnya, jadilah sebuah bangun persegi."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Ujung pensil dimulai tepat di angka 0 dan berakhir di angka 12, maka panjangnya 12 cm."
         },
         {
-          "id": "q-k2b6-2",
-          "questionText": "Bangun datar segi enam memiliki berapa sisi lurus?",
+          "id": "q-materi-k2-b6-2",
+          "questionText": "Benda manakah di dalam kelas yang lebih tepat diukur menggunakan meteran gulung daripada penggaris saku 15 cm?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "6 sisi",
-            "5 sisi",
-            "7 sisi",
-            "8 sisi"
+            "Penghapus",
+            "Papan tulis kelas",
+            "Buku tulis"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Nama bangun segi enam sesuai dengan banyaknya sisinya, yaitu 6 sisi."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Papan tulis kelas berukuran panjang lebih dari 1 meter sehingga membutuhkan meteran."
         }
       ]
     }
@@ -2174,33 +2840,62 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 7: Jam Berapa Sekarang?",
+      "title": "Kuis Interaktif: Bab 7: Jam Berapa Sekarang?",
       "questions": [
         {
-          "id": "q-k2b7-1",
-          "questionText": "Perhatikan gambar jam di bawah! Gambar manakah yang menunjukkan tepat pukul 07.00?",
-          "image": "/quiz/k2-b7-jam-dinding.svg",
-          "points": 50,
-          "options": [
-            "Gambar (A) Jarum pendek di 7, panjang di 12",
-            "Gambar (B) Jarum pendek di 12, panjang di 7",
-            "Gambar (C) Jarum pendek di 7, panjang di 6"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "Jam tepat (07.00): jarum panjang tepat di angka 12 dan jarum pendek di angka 7."
-        },
-        {
-          "id": "q-k2b7-2",
-          "questionText": "Berdasarkan jadwal Raka: 07.00 sarapan, 08.30 kerja bakti, 10.00 bermain di rumah Doni, 12.00 makan siang. Pukul 10.00 Raka sedang...",
+          "id": "q-materi-k2-b7-1",
+          "questionText": "Raka sarapan tepat pukul 07.00. Lingkari gambar jam dinding yang menunjukkan PUKUL 07.00!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Bermain di rumah Doni",
-            "Sarapan",
-            "Makan siang"
+            "Pukul 07.00",
+            "Pukul 12.35",
+            "Pukul 07.30"
           ],
+          "imageOptions": [
+            {
+              "label": "Pukul 07.00",
+              "image": "/quiz/items/jam-0700.svg"
+            },
+            {
+              "label": "Pukul 12.35",
+              "image": "/quiz/items/jam-1235.svg"
+            },
+            {
+              "label": "Pukul 07.30",
+              "image": "/quiz/items/jam-0730.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Cari baris waktu 10.00 di jadwal: kegiatannya adalah bermain di rumah Doni."
+          "explanation": "Pukul 07.00 ditandai dengan jarum pendek di angka 7 dan jarum panjang tegak di angka 12."
+        },
+        {
+          "id": "q-materi-k2-b7-2",
+          "questionText": "Raka mulai kerja bakti pukul 08.30 dan selesai pukul 09.30. Berapa lama kegiatan kerja bakti berlangsung?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
+          "image": "",
+          "points": 50,
+          "options": [
+            "30 menit",
+            "1 jam",
+            "2 jam"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Dari pukul 08.30 ke 09.30 berlalu tepat selama 1 jam (60 menit)."
         }
       ]
     },
@@ -2238,33 +2933,62 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T20:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 7: Jam Berapa Sekarang?",
+      "title": "Kuis Interaktif: Bab 7: Jam Berapa Sekarang?",
       "questions": [
         {
-          "id": "q-k2b7-1",
-          "questionText": "Perhatikan gambar jam di bawah! Gambar manakah yang menunjukkan tepat pukul 07.00?",
-          "image": "/quiz/k2-b7-jam-dinding.svg",
-          "points": 50,
-          "options": [
-            "Gambar (A) Jarum pendek di 7, panjang di 12",
-            "Gambar (B) Jarum pendek di 12, panjang di 7",
-            "Gambar (C) Jarum pendek di 7, panjang di 6"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "Jam tepat (07.00): jarum panjang tepat di angka 12 dan jarum pendek di angka 7."
-        },
-        {
-          "id": "q-k2b7-2",
-          "questionText": "Berdasarkan jadwal Raka: 07.00 sarapan, 08.30 kerja bakti, 10.00 bermain di rumah Doni, 12.00 makan siang. Pukul 10.00 Raka sedang...",
+          "id": "q-materi-k2-b7-1",
+          "questionText": "Raka sarapan tepat pukul 07.00. Lingkari gambar jam dinding yang menunjukkan PUKUL 07.00!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Bermain di rumah Doni",
-            "Sarapan",
-            "Makan siang"
+            "Pukul 07.00",
+            "Pukul 12.35",
+            "Pukul 07.30"
           ],
+          "imageOptions": [
+            {
+              "label": "Pukul 07.00",
+              "image": "/quiz/items/jam-0700.svg"
+            },
+            {
+              "label": "Pukul 12.35",
+              "image": "/quiz/items/jam-1235.svg"
+            },
+            {
+              "label": "Pukul 07.30",
+              "image": "/quiz/items/jam-0730.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Cari baris waktu 10.00 di jadwal: kegiatannya adalah bermain di rumah Doni."
+          "explanation": "Pukul 07.00 ditandai dengan jarum pendek di angka 7 dan jarum panjang tegak di angka 12."
+        },
+        {
+          "id": "q-materi-k2-b7-2",
+          "questionText": "Raka mulai kerja bakti pukul 08.30 dan selesai pukul 09.30. Berapa lama kegiatan kerja bakti berlangsung?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
+          "image": "",
+          "points": 50,
+          "options": [
+            "30 menit",
+            "1 jam",
+            "2 jam"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Dari pukul 08.30 ke 09.30 berlalu tepat selama 1 jam (60 menit)."
         }
       ]
     }
@@ -2329,33 +3053,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 8: Belanja di Warung Bu Siti",
+      "title": "Kuis Interaktif: Bab 8: Belanja di Warung Bu Siti",
       "questions": [
         {
-          "id": "q-k2b8-1",
-          "questionText": "Telur Rp8.000 dan gula Rp7.000. Berapa total harga belanjaannya?",
+          "id": "q-materi-k2-b8-1",
+          "questionText": "Berapa banyak murid yang memilih es teh pada diagram batang kesukaan kelas?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp15.000",
-            "Rp13.000",
-            "Rp17.000"
+            "6 murid",
+            "8 murid",
+            "10 murid"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "8 ribu + 7 ribu = 15 ribu rupiah (Rp15.000)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Tinggi batang es teh sejajar dengan garis angka 8 pada sumbu tegak."
         },
         {
-          "id": "q-k2b8-2",
-          "questionText": "Nisa membayar Rp20.000 untuk belanjaan Rp15.000. Berapakah uang kembaliannya?",
+          "id": "q-materi-k2-b8-2",
+          "questionText": "Minuman manakah yang paling sedikit dipilih oleh murid?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp5.000",
-            "Rp7.000",
-            "Rp15.000"
+            "Air putih",
+            "Susu",
+            "Jus jeruk"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "20 ribu - 15 ribu = 5 ribu rupiah (Rp5.000)."
+          "explanation": "Batang minuman air putih adalah yang paling pendek di diagram."
         }
       ]
     },
@@ -2388,33 +3128,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T21:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 8: Belanja di Warung Bu Siti",
+      "title": "Kuis Interaktif: Bab 8: Belanja di Warung Bu Siti",
       "questions": [
         {
-          "id": "q-k2b8-1",
-          "questionText": "Telur Rp8.000 dan gula Rp7.000. Berapa total harga belanjaannya?",
+          "id": "q-materi-k2-b8-1",
+          "questionText": "Berapa banyak murid yang memilih es teh pada diagram batang kesukaan kelas?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp15.000",
-            "Rp13.000",
-            "Rp17.000"
+            "6 murid",
+            "8 murid",
+            "10 murid"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "8 ribu + 7 ribu = 15 ribu rupiah (Rp15.000)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Tinggi batang es teh sejajar dengan garis angka 8 pada sumbu tegak."
         },
         {
-          "id": "q-k2b8-2",
-          "questionText": "Nisa membayar Rp20.000 untuk belanjaan Rp15.000. Berapakah uang kembaliannya?",
+          "id": "q-materi-k2-b8-2",
+          "questionText": "Minuman manakah yang paling sedikit dipilih oleh murid?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp5.000",
-            "Rp7.000",
-            "Rp15.000"
+            "Air putih",
+            "Susu",
+            "Jus jeruk"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "20 ribu - 15 ribu = 5 ribu rupiah (Rp5.000)."
+          "explanation": "Batang minuman air putih adalah yang paling pendek di diagram."
         }
       ]
     }
@@ -2474,33 +3230,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 1: Panen Bandeng di Tambak",
+      "title": "Kuis Interaktif: Bab 1: Panen Bandeng di Tambak",
       "questions": [
         {
-          "id": "q-k3b1-1",
-          "questionText": "Ide pokok paragraf ketiga dari teks Panen Bandeng adalah...",
+          "id": "q-materi-k3-b1-1",
+          "questionText": "Sebuah perpustakaan memiliki 2.450 buku cerita dan mendapat kiriman 1.320 buku lagi. Berapa total seluruh buku?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Panen yang baik membutuhkan air tambak yang bersih",
-            "Mereka juga memberi pakan ikan setiap hari",
-            "Air tambak berwarna keruh"
+            "3.670 buku",
+            "3.770 buku",
+            "3.870 buku"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Ide pokok terdapat pada kalimat pertama paragraf."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Penjumlahan ribuan: 2.450 + 1.320 = 3.770 buku."
         },
         {
-          "id": "q-k3b1-2",
-          "questionText": "Angka 3 pada bilangan 2.345 bernilai...",
+          "id": "q-materi-k3-b1-2",
+          "questionText": "Nilai tempat dari angka 4 pada bilangan 2.450 adalah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "300 (ratusan)",
-            "30 (puluhan)",
-            "3 (satuan)"
+            "Ribuan",
+            "Ratusan",
+            "Puluhan"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Angka 3 ada di tempat ratusan sehingga bernilai 300."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Angka 4 menempati posisi kedua dari kiri pada 4 angka ribuan, yaitu bernilai ratusan (400)."
         }
       ]
     },
@@ -2528,33 +3300,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T22:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 1: Panen Bandeng di Tambak",
+      "title": "Kuis Interaktif: Bab 1: Panen Bandeng di Tambak",
       "questions": [
         {
-          "id": "q-k3b1-1",
-          "questionText": "Ide pokok paragraf ketiga dari teks Panen Bandeng adalah...",
+          "id": "q-materi-k3-b1-1",
+          "questionText": "Sebuah perpustakaan memiliki 2.450 buku cerita dan mendapat kiriman 1.320 buku lagi. Berapa total seluruh buku?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Panen yang baik membutuhkan air tambak yang bersih",
-            "Mereka juga memberi pakan ikan setiap hari",
-            "Air tambak berwarna keruh"
+            "3.670 buku",
+            "3.770 buku",
+            "3.870 buku"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Ide pokok terdapat pada kalimat pertama paragraf."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Penjumlahan ribuan: 2.450 + 1.320 = 3.770 buku."
         },
         {
-          "id": "q-k3b1-2",
-          "questionText": "Angka 3 pada bilangan 2.345 bernilai...",
+          "id": "q-materi-k3-b1-2",
+          "questionText": "Nilai tempat dari angka 4 pada bilangan 2.450 adalah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "300 (ratusan)",
-            "30 (puluhan)",
-            "3 (satuan)"
+            "Ribuan",
+            "Ratusan",
+            "Puluhan"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Angka 3 ada di tempat ratusan sehingga bernilai 300."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Angka 4 menempati posisi kedua dari kiri pada 4 angka ribuan, yaitu bernilai ratusan (400)."
         }
       ]
     }
@@ -2619,33 +3407,62 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 2: Kue Syukuran Kelas 3",
+      "title": "Kuis Interaktif: Bab 2: Kue Syukuran Kelas 3",
       "questions": [
         {
-          "id": "q-k3b2-1",
-          "questionText": "Pasangkan kata dengan artinya: Kata \"syukuran\" memiliki arti...",
+          "id": "q-materi-k3-b2-1",
+          "questionText": "Pasangkan kata kosa kata perayaan kelas dengan artinya yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Acara berterima kasih kepada Tuhan",
-            "Guru yang bertanggung jawab atas satu kelas",
-            "Kegiatan olahraga bersama"
+            "Syukuran = Berterima kasih, Wali Kelas = Guru penanggung jawab"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Syukuran",
+              "right": "Acara berterima kasih kepada Tuhan"
+            },
+            {
+              "left": "Wali Kelas",
+              "right": "Guru yang bertanggung jawab atas satu kelas"
+            }
+          ],
+          "leftItems": [
+            "Syukuran",
+            "Wali Kelas"
+          ],
+          "rightItems": [
+            "Guru yang bertanggung jawab atas satu kelas",
+            "Acara berterima kasih kepada Tuhan"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Lihat bagian kata baru: syukuran = acara untuk berterima kasih kepada Tuhan."
+          "explanation": "Syukuran adalah perayaan berterima kasih kepada Tuhan, dan wali kelas adalah pendamping kelas."
         },
         {
-          "id": "q-k3b2-2",
-          "questionText": "Ada 6 kotak kue lapis. Setiap kotak berisi 8 potong. Berapa potong semuanya?",
+          "id": "q-materi-k3-b2-2",
+          "questionText": "Ibu membawa 4 kotak kue lapis, masing-masing berisi 12 potong kue. Berapa potong seluruh kue?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "48 potong",
-            "42 potong",
-            "54 potong"
+            "36 potong",
+            "44 potong",
+            "48 potong"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Perkalian jumlah kotak dengan isi: 6 x 8 = 48 potong kue."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Perkalian: 4 kotak × 12 potong = 48 potong kue."
         }
       ]
     },
@@ -2678,33 +3495,62 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T23:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 2: Kue Syukuran Kelas 3",
+      "title": "Kuis Interaktif: Bab 2: Kue Syukuran Kelas 3",
       "questions": [
         {
-          "id": "q-k3b2-1",
-          "questionText": "Pasangkan kata dengan artinya: Kata \"syukuran\" memiliki arti...",
+          "id": "q-materi-k3-b2-1",
+          "questionText": "Pasangkan kata kosa kata perayaan kelas dengan artinya yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Acara berterima kasih kepada Tuhan",
-            "Guru yang bertanggung jawab atas satu kelas",
-            "Kegiatan olahraga bersama"
+            "Syukuran = Berterima kasih, Wali Kelas = Guru penanggung jawab"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Syukuran",
+              "right": "Acara berterima kasih kepada Tuhan"
+            },
+            {
+              "left": "Wali Kelas",
+              "right": "Guru yang bertanggung jawab atas satu kelas"
+            }
+          ],
+          "leftItems": [
+            "Syukuran",
+            "Wali Kelas"
+          ],
+          "rightItems": [
+            "Guru yang bertanggung jawab atas satu kelas",
+            "Acara berterima kasih kepada Tuhan"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Lihat bagian kata baru: syukuran = acara untuk berterima kasih kepada Tuhan."
+          "explanation": "Syukuran adalah perayaan berterima kasih kepada Tuhan, dan wali kelas adalah pendamping kelas."
         },
         {
-          "id": "q-k3b2-2",
-          "questionText": "Ada 6 kotak kue lapis. Setiap kotak berisi 8 potong. Berapa potong semuanya?",
+          "id": "q-materi-k3-b2-2",
+          "questionText": "Ibu membawa 4 kotak kue lapis, masing-masing berisi 12 potong kue. Berapa potong seluruh kue?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "48 potong",
-            "42 potong",
-            "54 potong"
+            "36 potong",
+            "44 potong",
+            "48 potong"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Perkalian jumlah kotak dengan isi: 6 x 8 = 48 potong kue."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Perkalian: 4 kotak × 12 potong = 48 potong kue."
         }
       ]
     }
@@ -2769,33 +3615,62 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 3: Mengukur Tubuh di UKS",
+      "title": "Kuis Interaktif: Bab 3: Mengukur Tubuh di UKS",
       "questions": [
         {
-          "id": "q-k3b3-1",
-          "questionText": "Satuan baku yang tepat untuk mengukur berat badan dan tinggi badan adalah...",
+          "id": "q-materi-k3-b3-1",
+          "questionText": "Pasangkan pengukuran di ruang UKS sekolah dengan satuan baku yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Berat badan dengan kg, tinggi badan dengan cm",
-            "Berat badan dengan cm, tinggi badan dengan kg",
-            "Keduanya menggunakan meter"
+            "Berat badan = kg, Tinggi badan = cm"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Berat Badan",
+              "right": "Kilogram (kg)"
+            },
+            {
+              "left": "Tinggi Badan",
+              "right": "Sentimeter (cm)"
+            }
+          ],
+          "leftItems": [
+            "Berat Badan",
+            "Tinggi Badan"
+          ],
+          "rightItems": [
+            "Sentimeter (cm)",
+            "Kilogram (kg)"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Berat badan diukur memakai kilogram (kg), sedangkan panjang/tinggi memakai sentimeter (cm)."
+          "explanation": "Berat badan diukur menggunakan timbangan dengan satuan kg, sedangkan tinggi badan dengan pita cm."
         },
         {
-          "id": "q-k3b3-2",
-          "questionText": "Panjang 1 meter 32 sentimeter sama dengan...",
+          "id": "q-materi-k3-b3-2",
+          "questionText": "Tinggi badan Siti adalah 1 meter lebih 25 sentimeter (1 m 25 cm). Berapakah tingginya dalam satuan sentimeter?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "132 cm",
-            "1.032 cm",
-            "32 cm"
+            "125 cm",
+            "150 cm",
+            "175 cm"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "1 m = 100 cm. Maka 100 + 32 = 132 cm."
+          "explanation": "1 meter = 100 cm. Jadi 100 cm + 25 cm = 125 cm."
         }
       ]
     },
@@ -2828,33 +3703,62 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T00:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 3: Mengukur Tubuh di UKS",
+      "title": "Kuis Interaktif: Bab 3: Mengukur Tubuh di UKS",
       "questions": [
         {
-          "id": "q-k3b3-1",
-          "questionText": "Satuan baku yang tepat untuk mengukur berat badan dan tinggi badan adalah...",
+          "id": "q-materi-k3-b3-1",
+          "questionText": "Pasangkan pengukuran di ruang UKS sekolah dengan satuan baku yang tepat!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Berat badan dengan kg, tinggi badan dengan cm",
-            "Berat badan dengan cm, tinggi badan dengan kg",
-            "Keduanya menggunakan meter"
+            "Berat badan = kg, Tinggi badan = cm"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Berat Badan",
+              "right": "Kilogram (kg)"
+            },
+            {
+              "left": "Tinggi Badan",
+              "right": "Sentimeter (cm)"
+            }
+          ],
+          "leftItems": [
+            "Berat Badan",
+            "Tinggi Badan"
+          ],
+          "rightItems": [
+            "Sentimeter (cm)",
+            "Kilogram (kg)"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Berat badan diukur memakai kilogram (kg), sedangkan panjang/tinggi memakai sentimeter (cm)."
+          "explanation": "Berat badan diukur menggunakan timbangan dengan satuan kg, sedangkan tinggi badan dengan pita cm."
         },
         {
-          "id": "q-k3b3-2",
-          "questionText": "Panjang 1 meter 32 sentimeter sama dengan...",
+          "id": "q-materi-k3-b3-2",
+          "questionText": "Tinggi badan Siti adalah 1 meter lebih 25 sentimeter (1 m 25 cm). Berapakah tingginya dalam satuan sentimeter?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "132 cm",
-            "1.032 cm",
-            "32 cm"
+            "125 cm",
+            "150 cm",
+            "175 cm"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "1 m = 100 cm. Maka 100 + 32 = 132 cm."
+          "explanation": "1 meter = 100 cm. Jadi 100 cm + 25 cm = 125 cm."
         }
       ]
     }
@@ -2914,32 +3818,48 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 4: Pameran Kerajinan Sekolah",
+      "title": "Kuis Interaktif: Bab 4: Pameran Kerajinan Sekolah",
       "questions": [
         {
-          "id": "q-k3b4-1",
-          "questionText": "Pengunjung hari pertama 368 orang dan hari kedua 457 orang. Berapa jumlah pengunjung semuanya?",
+          "id": "q-materi-k3-b4-1",
+          "questionText": "Toko kerajinan memiliki 64 gantungan kunci yang dikemas ke dalam 8 kantong sama banyak. Berapa isi tiap kantong?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "825 orang",
-            "815 orang",
-            "715 orang"
+            "7 buah",
+            "8 buah",
+            "9 buah"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "368 + 457 = 825. Jangan lupa teknik menyimpan di satuan dan puluhan."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "64 : 8 = 8 buah per kantong (karena 8 × 8 = 64)."
         },
         {
-          "id": "q-k3b4-2",
-          "questionText": "Apakah pot kerajinan kelas 3 dibuat dari botol plastik bekas?",
+          "id": "q-materi-k3-b4-2",
+          "questionText": "Apakah pot kerajinan murid kelas 3 dibuat dari botol plastik daur ulang?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Sesuai bacaan: kelas 3 membuat pot bunga dari botol plastik."
+          "explanation": "Benar! Kerajinan peduli lingkungan memanfaatkan limbah botol plastik menjadi pot hias cantik."
         }
       ]
     },
@@ -2967,32 +3887,48 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T01:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 4: Pameran Kerajinan Sekolah",
+      "title": "Kuis Interaktif: Bab 4: Pameran Kerajinan Sekolah",
       "questions": [
         {
-          "id": "q-k3b4-1",
-          "questionText": "Pengunjung hari pertama 368 orang dan hari kedua 457 orang. Berapa jumlah pengunjung semuanya?",
+          "id": "q-materi-k3-b4-1",
+          "questionText": "Toko kerajinan memiliki 64 gantungan kunci yang dikemas ke dalam 8 kantong sama banyak. Berapa isi tiap kantong?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "825 orang",
-            "815 orang",
-            "715 orang"
+            "7 buah",
+            "8 buah",
+            "9 buah"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "368 + 457 = 825. Jangan lupa teknik menyimpan di satuan dan puluhan."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "64 : 8 = 8 buah per kantong (karena 8 × 8 = 64)."
         },
         {
-          "id": "q-k3b4-2",
-          "questionText": "Apakah pot kerajinan kelas 3 dibuat dari botol plastik bekas?",
+          "id": "q-materi-k3-b4-2",
+          "questionText": "Apakah pot kerajinan murid kelas 3 dibuat dari botol plastik daur ulang?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Sesuai bacaan: kelas 3 membuat pot bunga dari botol plastik."
+          "explanation": "Benar! Kerajinan peduli lingkungan memanfaatkan limbah botol plastik menjadi pot hias cantik."
         }
       ]
     }
@@ -3057,33 +3993,70 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 5: Roti Bakar Dibagi Rata",
+      "title": "Kuis Interaktif: Bab 5: Roti Bakar Dibagi Rata",
       "questions": [
         {
-          "id": "q-k3b5-1",
-          "questionText": "Perhatikan gambar potongan roti di bawah! Manakah potongan roti yang LEBIH BESAR?",
-          "image": "/quiz/k3-b5-pecahan-roti.svg",
-          "points": 50,
-          "options": [
-            "1/3 bagian roti",
-            "1/6 bagian roti",
-            "Sama besar"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "1/3 roti lebih besar karena dibagi untuk lebih sedikit orang dibandingkan 1/6."
-        },
-        {
-          "id": "q-k3b5-2",
-          "questionText": "Berdasarkan teks: \"Pada hari Sabtu, Ayah membuat roti di dapur.\" Kata \"hari Sabtu\" dan \"di dapur\" masing-masing menjawab pertanyaan...",
+          "id": "q-materi-k3-b5-1",
+          "questionText": "Lingkari potongan roti yang ukurannya LEBIH BESAR!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Kapan (waktu) dan Di mana (tempat)",
-            "Siapa dan Mengapa",
-            "Bagaimana dan Apa"
+            "Potongan 1/3 Roti",
+            "Potongan 1/6 Roti"
           ],
+          "imageOptions": [
+            {
+              "label": "Potongan 1/3 (Lebih Besar)",
+              "image": "/quiz/items/roti-sepertiga.svg"
+            },
+            {
+              "label": "Potongan 1/6 (Lebih Kecil)",
+              "image": "/quiz/items/roti-seperenam.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kapan = waktu (hari Sabtu). Di mana = tempat (di dapur)."
+          "explanation": "1/3 lebih besar daripada 1/6 karena kue hanya dibagi ke 3 orang, sehingga tiap potongnya lebih lebar."
+        },
+        {
+          "id": "q-materi-k3-b5-2",
+          "questionText": "Pasangkan pertanyaan 5W1H dari cerita roti bakar dengan jawabannya!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
+          "image": "/quiz/k3-b5-pecahan-roti.svg",
+          "points": 50,
+          "options": [
+            "Kapan? = Hari Sabtu, Di mana? = Di dapur"
+          ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Kapan Ayah membuat roti?",
+              "right": "Hari Sabtu"
+            },
+            {
+              "left": "Di mana Ayah membuat roti?",
+              "right": "Di dapur"
+            }
+          ],
+          "leftItems": [
+            "Kapan Ayah membuat roti?",
+            "Di mana Ayah membuat roti?"
+          ],
+          "rightItems": [
+            "Di dapur",
+            "Hari Sabtu"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 0,
+          "explanation": "Waktu peristiwa adalah hari Sabtu dan lokasinya di dapur."
         }
       ]
     },
@@ -3116,33 +4089,70 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T02:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 5: Roti Bakar Dibagi Rata",
+      "title": "Kuis Interaktif: Bab 5: Roti Bakar Dibagi Rata",
       "questions": [
         {
-          "id": "q-k3b5-1",
-          "questionText": "Perhatikan gambar potongan roti di bawah! Manakah potongan roti yang LEBIH BESAR?",
-          "image": "/quiz/k3-b5-pecahan-roti.svg",
-          "points": 50,
-          "options": [
-            "1/3 bagian roti",
-            "1/6 bagian roti",
-            "Sama besar"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "1/3 roti lebih besar karena dibagi untuk lebih sedikit orang dibandingkan 1/6."
-        },
-        {
-          "id": "q-k3b5-2",
-          "questionText": "Berdasarkan teks: \"Pada hari Sabtu, Ayah membuat roti di dapur.\" Kata \"hari Sabtu\" dan \"di dapur\" masing-masing menjawab pertanyaan...",
+          "id": "q-materi-k3-b5-1",
+          "questionText": "Lingkari potongan roti yang ukurannya LEBIH BESAR!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Kapan (waktu) dan Di mana (tempat)",
-            "Siapa dan Mengapa",
-            "Bagaimana dan Apa"
+            "Potongan 1/3 Roti",
+            "Potongan 1/6 Roti"
           ],
+          "imageOptions": [
+            {
+              "label": "Potongan 1/3 (Lebih Besar)",
+              "image": "/quiz/items/roti-sepertiga.svg"
+            },
+            {
+              "label": "Potongan 1/6 (Lebih Kecil)",
+              "image": "/quiz/items/roti-seperenam.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kapan = waktu (hari Sabtu). Di mana = tempat (di dapur)."
+          "explanation": "1/3 lebih besar daripada 1/6 karena kue hanya dibagi ke 3 orang, sehingga tiap potongnya lebih lebar."
+        },
+        {
+          "id": "q-materi-k3-b5-2",
+          "questionText": "Pasangkan pertanyaan 5W1H dari cerita roti bakar dengan jawabannya!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
+          "image": "/quiz/k3-b5-pecahan-roti.svg",
+          "points": 50,
+          "options": [
+            "Kapan? = Hari Sabtu, Di mana? = Di dapur"
+          ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Kapan Ayah membuat roti?",
+              "right": "Hari Sabtu"
+            },
+            {
+              "left": "Di mana Ayah membuat roti?",
+              "right": "Di dapur"
+            }
+          ],
+          "leftItems": [
+            "Kapan Ayah membuat roti?",
+            "Di mana Ayah membuat roti?"
+          ],
+          "rightItems": [
+            "Di dapur",
+            "Hari Sabtu"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 0,
+          "explanation": "Waktu peristiwa adalah hari Sabtu dan lokasinya di dapur."
         }
       ]
     }
@@ -3207,33 +4217,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 6: Jadwal Wisata Kelas 3",
+      "title": "Kuis Interaktif: Bab 6: Jadwal Wisata Kelas 3",
       "questions": [
         {
-          "id": "q-k3b6-1",
-          "questionText": "Berdasarkan tabel jadwal wisata: Pukul berapa bus berangkat?",
+          "id": "q-materi-k3-b6-1",
+          "questionText": "Ibu memiliki tali sepanjang 5/8 meter dan digunakan 2/8 meter untuk mengikat paket. Berapa sisa tali Ibu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "07.15",
-            "07.00",
-            "08.45"
+            "2/8 meter",
+            "3/8 meter",
+            "4/8 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Lihat kolom waktu mulai pada baris perjalanan berangkat: 07.15."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Penyebut sudah sama: (5 - 2) / 8 = 3/8 meter."
         },
         {
-          "id": "q-k3b6-2",
-          "questionText": "Kegiatan berkeliling kebun binatang berlangsung pukul 09.00 sampai 11.30. Berapa lama kegiatan tersebut?",
+          "id": "q-materi-k3-b6-2",
+          "questionText": "Sebuah persegi memiliki panjang sisi 6 cm. Berapakah keliling bangun persegi tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "2 jam 30 menit",
-            "2 jam",
-            "3 jam"
+            "18 cm",
+            "24 cm",
+            "36 cm"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "09.00 menuju 11.00 adalah 2 jam, ditambah 30 menit lagi = 2 jam 30 menit."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Keliling persegi = 4 × sisi = 4 × 6 cm = 24 cm."
         }
       ]
     },
@@ -3266,33 +4292,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T03:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 6: Jadwal Wisata Kelas 3",
+      "title": "Kuis Interaktif: Bab 6: Jadwal Wisata Kelas 3",
       "questions": [
         {
-          "id": "q-k3b6-1",
-          "questionText": "Berdasarkan tabel jadwal wisata: Pukul berapa bus berangkat?",
+          "id": "q-materi-k3-b6-1",
+          "questionText": "Ibu memiliki tali sepanjang 5/8 meter dan digunakan 2/8 meter untuk mengikat paket. Berapa sisa tali Ibu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "07.15",
-            "07.00",
-            "08.45"
+            "2/8 meter",
+            "3/8 meter",
+            "4/8 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Lihat kolom waktu mulai pada baris perjalanan berangkat: 07.15."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Penyebut sudah sama: (5 - 2) / 8 = 3/8 meter."
         },
         {
-          "id": "q-k3b6-2",
-          "questionText": "Kegiatan berkeliling kebun binatang berlangsung pukul 09.00 sampai 11.30. Berapa lama kegiatan tersebut?",
+          "id": "q-materi-k3-b6-2",
+          "questionText": "Sebuah persegi memiliki panjang sisi 6 cm. Berapakah keliling bangun persegi tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "2 jam 30 menit",
-            "2 jam",
-            "3 jam"
+            "18 cm",
+            "24 cm",
+            "36 cm"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "09.00 menuju 11.00 adalah 2 jam, ditambah 30 menit lagi = 2 jam 30 menit."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Keliling persegi = 4 × sisi = 4 × 6 cm = 24 cm."
         }
       ]
     }
@@ -3357,32 +4399,48 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 7: Layang-Layang Arif",
+      "title": "Kuis Interaktif: Bab 7: Layang-Layang Arif",
       "questions": [
         {
-          "id": "q-k3b7-1",
-          "questionText": "Bingkai foto berukuran 20 cm x 15 cm. Berapa keliling bingkai tersebut?",
+          "id": "q-materi-k3-b7-1",
+          "questionText": "Sudut yang besarnya tepat sama dengan pojok buku tulis atau sudut meja adalah sudut...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "70 cm",
-            "35 cm",
-            "300 cm"
+            "Lancip",
+            "Siku-siku",
+            "Tumpul"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan 4 sisinya: 20 + 15 + 20 + 15 = 70 cm."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sudut tegak lurus seperti pojok buku tulis berukuran tepat 90 derajat (sudut siku-siku)."
         },
         {
-          "id": "q-k3b7-2",
+          "id": "q-materi-k3-b7-2",
           "questionText": "Apakah pojok buku tulis membentuk sudut siku-siku?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Sudut siku-siku berbentuk tegak lurus seperti pojok buku."
+          "explanation": "Benar! Setiap pojok buku cetak atau buku tulis berbentuk siku-siku (90 derajat)."
         }
       ]
     },
@@ -3415,32 +4473,48 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T04:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 7: Layang-Layang Arif",
+      "title": "Kuis Interaktif: Bab 7: Layang-Layang Arif",
       "questions": [
         {
-          "id": "q-k3b7-1",
-          "questionText": "Bingkai foto berukuran 20 cm x 15 cm. Berapa keliling bingkai tersebut?",
+          "id": "q-materi-k3-b7-1",
+          "questionText": "Sudut yang besarnya tepat sama dengan pojok buku tulis atau sudut meja adalah sudut...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "70 cm",
-            "35 cm",
-            "300 cm"
+            "Lancip",
+            "Siku-siku",
+            "Tumpul"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan 4 sisinya: 20 + 15 + 20 + 15 = 70 cm."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sudut tegak lurus seperti pojok buku tulis berukuran tepat 90 derajat (sudut siku-siku)."
         },
         {
-          "id": "q-k3b7-2",
+          "id": "q-materi-k3-b7-2",
           "questionText": "Apakah pojok buku tulis membentuk sudut siku-siku?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Sudut siku-siku berbentuk tegak lurus seperti pojok buku."
+          "explanation": "Benar! Setiap pojok buku cetak atau buku tulis berbentuk siku-siku (90 derajat)."
         }
       ]
     }
@@ -3505,33 +4579,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 8: Lomba Kebersihan Kelas",
+      "title": "Kuis Interaktif: Bab 8: Lomba Kebersihan Kelas",
       "questions": [
         {
-          "id": "q-k3b8-1",
-          "questionText": "Satu simbol kotak mewakili 2 kantong. Jika Kelas 3 memiliki 6 kotak, berapa kantong sampah yang dikumpulkan?",
+          "id": "q-materi-k3-b8-1",
+          "questionText": "Berdasarkan tabel tabungan: Dani menabung Rp 5.000 setiap minggu selama 6 minggu berturut-turut. Berapa total tabungan Dani?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12 kantong",
-            "6 kantong",
-            "8 kantong"
+            "Rp 25.000",
+            "Rp 30.000",
+            "Rp 35.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "6 kotak dikali 2 kantong per kotak: 6 x 2 = 12 kantong."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "6 minggu × Rp 5.000 = Rp 30.000."
         },
         {
-          "id": "q-k3b8-2",
-          "questionText": "Kesimpulan manakah yang sesuai dengan data piktogram lomba kebersihan?",
+          "id": "q-materi-k3-b8-2",
+          "questionText": "Jika Dani menggunakan Rp 10.000 dari tabungannya untuk membeli buku gambar, berapa sisa tabungan Dani sekarang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Kelas 3 mengumpulkan sampah paling banyak",
-            "Semua kelas mengumpulkan sama banyak",
-            "Kelas 1 mengumpulkan paling banyak"
+            "Rp 15.000",
+            "Rp 20.000",
+            "Rp 25.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Simbol kotak pada baris kelas 3 paling banyak (6 kotak = 12 kantong)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Rp 30.000 - Rp 10.000 = Rp 20.000 sisa tabungan Dani."
         }
       ]
     },
@@ -3564,33 +4654,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T05:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 8: Lomba Kebersihan Kelas",
+      "title": "Kuis Interaktif: Bab 8: Lomba Kebersihan Kelas",
       "questions": [
         {
-          "id": "q-k3b8-1",
-          "questionText": "Satu simbol kotak mewakili 2 kantong. Jika Kelas 3 memiliki 6 kotak, berapa kantong sampah yang dikumpulkan?",
+          "id": "q-materi-k3-b8-1",
+          "questionText": "Berdasarkan tabel tabungan: Dani menabung Rp 5.000 setiap minggu selama 6 minggu berturut-turut. Berapa total tabungan Dani?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12 kantong",
-            "6 kantong",
-            "8 kantong"
+            "Rp 25.000",
+            "Rp 30.000",
+            "Rp 35.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "6 kotak dikali 2 kantong per kotak: 6 x 2 = 12 kantong."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "6 minggu × Rp 5.000 = Rp 30.000."
         },
         {
-          "id": "q-k3b8-2",
-          "questionText": "Kesimpulan manakah yang sesuai dengan data piktogram lomba kebersihan?",
+          "id": "q-materi-k3-b8-2",
+          "questionText": "Jika Dani menggunakan Rp 10.000 dari tabungannya untuk membeli buku gambar, berapa sisa tabungan Dani sekarang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Kelas 3 mengumpulkan sampah paling banyak",
-            "Semua kelas mengumpulkan sama banyak",
-            "Kelas 1 mengumpulkan paling banyak"
+            "Rp 15.000",
+            "Rp 20.000",
+            "Rp 25.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Simbol kotak pada baris kelas 3 paling banyak (6 kotak = 12 kantong)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Rp 30.000 - Rp 10.000 = Rp 20.000 sisa tabungan Dani."
         }
       ]
     }
@@ -3650,32 +4756,48 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 1: Martabak Pesanan Pak RT",
+      "title": "Kuis Interaktif: Bab 1: Martabak Pesanan Pak RT",
       "questions": [
         {
-          "id": "q-k4b1-1",
-          "questionText": "Pecahan yang sama nilainya (senilai) dengan 1/2 adalah...",
+          "id": "q-materi-k4-b1-1",
+          "questionText": "Martabak manis dibagi 8 potong sama besar. Andi makan 2 potong martabak. Manakah bentuk pecahan yang senilai dengan bagian Andi?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "3/6",
-            "2/3",
-            "1/4"
+            "1/2",
+            "1/4",
+            "1/8"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "3/6 jika dibagi 3 pembilang dan penyebutnya bernilai 1/2."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "2 potong dari 8 bagian = 2/8. Jika pembilang dan penyebut dibagi 2, menjadi 1/4."
         },
         {
-          "id": "q-k4b1-2",
-          "questionText": "Apakah bagian Andi (2/4 martabak) sama besar dengan bagian Dewi (4/8 martabak)?",
+          "id": "q-materi-k4-b1-2",
+          "questionText": "Apakah bagian Andi (2/4) sama besar dengan bagian Dewi (4/8)?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Keduanya sama-sama bernilai setengah (1/2) martabak manis."
+          "explanation": "Benar! 2/4 dan 4/8 keduanya senilai dengan 1/2."
         }
       ]
     },
@@ -3703,32 +4825,48 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T06:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 1: Martabak Pesanan Pak RT",
+      "title": "Kuis Interaktif: Bab 1: Martabak Pesanan Pak RT",
       "questions": [
         {
-          "id": "q-k4b1-1",
-          "questionText": "Pecahan yang sama nilainya (senilai) dengan 1/2 adalah...",
+          "id": "q-materi-k4-b1-1",
+          "questionText": "Martabak manis dibagi 8 potong sama besar. Andi makan 2 potong martabak. Manakah bentuk pecahan yang senilai dengan bagian Andi?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "3/6",
-            "2/3",
-            "1/4"
+            "1/2",
+            "1/4",
+            "1/8"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "3/6 jika dibagi 3 pembilang dan penyebutnya bernilai 1/2."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "2 potong dari 8 bagian = 2/8. Jika pembilang dan penyebut dibagi 2, menjadi 1/4."
         },
         {
-          "id": "q-k4b1-2",
-          "questionText": "Apakah bagian Andi (2/4 martabak) sama besar dengan bagian Dewi (4/8 martabak)?",
+          "id": "q-materi-k4-b1-2",
+          "questionText": "Apakah bagian Andi (2/4) sama besar dengan bagian Dewi (4/8)?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
             "Benar (B)",
             "Salah (S)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Benar! Keduanya sama-sama bernilai setengah (1/2) martabak manis."
+          "explanation": "Benar! 2/4 dan 4/8 keduanya senilai dengan 1/2."
         }
       ]
     }
@@ -3793,33 +4931,68 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 2: Belanja Hemat di Koperasi",
+      "title": "Kuis Interaktif: Bab 2: Belanja Hemat di Koperasi",
       "questions": [
         {
-          "id": "q-k4b2-1",
-          "questionText": "Pasangkan persen dengan pecahannya: 25% sama nilainya dengan pecahan...",
+          "id": "q-materi-k4-b2-1",
+          "questionText": "Pasangkan bentuk persentase dengan bentuk pecahan biasa yang senilai!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "1/4",
-            "1/2",
-            "1/10"
+            "25% = 1/4, 50% = 1/2, 10% = 1/10"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "25%",
+              "right": "1/4"
+            },
+            {
+              "left": "50%",
+              "right": "1/2"
+            },
+            {
+              "left": "10%",
+              "right": "1/10"
+            }
+          ],
+          "leftItems": [
+            "25%",
+            "50%",
+            "10%"
+          ],
+          "rightItems": [
+            "1/2",
+            "1/10",
+            "1/4"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "25% = 25/100 = 1/4 (persen artinya per seratus)."
+          "explanation": "25% = 25/100 = 1/4, 50% = 50/100 = 1/2, dan 10% = 10/100 = 1/10."
         },
         {
-          "id": "q-k4b2-2",
-          "questionText": "Kalimat penyampaian pendapat yang baik dan berargumen adalah...",
+          "id": "q-materi-k4-b2-2",
+          "questionText": "Sebuah buku tulis berharga Rp 10.000 mendapat potongan diskon 20%. Berapa rupiah potongan harga yang didapat pembeli?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Menurut saya, kita beli buku karena perlu untuk ujian.\"",
-            "\"Pokoknya beli pensil!\"",
-            "\"Jangan beli itu!\""
+            "Rp 1.000",
+            "Rp 2.000",
+            "Rp 3.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Pendapat yang baik diawali dengan kata santun dan dilengkapi alasan yang jelas."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "20% dari Rp 10.000 = (20/100) × 10.000 = Rp 2.000."
         }
       ]
     },
@@ -3852,33 +5025,68 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T07:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 2: Belanja Hemat di Koperasi",
+      "title": "Kuis Interaktif: Bab 2: Belanja Hemat di Koperasi",
       "questions": [
         {
-          "id": "q-k4b2-1",
-          "questionText": "Pasangkan persen dengan pecahannya: 25% sama nilainya dengan pecahan...",
+          "id": "q-materi-k4-b2-1",
+          "questionText": "Pasangkan bentuk persentase dengan bentuk pecahan biasa yang senilai!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "1/4",
-            "1/2",
-            "1/10"
+            "25% = 1/4, 50% = 1/2, 10% = 1/10"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "25%",
+              "right": "1/4"
+            },
+            {
+              "left": "50%",
+              "right": "1/2"
+            },
+            {
+              "left": "10%",
+              "right": "1/10"
+            }
+          ],
+          "leftItems": [
+            "25%",
+            "50%",
+            "10%"
+          ],
+          "rightItems": [
+            "1/2",
+            "1/10",
+            "1/4"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "25% = 25/100 = 1/4 (persen artinya per seratus)."
+          "explanation": "25% = 25/100 = 1/4, 50% = 50/100 = 1/2, dan 10% = 10/100 = 1/10."
         },
         {
-          "id": "q-k4b2-2",
-          "questionText": "Kalimat penyampaian pendapat yang baik dan berargumen adalah...",
+          "id": "q-materi-k4-b2-2",
+          "questionText": "Sebuah buku tulis berharga Rp 10.000 mendapat potongan diskon 20%. Berapa rupiah potongan harga yang didapat pembeli?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Menurut saya, kita beli buku karena perlu untuk ujian.\"",
-            "\"Pokoknya beli pensil!\"",
-            "\"Jangan beli itu!\""
+            "Rp 1.000",
+            "Rp 2.000",
+            "Rp 3.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Pendapat yang baik diawali dengan kata santun dan dilengkapi alasan yang jelas."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "20% dari Rp 10.000 = (20/100) × 10.000 = Rp 2.000."
         }
       ]
     }
@@ -3943,33 +5151,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 3: Kebun Sayur Sekolah",
+      "title": "Kuis Interaktif: Bab 3: Kebun Sayur Sekolah",
       "questions": [
         {
-          "id": "q-k4b3-1",
-          "questionText": "Lahan kangkung terdiri dari 3 baris, tiap baris 4 petak. Berapakah luasnya?",
+          "id": "q-materi-k4-b3-1",
+          "questionText": "Berapakah faktor persekutuan terbesar (FPB) dari 12 dan 18?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12 petak",
-            "7 petak",
-            "10 petak"
+            "3",
+            "6",
+            "9"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Luas = 3 x 4 = 12 petak."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Faktor 12: 1, 2, 3, 4, 6, 12. Faktor 18: 1, 2, 3, 6, 9, 18. Faktor persekutuan terbesar adalah 6."
         },
         {
-          "id": "q-k4b3-2",
-          "questionText": "Berdasarkan tabel panen kangkung: Minggu 1 (6 ikat), Minggu 2 (8), Minggu 3 (5), Minggu 4 (9). Minggu ke berapa panen paling banyak?",
+          "id": "q-materi-k4-b3-2",
+          "questionText": "Lampu merah menyala setiap 4 detik, dan lampu hijau menyala setiap 6 detik. Setiap berapa detik kedua lampu akan menyala bersamaan (KPK)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Minggu 4 (9 ikat)",
-            "Minggu 2 (8 ikat)",
-            "Minggu 1 (6 ikat)"
+            "10 detik",
+            "12 detik",
+            "24 detik"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Minggu ke-4 ada 9 ikat, paling banyak dibanding minggu lainnya."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "KPK dari 4 dan 6 adalah 12 detik."
         }
       ]
     },
@@ -4002,33 +5226,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T08:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 3: Kebun Sayur Sekolah",
+      "title": "Kuis Interaktif: Bab 3: Kebun Sayur Sekolah",
       "questions": [
         {
-          "id": "q-k4b3-1",
-          "questionText": "Lahan kangkung terdiri dari 3 baris, tiap baris 4 petak. Berapakah luasnya?",
+          "id": "q-materi-k4-b3-1",
+          "questionText": "Berapakah faktor persekutuan terbesar (FPB) dari 12 dan 18?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12 petak",
-            "7 petak",
-            "10 petak"
+            "3",
+            "6",
+            "9"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Luas = 3 x 4 = 12 petak."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Faktor 12: 1, 2, 3, 4, 6, 12. Faktor 18: 1, 2, 3, 6, 9, 18. Faktor persekutuan terbesar adalah 6."
         },
         {
-          "id": "q-k4b3-2",
-          "questionText": "Berdasarkan tabel panen kangkung: Minggu 1 (6 ikat), Minggu 2 (8), Minggu 3 (5), Minggu 4 (9). Minggu ke berapa panen paling banyak?",
+          "id": "q-materi-k4-b3-2",
+          "questionText": "Lampu merah menyala setiap 4 detik, dan lampu hijau menyala setiap 6 detik. Setiap berapa detik kedua lampu akan menyala bersamaan (KPK)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Minggu 4 (9 ikat)",
-            "Minggu 2 (8 ikat)",
-            "Minggu 1 (6 ikat)"
+            "10 detik",
+            "12 detik",
+            "24 detik"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Minggu ke-4 ada 9 ikat, paling banyak dibanding minggu lainnya."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "KPK dari 4 dan 6 adalah 12 detik."
         }
       ]
     }
@@ -4088,33 +5328,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 4: Mengecat Pagar Sekolah",
+      "title": "Kuis Interaktif: Bab 4: Mengecat Pagar Sekolah",
       "questions": [
         {
-          "id": "q-k4b4-1",
-          "questionText": "Berapakah hasil dari 3/8 + 2/8?",
+          "id": "q-materi-k4-b4-1",
+          "questionText": "Berapa luas kebun sayur berbentuk persegi panjang dengan panjang 8 meter dan lebar 5 meter?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "5/8",
-            "5/16",
-            "1/8"
+            "26 m²",
+            "40 m²",
+            "45 m²"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan atasnya saja (3 + 2 = 5), penyebut bawahnya tetap 8."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Luas persegi panjang = panjang × lebar = 8 m × 5 m = 40 m²."
         },
         {
-          "id": "q-k4b4-2",
-          "questionText": "\"Mereka ingin selesai pada hari Rabu, [...] cat tinggal sedikit.\" Kata yang tepat untuk melengkapi adalah...",
+          "id": "q-materi-k4-b4-2",
+          "questionText": "Berapa meter keliling pagar yang mengelilingi kebun sayur 8 meter × 5 meter tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "tetapi",
-            "dan",
-            "karena"
+            "26 meter",
+            "30 meter",
+            "40 meter"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kata \"tetapi\" digunakan untuk menyatakan pertentangan keadaan."
+          "explanation": "Keliling = 2 × (p + l) = 2 × (8 + 5) = 2 × 13 = 26 meter."
         }
       ]
     },
@@ -4142,33 +5398,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T09:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 4: Mengecat Pagar Sekolah",
+      "title": "Kuis Interaktif: Bab 4: Mengecat Pagar Sekolah",
       "questions": [
         {
-          "id": "q-k4b4-1",
-          "questionText": "Berapakah hasil dari 3/8 + 2/8?",
+          "id": "q-materi-k4-b4-1",
+          "questionText": "Berapa luas kebun sayur berbentuk persegi panjang dengan panjang 8 meter dan lebar 5 meter?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "5/8",
-            "5/16",
-            "1/8"
+            "26 m²",
+            "40 m²",
+            "45 m²"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan atasnya saja (3 + 2 = 5), penyebut bawahnya tetap 8."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Luas persegi panjang = panjang × lebar = 8 m × 5 m = 40 m²."
         },
         {
-          "id": "q-k4b4-2",
-          "questionText": "\"Mereka ingin selesai pada hari Rabu, [...] cat tinggal sedikit.\" Kata yang tepat untuk melengkapi adalah...",
+          "id": "q-materi-k4-b4-2",
+          "questionText": "Berapa meter keliling pagar yang mengelilingi kebun sayur 8 meter × 5 meter tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "tetapi",
-            "dan",
-            "karena"
+            "26 meter",
+            "30 meter",
+            "40 meter"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kata \"tetapi\" digunakan untuk menyatakan pertentangan keadaan."
+          "explanation": "Keliling = 2 × (p + l) = 2 × (8 + 5) = 2 × 13 = 26 meter."
         }
       ]
     }
@@ -4228,33 +5500,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 5: Telur dari Peternakan Pak Bowo",
+      "title": "Kuis Interaktif: Bab 5: Telur dari Peternakan Pak Bowo",
       "questions": [
         {
-          "id": "q-k4b5-1",
-          "questionText": "Sebanyak 245 butir telur dimasukkan ke dalam rak berkapasitas 30 butir. Ada berapa rak yang terisi PENUH?",
+          "id": "q-materi-k4-b5-1",
+          "questionText": "Berdasarkan diagram batang penjualan es krim: Rasa apakah yang paling banyak terjual sepanjang hari Minggu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "8 rak penuh (sisa 5 butir)",
-            "7 rak penuh",
-            "9 rak penuh"
+            "Cokelat",
+            "Vanila",
+            "Stroberi"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "30 x 8 = 240 butir, jadi 8 rak penuh dengan sisa 5 butir telur."
+          "explanation": "Batang es krim rasa cokelat menjulang paling tinggi pada diagram penjualan."
         },
         {
-          "id": "q-k4b5-2",
-          "questionText": "Manakah bentuk jawaban soal cerita yang menggunakan kalimat lengkap?",
+          "id": "q-materi-k4-b5-2",
+          "questionText": "Berapa selisih penjualan es krim rasa cokelat (45 buah) dan vanila (30 buah)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Ada 8 rak telur yang penuh.\"",
-            "\"8.\"",
-            "\"Delapan rak.\""
+            "10 buah",
+            "15 buah",
+            "20 buah"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kalimat lengkap menyebutkan jawaban dengan subjek dan satuannya dengan jelas."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Selisih = 45 - 30 = 15 buah."
         }
       ]
     },
@@ -4282,33 +5570,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T10:17:22.271Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 5: Telur dari Peternakan Pak Bowo",
+      "title": "Kuis Interaktif: Bab 5: Telur dari Peternakan Pak Bowo",
       "questions": [
         {
-          "id": "q-k4b5-1",
-          "questionText": "Sebanyak 245 butir telur dimasukkan ke dalam rak berkapasitas 30 butir. Ada berapa rak yang terisi PENUH?",
+          "id": "q-materi-k4-b5-1",
+          "questionText": "Berdasarkan diagram batang penjualan es krim: Rasa apakah yang paling banyak terjual sepanjang hari Minggu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "8 rak penuh (sisa 5 butir)",
-            "7 rak penuh",
-            "9 rak penuh"
+            "Cokelat",
+            "Vanila",
+            "Stroberi"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "30 x 8 = 240 butir, jadi 8 rak penuh dengan sisa 5 butir telur."
+          "explanation": "Batang es krim rasa cokelat menjulang paling tinggi pada diagram penjualan."
         },
         {
-          "id": "q-k4b5-2",
-          "questionText": "Manakah bentuk jawaban soal cerita yang menggunakan kalimat lengkap?",
+          "id": "q-materi-k4-b5-2",
+          "questionText": "Berapa selisih penjualan es krim rasa cokelat (45 buah) dan vanila (30 buah)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Ada 8 rak telur yang penuh.\"",
-            "\"8.\"",
-            "\"Delapan rak.\""
+            "10 buah",
+            "15 buah",
+            "20 buah"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kalimat lengkap menyebutkan jawaban dengan subjek dan satuannya dengan jelas."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Selisih = 45 - 30 = 15 buah."
         }
       ]
     }
@@ -4368,32 +5672,48 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 6: Kursi Pentas Seni",
+      "title": "Kuis Interaktif: Bab 6: Kursi Pentas Seni",
       "questions": [
         {
-          "id": "q-k4b6-1",
-          "questionText": "Pola susunan kursi penonton: 6, 8, 10, 12, ... Kursi pada baris berikutnya berjumlah...",
+          "id": "q-materi-k4-b6-1",
+          "questionText": "Di sebuah aula terdapat 12 baris kursi pentas seni, dan setiap baris berisi 15 kursi. Berapa jumlah seluruh kursi?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "14 kursi",
-            "13 kursi",
-            "16 kursi"
+            "150 kursi",
+            "180 kursi",
+            "200 kursi"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Setiap baris bertambah 2: 12 + 2 = 14 kursi."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "12 × 15 = 180 kursi di aula."
         },
         {
-          "id": "q-k4b6-2",
-          "questionText": "Apakah satu baris dalam karya puisi disebut bait?",
+          "id": "q-materi-k4-b6-2",
+          "questionText": "Apakah satu baris kalimat dalam karya puisi disebut bait?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
-            "Salah (S)",
-            "Benar (B)"
+            "Benar (B)",
+            "Salah (S)"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Salah! Satu baris dalam puisi disebut larik. Bait adalah kumpulan beberapa larik."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Salah! Satu baris dalam puisi disebut larik. Kumpulan beberapa larik baris barulah disebut bait."
         }
       ]
     },
@@ -4421,32 +5741,48 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T11:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 6: Kursi Pentas Seni",
+      "title": "Kuis Interaktif: Bab 6: Kursi Pentas Seni",
       "questions": [
         {
-          "id": "q-k4b6-1",
-          "questionText": "Pola susunan kursi penonton: 6, 8, 10, 12, ... Kursi pada baris berikutnya berjumlah...",
+          "id": "q-materi-k4-b6-1",
+          "questionText": "Di sebuah aula terdapat 12 baris kursi pentas seni, dan setiap baris berisi 15 kursi. Berapa jumlah seluruh kursi?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "14 kursi",
-            "13 kursi",
-            "16 kursi"
+            "150 kursi",
+            "180 kursi",
+            "200 kursi"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Setiap baris bertambah 2: 12 + 2 = 14 kursi."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "12 × 15 = 180 kursi di aula."
         },
         {
-          "id": "q-k4b6-2",
-          "questionText": "Apakah satu baris dalam karya puisi disebut bait?",
+          "id": "q-materi-k4-b6-2",
+          "questionText": "Apakah satu baris kalimat dalam karya puisi disebut bait?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
-            "Salah (S)",
-            "Benar (B)"
+            "Benar (B)",
+            "Salah (S)"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Salah! Satu baris dalam puisi disebut larik. Bait adalah kumpulan beberapa larik."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Salah! Satu baris dalam puisi disebut larik. Kumpulan beberapa larik baris barulah disebut bait."
         }
       ]
     }
@@ -4506,33 +5842,62 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 7: Pagar Kandang Kambing",
+      "title": "Kuis Interaktif: Bab 7: Pagar Kandang Kambing",
       "questions": [
         {
-          "id": "q-k4b7-1",
-          "questionText": "Kandang kambing berukuran 6 m x 4 m. Berapa keliling kandang tersebut?",
-          "image": "",
-          "points": 50,
-          "options": [
-            "20 meter",
-            "10 meter",
-            "24 meter"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "Keliling persegi panjang = 2 x (6 + 4) = 2 x 10 = 20 meter."
-        },
-        {
-          "id": "q-k4b7-2",
-          "questionText": "Perhatikan gambar jenis sudut di bawah! Manakah gambar yang menunjukkan sudut Siku-Siku (90 derajat)?",
+          "id": "q-materi-k4-b7-1",
+          "questionText": "Sudut yang besarnya lebih dari 90 derajat tetapi kurang dari 180 derajat dinamakan sudut...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k4-b7-jenis-sudut.svg",
           "points": 50,
           "options": [
-            "Gambar (B) Sudut Siku-Siku",
-            "Gambar (A) Sudut Lancip",
-            "Gambar (C) Sudut Tumpul"
+            "Sudut Lancip",
+            "Sudut Siku-Siku",
+            "Sudut Tumpul"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Sudut siku-siku berbentuk tegak lurus (90 derajat) seperti pojok buku."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Sudut tumpul memiliki bukaan rentang lebih besar dari 90 derajat."
+        },
+        {
+          "id": "q-materi-k4-b7-2",
+          "questionText": "Lingkari gambar sudut SIKU-SIKU (tepat 90°) di bawah!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
+          "image": "",
+          "points": 50,
+          "options": [
+            "Sudut Lancip",
+            "Sudut Siku-Siku",
+            "Sudut Tumpul"
+          ],
+          "imageOptions": [
+            {
+              "label": "Sudut Lancip (< 90°)",
+              "image": "/quiz/items/sudut-lancip.svg"
+            },
+            {
+              "label": "Sudut Siku-Siku (Tepat 90°)",
+              "image": "/quiz/items/sudut-sikusiku.svg"
+            },
+            {
+              "label": "Sudut Tumpul (> 90°)",
+              "image": "/quiz/items/sudut-tumpul.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sudut siku-siku memiliki dua garis yang saling tegak lurus sempurna berukuran 90 derajat."
         }
       ]
     },
@@ -4560,33 +5925,62 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T12:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 7: Pagar Kandang Kambing",
+      "title": "Kuis Interaktif: Bab 7: Pagar Kandang Kambing",
       "questions": [
         {
-          "id": "q-k4b7-1",
-          "questionText": "Kandang kambing berukuran 6 m x 4 m. Berapa keliling kandang tersebut?",
-          "image": "",
-          "points": 50,
-          "options": [
-            "20 meter",
-            "10 meter",
-            "24 meter"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "Keliling persegi panjang = 2 x (6 + 4) = 2 x 10 = 20 meter."
-        },
-        {
-          "id": "q-k4b7-2",
-          "questionText": "Perhatikan gambar jenis sudut di bawah! Manakah gambar yang menunjukkan sudut Siku-Siku (90 derajat)?",
+          "id": "q-materi-k4-b7-1",
+          "questionText": "Sudut yang besarnya lebih dari 90 derajat tetapi kurang dari 180 derajat dinamakan sudut...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k4-b7-jenis-sudut.svg",
           "points": 50,
           "options": [
-            "Gambar (B) Sudut Siku-Siku",
-            "Gambar (A) Sudut Lancip",
-            "Gambar (C) Sudut Tumpul"
+            "Sudut Lancip",
+            "Sudut Siku-Siku",
+            "Sudut Tumpul"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Sudut siku-siku berbentuk tegak lurus (90 derajat) seperti pojok buku."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Sudut tumpul memiliki bukaan rentang lebih besar dari 90 derajat."
+        },
+        {
+          "id": "q-materi-k4-b7-2",
+          "questionText": "Lingkari gambar sudut SIKU-SIKU (tepat 90°) di bawah!",
+          "instructionBadge": "Lingkari Gambar yang Benar",
+          "type": "image_choice",
+          "image": "",
+          "points": 50,
+          "options": [
+            "Sudut Lancip",
+            "Sudut Siku-Siku",
+            "Sudut Tumpul"
+          ],
+          "imageOptions": [
+            {
+              "label": "Sudut Lancip (< 90°)",
+              "image": "/quiz/items/sudut-lancip.svg"
+            },
+            {
+              "label": "Sudut Siku-Siku (Tepat 90°)",
+              "image": "/quiz/items/sudut-sikusiku.svg"
+            },
+            {
+              "label": "Sudut Tumpul (> 90°)",
+              "image": "/quiz/items/sudut-tumpul.svg"
+            }
+          ],
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sudut siku-siku memiliki dua garis yang saling tegak lurus sempurna berukuran 90 derajat."
         }
       ]
     }
@@ -4646,33 +6040,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 8: Toko Kue Bu Ratna",
+      "title": "Kuis Interaktif: Bab 8: Toko Kue Bu Ratna",
       "questions": [
         {
-          "id": "q-k4b8-1",
-          "questionText": "Manakah kumpulan bilangan yang seluruhnya merupakan faktor dari 24?",
+          "id": "q-materi-k4-b8-1",
+          "questionText": "Sebuah denah sekolah menggunakan skala 1 : 100. Jika jarak ruang guru ke perpustakaan pada denah adalah 5 cm, berapa jarak sebenarnya?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "4, 6, dan 8",
-            "5, 7, dan 9",
-            "9, 10, dan 11"
+            "50 cm",
+            "5 meter",
+            "50 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Faktor adalah bilangan yang membagi habis 24 tanpa sisa (24 habis dibagi 4, 6, dan 8)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "5 cm × 100 = 500 cm = 5 meter jarak sebenarnya."
         },
         {
-          "id": "q-k4b8-2",
-          "questionText": "Contoh kalimat ajakan dalam teks iklan kue Bu Ratna adalah...",
+          "id": "q-materi-k4-b8-2",
+          "questionText": "Arah mata angin yang berada di antara utara dan timur disebut arah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Pesan sekarang, dijamin segar!\"",
-            "\"Tersedia kemasan isi 4, 6, dan 12.\"",
-            "\"Toko buka setiap hari.\""
+            "Timur Laut",
+            "Tenggara",
+            "Barat Laut"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kalimat ajakan menyuruh atau membujuk pembaca melakukan suatu tindakan."
+          "explanation": "Antara utara dan timur adalah arah timur laut."
         }
       ]
     },
@@ -4700,33 +6110,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T13:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 8: Toko Kue Bu Ratna",
+      "title": "Kuis Interaktif: Bab 8: Toko Kue Bu Ratna",
       "questions": [
         {
-          "id": "q-k4b8-1",
-          "questionText": "Manakah kumpulan bilangan yang seluruhnya merupakan faktor dari 24?",
+          "id": "q-materi-k4-b8-1",
+          "questionText": "Sebuah denah sekolah menggunakan skala 1 : 100. Jika jarak ruang guru ke perpustakaan pada denah adalah 5 cm, berapa jarak sebenarnya?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "4, 6, dan 8",
-            "5, 7, dan 9",
-            "9, 10, dan 11"
+            "50 cm",
+            "5 meter",
+            "50 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Faktor adalah bilangan yang membagi habis 24 tanpa sisa (24 habis dibagi 4, 6, dan 8)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "5 cm × 100 = 500 cm = 5 meter jarak sebenarnya."
         },
         {
-          "id": "q-k4b8-2",
-          "questionText": "Contoh kalimat ajakan dalam teks iklan kue Bu Ratna adalah...",
+          "id": "q-materi-k4-b8-2",
+          "questionText": "Arah mata angin yang berada di antara utara dan timur disebut arah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Pesan sekarang, dijamin segar!\"",
-            "\"Tersedia kemasan isi 4, 6, dan 12.\"",
-            "\"Toko buka setiap hari.\""
+            "Timur Laut",
+            "Tenggara",
+            "Barat Laut"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kalimat ajakan menyuruh atau membujuk pembaca melakukan suatu tindakan."
+          "explanation": "Antara utara dan timur adalah arah timur laut."
         }
       ]
     }
@@ -4791,33 +6217,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 1: Menabung untuk Sepeda",
+      "title": "Kuis Interaktif: Bab 1: Menabung untuk Sepeda",
       "questions": [
         {
-          "id": "q-k5b1-1",
-          "questionText": "Harga sepeda Rp850.000 dan tabungan Laras Rp475.000. Berapa kekurangan uang Laras?",
+          "id": "q-materi-k5-b1-1",
+          "questionText": "Berapakah hasil dari 2/3 + 1/4?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp375.000",
-            "Rp425.000",
-            "Rp475.000"
+            "3/7",
+            "11/12",
+            "3/12"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "850.000 - 475.000 = 375.000 rupiah."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Samakan penyebut ke KPK 12: 8/12 + 3/12 = 11/12."
         },
         {
-          "id": "q-k5b1-2",
-          "questionText": "Kalimat poster toko sepeda yang bersifat membujuk pembeli adalah...",
+          "id": "q-materi-k5-b1-2",
+          "questionText": "Pak Danu memiliki 3 1/2 meter kayu. Dipotong 1 1/4 meter untuk membuat pigura. Berapa meter sisa kayu Pak Danu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"GRATIS helm untuk pembelian bulan Desember!\"",
-            "\"Sepeda Gunung Anak\"",
-            "\"Buka setiap hari pukul 08.00–17.00\""
+            "2 1/4 meter",
+            "2 1/2 meter",
+            "2 3/4 meter"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kalimat tersebut mengajak orang agar segera membeli dengan iming-iming bonus gratis."
+          "explanation": "3 2/4 - 1 1/4 = 2 1/4 meter kayu."
         }
       ]
     },
@@ -4850,33 +6292,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T14:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 1: Menabung untuk Sepeda",
+      "title": "Kuis Interaktif: Bab 1: Menabung untuk Sepeda",
       "questions": [
         {
-          "id": "q-k5b1-1",
-          "questionText": "Harga sepeda Rp850.000 dan tabungan Laras Rp475.000. Berapa kekurangan uang Laras?",
+          "id": "q-materi-k5-b1-1",
+          "questionText": "Berapakah hasil dari 2/3 + 1/4?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp375.000",
-            "Rp425.000",
-            "Rp475.000"
+            "3/7",
+            "11/12",
+            "3/12"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "850.000 - 475.000 = 375.000 rupiah."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Samakan penyebut ke KPK 12: 8/12 + 3/12 = 11/12."
         },
         {
-          "id": "q-k5b1-2",
-          "questionText": "Kalimat poster toko sepeda yang bersifat membujuk pembeli adalah...",
+          "id": "q-materi-k5-b1-2",
+          "questionText": "Pak Danu memiliki 3 1/2 meter kayu. Dipotong 1 1/4 meter untuk membuat pigura. Berapa meter sisa kayu Pak Danu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"GRATIS helm untuk pembelian bulan Desember!\"",
-            "\"Sepeda Gunung Anak\"",
-            "\"Buka setiap hari pukul 08.00–17.00\""
+            "2 1/4 meter",
+            "2 1/2 meter",
+            "2 3/4 meter"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kalimat tersebut mengajak orang agar segera membeli dengan iming-iming bonus gratis."
+          "explanation": "3 2/4 - 1 1/4 = 2 1/4 meter kayu."
         }
       ]
     }
@@ -4941,33 +6399,59 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 2: Resep Es Buah Segar",
+      "title": "Kuis Interaktif: Bab 2: Resep Es Buah Segar",
       "questions": [
         {
-          "id": "q-k5b2-1",
-          "questionText": "Pecahan campuran 1 1/2 sama nilainya dengan...",
+          "id": "q-materi-k5-b2-1",
+          "questionText": "Berapakah hasil perkalian pecahan: 3/5 × 2/7?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "3/2",
-            "1/2",
-            "2/3"
+            "5/12",
+            "6/35",
+            "6/12"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "1 utuh = 2/2, ditambah 1/2 = 3/2."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Kalikan pembilang dengan pembilang dan penyebut dengan penyebut: (3 × 2) / (5 × 7) = 6/35."
         },
         {
-          "id": "q-k5b2-2",
-          "questionText": "Urutkan langkah membuat es buah yang runtut dari awal:",
+          "id": "q-materi-k5-b2-2",
+          "questionText": "Urutkan langkah membuat es buah segar dari awal hingga siap disajikan!",
+          "instructionBadge": "Urutkan Langkah-Langkah",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
-            "Cuci buah, potong buah, tuang air dan sirup, sajikan",
-            "Potong buah, cuci buah, sajikan, tuang sirup",
-            "Sajikan, tuang air, cuci buah, potong buah"
+            "Cuci buah -> Potong buah -> Tuang air & sirup -> Sajikan",
+            "Potong buah -> Cuci buah -> Sajikan -> Tuang air & sirup",
+            "Sajikan -> Potong buah -> Cuci buah -> Tuang air & sirup"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "Sajikan",
+            "Potong buah",
+            "Cuci buah",
+            "Tuang air dan sirup"
+          ],
+          "correctOrder": [
+            "Cuci buah",
+            "Potong buah",
+            "Tuang air dan sirup",
+            "Sajikan"
           ],
           "correctOptionIndex": 0,
-          "explanation": "Cuci buah terlebih dahulu agar higienis, baru kemudian dipotong dan diracik."
+          "explanation": "Urutan higienis: Cuci buah hingga bersih -> Potong dadu -> Tuangkan air dan sirup -> Sajikan dengan es."
         }
       ]
     },
@@ -5000,33 +6484,59 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T15:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 2: Resep Es Buah Segar",
+      "title": "Kuis Interaktif: Bab 2: Resep Es Buah Segar",
       "questions": [
         {
-          "id": "q-k5b2-1",
-          "questionText": "Pecahan campuran 1 1/2 sama nilainya dengan...",
+          "id": "q-materi-k5-b2-1",
+          "questionText": "Berapakah hasil perkalian pecahan: 3/5 × 2/7?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "3/2",
-            "1/2",
-            "2/3"
+            "5/12",
+            "6/35",
+            "6/12"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "1 utuh = 2/2, ditambah 1/2 = 3/2."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Kalikan pembilang dengan pembilang dan penyebut dengan penyebut: (3 × 2) / (5 × 7) = 6/35."
         },
         {
-          "id": "q-k5b2-2",
-          "questionText": "Urutkan langkah membuat es buah yang runtut dari awal:",
+          "id": "q-materi-k5-b2-2",
+          "questionText": "Urutkan langkah membuat es buah segar dari awal hingga siap disajikan!",
+          "instructionBadge": "Urutkan Langkah-Langkah",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
-            "Cuci buah, potong buah, tuang air dan sirup, sajikan",
-            "Potong buah, cuci buah, sajikan, tuang sirup",
-            "Sajikan, tuang air, cuci buah, potong buah"
+            "Cuci buah -> Potong buah -> Tuang air & sirup -> Sajikan",
+            "Potong buah -> Cuci buah -> Sajikan -> Tuang air & sirup",
+            "Sajikan -> Potong buah -> Cuci buah -> Tuang air & sirup"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "Sajikan",
+            "Potong buah",
+            "Cuci buah",
+            "Tuang air dan sirup"
+          ],
+          "correctOrder": [
+            "Cuci buah",
+            "Potong buah",
+            "Tuang air dan sirup",
+            "Sajikan"
           ],
           "correctOptionIndex": 0,
-          "explanation": "Cuci buah terlebih dahulu agar higienis, baru kemudian dipotong dan diracik."
+          "explanation": "Urutan higienis: Cuci buah hingga bersih -> Potong dadu -> Tuangkan air dan sirup -> Sajikan dengan es."
         }
       ]
     }
@@ -5091,33 +6601,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 3: Taman Bermain Balai Desa",
+      "title": "Kuis Interaktif: Bab 3: Taman Bermain Balai Desa",
       "questions": [
         {
-          "id": "q-k5b3-1",
-          "questionText": "Perhatikan denah taman bentuk L di bawah! Luas taman = 96 m² + 36 m². Luas seluruhnya adalah...",
+          "id": "q-materi-k5-b3-1",
+          "questionText": "Sebuah taman kota berbentuk huruf L dibelah menjadi 2 persegi panjang: bagian satu 6 m × 4 m dan bagian dua 3 m × 2 m. Berapa luas total taman?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k5-b3-taman-l.svg",
           "points": 50,
           "options": [
-            "132 m²",
-            "102 m²",
-            "144 m²"
+            "24 m²",
+            "30 m²",
+            "36 m²"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan luas kedua bagian bangun gabungan: 96 + 36 = 132 m²."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Luas gabungan = (6 × 4) + (3 × 2) = 24 + 6 = 30 m²."
         },
         {
-          "id": "q-k5b3-2",
-          "questionText": "Kalimat manakah yang merupakan kalimat FAKTA?",
+          "id": "q-materi-k5-b3-2",
+          "questionText": "Jika di sekeliling taman L tersebut akan dipasang lampu hias setiap jarak 3 meter, konsep apakah yang digunakan untuk menghitung kebutuhan lampu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Taman itu berbentuk huruf L dengan luas 132 m².\"",
-            "\"Taman itu pasti paling indah sedunia.\"",
-            "\"Bunga di taman harus disiram tiap jam.\""
+            "Luas bangun",
+            "Keliling bangun",
+            "Volume bangun"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Fakta dapat dibuktikan secara nyata dengan melihat dan mengukur."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Memasang pembatas atau lampu di sepanjang tepi luar menggunakan perhitungan keliling."
         }
       ]
     },
@@ -5150,33 +6676,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T16:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 3: Taman Bermain Balai Desa",
+      "title": "Kuis Interaktif: Bab 3: Taman Bermain Balai Desa",
       "questions": [
         {
-          "id": "q-k5b3-1",
-          "questionText": "Perhatikan denah taman bentuk L di bawah! Luas taman = 96 m² + 36 m². Luas seluruhnya adalah...",
+          "id": "q-materi-k5-b3-1",
+          "questionText": "Sebuah taman kota berbentuk huruf L dibelah menjadi 2 persegi panjang: bagian satu 6 m × 4 m dan bagian dua 3 m × 2 m. Berapa luas total taman?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k5-b3-taman-l.svg",
           "points": 50,
           "options": [
-            "132 m²",
-            "102 m²",
-            "144 m²"
+            "24 m²",
+            "30 m²",
+            "36 m²"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan luas kedua bagian bangun gabungan: 96 + 36 = 132 m²."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Luas gabungan = (6 × 4) + (3 × 2) = 24 + 6 = 30 m²."
         },
         {
-          "id": "q-k5b3-2",
-          "questionText": "Kalimat manakah yang merupakan kalimat FAKTA?",
+          "id": "q-materi-k5-b3-2",
+          "questionText": "Jika di sekeliling taman L tersebut akan dipasang lampu hias setiap jarak 3 meter, konsep apakah yang digunakan untuk menghitung kebutuhan lampu?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Taman itu berbentuk huruf L dengan luas 132 m².\"",
-            "\"Taman itu pasti paling indah sedunia.\"",
-            "\"Bunga di taman harus disiram tiap jam.\""
+            "Luas bangun",
+            "Keliling bangun",
+            "Volume bangun"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Fakta dapat dibuktikan secara nyata dengan melihat dan mengukur."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Memasang pembatas atau lampu di sepanjang tepi luar menggunakan perhitungan keliling."
         }
       ]
     }
@@ -5236,33 +6778,62 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 4: Jadwal Kerja Bakti dan Bingkisan",
+      "title": "Kuis Interaktif: Bab 4: Jadwal Kerja Bakti dan Bingkisan",
       "questions": [
         {
-          "id": "q-k5b4-1",
-          "questionText": "KPK (Kelipatan Persekutuan Terkecil) dari bilangan 4 dan 6 adalah...",
+          "id": "q-materi-k5-b4-1",
+          "questionText": "Ali ronda malam setiap 4 hari sekali dan Budi setiap 6 hari sekali. Pada hari ke berapa mereka ronda bersama untuk pertama kalinya?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12",
-            "2",
-            "24"
+            "Hari ke-10",
+            "Hari ke-12",
+            "Hari ke-24"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kelipatan sama yang paling kecil dari 4 dan 6 adalah 12."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "KPK dari 4 dan 6 adalah 12 hari."
         },
         {
-          "id": "q-k5b4-2",
-          "questionText": "Masalah \"Kapan mereka akan bekerja bersamaan lagi?\" diselesaikan menggunakan...",
+          "id": "q-materi-k5-b4-2",
+          "questionText": "Pasangkan jenis soal cerita dengan cara penyelesaian matematika yang tepat (KPK atau FPB)!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "KPK",
-            "FPB",
-            "Rata-rata"
+            "Bertemu lagi = KPK, Membagi bingkisan merata = FPB"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Kapan mereka bertemu lagi bersamaan?",
+              "right": "KPK (Kelipatan Persekutuan Terkecil)"
+            },
+            {
+              "left": "Dibagi sama banyak ke kantong sebanyak-banyaknya",
+              "right": "FPB (Faktor Persekutuan Terbesar)"
+            }
+          ],
+          "leftItems": [
+            "Kapan mereka bertemu lagi bersamaan?",
+            "Dibagi sama banyak ke kantong sebanyak-banyaknya"
+          ],
+          "rightItems": [
+            "FPB (Faktor Persekutuan Terbesar)",
+            "KPK (Kelipatan Persekutuan Terkecil)"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kata kunci \"bertemu/bersamaan lagi\" diselesaikan dengan mencari KPK."
+          "explanation": "Jadwal berulang diselesaikan dengan KPK, sedangkan pembagian merata bingkisan diselesaikan dengan FPB."
         }
       ]
     },
@@ -5290,33 +6861,62 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T17:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 4: Jadwal Kerja Bakti dan Bingkisan",
+      "title": "Kuis Interaktif: Bab 4: Jadwal Kerja Bakti dan Bingkisan",
       "questions": [
         {
-          "id": "q-k5b4-1",
-          "questionText": "KPK (Kelipatan Persekutuan Terkecil) dari bilangan 4 dan 6 adalah...",
+          "id": "q-materi-k5-b4-1",
+          "questionText": "Ali ronda malam setiap 4 hari sekali dan Budi setiap 6 hari sekali. Pada hari ke berapa mereka ronda bersama untuk pertama kalinya?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12",
-            "2",
-            "24"
+            "Hari ke-10",
+            "Hari ke-12",
+            "Hari ke-24"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kelipatan sama yang paling kecil dari 4 dan 6 adalah 12."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "KPK dari 4 dan 6 adalah 12 hari."
         },
         {
-          "id": "q-k5b4-2",
-          "questionText": "Masalah \"Kapan mereka akan bekerja bersamaan lagi?\" diselesaikan menggunakan...",
+          "id": "q-materi-k5-b4-2",
+          "questionText": "Pasangkan jenis soal cerita dengan cara penyelesaian matematika yang tepat (KPK atau FPB)!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "KPK",
-            "FPB",
-            "Rata-rata"
+            "Bertemu lagi = KPK, Membagi bingkisan merata = FPB"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Kapan mereka bertemu lagi bersamaan?",
+              "right": "KPK (Kelipatan Persekutuan Terkecil)"
+            },
+            {
+              "left": "Dibagi sama banyak ke kantong sebanyak-banyaknya",
+              "right": "FPB (Faktor Persekutuan Terbesar)"
+            }
+          ],
+          "leftItems": [
+            "Kapan mereka bertemu lagi bersamaan?",
+            "Dibagi sama banyak ke kantong sebanyak-banyaknya"
+          ],
+          "rightItems": [
+            "FPB (Faktor Persekutuan Terbesar)",
+            "KPK (Kelipatan Persekutuan Terkecil)"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kata kunci \"bertemu/bersamaan lagi\" diselesaikan dengan mencari KPK."
+          "explanation": "Jadwal berulang diselesaikan dengan KPK, sedangkan pembagian merata bingkisan diselesaikan dengan FPB."
         }
       ]
     }
@@ -5381,33 +6981,68 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 5: Jarum Jam Menara Balai Desa",
+      "title": "Kuis Interaktif: Bab 5: Jarum Jam Menara Balai Desa",
       "questions": [
         {
-          "id": "q-k5b5-1",
-          "questionText": "Pada pukul 03.00 tepat, sudut terkecil yang dibentuk kedua jarum jam adalah...",
-          "image": "/quiz/k5-b5-sudut-jam.svg",
-          "points": 50,
-          "options": [
-            "90° (sudut siku-siku)",
-            "60°",
-            "180°"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "3 langkah angka jam: 3 x 30° = 90°, membentuk sudut siku-siku."
-        },
-        {
-          "id": "q-k5b5-2",
-          "questionText": "Sudut 60° dan 120° secara berurutan termasuk ke dalam jenis sudut...",
+          "id": "q-materi-k5-b5-1",
+          "questionText": "Berapa derajat sudut terkecil yang dibentuk oleh kedua jarum jam pada pukul 03.00 tepat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Sudut lancip dan sudut tumpul",
-            "Sudut siku-siku dan sudut lurus",
-            "Sudut tumpul dan sudut lancip"
+            "60°",
+            "90°",
+            "120°"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Tiap angka bernilai 30°. Pukul 03.00 jarum menunjuk angka 12 dan 3: 3 × 30° = 90° (siku-siku)."
+        },
+        {
+          "id": "q-materi-k5-b5-2",
+          "questionText": "Pasangkan besar sudut jarum jam menara desa dengan jenis sudutnya!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
+          "image": "",
+          "points": 50,
+          "options": [
+            "60° = Lancip, 90° = Siku-siku, 120° = Tumpul"
+          ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Sudut 60°",
+              "right": "Sudut Lancip"
+            },
+            {
+              "left": "Sudut 90°",
+              "right": "Sudut Siku-Siku"
+            },
+            {
+              "left": "Sudut 120°",
+              "right": "Sudut Tumpul"
+            }
+          ],
+          "leftItems": [
+            "Sudut 60°",
+            "Sudut 90°",
+            "Sudut 120°"
+          ],
+          "rightItems": [
+            "Sudut Siku-Siku",
+            "Sudut Tumpul",
+            "Sudut Lancip"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Sudut lancip < 90° < sudut tumpul."
+          "explanation": "Kurang dari 90° adalah sudut lancip, tepat 90° sudut siku-siku, dan lebih dari 90° sudut tumpul."
         }
       ]
     },
@@ -5440,33 +7075,68 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T18:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 5: Jarum Jam Menara Balai Desa",
+      "title": "Kuis Interaktif: Bab 5: Jarum Jam Menara Balai Desa",
       "questions": [
         {
-          "id": "q-k5b5-1",
-          "questionText": "Pada pukul 03.00 tepat, sudut terkecil yang dibentuk kedua jarum jam adalah...",
-          "image": "/quiz/k5-b5-sudut-jam.svg",
-          "points": 50,
-          "options": [
-            "90° (sudut siku-siku)",
-            "60°",
-            "180°"
-          ],
-          "correctOptionIndex": 0,
-          "explanation": "3 langkah angka jam: 3 x 30° = 90°, membentuk sudut siku-siku."
-        },
-        {
-          "id": "q-k5b5-2",
-          "questionText": "Sudut 60° dan 120° secara berurutan termasuk ke dalam jenis sudut...",
+          "id": "q-materi-k5-b5-1",
+          "questionText": "Berapa derajat sudut terkecil yang dibentuk oleh kedua jarum jam pada pukul 03.00 tepat?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Sudut lancip dan sudut tumpul",
-            "Sudut siku-siku dan sudut lurus",
-            "Sudut tumpul dan sudut lancip"
+            "60°",
+            "90°",
+            "120°"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Tiap angka bernilai 30°. Pukul 03.00 jarum menunjuk angka 12 dan 3: 3 × 30° = 90° (siku-siku)."
+        },
+        {
+          "id": "q-materi-k5-b5-2",
+          "questionText": "Pasangkan besar sudut jarum jam menara desa dengan jenis sudutnya!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
+          "image": "",
+          "points": 50,
+          "options": [
+            "60° = Lancip, 90° = Siku-siku, 120° = Tumpul"
+          ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Sudut 60°",
+              "right": "Sudut Lancip"
+            },
+            {
+              "left": "Sudut 90°",
+              "right": "Sudut Siku-Siku"
+            },
+            {
+              "left": "Sudut 120°",
+              "right": "Sudut Tumpul"
+            }
+          ],
+          "leftItems": [
+            "Sudut 60°",
+            "Sudut 90°",
+            "Sudut 120°"
+          ],
+          "rightItems": [
+            "Sudut Siku-Siku",
+            "Sudut Tumpul",
+            "Sudut Lancip"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Sudut lancip < 90° < sudut tumpul."
+          "explanation": "Kurang dari 90° adalah sudut lancip, tepat 90° sudut siku-siku, dan lebih dari 90° sudut tumpul."
         }
       ]
     }
@@ -5531,33 +7201,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 6: Akuarium Kelas Lima",
+      "title": "Kuis Interaktif: Bab 6: Akuarium Kelas Lima",
       "questions": [
         {
-          "id": "q-k5b6-1",
-          "questionText": "Perhatikan gambar akuarium di bawah! Akuarium berukuran 40 cm x 25 cm x 30 cm. Berapakah volumenya?",
+          "id": "q-materi-k5-b6-1",
+          "questionText": "Sebuah akuarium kaca balok berukuran panjang 50 cm, lebar 30 cm, dan tinggi 40 cm. Berapa volume akuarium tersebut dalam cm³?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k5-b6-akuarium-balok.svg",
           "points": 50,
           "options": [
-            "30.000 cm³",
-            "3.000 cm³",
-            "95 cm³"
+            "60.000 cm³",
+            "6.000 cm³",
+            "1.200 cm³"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Volume balok = panjang x lebar x tinggi = 40 x 25 x 30 = 30.000 cm³."
+          "explanation": "Volume balok = p × l × t = 50 × 30 × 40 = 60.000 cm³."
         },
         {
-          "id": "q-k5b6-2",
-          "questionText": "Volume 30.000 cm³ sama dengan berapa liter (ingat: 1 liter = 1.000 cm³)?",
+          "id": "q-materi-k5-b6-2",
+          "questionText": "Jika 1 liter = 1.000 cm³, berapa liter air yang dibutuhkan untuk mengisi penuh akuarium 60.000 cm³ tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "30 liter",
-            "3 liter",
-            "300 liter"
+            "6 liter",
+            "60 liter",
+            "600 liter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "1 liter = 1.000 cm³. Maka 30.000 cm³ = 30 liter."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "60.000 cm³ : 1.000 = 60 liter air."
         }
       ]
     },
@@ -5590,33 +7276,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T19:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 6: Akuarium Kelas Lima",
+      "title": "Kuis Interaktif: Bab 6: Akuarium Kelas Lima",
       "questions": [
         {
-          "id": "q-k5b6-1",
-          "questionText": "Perhatikan gambar akuarium di bawah! Akuarium berukuran 40 cm x 25 cm x 30 cm. Berapakah volumenya?",
+          "id": "q-materi-k5-b6-1",
+          "questionText": "Sebuah akuarium kaca balok berukuran panjang 50 cm, lebar 30 cm, dan tinggi 40 cm. Berapa volume akuarium tersebut dalam cm³?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k5-b6-akuarium-balok.svg",
           "points": 50,
           "options": [
-            "30.000 cm³",
-            "3.000 cm³",
-            "95 cm³"
+            "60.000 cm³",
+            "6.000 cm³",
+            "1.200 cm³"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Volume balok = panjang x lebar x tinggi = 40 x 25 x 30 = 30.000 cm³."
+          "explanation": "Volume balok = p × l × t = 50 × 30 × 40 = 60.000 cm³."
         },
         {
-          "id": "q-k5b6-2",
-          "questionText": "Volume 30.000 cm³ sama dengan berapa liter (ingat: 1 liter = 1.000 cm³)?",
+          "id": "q-materi-k5-b6-2",
+          "questionText": "Jika 1 liter = 1.000 cm³, berapa liter air yang dibutuhkan untuk mengisi penuh akuarium 60.000 cm³ tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "30 liter",
-            "3 liter",
-            "300 liter"
+            "6 liter",
+            "60 liter",
+            "600 liter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "1 liter = 1.000 cm³. Maka 30.000 cm³ = 30 liter."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "60.000 cm³ : 1.000 = 60 liter air."
         }
       ]
     }
@@ -5676,33 +7378,62 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 7: Panen Padi Meningkat",
+      "title": "Kuis Interaktif: Bab 7: Panen Padi Meningkat",
       "questions": [
         {
-          "id": "q-k5b7-1",
-          "questionText": "Panen tahun lalu 200 ton. Tahun ini naik 20%. Berapa ton kenaikannya?",
+          "id": "q-materi-k5-b7-1",
+          "questionText": "Berdasarkan teks berita: Berapa persen kenaikan panen padi di Desa Sukamaju pada tahun ini dibandingkan tahun sebelumnya?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "40 ton",
-            "20 ton",
-            "60 ton"
+            "10%",
+            "15%",
+            "25%"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "10% dari 200 = 20, jadi 20% dari 200 = 40 ton kenaikannya."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Berita mencatat keberhasilan kelompok tani meningkatkan panen sebesar 15% berkat irigasi modern."
         },
         {
-          "id": "q-k5b7-2",
-          "questionText": "Berdasarkan teks berita panen, informasi \"Pak Joko dan kelompok tani\" serta \"Desa Sukamaju\" masing-masing menjawab pertanyaan...",
+          "id": "q-materi-k5-b7-2",
+          "questionText": "Pasangkan unsur berita 5W1H dari teks panen padi dengan jawabannya!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Siapa (pelaku) dan Di mana (tempat)",
-            "Mengapa dan Kapan",
-            "Bagaimana dan Apa"
+            "Siapa? = Pak Joko & kelompok tani, Di mana? = Desa Sukamaju"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Siapa tokoh yang diberitakan?",
+              "right": "Pak Joko dan kelompok tani"
+            },
+            {
+              "left": "Di mana lokasi panen berlangsung?",
+              "right": "Desa Sukamaju"
+            }
+          ],
+          "leftItems": [
+            "Siapa tokoh yang diberitakan?",
+            "Di mana lokasi panen berlangsung?"
+          ],
+          "rightItems": [
+            "Desa Sukamaju",
+            "Pak Joko dan kelompok tani"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Siapa = orang/pelaku. Di mana = lokasi/tempat kejadian."
+          "explanation": "Tokoh beritanya adalah Pak Joko bersama kelompok tani dan berlokasi di Desa Sukamaju."
         }
       ]
     },
@@ -5730,33 +7461,62 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T20:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 7: Panen Padi Meningkat",
+      "title": "Kuis Interaktif: Bab 7: Panen Padi Meningkat",
       "questions": [
         {
-          "id": "q-k5b7-1",
-          "questionText": "Panen tahun lalu 200 ton. Tahun ini naik 20%. Berapa ton kenaikannya?",
+          "id": "q-materi-k5-b7-1",
+          "questionText": "Berdasarkan teks berita: Berapa persen kenaikan panen padi di Desa Sukamaju pada tahun ini dibandingkan tahun sebelumnya?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "40 ton",
-            "20 ton",
-            "60 ton"
+            "10%",
+            "15%",
+            "25%"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "10% dari 200 = 20, jadi 20% dari 200 = 40 ton kenaikannya."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Berita mencatat keberhasilan kelompok tani meningkatkan panen sebesar 15% berkat irigasi modern."
         },
         {
-          "id": "q-k5b7-2",
-          "questionText": "Berdasarkan teks berita panen, informasi \"Pak Joko dan kelompok tani\" serta \"Desa Sukamaju\" masing-masing menjawab pertanyaan...",
+          "id": "q-materi-k5-b7-2",
+          "questionText": "Pasangkan unsur berita 5W1H dari teks panen padi dengan jawabannya!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Siapa (pelaku) dan Di mana (tempat)",
-            "Mengapa dan Kapan",
-            "Bagaimana dan Apa"
+            "Siapa? = Pak Joko & kelompok tani, Di mana? = Desa Sukamaju"
           ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Siapa tokoh yang diberitakan?",
+              "right": "Pak Joko dan kelompok tani"
+            },
+            {
+              "left": "Di mana lokasi panen berlangsung?",
+              "right": "Desa Sukamaju"
+            }
+          ],
+          "leftItems": [
+            "Siapa tokoh yang diberitakan?",
+            "Di mana lokasi panen berlangsung?"
+          ],
+          "rightItems": [
+            "Desa Sukamaju",
+            "Pak Joko dan kelompok tani"
+          ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Siapa = orang/pelaku. Di mana = lokasi/tempat kejadian."
+          "explanation": "Tokoh beritanya adalah Pak Joko bersama kelompok tani dan berlokasi di Desa Sukamaju."
         }
       ]
     }
@@ -5821,33 +7581,59 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 8: Lomba Lompat Jauh",
+      "title": "Kuis Interaktif: Bab 8: Lomba Lompat Jauh",
       "questions": [
         {
-          "id": "q-k5b8-1",
-          "questionText": "Urutkan hasil lompatan (meter): 2,45; 2,8; 2,08; 2,54 dari yang TERJAUH:",
+          "id": "q-materi-k5-b8-1",
+          "questionText": "Urutkan hasil lompatan atlet cilik berikut dari yang TERJAUH ke yang terpendek!",
+          "instructionBadge": "Urutkan Bilangan Desimal",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
-            "2,8 > 2,54 > 2,45 > 2,08",
-            "2,08 > 2,45 > 2,54 > 2,8",
-            "2,45 > 2,54 > 2,8 > 2,08"
+            "2,8 m > 2,54 m > 2,45 m > 2,08 m",
+            "2,08 m > 2,45 m > 2,54 m > 2,8 m",
+            "2,8 m > 2,08 m > 2,54 m > 2,45 m"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "2,45 m",
+            "2,8 m",
+            "2,08 m",
+            "2,54 m"
+          ],
+          "correctOrder": [
+            "2,8 m",
+            "2,54 m",
+            "2,45 m",
+            "2,08 m"
           ],
           "correctOptionIndex": 0,
-          "explanation": "Samakan desimalnya: 2,8 = 2,80, sehingga urutan terjauh adalah 2,8 > 2,54 > 2,45 > 2,08."
+          "explanation": "2,8 (2,80 m) adalah yang paling jauh, disusul 2,54 m, lalu 2,45 m, dan paling pendek 2,08 m."
         },
         {
-          "id": "q-k5b8-2",
-          "questionText": "Manakah nilai yang lebih besar antara 0,7 dan 0,65?",
+          "id": "q-materi-k5-b8-2",
+          "questionText": "Berapa selisih jarak antara lompatan terjauh (2,8 m) dan lompatan terpendek (2,08 m)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "0,7 lebih besar dari 0,65",
-            "0,65 lebih besar dari 0,7",
-            "Keduanya sama besar"
+            "0,72 meter",
+            "0,88 meter",
+            "0,78 meter"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "0,7 sama dengan 0,70. Nilai 0,70 lebih besar dari 0,65 (0,70 > 0,65)."
+          "explanation": "2,80 - 2,08 = 0,72 meter."
         }
       ]
     },
@@ -5880,33 +7666,59 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T21:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 8: Lomba Lompat Jauh",
+      "title": "Kuis Interaktif: Bab 8: Lomba Lompat Jauh",
       "questions": [
         {
-          "id": "q-k5b8-1",
-          "questionText": "Urutkan hasil lompatan (meter): 2,45; 2,8; 2,08; 2,54 dari yang TERJAUH:",
+          "id": "q-materi-k5-b8-1",
+          "questionText": "Urutkan hasil lompatan atlet cilik berikut dari yang TERJAUH ke yang terpendek!",
+          "instructionBadge": "Urutkan Bilangan Desimal",
+          "type": "ordering",
           "image": "",
           "points": 50,
           "options": [
-            "2,8 > 2,54 > 2,45 > 2,08",
-            "2,08 > 2,45 > 2,54 > 2,8",
-            "2,45 > 2,54 > 2,8 > 2,08"
+            "2,8 m > 2,54 m > 2,45 m > 2,08 m",
+            "2,08 m > 2,45 m > 2,54 m > 2,8 m",
+            "2,8 m > 2,08 m > 2,54 m > 2,45 m"
+          ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": [
+            "2,45 m",
+            "2,8 m",
+            "2,08 m",
+            "2,54 m"
+          ],
+          "correctOrder": [
+            "2,8 m",
+            "2,54 m",
+            "2,45 m",
+            "2,08 m"
           ],
           "correctOptionIndex": 0,
-          "explanation": "Samakan desimalnya: 2,8 = 2,80, sehingga urutan terjauh adalah 2,8 > 2,54 > 2,45 > 2,08."
+          "explanation": "2,8 (2,80 m) adalah yang paling jauh, disusul 2,54 m, lalu 2,45 m, dan paling pendek 2,08 m."
         },
         {
-          "id": "q-k5b8-2",
-          "questionText": "Manakah nilai yang lebih besar antara 0,7 dan 0,65?",
+          "id": "q-materi-k5-b8-2",
+          "questionText": "Berapa selisih jarak antara lompatan terjauh (2,8 m) dan lompatan terpendek (2,08 m)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "0,7 lebih besar dari 0,65",
-            "0,65 lebih besar dari 0,7",
-            "Keduanya sama besar"
+            "0,72 meter",
+            "0,88 meter",
+            "0,78 meter"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "0,7 sama dengan 0,70. Nilai 0,70 lebih besar dari 0,65 (0,70 > 0,65)."
+          "explanation": "2,80 - 2,08 = 0,72 meter."
         }
       ]
     }
@@ -5971,33 +7783,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 1: Takaran Pupuk Pak Darto",
+      "title": "Kuis Interaktif: Bab 1: Takaran Pupuk Pak Darto",
       "questions": [
         {
-          "id": "q-k6b1-1",
-          "questionText": "Rasio cairan pupuk : air = 1 : 4. Jika digunakan 3 liter cairan pupuk, berapa liter air yang dibutuhkan?",
+          "id": "q-materi-k6-b1-1",
+          "questionText": "Suhu di dalam freezer adalah -4°C, sedangkan suhu di dalam ruangan ber-AC adalah 20°C. Berapakah selisih suhu antara ruangan dan freezer?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12 liter",
-            "7 liter",
-            "15 liter"
+            "16°C",
+            "24°C",
+            "-24°C"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "1 : 4 = 3 : 12. Jadi dibutuhkan 4 x 3 = 12 liter air."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Selisih = 20 - (-4) = 20 + 4 = 24°C."
         },
         {
-          "id": "q-k6b1-2",
-          "questionText": "Kalimat manakah yang merupakan kalimat OPINI (dugaan/pendapat)?",
+          "id": "q-materi-k6-b1-2",
+          "questionText": "Seekor lumba-lumba berenang pada kedalaman -8 meter di bawah permukaan laut. Kemudian lumba-lumba melompat naik setinggi 11 meter ke udara. Berada di ketinggian berapa lumba-lumba di atas permukaan laut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Toko Makmur pasti lebih murah.\"",
-            "\"Toko Subur menjual 5 kg Rp60.000.\"",
-            "\"Pak Darto membeli kompos.\""
+            "2 meter",
+            "3 meter",
+            "4 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kata \"pasti\" menunjukkan dugaan/opini yang belum tentu benar sebelum dihitung."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "-8 + 11 = 3 meter di atas permukaan air laut."
         }
       ]
     },
@@ -6030,33 +7858,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T22:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 1: Takaran Pupuk Pak Darto",
+      "title": "Kuis Interaktif: Bab 1: Takaran Pupuk Pak Darto",
       "questions": [
         {
-          "id": "q-k6b1-1",
-          "questionText": "Rasio cairan pupuk : air = 1 : 4. Jika digunakan 3 liter cairan pupuk, berapa liter air yang dibutuhkan?",
+          "id": "q-materi-k6-b1-1",
+          "questionText": "Suhu di dalam freezer adalah -4°C, sedangkan suhu di dalam ruangan ber-AC adalah 20°C. Berapakah selisih suhu antara ruangan dan freezer?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "12 liter",
-            "7 liter",
-            "15 liter"
+            "16°C",
+            "24°C",
+            "-24°C"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "1 : 4 = 3 : 12. Jadi dibutuhkan 4 x 3 = 12 liter air."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Selisih = 20 - (-4) = 20 + 4 = 24°C."
         },
         {
-          "id": "q-k6b1-2",
-          "questionText": "Kalimat manakah yang merupakan kalimat OPINI (dugaan/pendapat)?",
+          "id": "q-materi-k6-b1-2",
+          "questionText": "Seekor lumba-lumba berenang pada kedalaman -8 meter di bawah permukaan laut. Kemudian lumba-lumba melompat naik setinggi 11 meter ke udara. Berada di ketinggian berapa lumba-lumba di atas permukaan laut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Toko Makmur pasti lebih murah.\"",
-            "\"Toko Subur menjual 5 kg Rp60.000.\"",
-            "\"Pak Darto membeli kompos.\""
+            "2 meter",
+            "3 meter",
+            "4 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kata \"pasti\" menunjukkan dugaan/opini yang belum tentu benar sebelum dihitung."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "-8 + 11 = 3 meter di atas permukaan air laut."
         }
       ]
     }
@@ -6121,34 +7965,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 2: Peta Harta Karun Perkemahan",
+      "title": "Kuis Interaktif: Bab 2: Peta Harta Karun Perkemahan",
       "questions": [
         {
-          "id": "q-k6b2-1",
-          "questionText": "Perhatikan peta perkemahan berpetak di bawah! Mulai dari D4, berjalanlah 1 petak ke kanan lalu 1 petak ke bawah. Di petak manakah posisi harta karun?",
+          "id": "q-materi-k6-b2-1",
+          "questionText": "Perhatikan denah koordinat perkemahan! Jika Pos Utama berada di titik asal (0, 0), di manakah koordinat letak Tenda Regu Elang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k6-b2-peta-perkemahan.svg",
           "points": 50,
           "options": [
-            "Petak E5",
-            "Petak C3",
-            "Petak E3",
-            "Petak D5"
+            "(4, 3)",
+            "(3, 4)",
+            "(-4, 3)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Ke kanan: kolom D menjadi E. Ke bawah: baris 4 menjadi 5 (petak E5)."
+          "explanation": "Maju 4 petak ke arah sumbu X (timur) dan 3 petak ke arah sumbu Y (utara): koordinat (4, 3)."
         },
         {
-          "id": "q-k6b2-2",
-          "questionText": "Kotak berukuran 4 x 2 x 3 kubus satuan tersusun dari berapa kubus?",
+          "id": "q-materi-k6-b2-2",
+          "questionText": "Sumber air bersih terletak di koordinat (-2, 5). Di kuadran manakah letak sumber air tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "24 kubus",
-            "9 kubus",
-            "20 kubus"
+            "Kuadran I",
+            "Kuadran II",
+            "Kuadran III"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Volume balok = 4 x 2 x 3 = 24 kubus."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sumbu X negatif dan sumbu Y positif berada di Kuadran II."
         }
       ]
     },
@@ -6181,34 +8040,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T23:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 2: Peta Harta Karun Perkemahan",
+      "title": "Kuis Interaktif: Bab 2: Peta Harta Karun Perkemahan",
       "questions": [
         {
-          "id": "q-k6b2-1",
-          "questionText": "Perhatikan peta perkemahan berpetak di bawah! Mulai dari D4, berjalanlah 1 petak ke kanan lalu 1 petak ke bawah. Di petak manakah posisi harta karun?",
+          "id": "q-materi-k6-b2-1",
+          "questionText": "Perhatikan denah koordinat perkemahan! Jika Pos Utama berada di titik asal (0, 0), di manakah koordinat letak Tenda Regu Elang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "/quiz/k6-b2-peta-perkemahan.svg",
           "points": 50,
           "options": [
-            "Petak E5",
-            "Petak C3",
-            "Petak E3",
-            "Petak D5"
+            "(4, 3)",
+            "(3, 4)",
+            "(-4, 3)"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Ke kanan: kolom D menjadi E. Ke bawah: baris 4 menjadi 5 (petak E5)."
+          "explanation": "Maju 4 petak ke arah sumbu X (timur) dan 3 petak ke arah sumbu Y (utara): koordinat (4, 3)."
         },
         {
-          "id": "q-k6b2-2",
-          "questionText": "Kotak berukuran 4 x 2 x 3 kubus satuan tersusun dari berapa kubus?",
+          "id": "q-materi-k6-b2-2",
+          "questionText": "Sumber air bersih terletak di koordinat (-2, 5). Di kuadran manakah letak sumber air tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "24 kubus",
-            "9 kubus",
-            "20 kubus"
+            "Kuadran I",
+            "Kuadran II",
+            "Kuadran III"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Volume balok = 4 x 2 x 3 = 24 kubus."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Sumbu X negatif dan sumbu Y positif berada di Kuadran II."
         }
       ]
     }
@@ -6268,32 +8142,48 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 3: Survei Botol Minum Kelas 6",
+      "title": "Kuis Interaktif: Bab 3: Survei Botol Minum Kelas 6",
       "questions": [
         {
-          "id": "q-k6b3-1",
-          "questionText": "Sebanyak 12 + 9 + 6 + 3 murid dihitung pada survei botol minum. Berapa jumlah seluruh murid yang disurvei?",
+          "id": "q-materi-k6-b3-1",
+          "questionText": "Berdasarkan hasil survei 30 murid: 12 murid membawa botol isi ulang, 9 membawa botol plastik sekali pakai, dan 9 membeli minuman kemasan kantin. Berapa persen murid yang membawa botol isi ulang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "30 murid",
-            "27 murid",
-            "32 murid"
+            "30%",
+            "40%",
+            "50%"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan seluruh frekuensi: 12 + 9 + 6 + 3 = 30 murid."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "(12 / 30) × 100% = 40%."
         },
         {
-          "id": "q-k6b3-2",
-          "questionText": "\"Sebagian besar murid membawa botol isi ulang (12 dari 30 murid).\" Apakah pernyataan klaim tersebut benar?",
+          "id": "q-materi-k6-b3-2",
+          "questionText": "Apakah pernyataan berikut BENAR: \"Sebagian besar murid kelas 6 membawa botol minum isi ulang\"?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
-            "Salah (S)",
-            "Benar (B)"
+            "Benar (B)",
+            "Salah (S)"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Salah! Kata \"sebagian besar\" berarti lebih dari separuh (> 15). Ini hanya 12 murid."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Salah! Sebagian besar berarti lebih dari separuh (> 50%). 12 dari 30 murid hanya 40% (kurang dari separuh)."
         }
       ]
     },
@@ -6321,32 +8211,48 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T00:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 3: Survei Botol Minum Kelas 6",
+      "title": "Kuis Interaktif: Bab 3: Survei Botol Minum Kelas 6",
       "questions": [
         {
-          "id": "q-k6b3-1",
-          "questionText": "Sebanyak 12 + 9 + 6 + 3 murid dihitung pada survei botol minum. Berapa jumlah seluruh murid yang disurvei?",
+          "id": "q-materi-k6-b3-1",
+          "questionText": "Berdasarkan hasil survei 30 murid: 12 murid membawa botol isi ulang, 9 membawa botol plastik sekali pakai, dan 9 membeli minuman kemasan kantin. Berapa persen murid yang membawa botol isi ulang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "30 murid",
-            "27 murid",
-            "32 murid"
+            "30%",
+            "40%",
+            "50%"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jumlahkan seluruh frekuensi: 12 + 9 + 6 + 3 = 30 murid."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "(12 / 30) × 100% = 40%."
         },
         {
-          "id": "q-k6b3-2",
-          "questionText": "\"Sebagian besar murid membawa botol isi ulang (12 dari 30 murid).\" Apakah pernyataan klaim tersebut benar?",
+          "id": "q-materi-k6-b3-2",
+          "questionText": "Apakah pernyataan berikut BENAR: \"Sebagian besar murid kelas 6 membawa botol minum isi ulang\"?",
+          "instructionBadge": "Lingkari B (Benar) atau S (Salah)",
+          "type": "true_false",
           "image": "",
           "points": 50,
           "options": [
-            "Salah (S)",
-            "Benar (B)"
+            "Benar (B)",
+            "Salah (S)"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Salah! Kata \"sebagian besar\" berarti lebih dari separuh (> 15). Ini hanya 12 murid."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Salah! Sebagian besar berarti lebih dari separuh (> 50%). 12 dari 30 murid hanya 40% (kurang dari separuh)."
         }
       ]
     }
@@ -6411,33 +8317,68 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 4: Undian Doorprize Jalan Sehat",
+      "title": "Kuis Interaktif: Bab 4: Undian Doorprize Jalan Sehat",
       "questions": [
         {
-          "id": "q-k6b4-1",
-          "questionText": "Kotak berisi: payung 30 kupon, kipas angin 15 kupon, sepeda 5 kupon. Hadiah manakah yang paling mungkin didapat?",
+          "id": "q-materi-k6-b4-1",
+          "questionText": "Sebuah kotak undian jalan sehat berisi 10 kupon hadiah utama sepeda dan 90 kupon hadiah hiburan payung. Berapakah peluang seorang peserta mengambil kupon hadiah utama sepeda?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Payung",
-            "Kipas angin",
-            "Sepeda"
+            "1/10",
+            "1/9",
+            "1/100"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kupon payung ada 30 lembar, paling banyak di antara semua hadiah."
+          "explanation": "Peluang = 10 / (10 + 90) = 10 / 100 = 1/10 (atau 10%)."
         },
         {
-          "id": "q-k6b4-2",
-          "questionText": "Pada undian doorprize tersebut, kejadian \"mendapatkan hadiah televisi\" adalah kejadian yang...",
+          "id": "q-materi-k6-b4-2",
+          "questionText": "Pasangkan kemungkinan peristiwa dengan tingkat kepastiannya pada undian berhadiah!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Tidak mungkin",
+            "Dapat sepeda = Mungkin, Dapat televisi = Tidak mungkin, Dapat hadiah = Pasti"
+          ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Mendapatkan hadiah sepeda",
+              "right": "Mungkin"
+            },
+            {
+              "left": "Mendapatkan televisi (tidak ada di daftar)",
+              "right": "Tidak Mungkin"
+            },
+            {
+              "left": "Mendapatkan salah satu hadiah doorprize",
+              "right": "Pasti"
+            }
+          ],
+          "leftItems": [
+            "Mendapatkan hadiah sepeda",
+            "Mendapatkan televisi (tidak ada di daftar)",
+            "Mendapatkan salah satu hadiah doorprize"
+          ],
+          "rightItems": [
+            "Tidak Mungkin",
             "Pasti",
             "Mungkin"
           ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Tidak mungkin karena kupon televisi tidak ada di dalam kotak (0 kupon)."
+          "explanation": "Sepeda ada di daftar hadiah maka mungkin didapat; televisi tidak ada di daftar maka mustahil/tidak mungkin; dan setiap pemegang nomor menang pasti membawa pulang hadiah."
         }
       ]
     },
@@ -6470,33 +8411,68 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T01:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 4: Undian Doorprize Jalan Sehat",
+      "title": "Kuis Interaktif: Bab 4: Undian Doorprize Jalan Sehat",
       "questions": [
         {
-          "id": "q-k6b4-1",
-          "questionText": "Kotak berisi: payung 30 kupon, kipas angin 15 kupon, sepeda 5 kupon. Hadiah manakah yang paling mungkin didapat?",
+          "id": "q-materi-k6-b4-1",
+          "questionText": "Sebuah kotak undian jalan sehat berisi 10 kupon hadiah utama sepeda dan 90 kupon hadiah hiburan payung. Berapakah peluang seorang peserta mengambil kupon hadiah utama sepeda?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Payung",
-            "Kipas angin",
-            "Sepeda"
+            "1/10",
+            "1/9",
+            "1/100"
           ],
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Kupon payung ada 30 lembar, paling banyak di antara semua hadiah."
+          "explanation": "Peluang = 10 / (10 + 90) = 10 / 100 = 1/10 (atau 10%)."
         },
         {
-          "id": "q-k6b4-2",
-          "questionText": "Pada undian doorprize tersebut, kejadian \"mendapatkan hadiah televisi\" adalah kejadian yang...",
+          "id": "q-materi-k6-b4-2",
+          "questionText": "Pasangkan kemungkinan peristiwa dengan tingkat kepastiannya pada undian berhadiah!",
+          "instructionBadge": "Tarik Garis / Pasangkan",
+          "type": "matching",
           "image": "",
           "points": 50,
           "options": [
-            "Tidak mungkin",
+            "Dapat sepeda = Mungkin, Dapat televisi = Tidak mungkin, Dapat hadiah = Pasti"
+          ],
+          "imageOptions": null,
+          "pairs": [
+            {
+              "left": "Mendapatkan hadiah sepeda",
+              "right": "Mungkin"
+            },
+            {
+              "left": "Mendapatkan televisi (tidak ada di daftar)",
+              "right": "Tidak Mungkin"
+            },
+            {
+              "left": "Mendapatkan salah satu hadiah doorprize",
+              "right": "Pasti"
+            }
+          ],
+          "leftItems": [
+            "Mendapatkan hadiah sepeda",
+            "Mendapatkan televisi (tidak ada di daftar)",
+            "Mendapatkan salah satu hadiah doorprize"
+          ],
+          "rightItems": [
+            "Tidak Mungkin",
             "Pasti",
             "Mungkin"
           ],
+          "orderItems": null,
+          "correctOrder": null,
           "correctOptionIndex": 0,
-          "explanation": "Tidak mungkin karena kupon televisi tidak ada di dalam kotak (0 kupon)."
+          "explanation": "Sepeda ada di daftar hadiah maka mungkin didapat; televisi tidak ada di daftar maka mustahil/tidak mungkin; dan setiap pemegang nomor menang pasti membawa pulang hadiah."
         }
       ]
     }
@@ -6556,33 +8532,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 5: Belanja Perlengkapan Kemah",
+      "title": "Kuis Interaktif: Bab 5: Belanja Perlengkapan Kemah",
       "questions": [
         {
-          "id": "q-k6b5-1",
-          "questionText": "Berapakah hasil dari 20 + 6 x 3?",
+          "id": "q-materi-k6-b5-1",
+          "questionText": "Sebuah taman kota berbentuk lingkaran memiliki diameter 28 meter (jari-jari r = 14 meter). Berapakah luas taman tersebut (gunakan π = 22/7)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "38",
-            "78",
-            "29"
+            "528 m²",
+            "616 m²",
+            "724 m²"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kalikan terlebih dahulu: 6 x 3 = 18. Lalu 20 + 18 = 38."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Luas lingkaran = π × r² = (22/7) × 14 × 14 = 22 × 28 = 616 m²."
         },
         {
-          "id": "q-k6b5-2",
-          "questionText": "Uang kas Rp150.000 dan belanja Rp94.000. Berapakah sisa uang kas?",
+          "id": "q-materi-k6-b5-2",
+          "questionText": "Berapa meter keliling tepi taman lingkaran dengan jari-jari 14 meter tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp56.000",
-            "Rp46.000",
-            "Rp66.000"
+            "44 meter",
+            "88 meter",
+            "132 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "150.000 - 94.000 = 56.000 rupiah sisa uang kas."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Keliling = 2 × π × r = 2 × (22/7) × 14 = 88 meter."
         }
       ]
     },
@@ -6610,33 +8602,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T02:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 5: Belanja Perlengkapan Kemah",
+      "title": "Kuis Interaktif: Bab 5: Belanja Perlengkapan Kemah",
       "questions": [
         {
-          "id": "q-k6b5-1",
-          "questionText": "Berapakah hasil dari 20 + 6 x 3?",
+          "id": "q-materi-k6-b5-1",
+          "questionText": "Sebuah taman kota berbentuk lingkaran memiliki diameter 28 meter (jari-jari r = 14 meter). Berapakah luas taman tersebut (gunakan π = 22/7)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "38",
-            "78",
-            "29"
+            "528 m²",
+            "616 m²",
+            "724 m²"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Kalikan terlebih dahulu: 6 x 3 = 18. Lalu 20 + 18 = 38."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Luas lingkaran = π × r² = (22/7) × 14 × 14 = 22 × 28 = 616 m²."
         },
         {
-          "id": "q-k6b5-2",
-          "questionText": "Uang kas Rp150.000 dan belanja Rp94.000. Berapakah sisa uang kas?",
+          "id": "q-materi-k6-b5-2",
+          "questionText": "Berapa meter keliling tepi taman lingkaran dengan jari-jari 14 meter tersebut?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "Rp56.000",
-            "Rp46.000",
-            "Rp66.000"
+            "44 meter",
+            "88 meter",
+            "132 meter"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "150.000 - 94.000 = 56.000 rupiah sisa uang kas."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Keliling = 2 × π × r = 2 × (22/7) × 14 = 88 meter."
         }
       ]
     }
@@ -6701,33 +8709,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 6: Sumur dan Tampah Nenek",
+      "title": "Kuis Interaktif: Bab 6: Sumur dan Tampah Nenek",
       "questions": [
         {
-          "id": "q-k6b6-1",
-          "questionText": "Diameter bibir sumur 70 cm. Berapakah panjang jari-jarinya?",
+          "id": "q-materi-k6-b6-1",
+          "questionText": "Sebuah kaleng susu berbentuk tabung memiliki jari-jari alas 7 cm dan tinggi 10 cm. Berapakah volume kaleng susu tersebut dalam cm³ (π = 22/7)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "35 cm",
-            "70 cm",
-            "140 cm"
+            "1.450 cm³",
+            "1.540 cm³",
+            "1.620 cm³"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jari-jari = diameter : 2 = 70 : 2 = 35 cm."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Volume tabung = π × r² × t = (22/7) × 7 × 7 × 10 = 154 × 10 = 1.540 cm³."
         },
         {
-          "id": "q-k6b6-2",
-          "questionText": "Keliling lingkaran berdiameter 70 cm (menggunakan π = 22/7) adalah...",
+          "id": "q-materi-k6-b6-2",
+          "questionText": "Bangun ruang yang memiliki 1 sisi lengkung selimut dan 1 titik puncak lancip di atasnya adalah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "220 cm",
-            "110 cm",
-            "440 cm"
+            "Tabung",
+            "Kerucut",
+            "Bola"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Keliling = (22/7) x 70 = 22 x 10 = 220 cm."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Kerucut memiliki alas berbentuk lingkaran, satu selimut lengkung, dan sebuah titik puncak."
         }
       ]
     },
@@ -6760,33 +8784,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T03:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 6: Sumur dan Tampah Nenek",
+      "title": "Kuis Interaktif: Bab 6: Sumur dan Tampah Nenek",
       "questions": [
         {
-          "id": "q-k6b6-1",
-          "questionText": "Diameter bibir sumur 70 cm. Berapakah panjang jari-jarinya?",
+          "id": "q-materi-k6-b6-1",
+          "questionText": "Sebuah kaleng susu berbentuk tabung memiliki jari-jari alas 7 cm dan tinggi 10 cm. Berapakah volume kaleng susu tersebut dalam cm³ (π = 22/7)?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "35 cm",
-            "70 cm",
-            "140 cm"
+            "1.450 cm³",
+            "1.540 cm³",
+            "1.620 cm³"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jari-jari = diameter : 2 = 70 : 2 = 35 cm."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Volume tabung = π × r² × t = (22/7) × 7 × 7 × 10 = 154 × 10 = 1.540 cm³."
         },
         {
-          "id": "q-k6b6-2",
-          "questionText": "Keliling lingkaran berdiameter 70 cm (menggunakan π = 22/7) adalah...",
+          "id": "q-materi-k6-b6-2",
+          "questionText": "Bangun ruang yang memiliki 1 sisi lengkung selimut dan 1 titik puncak lancip di atasnya adalah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "220 cm",
-            "110 cm",
-            "440 cm"
+            "Tabung",
+            "Kerucut",
+            "Bola"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Keliling = (22/7) x 70 = 22 x 10 = 220 cm."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Kerucut memiliki alas berbentuk lingkaran, satu selimut lengkung, dan sebuah titik puncak."
         }
       ]
     }
@@ -6851,33 +8891,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 7: Tinggi Tanaman Kacang Hijau",
+      "title": "Kuis Interaktif: Bab 7: Tinggi Tanaman Kacang Hijau",
       "questions": [
         {
-          "id": "q-k6b7-1",
-          "questionText": "Data tinggi tanaman: 8, 10, 7, 10, 12, 9, 10, 6. Nilai modusnya adalah...",
+          "id": "q-materi-k6-b7-1",
+          "questionText": "Data nilai ulangan matematika 5 orang murid adalah: 80, 75, 90, 85, dan 70. Berapakah nilai rata-rata (mean) ulangan mereka?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "10 cm",
-            "8 cm",
-            "12 cm"
+            "78",
+            "80",
+            "82"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Nilai 10 muncul paling sering, yaitu sebanyak 3 kali."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Rata-rata = (80 + 75 + 90 + 85 + 70) / 5 = 400 / 5 = 80."
         },
         {
-          "id": "q-k6b7-2",
-          "questionText": "Tanaman dekat jendela tingginya 12 cm, di pojok gelap 6 cm. Kesimpulan yang sesuai percobaan adalah...",
+          "id": "q-materi-k6-b7-2",
+          "questionText": "Diberikan data nilai: 7, 8, 8, 9, 6, 8, 10. Nilai yang paling sering muncul (modus) adalah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Tanaman yang terkena cahaya matahari tumbuh paling tinggi.\"",
-            "\"Kacang hijau tidak butuh air.\"",
-            "\"Semua tanaman tumbuh sama tinggi.\""
+            "7",
+            "8",
+            "9"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Tanaman di dekat jendela mendapatkan cahaya matahari paling banyak dan tumbuh paling tinggi (12 cm)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Nilai 8 muncul paling sering yaitu sebanyak 3 kali."
         }
       ]
     },
@@ -6910,33 +8966,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T04:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 7: Tinggi Tanaman Kacang Hijau",
+      "title": "Kuis Interaktif: Bab 7: Tinggi Tanaman Kacang Hijau",
       "questions": [
         {
-          "id": "q-k6b7-1",
-          "questionText": "Data tinggi tanaman: 8, 10, 7, 10, 12, 9, 10, 6. Nilai modusnya adalah...",
+          "id": "q-materi-k6-b7-1",
+          "questionText": "Data nilai ulangan matematika 5 orang murid adalah: 80, 75, 90, 85, dan 70. Berapakah nilai rata-rata (mean) ulangan mereka?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "10 cm",
-            "8 cm",
-            "12 cm"
+            "78",
+            "80",
+            "82"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Nilai 10 muncul paling sering, yaitu sebanyak 3 kali."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Rata-rata = (80 + 75 + 90 + 85 + 70) / 5 = 400 / 5 = 80."
         },
         {
-          "id": "q-k6b7-2",
-          "questionText": "Tanaman dekat jendela tingginya 12 cm, di pojok gelap 6 cm. Kesimpulan yang sesuai percobaan adalah...",
+          "id": "q-materi-k6-b7-2",
+          "questionText": "Diberikan data nilai: 7, 8, 8, 9, 6, 8, 10. Nilai yang paling sering muncul (modus) adalah...",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Tanaman yang terkena cahaya matahari tumbuh paling tinggi.\"",
-            "\"Kacang hijau tidak butuh air.\"",
-            "\"Semua tanaman tumbuh sama tinggi.\""
+            "7",
+            "8",
+            "9"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Tanaman di dekat jendela mendapatkan cahaya matahari paling banyak dan tumbuh paling tinggi (12 cm)."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Nilai 8 muncul paling sering yaitu sebanyak 3 kali."
         }
       ]
     }
@@ -7001,33 +9073,49 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Bab 8: Peta Desa Kami",
+      "title": "Kuis Interaktif: Bab 8: Peta Desa Kami",
       "questions": [
         {
-          "id": "q-k6b8-1",
-          "questionText": "Peta berskala 1 : 10.000. Jarak di peta 5 cm. Berapa jarak sebenarnya dalam meter?",
+          "id": "q-materi-k6-b8-1",
+          "questionText": "Jika perbandingan uang saku Rian dan Dimas adalah 3 : 5, dan total uang mereka berdua adalah Rp 40.000, berapakah uang saku milik Dimas?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "500 m",
-            "50 m",
-            "5 km"
+            "Rp 15.000",
+            "Rp 20.000",
+            "Rp 25.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "5 cm x 10.000 = 50.000 cm = 500 meter."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Bagian Dimas = (5 / (3 + 5)) × 40.000 = (5/8) × 40.000 = Rp 25.000."
         },
         {
-          "id": "q-k6b8-2",
-          "questionText": "Keterangan peta yang berupa FAKTA adalah...",
+          "id": "q-materi-k6-b8-2",
+          "questionText": "Sebuah mobil melaju dengan kecepatan rata-rata 60 km/jam. Berapa jam waktu yang dibutuhkan untuk menempuh jarak perjalanan sejauh 180 km?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Sekolah berjarak 500 m dari balai desa.\"",
-            "\"Pantai desa paling indah sedunia.\"",
-            "\"Jalan ke sekolah pasti sepi.\""
+            "2 jam",
+            "3 jam",
+            "4 jam"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jarak 500 m dapat dibuktikan dengan menghitung skala peta secara nyata."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Waktu tempuh = Jarak / Kecepatan = 180 km / 60 km/jam = 3 jam perjalanan."
         }
       ]
     },
@@ -7060,33 +9148,49 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T05:17:22.272Z",
     "assessment": {
-      "title": "Kuis Pemahaman: Bab 8: Peta Desa Kami",
+      "title": "Kuis Interaktif: Bab 8: Peta Desa Kami",
       "questions": [
         {
-          "id": "q-k6b8-1",
-          "questionText": "Peta berskala 1 : 10.000. Jarak di peta 5 cm. Berapa jarak sebenarnya dalam meter?",
+          "id": "q-materi-k6-b8-1",
+          "questionText": "Jika perbandingan uang saku Rian dan Dimas adalah 3 : 5, dan total uang mereka berdua adalah Rp 40.000, berapakah uang saku milik Dimas?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "500 m",
-            "50 m",
-            "5 km"
+            "Rp 15.000",
+            "Rp 20.000",
+            "Rp 25.000"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "5 cm x 10.000 = 50.000 cm = 500 meter."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 2,
+          "explanation": "Bagian Dimas = (5 / (3 + 5)) × 40.000 = (5/8) × 40.000 = Rp 25.000."
         },
         {
-          "id": "q-k6b8-2",
-          "questionText": "Keterangan peta yang berupa FAKTA adalah...",
+          "id": "q-materi-k6-b8-2",
+          "questionText": "Sebuah mobil melaju dengan kecepatan rata-rata 60 km/jam. Berapa jam waktu yang dibutuhkan untuk menempuh jarak perjalanan sejauh 180 km?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "image": "",
           "points": 50,
           "options": [
-            "\"Sekolah berjarak 500 m dari balai desa.\"",
-            "\"Pantai desa paling indah sedunia.\"",
-            "\"Jalan ke sekolah pasti sepi.\""
+            "2 jam",
+            "3 jam",
+            "4 jam"
           ],
-          "correctOptionIndex": 0,
-          "explanation": "Jarak 500 m dapat dibuktikan dengan menghitung skala peta secara nyata."
+          "imageOptions": null,
+          "pairs": null,
+          "leftItems": null,
+          "rightItems": null,
+          "orderItems": null,
+          "correctOrder": null,
+          "correctOptionIndex": 1,
+          "explanation": "Waktu tempuh = Jarak / Kecepatan = 180 km / 60 km/jam = 3 jam perjalanan."
         }
       ]
     }

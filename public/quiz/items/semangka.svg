@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="100%" height="100%">
+    <rect width="180" height="180" rx="24" fill="#FFF8F0"/>
+    <ellipse cx="90" cy="150" rx="45" ry="10" fill="#EADBC8" opacity="0.6"/>
+    <!-- Potongan Semangka Segitiga -->
+    <path d="M 40 120 C 65 142, 115 142, 140 120 L 90 55 Z" fill="#2E7D32"/>
+    <path d="M 46 116 C 68 136, 112 136, 134 116 L 90 62 Z" fill="#C8E6C9"/>
+    <path d="M 52 112 C 72 130, 108 130, 128 112 L 90 68 Z" fill="#E53935"/>
+    <!-- Biji Semangka Hitam Kecil -->
+    <circle cx="80" cy="100" r="2.5" fill="#212121"/>
+    <circle cx="100" cy="100" r="2.5" fill="#212121"/>
+    <circle cx="90" cy="112" r="2.5" fill="#212121"/>
+    <text x="90" y="165" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445" text-anchor="middle">Semangka</text>
+  </svg>
