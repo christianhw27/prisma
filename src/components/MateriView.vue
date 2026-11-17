@@ -34,7 +34,22 @@ const selectedMapel = ref('Semua')
 
 // Filter Options
 const kelasOptions = ['Semua', ...KELAS_SD_OPTIONS]
-const mapelOptions = ['Semua', 'IPAS', 'Matematika', 'Bahasa Indonesia']
+const mapelOptions = ['Semua', 'Matematika', 'Bahasa Indonesia', 'IPAS', 'Literasi & Numerasi']
+
+function matchesMapel(itemMapelRaw, filterRaw) {
+  if (!filterRaw || filterRaw === 'Semua') return true
+  const itemMapel = (itemMapelRaw || '').toLowerCase()
+  const filter = filterRaw.toLowerCase()
+  if (filter === 'literasi & numerasi') {
+    return (
+      itemMapel.includes('literasi') ||
+      itemMapel.includes('numerasi') ||
+      itemMapel.includes('matematika') ||
+      itemMapel.includes('bahasa')
+    )
+  }
+  return itemMapel.includes(filter)
+}
 
 // Detection for Category in Development (Empty category in database vs search mismatch)
 const isCategoryInDevelopment = computed(() => {
@@ -42,7 +57,7 @@ const isCategoryInDevelopment = computed(() => {
   if (props.searchQuery.trim() !== '') return false
 
   const categoryTotal = materiList.value.filter((item) => {
-    if (selectedMapel.value !== 'Semua' && item.mataPelajaran !== selectedMapel.value) return false
+    if (!matchesMapel(item.mataPelajaran, selectedMapel.value)) return false
     if (selectedKelas.value !== 'Semua') {
       const k = getKelasFromLevel(item.level)
       if (k !== selectedKelas.value) return false
@@ -68,7 +83,7 @@ const hasActiveFilter = computed(() =>
 
 const filteredMateri = computed(() => {
   return materiList.value.filter((item) => {
-    if (selectedMapel.value !== 'Semua' && item.mataPelajaran !== selectedMapel.value) return false
+    if (!matchesMapel(item.mataPelajaran, selectedMapel.value)) return false
     if (selectedKelas.value !== 'Semua') {
       const k = getKelasFromLevel(item.level)
       if (k !== selectedKelas.value) return false

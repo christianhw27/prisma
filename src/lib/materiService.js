@@ -1,7 +1,8 @@
 import { ref } from 'vue'
-import { supabase, isSupabaseConfigured } from './supabaseClient'
+import { supabase, isSupabaseConfigured } from './supabaseClient.js'
+import { allStructuredMateri } from './allMateriData.js'
 
-const STORAGE_KEY = 'prisma_materi_list_v5'
+const STORAGE_KEY = 'prisma_materi_list_v6'
 
 export const KELAS_SD_OPTIONS = ['Kelas 1', 'Kelas 2', 'Kelas 3', 'Kelas 4', 'Kelas 5', 'Kelas 6']
 
@@ -39,6 +40,25 @@ export function getKelasFromLevel(levelStr) {
   if (s.includes('kelas 5') || s.includes('kelas v')) return 'Kelas 5'
   if (s.includes('kelas 6') || s.includes('kelas vi')) return 'Kelas 6'
   return 'Kelas 1'
+}
+
+/**
+ * Mengurutkan materi secara alami berdasarkan jenjang kelas (1-6) dan nomor bab
+ */
+export function sortMateriNaturally(list) {
+  if (!Array.isArray(list)) return []
+  return [...list].sort((a, b) => {
+    const kelasA = parseInt(getKelasFromLevel(a.level).replace(/\D/g, '')) || 0
+    const kelasB = parseInt(getKelasFromLevel(b.level).replace(/\D/g, '')) || 0
+    if (kelasA !== kelasB) return kelasA - kelasB
+
+    const matchA = a.id?.match(/b(\d+)/i)
+    const matchB = b.id?.match(/b(\d+)/i)
+    if (matchA && matchB) {
+      return parseInt(matchA[1]) - parseInt(matchB[1])
+    }
+    return (a.title || '').localeCompare(b.title || '')
+  })
 }
 
 export const RELIABLE_MODE_VIDEOS = {
@@ -165,7 +185,7 @@ export function sanitizeMateriItem(item) {
   return clean
 }
 
-const initialMateri = [
+const legacyInitialMateri = [
   {
     id: 'materi-1',
     title: 'Petualangan Si Es Batu',
@@ -494,6 +514,11 @@ const initialMateri = [
   }
 ]
 
+export const initialMateri = [
+  ...allStructuredMateri,
+  ...legacyInitialMateri
+]
+
 // Reactive state
 export const materiList = ref([])
 export const selectedMateri = ref(null)
@@ -543,7 +568,7 @@ async function loadFromSupabase() {
       const validMateri = data.filter(
         row => row.id !== 'site-feedback-reviews' && row.jenjang !== 'SYSTEM'
       )
-      materiList.value = validMateri.map(row => sanitizeMateriItem(parseSupabaseRow(row)))
+      materiList.value = sortMateriNaturally(validMateri.map(row => sanitizeMateriItem(parseSupabaseRow(row))))
       selectedMateri.value = materiList.value[0] || null
       saveToLocalStorage() // Cache ke localStorage
       console.log(`[Prisma] ✅ Loaded ${validMateri.length} materi dari Supabase`)
@@ -631,7 +656,7 @@ async function seedInitialMateriToSupabase() {
     // Reload dari Supabase setelah seed berhasil
     const { data } = await supabase.from('materi').select('*').order('created_at', { ascending: false })
     if (data && data.length > 0) {
-      materiList.value = data.map(row => sanitizeMateriItem(parseSupabaseRow(row)))
+      materiList.value = sortMateriNaturally(data.map(row => sanitizeMateriItem(parseSupabaseRow(row))))
       selectedMateri.value = materiList.value[0] || null
       saveToLocalStorage()
       console.log(`[Prisma] ✅ Seeded ${data.length} materi ke Supabase`)
@@ -651,7 +676,7 @@ function loadFromLocalStorage() {
         const validMateri = parsed.filter(
           item => item.id !== 'site-feedback-reviews' && item.jenjang !== 'SYSTEM'
         )
-        materiList.value = validMateri.map(sanitizeMateriItem)
+        materiList.value = sortMateriNaturally(validMateri.map(sanitizeMateriItem))
         selectedMateri.value = materiList.value[0]
         return
       }
@@ -659,7 +684,7 @@ function loadFromLocalStorage() {
   } catch (e) {
     console.error('Failed to load cached materi:', e)
   }
-  materiList.value = initialMateri.map(sanitizeMateriItem)
+  materiList.value = sortMateriNaturally(initialMateri.map(sanitizeMateriItem))
   selectedMateri.value = materiList.value[0]
   saveToLocalStorage()
 }
@@ -810,7 +835,7 @@ export async function deleteMateri(id) {
  * Reset ke data default — juga reset di Supabase
  */
 export async function resetMateri() {
-  materiList.value = initialMateri.map(sanitizeMateriItem)
+  materiList.value = sortMateriNaturally(initialMateri.map(sanitizeMateriItem))
   selectedMateri.value = materiList.value[0]
   saveToLocalStorage()
 
