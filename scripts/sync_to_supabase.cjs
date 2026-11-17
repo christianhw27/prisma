@@ -51,6 +51,9 @@ async function syncAll() {
     created_at: item.created_at || new Date().toISOString()
   }));
 
+  console.log('Cleaning up old legacy test rows if any...');
+  await supabase.from('materi').delete().in('id', ['materi-1', 'materi-2', 'materi-3', 'materi-4']);
+
   console.log('Upserting rows in batches of 10 to Supabase...');
   for (let i = 0; i < rows.length; i += 10) {
     const batch = rows.slice(i, i + 10);

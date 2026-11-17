@@ -52,6 +52,12 @@ export function sortMateriNaturally(list) {
     const kelasB = parseInt(getKelasFromLevel(b.level).replace(/\D/g, '')) || 0
     if (kelasA !== kelasB) return kelasA - kelasB
 
+    const babAFromTitle = a.title?.match(/Bab\s*(\d+)/i)
+    const babBFromTitle = b.title?.match(/Bab\s*(\d+)/i)
+    if (babAFromTitle && babBFromTitle) {
+      return parseInt(babAFromTitle[1]) - parseInt(babBFromTitle[1])
+    }
+
     const matchA = a.id?.match(/b(\d+)/i)
     const matchB = b.id?.match(/b(\d+)/i)
     if (matchA && matchB) {
@@ -514,10 +520,7 @@ const legacyInitialMateri = [
   }
 ]
 
-export const initialMateri = [
-  ...allStructuredMateri,
-  ...legacyInitialMateri
-]
+export const initialMateri = allStructuredMateri
 
 // Reactive state
 export const materiList = ref([])

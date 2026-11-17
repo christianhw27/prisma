@@ -7,7 +7,7 @@
 export const allStructuredMateri = [
   {
     "id": "materi-k1-b1",
-    "title": "Panen Tomat di Kebun Nenek",
+    "title": "Bab 1: Panen Tomat di Kebun Nenek",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -70,7 +70,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Panen Tomat di Kebun Nenek",
+      "title": "Kuis Pemahaman: Bab 1: Panen Tomat di Kebun Nenek",
       "questions": [
         {
           "id": "q-k1b1-1",
@@ -134,11 +134,11 @@ export const allStructuredMateri = [
         "desc": "Budi punya 7 kelereng, Kakak memberi 3 kelereng lagi. Mulai dari 7, hitung lanjut 3 kali (8, 9, 10), sehingga 7 + 3 = 10 kelereng."
       }
     ],
-    "created_at": "2026-11-15T06:02:10.441Z"
+    "created_at": "2026-11-15T06:17:22.270Z"
   },
   {
     "id": "materi-k1-b2",
-    "title": "Kue untuk Bu Tini",
+    "title": "Bab 2: Kue untuk Bu Tini",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -196,7 +196,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Kue untuk Bu Tini",
+      "title": "Kuis Pemahaman: Bab 2: Kue untuk Bu Tini",
       "questions": [
         {
           "id": "q-k1b2-1",
@@ -255,11 +255,11 @@ export const allStructuredMateri = [
         "desc": "Ada 15 balon di pesta, 6 balon meletus. 15 - 5 = 10, lalu dikurangi 1 lagi menjadi 9 balon tersisa."
       }
     ],
-    "created_at": "2026-11-15T07:02:10.442Z"
+    "created_at": "2026-11-15T07:17:22.271Z"
   },
   {
     "id": "materi-k1-b3",
-    "title": "Kamar Rapi Rina",
+    "title": "Bab 3: Kamar Rapi Rina",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -317,7 +317,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Kamar Rapi Rina",
+      "title": "Kuis Pemahaman: Bab 3: Kamar Rapi Rina",
       "questions": [
         {
           "id": "q-k1b3-1",
@@ -376,11 +376,11 @@ export const allStructuredMateri = [
         "desc": "Atap rumah Rina memiliki 3 sisi, sehingga berbentuk segitiga."
       }
     ],
-    "created_at": "2026-11-15T08:02:10.442Z"
+    "created_at": "2026-11-15T08:17:22.271Z"
   },
   {
     "id": "materi-k1-b4",
-    "title": "Telur di Kandang Ayam",
+    "title": "Bab 4: Telur di Kandang Ayam",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -433,7 +433,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Telur di Kandang Ayam",
+      "title": "Kuis Pemahaman: Bab 4: Telur di Kandang Ayam",
       "questions": [
         {
           "id": "q-k1b4-1",
@@ -487,11 +487,11 @@ export const allStructuredMateri = [
         "desc": "Rina punya 15 kelereng dan Doni punya 18 kelereng. Kelereng Rina lebih sedikit (15 < 18) dengan selisih 3 kelereng."
       }
     ],
-    "created_at": "2026-11-15T09:02:10.442Z"
+    "created_at": "2026-11-15T09:17:22.271Z"
   },
   {
     "id": "materi-k1-b5",
-    "title": "Pola Gelang Manik-Manik",
+    "title": "Bab 5: Pola Gelang Manik-Manik",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -549,7 +549,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Pola Gelang Manik-Manik",
+      "title": "Kuis Pemahaman: Bab 5: Pola Gelang Manik-Manik",
       "questions": [
         {
           "id": "q-k1b5-1",
@@ -608,11 +608,11 @@ export const allStructuredMateri = [
         "desc": "Pola bintang, bulan, bintang, bulan, bintang, ... memiliki inti pola (bintang, bulan), sehingga gambar berikutnya adalah bulan."
       }
     ],
-    "created_at": "2026-11-15T10:02:10.442Z"
+    "created_at": "2026-11-15T10:17:22.271Z"
   },
   {
     "id": "materi-k1-b6",
-    "title": "Pita untuk Lomba",
+    "title": "Bab 6: Pita untuk Lomba",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -670,7 +670,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Pita untuk Lomba",
+      "title": "Kuis Pemahaman: Bab 6: Pita untuk Lomba",
       "questions": [
         {
           "id": "q-k1b6-1",
@@ -729,11 +729,11 @@ export const allStructuredMateri = [
         "desc": "Pensil A lebih panjang dari B, B lebih panjang dari C, maka pensil C paling pendek."
       }
     ],
-    "created_at": "2026-11-15T11:02:10.442Z"
+    "created_at": "2026-11-15T11:17:22.271Z"
   },
   {
     "id": "materi-k1-b7",
-    "title": "Hari-Hariku",
+    "title": "Bab 7: Hari-Hariku",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -796,7 +796,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Hari-Hariku",
+      "title": "Kuis Pemahaman: Bab 7: Hari-Hariku",
       "questions": [
         {
           "id": "q-k1b7-1",
@@ -860,11 +860,11 @@ export const allStructuredMateri = [
         "desc": "Hari ini Jumat, maka dua hari lagi adalah hari Minggu."
       }
     ],
-    "created_at": "2026-11-15T12:02:10.442Z"
+    "created_at": "2026-11-15T12:17:22.271Z"
   },
   {
     "id": "materi-k1-b8",
-    "title": "Buah Kesukaan Teman Sekelas",
+    "title": "Bab 8: Buah Kesukaan Teman Sekelas",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -922,7 +922,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Buah Kesukaan Teman Sekelas",
+      "title": "Kuis Pemahaman: Bab 8: Buah Kesukaan Teman Sekelas",
       "questions": [
         {
           "id": "q-k1b8-1",
@@ -981,11 +981,11 @@ export const allStructuredMateri = [
         "desc": "Contoh soal cerita: Selisih anak yang suka mangga (7) dan pisang (5) adalah 7 - 5 = 2 anak lebih banyak.\n\n# Kelas 2 (Fase A: Penguatan Konsep Dasar)"
       }
     ],
-    "created_at": "2026-11-15T13:02:10.442Z"
+    "created_at": "2026-11-15T13:17:22.271Z"
   },
   {
     "id": "materi-k2-b1",
-    "title": "Sarapan Sehat, Badan Kuat",
+    "title": "Bab 1: Sarapan Sehat, Badan Kuat",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1048,7 +1048,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Sarapan Sehat, Badan Kuat",
+      "title": "Kuis Pemahaman: Bab 1: Sarapan Sehat, Badan Kuat",
       "questions": [
         {
           "id": "q-k2b1-1",
@@ -1112,11 +1112,11 @@ export const allStructuredMateri = [
         "desc": "Pohon mangga 68 dan pohon kelapa 86\\. Karena 8 puluhan > 6 puluhan, maka 86 > 68 (pohon kelapa lebih banyak)."
       }
     ],
-    "created_at": "2026-11-15T14:02:10.442Z"
+    "created_at": "2026-11-15T14:17:22.271Z"
   },
   {
     "id": "materi-k2-b2",
-    "title": "Kue Bolu untuk Berbagi",
+    "title": "Bab 2: Kue Bolu untuk Berbagi",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1174,7 +1174,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Kue Bolu untuk Berbagi",
+      "title": "Kuis Pemahaman: Bab 2: Kue Bolu untuk Berbagi",
       "questions": [
         {
           "id": "q-k2b2-1",
@@ -1233,11 +1233,11 @@ export const allStructuredMateri = [
         "desc": "8 kelereng dibagi sama banyak untuk 2 anak menghasilkan 4 kelereng tiap anak (setengah dari 8)."
       }
     ],
-    "created_at": "2026-11-15T15:02:10.442Z"
+    "created_at": "2026-11-15T15:17:22.271Z"
   },
   {
     "id": "materi-k2-b3",
-    "title": "Siapa yang Lebih Panjang?",
+    "title": "Bab 3: Siapa yang Lebih Panjang?",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1295,7 +1295,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Siapa yang Lebih Panjang?",
+      "title": "Kuis Pemahaman: Bab 3: Siapa yang Lebih Panjang?",
       "questions": [
         {
           "id": "q-k2b3-1",
@@ -1354,11 +1354,11 @@ export const allStructuredMateri = [
         "desc": "Pensil Ani 5 klip dan pensil Edo 8 klip. Pensil Edo lebih panjang dengan selisih 8 - 5 = 3 klip."
       }
     ],
-    "created_at": "2026-11-15T16:02:10.443Z"
+    "created_at": "2026-11-15T16:17:22.271Z"
   },
   {
     "id": "materi-k2-b4",
-    "title": "Lompat Katak di Pematang Sawah",
+    "title": "Bab 4: Lompat Katak di Pematang Sawah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1411,7 +1411,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Lompat Katak di Pematang Sawah",
+      "title": "Kuis Pemahaman: Bab 4: Lompat Katak di Pematang Sawah",
       "questions": [
         {
           "id": "q-k2b4-1",
@@ -1465,11 +1465,11 @@ export const allStructuredMateri = [
         "desc": "Pola 15, 25, 35, ... bertambah 10 setiap langkah, sehingga dua bilangan berikutnya adalah 45 dan 55\\."
       }
     ],
-    "created_at": "2026-11-15T17:02:10.443Z"
+    "created_at": "2026-11-15T17:17:22.271Z"
   },
   {
     "id": "materi-k2-b5",
-    "title": "Timbangan Kelereng",
+    "title": "Bab 5: Timbangan Kelereng",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1522,7 +1522,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Timbangan Kelereng",
+      "title": "Kuis Pemahaman: Bab 5: Timbangan Kelereng",
       "questions": [
         {
           "id": "q-k2b5-1",
@@ -1576,11 +1576,11 @@ export const allStructuredMateri = [
         "desc": "Pada 7 + 7 = [kotak] + 10, sisi kiri bernilai 14, sehingga nilai kotak adalah 4 agar sisi kanan juga 14\\."
       }
     ],
-    "created_at": "2026-11-15T18:02:10.443Z"
+    "created_at": "2026-11-15T18:17:22.271Z"
   },
   {
     "id": "materi-k2-b6",
-    "title": "Tangram Kakek",
+    "title": "Bab 6: Tangram Kakek",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1638,7 +1638,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Tangram Kakek",
+      "title": "Kuis Pemahaman: Bab 6: Tangram Kakek",
       "questions": [
         {
           "id": "q-k2b6-1",
@@ -1697,11 +1697,11 @@ export const allStructuredMateri = [
         "desc": "Rumah yang disusun dari satu persegi (badan rumah, 4 sisi sama panjang) dan satu segitiga (atap rumah, 3 sisi)."
       }
     ],
-    "created_at": "2026-11-15T19:02:10.443Z"
+    "created_at": "2026-11-15T19:17:22.271Z"
   },
   {
     "id": "materi-k2-b7",
-    "title": "Jam Berapa Sekarang?",
+    "title": "Bab 7: Jam Berapa Sekarang?",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1764,7 +1764,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Jam Berapa Sekarang?",
+      "title": "Kuis Pemahaman: Bab 7: Jam Berapa Sekarang?",
       "questions": [
         {
           "id": "q-k2b7-1",
@@ -1828,11 +1828,11 @@ export const allStructuredMateri = [
         "desc": "Dari bangun pukul 06.00 sampai sarapan pukul 07.00 lamanya adalah 1 jam."
       }
     ],
-    "created_at": "2026-11-15T20:02:10.443Z"
+    "created_at": "2026-11-15T20:17:22.271Z"
   },
   {
     "id": "materi-k2-b8",
-    "title": "Belanja di Warung Bu Siti",
+    "title": "Bab 8: Belanja di Warung Bu Siti",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1890,7 +1890,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Belanja di Warung Bu Siti",
+      "title": "Kuis Pemahaman: Bab 8: Belanja di Warung Bu Siti",
       "questions": [
         {
           "id": "q-k2b8-1",
@@ -1949,11 +1949,11 @@ export const allStructuredMateri = [
         "desc": "Contoh soal cerita: Buku Rp6.000 + pensil Rp3.000 = Rp9.000. Dibayar Rp10.000, kembaliannya Rp1.000.\n\n# Kelas 3 (Fase B: Eksplorasi & Konseptual)"
       }
     ],
-    "created_at": "2026-11-15T21:02:10.443Z"
+    "created_at": "2026-11-15T21:17:22.271Z"
   },
   {
     "id": "materi-k3-b1",
-    "title": "Panen Bandeng di Tambak",
+    "title": "Bab 1: Panen Bandeng di Tambak",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2006,7 +2006,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Panen Bandeng di Tambak",
+      "title": "Kuis Pemahaman: Bab 1: Panen Bandeng di Tambak",
       "questions": [
         {
           "id": "q-k3b1-1",
@@ -2060,11 +2060,11 @@ export const allStructuredMateri = [
         "desc": "Bilangan 4.608 dalam bentuk panjang adalah 4.000 + 600 + 0 + 8 dan dibaca empat ribu enam ratus delapan."
       }
     ],
-    "created_at": "2026-11-15T22:02:10.443Z"
+    "created_at": "2026-11-15T22:17:22.271Z"
   },
   {
     "id": "materi-k3-b2",
-    "title": "Kue Syukuran Kelas 3",
+    "title": "Bab 2: Kue Syukuran Kelas 3",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2122,7 +2122,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Kue Syukuran Kelas 3",
+      "title": "Kuis Pemahaman: Bab 2: Kue Syukuran Kelas 3",
       "questions": [
         {
           "id": "q-k3b2-1",
@@ -2181,11 +2181,11 @@ export const allStructuredMateri = [
         "desc": "7 baris cabai berisi 9 batang per baris = 63 batang. Dibagi 7 orang = 9 batang per orang."
       }
     ],
-    "created_at": "2026-11-15T23:02:10.443Z"
+    "created_at": "2026-11-15T23:17:22.271Z"
   },
   {
     "id": "materi-k3-b3",
-    "title": "Mengukur Tubuh di UKS",
+    "title": "Bab 3: Mengukur Tubuh di UKS",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2243,7 +2243,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Mengukur Tubuh di UKS",
+      "title": "Kuis Pemahaman: Bab 3: Mengukur Tubuh di UKS",
       "questions": [
         {
           "id": "q-k3b3-1",
@@ -2302,11 +2302,11 @@ export const allStructuredMateri = [
         "desc": "Sekarung beras 5 kg sama dengan 5 x 1.000 g = 5.000 gram."
       }
     ],
-    "created_at": "2026-11-16T00:02:10.443Z"
+    "created_at": "2026-11-16T00:17:22.271Z"
   },
   {
     "id": "materi-k3-b4",
-    "title": "Pameran Kerajinan Sekolah",
+    "title": "Bab 4: Pameran Kerajinan Sekolah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2359,7 +2359,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Pameran Kerajinan Sekolah",
+      "title": "Kuis Pemahaman: Bab 4: Pameran Kerajinan Sekolah",
       "questions": [
         {
           "id": "q-k3b4-1",
@@ -2413,11 +2413,11 @@ export const allStructuredMateri = [
         "desc": "600 brosur dicetak, 245 dibagikan. Sisa brosur = 600 - 245 = 355 brosur."
       }
     ],
-    "created_at": "2026-11-16T01:02:10.443Z"
+    "created_at": "2026-11-16T01:17:22.271Z"
   },
   {
     "id": "materi-k3-b5",
-    "title": "Roti Bakar Dibagi Rata",
+    "title": "Bab 5: Roti Bakar Dibagi Rata",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2475,7 +2475,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Roti Bakar Dibagi Rata",
+      "title": "Kuis Pemahaman: Bab 5: Roti Bakar Dibagi Rata",
       "questions": [
         {
           "id": "q-k3b5-1",
@@ -2534,11 +2534,11 @@ export const allStructuredMateri = [
         "desc": "Lia mendapat 1/3 roti dan teman Kak Dimas 1/6 roti. Karena penyebut 3 < 6, potongan Lia (1/3) lebih besar."
       }
     ],
-    "created_at": "2026-11-16T02:02:10.443Z"
+    "created_at": "2026-11-16T02:17:22.271Z"
   },
   {
     "id": "materi-k3-b6",
-    "title": "Jadwal Wisata Kelas 3",
+    "title": "Bab 6: Jadwal Wisata Kelas 3",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2596,7 +2596,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Jadwal Wisata Kelas 3",
+      "title": "Kuis Pemahaman: Bab 6: Jadwal Wisata Kelas 3",
       "questions": [
         {
           "id": "q-k3b6-1",
@@ -2655,11 +2655,11 @@ export const allStructuredMateri = [
         "desc": "Berkeliling kebun binatang dari pukul 09.00 sampai 11.30 memakan waktu 2 jam 30 menit."
       }
     ],
-    "created_at": "2026-11-16T03:02:10.443Z"
+    "created_at": "2026-11-16T03:17:22.271Z"
   },
   {
     "id": "materi-k3-b7",
-    "title": "Layang-Layang Arif",
+    "title": "Bab 7: Layang-Layang Arif",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2717,7 +2717,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Layang-Layang Arif",
+      "title": "Kuis Pemahaman: Bab 7: Layang-Layang Arif",
       "questions": [
         {
           "id": "q-k3b7-1",
@@ -2776,11 +2776,11 @@ export const allStructuredMateri = [
         "desc": "Ubin persegi bersisi 12 cm memiliki keliling 12 + 12 + 12 + 12 = 48 cm."
       }
     ],
-    "created_at": "2026-11-16T04:02:10.443Z"
+    "created_at": "2026-11-16T04:17:22.271Z"
   },
   {
     "id": "materi-k3-b8",
-    "title": "Lomba Kebersihan Kelas",
+    "title": "Bab 8: Lomba Kebersihan Kelas",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -2838,7 +2838,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Lomba Kebersihan Kelas",
+      "title": "Kuis Pemahaman: Bab 8: Lomba Kebersihan Kelas",
       "questions": [
         {
           "id": "q-k3b8-1",
@@ -2897,11 +2897,11 @@ export const allStructuredMateri = [
         "desc": "Contoh soal cerita: Selisih kantong Kelas 3 (12) dan Kelas 1 (6) adalah 12 - 6 = 6 kantong.\n\n# Kelas 4 (Fase B: Analisis Sederhana & Pemecahan Masalah)"
       }
     ],
-    "created_at": "2026-11-16T05:02:10.443Z"
+    "created_at": "2026-11-16T05:17:22.271Z"
   },
   {
     "id": "materi-k4-b1",
-    "title": "Martabak Pesanan Pak RT",
+    "title": "Bab 1: Martabak Pesanan Pak RT",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -2954,7 +2954,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Martabak Pesanan Pak RT",
+      "title": "Kuis Pemahaman: Bab 1: Martabak Pesanan Pak RT",
       "questions": [
         {
           "id": "q-k4b1-1",
@@ -3008,11 +3008,11 @@ export const allStructuredMateri = [
         "desc": "Rina makan 3 dari 6 bagian semangka (3/6). Dibagi 3 menjadi 1/2 (setengah semangka)."
       }
     ],
-    "created_at": "2026-11-16T06:02:10.443Z"
+    "created_at": "2026-11-16T06:17:22.271Z"
   },
   {
     "id": "materi-k4-b2",
-    "title": "Belanja Hemat di Koperasi",
+    "title": "Bab 2: Belanja Hemat di Koperasi",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -3070,7 +3070,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Belanja Hemat di Koperasi",
+      "title": "Kuis Pemahaman: Bab 2: Belanja Hemat di Koperasi",
       "questions": [
         {
           "id": "q-k4b2-1",
@@ -3129,11 +3129,11 @@ export const allStructuredMateri = [
         "desc": "Buku Rp5.000 diskon 10% (Rp500), maka harga bayarnya Rp4.500."
       }
     ],
-    "created_at": "2026-11-16T07:02:10.443Z"
+    "created_at": "2026-11-16T07:17:22.271Z"
   },
   {
     "id": "materi-k4-b3",
-    "title": "Kebun Sayur Sekolah",
+    "title": "Bab 3: Kebun Sayur Sekolah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -3191,7 +3191,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Kebun Sayur Sekolah",
+      "title": "Kuis Pemahaman: Bab 3: Kebun Sayur Sekolah",
       "questions": [
         {
           "id": "q-k4b3-1",
@@ -3250,11 +3250,11 @@ export const allStructuredMateri = [
         "desc": "Selisih panen minggu terbanyak (minggu 4 = 9 ikat) dan tersedikit (minggu 3 = 5 ikat) adalah 9 - 5 = 4 ikat."
       }
     ],
-    "created_at": "2026-11-16T08:02:10.443Z"
+    "created_at": "2026-11-16T08:17:22.271Z"
   },
   {
     "id": "materi-k4-b4",
-    "title": "Mengecat Pagar Sekolah",
+    "title": "Bab 4: Mengecat Pagar Sekolah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -3307,7 +3307,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Mengecat Pagar Sekolah",
+      "title": "Kuis Pemahaman: Bab 4: Mengecat Pagar Sekolah",
       "questions": [
         {
           "id": "q-k4b4-1",
@@ -3361,11 +3361,11 @@ export const allStructuredMateri = [
         "desc": "Sisa minyak dari 7/10 liter setelah dipakai 4/10 liter adalah 7/10 - 4/10 = 3/10 liter."
       }
     ],
-    "created_at": "2026-11-16T09:02:10.443Z"
+    "created_at": "2026-11-16T09:17:22.271Z"
   },
   {
     "id": "materi-k4-b5",
-    "title": "Telur dari Peternakan Pak Bowo",
+    "title": "Bab 5: Telur dari Peternakan Pak Bowo",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -3418,7 +3418,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Telur dari Peternakan Pak Bowo",
+      "title": "Kuis Pemahaman: Bab 5: Telur dari Peternakan Pak Bowo",
       "questions": [
         {
           "id": "q-k4b5-1",
@@ -3472,11 +3472,11 @@ export const allStructuredMateri = [
         "desc": "6 warung memesan masing-masing 2 rak = 12 rak. Total telur = 12 x 30 = 360 butir."
       }
     ],
-    "created_at": "2026-11-16T10:02:10.443Z"
+    "created_at": "2026-11-16T10:17:22.271Z"
   },
   {
     "id": "materi-k4-b6",
-    "title": "Kursi Pentas Seni",
+    "title": "Bab 6: Kursi Pentas Seni",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -3529,7 +3529,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Kursi Pentas Seni",
+      "title": "Kuis Pemahaman: Bab 6: Kursi Pentas Seni",
       "questions": [
         {
           "id": "q-k4b6-1",
@@ -3583,11 +3583,11 @@ export const allStructuredMateri = [
         "desc": "Dengan aturan tambah 2, baris ke-6 berisi 14 + 2 = 16 kursi."
       }
     ],
-    "created_at": "2026-11-16T11:02:10.443Z"
+    "created_at": "2026-11-16T11:17:22.272Z"
   },
   {
     "id": "materi-k4-b7",
-    "title": "Pagar Kandang Kambing",
+    "title": "Bab 7: Pagar Kandang Kambing",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -3640,7 +3640,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Pagar Kandang Kambing",
+      "title": "Kuis Pemahaman: Bab 7: Pagar Kandang Kambing",
       "questions": [
         {
           "id": "q-k4b7-1",
@@ -3694,11 +3694,11 @@ export const allStructuredMateri = [
         "desc": "Kebun persegi bersisi 5 m membutuhkan pagar sepanjang 4 x 5 = 20 m."
       }
     ],
-    "created_at": "2026-11-16T12:02:10.443Z"
+    "created_at": "2026-11-16T12:17:22.272Z"
   },
   {
     "id": "materi-k4-b8",
-    "title": "Toko Kue Bu Ratna",
+    "title": "Bab 8: Toko Kue Bu Ratna",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -3751,7 +3751,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Toko Kue Bu Ratna",
+      "title": "Kuis Pemahaman: Bab 8: Toko Kue Bu Ratna",
       "questions": [
         {
           "id": "q-k4b8-1",
@@ -3805,11 +3805,11 @@ export const allStructuredMateri = [
         "desc": "Contoh soal cerita: Pesanan 30 kue hanya habis dibagi 6 (30 : 6 = 5 kotak), sehingga hanya kemasan isi 6 yang dapat dipakai tanpa sisa.\n\n# Kelas 5 (Fase C: Penalaran & Literasi Multimodal)"
       }
     ],
-    "created_at": "2026-11-16T13:02:10.443Z"
+    "created_at": "2026-11-16T13:17:22.272Z"
   },
   {
     "id": "materi-k5-b1",
-    "title": "Menabung untuk Sepeda",
+    "title": "Bab 1: Menabung untuk Sepeda",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -3867,7 +3867,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Menabung untuk Sepeda",
+      "title": "Kuis Pemahaman: Bab 1: Menabung untuk Sepeda",
       "questions": [
         {
           "id": "q-k5b1-1",
@@ -3926,11 +3926,11 @@ export const allStructuredMateri = [
         "desc": "Kekurangan uang Laras = Rp850.000 - Rp475.000 = Rp375.000. Lama menabung = Rp375.000 : Rp25.000 = 15 minggu."
       }
     ],
-    "created_at": "2026-11-16T14:02:10.444Z"
+    "created_at": "2026-11-16T14:17:22.272Z"
   },
   {
     "id": "materi-k5-b2",
-    "title": "Resep Es Buah Segar",
+    "title": "Bab 2: Resep Es Buah Segar",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -3988,7 +3988,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Resep Es Buah Segar",
+      "title": "Kuis Pemahaman: Bab 2: Resep Es Buah Segar",
       "questions": [
         {
           "id": "q-k5b2-1",
@@ -4047,11 +4047,11 @@ export const allStructuredMateri = [
         "desc": "Untuk membuat 8 gelas (2 kali resep), dibutuhkan melon sebanyak 3/4 x 2 = 1 1/2 gelas (1,5 gelas)."
       }
     ],
-    "created_at": "2026-11-16T15:02:10.444Z"
+    "created_at": "2026-11-16T15:17:22.272Z"
   },
   {
     "id": "materi-k5-b3",
-    "title": "Taman Bermain Balai Desa",
+    "title": "Bab 3: Taman Bermain Balai Desa",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -4109,7 +4109,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Taman Bermain Balai Desa",
+      "title": "Kuis Pemahaman: Bab 3: Taman Bermain Balai Desa",
       "questions": [
         {
           "id": "q-k5b3-1",
@@ -4168,11 +4168,11 @@ export const allStructuredMateri = [
         "desc": "Lantai gabungan persegi panjang (5 m x 4 m = 20 m2) dan persegi (2 m x 2 m = 4 m2) memiliki luas 24 m2."
       }
     ],
-    "created_at": "2026-11-16T16:02:10.444Z"
+    "created_at": "2026-11-16T16:17:22.272Z"
   },
   {
     "id": "materi-k5-b4",
-    "title": "Jadwal Kerja Bakti dan Bingkisan",
+    "title": "Bab 4: Jadwal Kerja Bakti dan Bingkisan",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -4225,7 +4225,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Jadwal Kerja Bakti dan Bingkisan",
+      "title": "Kuis Pemahaman: Bab 4: Jadwal Kerja Bakti dan Bingkisan",
       "questions": [
         {
           "id": "q-k5b4-1",
@@ -4279,11 +4279,11 @@ export const allStructuredMateri = [
         "desc": "Lampu merah berkedip tiap 3 detik dan hijau tiap 5 detik. Keduanya berkedip bersamaan lagi setelah KPK(3, 5) = 15 detik."
       }
     ],
-    "created_at": "2026-11-16T17:02:10.444Z"
+    "created_at": "2026-11-16T17:17:22.272Z"
   },
   {
     "id": "materi-k5-b5",
-    "title": "Jarum Jam Menara Balai Desa",
+    "title": "Bab 5: Jarum Jam Menara Balai Desa",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -4341,7 +4341,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Jarum Jam Menara Balai Desa",
+      "title": "Kuis Pemahaman: Bab 5: Jarum Jam Menara Balai Desa",
       "questions": [
         {
           "id": "q-k5b5-1",
@@ -4400,11 +4400,11 @@ export const allStructuredMateri = [
         "desc": "Pada pukul 5.00, jarak jarum adalah 5 angka, sehingga besar sudutnya 5 x 30° = 150° (sudut tumpul)."
       }
     ],
-    "created_at": "2026-11-16T18:02:10.444Z"
+    "created_at": "2026-11-16T18:17:22.272Z"
   },
   {
     "id": "materi-k5-b6",
-    "title": "Akuarium Kelas Lima",
+    "title": "Bab 6: Akuarium Kelas Lima",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -4462,7 +4462,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Akuarium Kelas Lima",
+      "title": "Kuis Pemahaman: Bab 6: Akuarium Kelas Lima",
       "questions": [
         {
           "id": "q-k5b6-1",
@@ -4521,11 +4521,11 @@ export const allStructuredMateri = [
         "desc": "Kotak kubus bersisi 10 cm memiliki volume 10 x 10 x 10 = 1.000 cm3 = 1 liter."
       }
     ],
-    "created_at": "2026-11-16T19:02:10.444Z"
+    "created_at": "2026-11-16T19:17:22.272Z"
   },
   {
     "id": "materi-k5-b7",
-    "title": "Panen Padi Meningkat",
+    "title": "Bab 7: Panen Padi Meningkat",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -4578,7 +4578,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Panen Padi Meningkat",
+      "title": "Kuis Pemahaman: Bab 7: Panen Padi Meningkat",
       "questions": [
         {
           "id": "q-k5b7-1",
@@ -4632,11 +4632,11 @@ export const allStructuredMateri = [
         "desc": "15% dari 200 ton = 10% (20 ton) + 5% (10 ton) = 30 ton."
       }
     ],
-    "created_at": "2026-11-16T20:02:10.444Z"
+    "created_at": "2026-11-16T20:17:22.272Z"
   },
   {
     "id": "materi-k5-b8",
-    "title": "Lomba Lompat Jauh",
+    "title": "Bab 8: Lomba Lompat Jauh",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -4694,7 +4694,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Lomba Lompat Jauh",
+      "title": "Kuis Pemahaman: Bab 8: Lomba Lompat Jauh",
       "questions": [
         {
           "id": "q-k5b8-1",
@@ -4753,11 +4753,11 @@ export const allStructuredMateri = [
         "desc": "Contoh soal cerita: Jumlah lompatan Andi dan Deni = 2,45 + 2,08 = 4,53 m.\n\n# Kelas 6 (Fase C: Evaluasi, Analisis Data & Berpikir Kritis)"
       }
     ],
-    "created_at": "2026-11-16T21:02:10.444Z"
+    "created_at": "2026-11-16T21:17:22.272Z"
   },
   {
     "id": "materi-k6-b1",
-    "title": "Takaran Pupuk Pak Darto",
+    "title": "Bab 1: Takaran Pupuk Pak Darto",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -4815,7 +4815,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Takaran Pupuk Pak Darto",
+      "title": "Kuis Pemahaman: Bab 1: Takaran Pupuk Pak Darto",
       "questions": [
         {
           "id": "q-k6b1-1",
@@ -4874,11 +4874,11 @@ export const allStructuredMateri = [
         "desc": "Untuk 3 liter cairan pupuk dengan rasio 1 : 4, dibutuhkan 4 x 3 = 12 liter air (total campuran 15 liter)."
       }
     ],
-    "created_at": "2026-11-16T22:02:10.444Z"
+    "created_at": "2026-11-16T22:17:22.272Z"
   },
   {
     "id": "materi-k6-b2",
-    "title": "Peta Harta Karun Perkemahan",
+    "title": "Bab 2: Peta Harta Karun Perkemahan",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -4936,7 +4936,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Peta Harta Karun Perkemahan",
+      "title": "Kuis Pemahaman: Bab 2: Peta Harta Karun Perkemahan",
       "questions": [
         {
           "id": "q-k6b2-1",
@@ -4995,11 +4995,11 @@ export const allStructuredMateri = [
         "desc": "Dari B2 ke D4 berjalan 2 petak ke kanan (B ke D) lalu 2 petak ke bawah (2 ke 4)."
       }
     ],
-    "created_at": "2026-11-16T23:02:10.444Z"
+    "created_at": "2026-11-16T23:17:22.272Z"
   },
   {
     "id": "materi-k6-b3",
-    "title": "Survei Botol Minum Kelas 6",
+    "title": "Bab 3: Survei Botol Minum Kelas 6",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -5052,7 +5052,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Survei Botol Minum Kelas 6",
+      "title": "Kuis Pemahaman: Bab 3: Survei Botol Minum Kelas 6",
       "questions": [
         {
           "id": "q-k6b3-1",
@@ -5106,11 +5106,11 @@ export const allStructuredMateri = [
         "desc": "Selisih pemakai botol isi ulang (12) dan gelas plastik (6) adalah 12 - 6 = 6 murid."
       }
     ],
-    "created_at": "2026-11-17T00:02:10.444Z"
+    "created_at": "2026-11-17T00:17:22.272Z"
   },
   {
     "id": "materi-k6-b4",
-    "title": "Undian Doorprize Jalan Sehat",
+    "title": "Bab 4: Undian Doorprize Jalan Sehat",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -5168,7 +5168,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Undian Doorprize Jalan Sehat",
+      "title": "Kuis Pemahaman: Bab 4: Undian Doorprize Jalan Sehat",
       "questions": [
         {
           "id": "q-k6b4-1",
@@ -5227,11 +5227,11 @@ export const allStructuredMateri = [
         "desc": "Melempar dadu sekali, muncul angka genap (2, 4, 6 -> 3 kemungkinan) lebih mungkin daripada muncul angka 6 (1 kemungkinan)."
       }
     ],
-    "created_at": "2026-11-17T01:02:10.444Z"
+    "created_at": "2026-11-17T01:17:22.272Z"
   },
   {
     "id": "materi-k6-b5",
-    "title": "Belanja Perlengkapan Kemah",
+    "title": "Bab 5: Belanja Perlengkapan Kemah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -5284,7 +5284,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Belanja Perlengkapan Kemah",
+      "title": "Kuis Pemahaman: Bab 5: Belanja Perlengkapan Kemah",
       "questions": [
         {
           "id": "q-k6b5-1",
@@ -5338,11 +5338,11 @@ export const allStructuredMateri = [
         "desc": "100 - 4 x 15 + 10 = 100 - 60 + 10 = 40 + 10 = 50\\."
       }
     ],
-    "created_at": "2026-11-17T02:02:10.444Z"
+    "created_at": "2026-11-17T02:17:22.272Z"
   },
   {
     "id": "materi-k6-b6",
-    "title": "Sumur dan Tampah Nenek",
+    "title": "Bab 6: Sumur dan Tampah Nenek",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -5400,7 +5400,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Sumur dan Tampah Nenek",
+      "title": "Kuis Pemahaman: Bab 6: Sumur dan Tampah Nenek",
       "questions": [
         {
           "id": "q-k6b6-1",
@@ -5459,11 +5459,11 @@ export const allStructuredMateri = [
         "desc": "Keliling bibir sumur berdiameter 70 cm adalah 22/7 x 70 = 220 cm."
       }
     ],
-    "created_at": "2026-11-17T03:02:10.444Z"
+    "created_at": "2026-11-17T03:17:22.272Z"
   },
   {
     "id": "materi-k6-b7",
-    "title": "Tinggi Tanaman Kacang Hijau",
+    "title": "Bab 7: Tinggi Tanaman Kacang Hijau",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -5521,7 +5521,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Tinggi Tanaman Kacang Hijau",
+      "title": "Kuis Pemahaman: Bab 7: Tinggi Tanaman Kacang Hijau",
       "questions": [
         {
           "id": "q-k6b7-1",
@@ -5580,11 +5580,11 @@ export const allStructuredMateri = [
         "desc": "Data 5, 7, 3, 9, 6 memiliki rata-rata 30 : 5 = 6 dan median (setelah diurutkan 3, 5, 6, 7, 9) adalah 6\\."
       }
     ],
-    "created_at": "2026-11-17T04:02:10.444Z"
+    "created_at": "2026-11-17T04:17:22.272Z"
   },
   {
     "id": "materi-k6-b8",
-    "title": "Peta Desa Kami",
+    "title": "Bab 8: Peta Desa Kami",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -5642,7 +5642,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Pemahaman: Peta Desa Kami",
+      "title": "Kuis Pemahaman: Bab 8: Peta Desa Kami",
       "questions": [
         {
           "id": "q-k6b8-1",
@@ -5701,6 +5701,6 @@ export const allStructuredMateri = [
         "desc": "Jarak peta balai desa ke pantai 15 cm dengan skala 1 : 10.000, maka jarak sebenarnya = 15 x 10.000 = 150.000 cm = 1.500 m = 1,5 km."
       }
     ],
-    "created_at": "2026-11-17T05:02:10.444Z"
+    "created_at": "2026-11-17T05:17:22.272Z"
   }
 ];

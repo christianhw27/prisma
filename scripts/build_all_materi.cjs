@@ -788,8 +788,12 @@ const fullMateriList = rawSections.map((sec, idx) => {
   let kelas = 'Kelas ' + kelasNum;
   
   const titleMatch = sec.match(/Judul Materi:\*{0,2}\s*([^\n]+)/i);
-  if (titleMatch) title = cleanFormatting(titleMatch[1]);
-  else if (babMatch) title = cleanFormatting(babMatch[2]);
+  let rawTitle = '';
+  if (titleMatch) rawTitle = cleanFormatting(titleMatch[1]);
+  else if (babMatch) rawTitle = cleanFormatting(babMatch[2]);
+  
+  // Format judul dengan awalan "Bab X: Judul Materi"
+  title = `Bab ${babNum}: ${rawTitle.replace(/^Bab\s*\d+\s*:\s*/i, '').trim()}`;
   
   const descMatch = sec.match(/Deskripsi Ringkas:\*{0,2}\s*([^\n]+)/i);
   if (descMatch) desc = cleanFormatting(descMatch[1]);
