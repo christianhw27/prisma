@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 180" width="100%" height="100%">
+  <rect width="540" height="180" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  <text x="270" y="32" text-anchor="middle" font-family="Baloo 2, cursive" font-size="16" font-weight="bold" fill="#2B3445">Pola Gelang Manik-Manik Dina</text>
+  
+  <line x1="40" y1="95" x2="500" y2="95" stroke="#8F8575" stroke-width="4" stroke-dasharray="6,4"/>
+  
+  <!-- Manik 1: Merah -->
+  <circle cx="70" cy="95" r="22" fill="#FF5252" stroke="#2B3445" stroke-width="2.5"/>
+  <text x="70" y="145" text-anchor="middle" font-family="Lexend" font-size="12" fill="#2B3445">Merah</text>
+
+  <!-- Manik 2: Kuning -->
+  <circle cx="130" cy="95" r="22" fill="#FFDE7A" stroke="#2B3445" stroke-width="2.5"/>
+  <text x="130" y="145" text-anchor="middle" font-family="Lexend" font-size="12" fill="#2B3445">Kuning</text>
+
+  <!-- Manik 3: Kuning -->
+  <circle cx="190" cy="95" r="22" fill="#FFDE7A" stroke="#2B3445" stroke-width="2.5"/>
+  <text x="190" y="145" text-anchor="middle" font-family="Lexend" font-size="12" fill="#2B3445">Kuning</text>
+
+  <!-- Manik 4: Merah -->
+  <circle cx="250" cy="95" r="22" fill="#FF5252" stroke="#2B3445" stroke-width="2.5"/>
+  <text x="250" y="145" text-anchor="middle" font-family="Lexend" font-size="12" fill="#2B3445">Merah</text>
+
+  <!-- Manik 5: Kuning -->
+  <circle cx="310" cy="95" r="22" fill="#FFDE7A" stroke="#2B3445" stroke-width="2.5"/>
+  <text x="310" y="145" text-anchor="middle" font-family="Lexend" font-size="12" fill="#2B3445">Kuning</text>
+
+  <!-- Manik 6: Kuning -->
+  <circle cx="370" cy="95" r="22" fill="#FFDE7A" stroke="#2B3445" stroke-width="2.5"/>
+  <text x="370" y="145" text-anchor="middle" font-family="Lexend" font-size="12" fill="#2B3445">Kuning</text>
+
+  <!-- Titik-titik & Tanda Tanya -->
+  <circle cx="450" cy="95" r="26" fill="#FFFFFF" stroke="#1E7A6F" stroke-width="3" stroke-dasharray="4,4"/>
+  <text x="450" y="103" text-anchor="middle" font-family="Baloo 2, cursive" font-size="26" font-weight="bold" fill="#1E7A6F">?</text>
+  <text x="450" y="145" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#1E7A6F">Berikutnya</text>
+</svg>

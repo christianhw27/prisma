@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" width="100%" height="100%">
+  <rect width="520" height="180" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  <text x="260" y="30" text-anchor="middle" font-family="Baloo 2, cursive" font-size="16" font-weight="bold" fill="#2B3445">Lompatan Katak Hijau (Lompat 2)</text>
+  
+  <!-- Busur Lompatan -->
+  <path d="M 60,110 Q 110,40 160,110" fill="none" stroke="#1E7A6F" stroke-width="3" stroke-dasharray="6,4"/>
+  <path d="M 160,110 Q 210,40 260,110" fill="none" stroke="#1E7A6F" stroke-width="3" stroke-dasharray="6,4"/>
+  <path d="M 260,110 Q 310,40 360,110" fill="none" stroke="#1E7A6F" stroke-width="3" stroke-dasharray="6,4"/>
+  <path d="M 360,110 Q 410,40 460,110" fill="none" stroke="#1E7A6F" stroke-width="3" stroke-dasharray="6,4"/>
+
+  <!-- Batu 0 -->
+  <g transform="translate(60, 120)">
+    <ellipse cx="0" cy="0" rx="28" ry="18" fill="#B0BEC5" stroke="#2B3445" stroke-width="2.5"/>
+    <text x="0" y="6" text-anchor="middle" font-family="Baloo 2" font-size="18" font-weight="bold" fill="#2B3445">0</text>
+  </g>
+
+  <!-- Batu 2 -->
+  <g transform="translate(160, 120)">
+    <ellipse cx="0" cy="0" rx="28" ry="18" fill="#B0BEC5" stroke="#2B3445" stroke-width="2.5"/>
+    <text x="0" y="6" text-anchor="middle" font-family="Baloo 2" font-size="18" font-weight="bold" fill="#2B3445">2</text>
+  </g>
+
+  <!-- Batu 4 -->
+  <g transform="translate(260, 120)">
+    <ellipse cx="0" cy="0" rx="28" ry="18" fill="#B0BEC5" stroke="#2B3445" stroke-width="2.5"/>
+    <text x="0" y="6" text-anchor="middle" font-family="Baloo 2" font-size="18" font-weight="bold" fill="#2B3445">4</text>
+  </g>
+
+  <!-- Batu 6 -->
+  <g transform="translate(360, 120)">
+    <ellipse cx="0" cy="0" rx="28" ry="18" fill="#B0BEC5" stroke="#2B3445" stroke-width="2.5"/>
+    <text x="0" y="6" text-anchor="middle" font-family="Baloo 2" font-size="18" font-weight="bold" fill="#2B3445">6</text>
+  </g>
+
+  <!-- Batu Selanjutnya (?) -->
+  <g transform="translate(460, 120)">
+    <ellipse cx="0" cy="0" rx="30" ry="20" fill="#FFDE7A" stroke="#1E7A6F" stroke-width="3"/>
+    <text x="0" y="8" text-anchor="middle" font-family="Baloo 2" font-size="22" font-weight="bold" fill="#1E7A6F">?</text>
+  </g>
+</svg>

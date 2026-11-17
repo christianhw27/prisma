@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220" width="100%" height="100%">
+  <rect width="500" height="220" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  <text x="250" y="28" text-anchor="middle" font-family="Baloo 2, cursive" font-size="16" font-weight="bold" fill="#2B3445">Pilihan Potongan Kue Bolu</text>
+  
+  <!-- Opsi A: Dibagi 2 sama besar, 1 diwarnai (Setengah 1/2) -->
+  <g transform="translate(85, 105)">
+    <circle cx="0" cy="0" r="45" fill="#FFFFFF" stroke="#2B3445" stroke-width="3"/>
+    <path d="M 0,-45 A 45 45 0 0 1 0,45 Z" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
+    <line x1="0" y1="-45" x2="0" y2="45" stroke="#2B3445" stroke-width="3"/>
+    <text x="0" y="70" text-anchor="middle" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">(A) 2 sama besar (1/2)</text>
+  </g>
+
+  <!-- Opsi B: Dibagi 2 TIDAK sama besar -->
+  <g transform="translate(250, 105)">
+    <circle cx="0" cy="0" r="45" fill="#FFFFFF" stroke="#2B3445" stroke-width="3"/>
+    <path d="M 18,-41 A 45 45 0 0 1 18,41 Z" fill="#FFB899" stroke="#2B3445" stroke-width="2"/>
+    <line x1="18" y1="-41" x2="18" y2="41" stroke="#2B3445" stroke-width="3"/>
+    <text x="0" y="70" text-anchor="middle" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">(B) 2 tidak sama</text>
+  </g>
+
+  <!-- Opsi C: Dibagi 4, 1 diwarnai (1/4) -->
+  <g transform="translate(415, 105)">
+    <circle cx="0" cy="0" r="45" fill="#FFFFFF" stroke="#2B3445" stroke-width="3"/>
+    <path d="M 0,-45 A 45 45 0 0 1 45,0 L 0,0 Z" fill="#94C6FF" stroke="#2B3445" stroke-width="2"/>
+    <line x1="0" y1="-45" x2="0" y2="45" stroke="#2B3445" stroke-width="2"/>
+    <line x1="-45" y1="0" x2="45" y2="0" stroke="#2B3445" stroke-width="2"/>
+    <text x="0" y="70" text-anchor="middle" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">(C) Dibagi 4 (1/4)</text>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="100%" height="100%">
+  <rect width="500" height="240" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  <text x="250" y="28" text-anchor="middle" font-family="Baloo 2, cursive" font-size="16" font-weight="bold" fill="#2B3445">Akuarium Balok Kelas 5 (p=40, l=25, t=30 cm)</text>
+
+  <g transform="translate(130, 60)">
+    <!-- Balok 3D Akuarium -->
+    <!-- Dinding Belakang -->
+    <rect x="60" y="0" width="180" height="110" fill="#E1F5FE" stroke="#8F8575" stroke-width="1.5" opacity="0.6"/>
+    <!-- Sisi Air -->
+    <rect x="0" y="20" width="180" height="90" fill="#94C6FF" opacity="0.45"/>
+    <path d="M 0,20 L 60,0 L 240,0 L 180,20 Z" fill="#94C6FF" opacity="0.6"/>
+    <!-- Rangka Balok Depan -->
+    <rect x="0" y="20" width="180" height="90" fill="none" stroke="#2B3445" stroke-width="2.5"/>
+    <!-- Garis Penghubung 3D -->
+    <line x1="0" y1="20" x2="60" y2="0" stroke="#2B3445" stroke-width="2"/>
+    <line x1="180" y1="20" x2="240" y2="0" stroke="#2B3445" stroke-width="2"/>
+    <line x1="180" y1="110" x2="240" y2="90" stroke="#2B3445" stroke-width="2"/>
+    <line x1="240" y1="0" x2="240" y2="90" stroke="#2B3445" stroke-width="2"/>
+
+    <!-- Dimensi -->
+    <text x="90" y="130" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#1E7A6F">Panjang = 40 cm</text>
+    <text x="215" y="8" text-anchor="middle" font-family="Lexend" font-size="11" font-weight="bold" fill="#1E7A6F">Lebar = 25 cm</text>
+    <text x="-25" y="65" text-anchor="middle" font-family="Lexend" font-size="11" font-weight="bold" fill="#1E7A6F">Tinggi = 30 cm</text>
+  </g>
+</svg>

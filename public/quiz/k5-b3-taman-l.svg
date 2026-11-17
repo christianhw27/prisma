@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="100%" height="100%">
+  <rect width="500" height="240" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  <text x="250" y="28" text-anchor="middle" font-family="Baloo 2, cursive" font-size="16" font-weight="bold" fill="#2B3445">Denah Taman Bermain Balai Desa (Bentuk L)</text>
+
+  <g transform="translate(100, 50)">
+    <!-- Bagian 2: Persegi 6m x 6m (atas kiri) -->
+    <rect x="0" y="0" width="80" height="80" fill="#FFDE7A" stroke="#2B3445" stroke-width="3"/>
+    <text x="40" y="45" text-anchor="middle" font-family="Lexend" font-size="13" font-weight="bold" fill="#2B3445">Bagian II</text>
+    <text x="40" y="62" text-anchor="middle" font-family="Lexend" font-size="11" fill="#5B6474">36 m²</text>
+    <text x="40" y="-8" text-anchor="middle" font-family="Lexend" font-size="11" font-weight="bold" fill="#1E7A6F">6 m</text>
+    <text x="-12" y="45" text-anchor="middle" font-family="Lexend" font-size="11" font-weight="bold" fill="#1E7A6F">6 m</text>
+
+    <!-- Bagian 1: Persegi Panjang 12m x 8m (bawah) -->
+    <rect x="0" y="80" width="240" height="90" fill="#7FD4C4" stroke="#2B3445" stroke-width="3"/>
+    <text x="120" y="125" text-anchor="middle" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">Bagian I: 12 m × 8 m (96 m²)</text>
+    <text x="120" y="190" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#1E7A6F">Panjang Bawah = 12 m</text>
+    <text x="255" y="130" text-anchor="middle" font-family="Lexend" font-size="11" font-weight="bold" fill="#1E7A6F">8 m</text>
+  </g>
+</svg>

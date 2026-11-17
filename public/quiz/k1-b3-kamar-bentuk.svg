@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220" width="100%" height="100%">
+  <rect width="500" height="220" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  
+  <!-- Jam: Lingkaran -->
+  <g transform="translate(90, 100)">
+    <circle cx="0" cy="0" r="45" fill="#FFDE7A" stroke="#2B3445" stroke-width="3"/>
+    <line x1="0" y1="0" x2="0" y2="-25" stroke="#2B3445" stroke-width="3" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="18" y2="0" stroke="#2B3445" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="4" fill="#2B3445"/>
+    <text x="0" y="70" text-anchor="middle" font-family="Lexend, sans-serif" font-size="14" font-weight="bold" fill="#2B3445">Jam (Lingkaran)</text>
+  </g>
+
+  <!-- Jendela: Persegi -->
+  <g transform="translate(250, 100)">
+    <rect x="-40" y="-40" width="80" height="80" rx="8" fill="#94C6FF" stroke="#2B3445" stroke-width="3"/>
+    <line x1="0" y1="-40" x2="0" y2="40" stroke="#2B3445" stroke-width="2"/>
+    <line x1="-40" y1="0" x2="40" y2="0" stroke="#2B3445" stroke-width="2"/>
+    <text x="0" y="70" text-anchor="middle" font-family="Lexend, sans-serif" font-size="14" font-weight="bold" fill="#2B3445">Jendela (Persegi)</text>
+  </g>
+
+  <!-- Atap: Segitiga -->
+  <g transform="translate(410, 100)">
+    <polygon points="0,-45 45,35 -45,35" fill="#FFB899" stroke="#2B3445" stroke-width="3" stroke-linejoin="round"/>
+    <text x="0" y="70" text-anchor="middle" font-family="Lexend, sans-serif" font-size="14" font-weight="bold" fill="#2B3445">Atap (Segitiga)</text>
+  </g>
+</svg>

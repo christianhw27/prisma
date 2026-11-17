@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="100%" height="100%">
+  <rect width="500" height="240" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  
+  <!-- Kandang Kiri (9 Telur) -->
+  <g transform="translate(130, 40)">
+    <rect x="-95" y="0" width="190" height="130" rx="16" fill="#FFFFFF" stroke="#8F8575" stroke-width="2"/>
+    <path d="M -95,30 L 0,-25 L 95,30 Z" fill="#FFB899" stroke="#2B3445" stroke-width="2"/>
+    <text x="0" y="25" text-anchor="middle" font-family="Baloo 2, cursive" font-size="15" font-weight="bold" fill="#2B3445">Kandang Kiri</text>
+    <!-- 9 telur (3 baris x 3) -->
+    <g transform="translate(-40, 50)">
+      <ellipse cx="10" cy="10" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="40" cy="10" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="70" cy="10" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="10" cy="40" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="40" cy="40" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="70" cy="40" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="25" cy="70" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="55" cy="70" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="40" cy="70" rx="10" ry="14" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+    </g>
+    <rect x="-60" y="145" width="120" height="28" rx="10" fill="#7FD4C4" stroke="#2B3445" stroke-width="1.5"/>
+    <text x="0" y="164" text-anchor="middle" font-family="Lexend, sans-serif" font-size="13" font-weight="bold" fill="#2B3445">9 Butir Telur</text>
+  </g>
+
+  <!-- Kandang Kanan (12 Telur) -->
+  <g transform="translate(370, 40)">
+    <rect x="-95" y="0" width="190" height="130" rx="16" fill="#FFFFFF" stroke="#1E7A6F" stroke-width="2.5"/>
+    <path d="M -95,30 L 0,-25 L 95,30 Z" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
+    <text x="0" y="25" text-anchor="middle" font-family="Baloo 2, cursive" font-size="15" font-weight="bold" fill="#2B3445">Kandang Kanan</text>
+    <!-- 12 telur (4 baris x 3) -->
+    <g transform="translate(-50, 45)">
+      <ellipse cx="15" cy="10" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="40" cy="10" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="65" cy="10" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="90" cy="10" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+
+      <ellipse cx="15" cy="40" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="40" cy="40" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="65" cy="40" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="90" cy="40" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+
+      <ellipse cx="15" cy="70" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="40" cy="70" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="65" cy="70" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+      <ellipse cx="90" cy="70" rx="9" ry="13" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+    </g>
+    <rect x="-60" y="145" width="120" height="28" rx="10" fill="#FFDE7A" stroke="#2B3445" stroke-width="1.5"/>
+    <text x="0" y="164" text-anchor="middle" font-family="Lexend, sans-serif" font-size="13" font-weight="bold" fill="#2B3445">12 Butir Telur</text>
+  </g>
+</svg>

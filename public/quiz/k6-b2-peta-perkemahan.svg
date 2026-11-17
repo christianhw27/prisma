@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 250" width="100%" height="100%">
+  <rect width="500" height="250" rx="20" fill="#FFF8F0" stroke="#8F8575" stroke-width="2" stroke-opacity="0.3"/>
+  <text x="250" y="26" text-anchor="middle" font-family="Baloo 2, cursive" font-size="15" font-weight="bold" fill="#2B3445">Peta Koordinat Berpetak Harta Karun</text>
+
+  <g transform="translate(130, 45)">
+    <!-- Label Kolom A - F -->
+    <text x="15" y="-8" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">A</text>
+    <text x="45" y="-8" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">B</text>
+    <text x="75" y="-8" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">C</text>
+    <text x="105" y="-8" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">D</text>
+    <text x="135" y="-8" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">E</text>
+    <text x="165" y="-8" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">F</text>
+
+    <!-- Grid 6x6 (30x30 tiap petak) -->
+    <g stroke="#8F8575" stroke-width="1.5" fill="#FFFFFF">
+      <!-- Baris 1-6 -->
+      <rect x="0" y="0" width="180" height="180"/>
+      <!-- Garis vertikal -->
+      <line x1="30" y1="0" x2="30" y2="180"/>
+      <line x1="60" y1="0" x2="60" y2="180"/>
+      <line x1="90" y1="0" x2="90" y2="180"/>
+      <line x1="120" y1="0" x2="120" y2="180"/>
+      <line x1="150" y1="0" x2="150" y2="180"/>
+      <!-- Garis horizontal -->
+      <line x1="0" y1="30" x2="180" y2="30"/>
+      <line x1="0" y1="60" x2="180" y2="60"/>
+      <line x1="0" y1="90" x2="180" y2="90"/>
+      <line x1="0" y1="120" x2="180" y2="120"/>
+      <line x1="0" y1="150" x2="180" y2="150"/>
+    </g>
+
+    <!-- Label Baris 1 - 6 -->
+    <text x="-12" y="20" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">1</text>
+    <text x="-12" y="50" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">2</text>
+    <text x="-12" y="80" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">3</text>
+    <text x="-12" y="110" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">4</text>
+    <text x="-12" y="140" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">5</text>
+    <text x="-12" y="170" text-anchor="middle" font-family="Lexend" font-size="12" font-weight="bold" fill="#2B3445">6</text>
+
+    <!-- Marker Tenda di B2 -->
+    <rect x="30" y="30" width="30" height="30" fill="#FFB899" opacity="0.7"/>
+    <text x="45" y="51" text-anchor="middle" font-size="14">⛺</text>
+
+    <!-- Marker Tiang Bendera di D4 (x=90, y=90) -->
+    <rect x="90" y="90" width="30" height="30" fill="#FFDE7A" opacity="0.7"/>
+    <text x="105" y="111" text-anchor="middle" font-size="14">🚩</text>
+
+    <!-- Panah Langkah: 1 petak kanan (D4->E4) lalu 1 petak bawah (E4->E5) -->
+    <path d="M 105,105 L 135,105 L 135,135" fill="none" stroke="#1E7A6F" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Marker Harta Karun di E5 (x=120, y=120) -->
+    <rect x="120" y="120" width="30" height="30" fill="#7FD4C4" stroke="#1E7A6F" stroke-width="2"/>
+    <text x="135" y="142" text-anchor="middle" font-size="14">💎</text>
+  </g>
+</svg>
