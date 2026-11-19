@@ -1608,7 +1608,7 @@ export const allStructuredMateri = [
       "Kuis Bergambar"
     ],
     "materiContent": {
-      "text": "Bu Guru menanyakan buah kesukaan murid-murid. Setiap anak lalu menempel gambar buah kesukaannya di papan. Ada 5 gambar pisang, 3 gambar jeruk, 7 gambar mangga, dan 2 gambar semangka. Hasilnya disusun menjadi piktogram berikut.\n\nBuah | Piktogram (● = 1 anak) | Banyak\n\nPisang | ● ● ● ● ● | 5\n\nJeruk | ● ● ● | 3\n\nMangga | ● ● ● ● ● ● ● | 7\n\nSemangka | ● ● | 2",
+      "text": "Bu Guru menanyakan buah kesukaan murid-murid. Setiap anak lalu menempel gambar buah kesukaannya di papan. Ada 5 gambar pisang, 3 gambar jeruk, 7 gambar mangga, dan 2 gambar semangka. Hasilnya disusun menjadi piktogram berikut.\n\nBuah | Piktogram (1 Gambar = 1 Suara) | Banyak\n\nPisang | 🍌 🍌 🍌 🍌 🍌 | 5 anak\n\nJeruk | 🍊 🍊 🍊 | 3 anak\n\nMangga | 🥭 🥭 🥭 🥭 🥭 🥭 🥭 | 7 anak (Terbanyak)\n\nSemangka | 🍉 🍉 | 2 anak",
       "image": "/covers/cover-k1-b8.jpg",
       "audioUrl": "",
       "points": [
@@ -1658,7 +1658,7 @@ export const allStructuredMateri = [
           "questionText": "Lihat piktogram. Ketuk buah yang paling disukai.",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Piktogram buah kesukaan: pisang ●●●●● · jeruk ●●● · mangga ●●●●●●● · semangka ●●",
+          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
           "points": 50,
           "options": [
             "Pisang (5 anak)",
@@ -1686,7 +1686,7 @@ export const allStructuredMateri = [
           "questionText": "Berapa anak yang suka pisang?",
           "instructionBadge": "Isi Angka",
           "type": "fill_in_blank",
-          "info": "Piktogram buah kesukaan: pisang ●●●●● · jeruk ●●● · mangga ●●●●●●● · semangka ●●",
+          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
           "points": 50,
           "options": [
             "5"
@@ -1746,7 +1746,7 @@ export const allStructuredMateri = [
           "questionText": "Lihat piktogram. Ketuk buah yang paling disukai.",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Piktogram buah kesukaan: pisang ●●●●● · jeruk ●●● · mangga ●●●●●●● · semangka ●●",
+          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
           "points": 50,
           "options": [
             "Pisang (5 anak)",
@@ -1774,7 +1774,7 @@ export const allStructuredMateri = [
           "questionText": "Berapa anak yang suka pisang?",
           "instructionBadge": "Isi Angka",
           "type": "fill_in_blank",
-          "info": "Piktogram buah kesukaan: pisang ●●●●● · jeruk ●●● · mangga ●●●●●●● · semangka ●●",
+          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
           "points": 50,
           "options": [
             "5"
@@ -1796,7 +1796,7 @@ export const allStructuredMateri = [
         }
       ]
     },
-    "bacaan": "Bu Guru menanyakan buah kesukaan murid-murid. Setiap anak lalu menempel gambar buah kesukaannya di papan. Ada 5 gambar pisang, 3 gambar jeruk, 7 gambar mangga, dan 2 gambar semangka. Hasilnya disusun menjadi piktogram berikut.\n\nBuah | Piktogram (● = 1 anak) | Banyak\n\nPisang | ● ● ● ● ● | 5\n\nJeruk | ● ● ● | 3\n\nMangga | ● ● ● ● ● ● ● | 7\n\nSemangka | ● ● | 2",
+    "bacaan": "Bu Guru menanyakan buah kesukaan murid-murid. Setiap anak lalu menempel gambar buah kesukaannya di papan. Ada 5 gambar pisang, 3 gambar jeruk, 7 gambar mangga, dan 2 gambar semangka. Hasilnya disusun menjadi piktogram berikut.\n\nBuah | Piktogram (1 Gambar = 1 Suara) | Banyak\n\nPisang | 🍌 🍌 🍌 🍌 🍌 | 5 anak\n\nJeruk | 🍊 🍊 🍊 | 3 anak\n\nMangga | 🥭 🥭 🥭 🥭 🥭 🥭 🥭 | 7 anak (Terbanyak)\n\nSemangka | 🍉 🍉 | 2 anak",
     "tujuan": "Tujuan literasi: menyimak pertanyaan dan menjawab dengan kalimat lengkap.Tujuan numerasi: mengelompokkan, membilang, dan menyajikan data dengan turus dan piktogram."
   },
   {

@@ -1,45 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="100%" height="100%">
-  <rect width="500" height="240" rx="20" fill="none" stroke="none" stroke-width="2" stroke-opacity="0.3"/>
-  <text x="250" y="30" text-anchor="middle" font-family="Baloo 2, cursive" font-size="16" font-weight="bold" fill="#2B3445">Piktogram Buah Kesukaan (1 Lingkaran = 1 Anak)</text>
-  
-  <!-- Pisang -->
-  <g transform="translate(40, 65)">
-    <text x="0" y="14" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">🍌 Pisang</text>
-    <circle cx="150" cy="10" r="12" fill="#FFDE7A" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="185" cy="10" r="12" fill="#FFDE7A" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="220" cy="10" r="12" fill="#FFDE7A" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="255" cy="10" r="12" fill="#FFDE7A" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="290" cy="10" r="12" fill="#FFDE7A" stroke="#2B3445" stroke-width="2"/>
-    <text x="420" y="15" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">5 anak</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 290" width="100%" height="100%">
+  <defs>
+    <!-- 1. Pisang SVG Symbol -->
+    <svg id="icon-banana" viewBox="0 0 180 180">
+      <ellipse cx="90" cy="150" rx="45" ry="10" fill="#EADBC8" opacity="0.4"/>
+      <path d="M 50 120 C 50 65, 120 60, 140 100 C 135 110, 110 80, 60 125 Z" fill="#FDD835"/>
+      <path d="M 40 110 C 45 55, 115 50, 130 90 C 125 100, 100 70, 50 115 Z" fill="#FFEE58"/>
+      <path d="M 38 108 L 32 114" stroke="#8D6E63" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 132 88 L 140 82" stroke="#689F38" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+
+    <!-- 2. Jeruk SVG Symbol -->
+    <svg id="icon-orange" viewBox="0 0 180 180">
+      <ellipse cx="90" cy="150" rx="45" ry="10" fill="#EADBC8" opacity="0.4"/>
+      <path d="M 90 60 C 110 45, 125 55, 120 68 C 108 70, 96 64, 90 60 Z" fill="#43A047"/>
+      <path d="M 90 62 L 90 52" stroke="#6D4C41" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="90" cy="100" r="42" fill="#FB8C00"/>
+      <circle cx="75" cy="85" r="1.5" fill="#E65100" opacity="0.6"/>
+      <circle cx="105" cy="90" r="1.5" fill="#E65100" opacity="0.6"/>
+      <circle cx="85" cy="115" r="1.5" fill="#E65100" opacity="0.6"/>
+      <ellipse cx="78" cy="84" rx="10" ry="6" fill="#FFFFFF" opacity="0.4" transform="rotate(-25 78 84)"/>
+    </svg>
+
+    <!-- 3. Mangga SVG Symbol -->
+    <svg id="icon-mango" viewBox="0 0 180 180">
+      <ellipse cx="90" cy="150" rx="42" ry="10" fill="#EADBC8" opacity="0.4"/>
+      <path d="M 85 55 L 85 45" stroke="#6D4C41" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 85 58 C 115 58, 130 90, 120 120 C 110 145, 75 145, 65 125 C 55 105, 60 70, 85 58 Z" fill="#7CB342"/>
+      <path d="M 85 62 C 110 65, 120 90, 115 115 C 95 100, 80 75, 85 62 Z" fill="#FDD835" opacity="0.65"/>
+    </svg>
+
+    <!-- 4. Semangka SVG Symbol -->
+    <svg id="icon-watermelon" viewBox="0 0 180 180">
+      <ellipse cx="90" cy="150" rx="45" ry="10" fill="#EADBC8" opacity="0.4"/>
+      <path d="M 40 120 C 65 142, 115 142, 140 120 L 90 55 Z" fill="#2E7D32"/>
+      <path d="M 46 116 C 68 136, 112 136, 134 116 L 90 62 Z" fill="#C8E6C9"/>
+      <path d="M 52 112 C 72 130, 108 130, 128 112 L 90 68 Z" fill="#E53935"/>
+      <circle cx="80" cy="100" r="2.5" fill="#212121"/>
+      <circle cx="100" cy="100" r="2.5" fill="#212121"/>
+      <circle cx="90" cy="112" r="2.5" fill="#212121"/>
+    </svg>
+  </defs>
+
+  <!-- Title & Legend -->
+  <text x="310" y="30" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="18" font-weight="bold" fill="#2B3445">
+    Piktogram Buah Kesukaan Murid Kelas 1
+  </text>
+  <rect x="180" y="44" width="260" height="26" rx="10" fill="#7FD4C4" fill-opacity="0.25" stroke="#1E7A6F" stroke-width="1.2"/>
+  <text x="310" y="61" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="11" font-weight="bold" fill="#1E7A6F">
+    Keterangan: 1 Gambar Buah = 1 Suara Murid
+  </text>
+
+  <!-- Baris 1: Pisang (5 Buah) -->
+  <g transform="translate(30, 80)">
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFF8F0" fill-opacity="0.8" stroke="#8F8575" stroke-opacity="0.15"/>
+    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍌 Pisang</text>
+    <!-- 5 Gambar Pisang Asli -->
+    <use href="#icon-banana" x="150" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="188" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="226" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="264" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="302" y="5" width="32" height="32"/>
+    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#5B6474">5 anak</text>
   </g>
 
-  <!-- Jeruk -->
-  <g transform="translate(40, 110)">
-    <text x="0" y="14" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">🍊 Jeruk</text>
-    <circle cx="150" cy="10" r="12" fill="#FFA726" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="185" cy="10" r="12" fill="#FFA726" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="220" cy="10" r="12" fill="#FFA726" stroke="#2B3445" stroke-width="2"/>
-    <text x="420" y="15" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">3 anak</text>
+  <!-- Baris 2: Jeruk (3 Buah) -->
+  <g transform="translate(30, 130)">
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFFFFF" fill-opacity="0.9" stroke="#8F8575" stroke-opacity="0.15"/>
+    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍊 Jeruk</text>
+    <!-- 3 Gambar Jeruk Asli -->
+    <use href="#icon-orange" x="150" y="5" width="32" height="32"/>
+    <use href="#icon-orange" x="188" y="5" width="32" height="32"/>
+    <use href="#icon-orange" x="226" y="5" width="32" height="32"/>
+    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#5B6474">3 anak</text>
   </g>
 
-  <!-- Mangga -->
-  <g transform="translate(40, 155)">
-    <text x="0" y="14" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">🥭 Mangga</text>
-    <circle cx="150" cy="10" r="12" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="185" cy="10" r="12" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="220" cy="10" r="12" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="255" cy="10" r="12" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="290" cy="10" r="12" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="325" cy="10" r="12" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="360" cy="10" r="12" fill="#7FD4C4" stroke="#2B3445" stroke-width="2"/>
-    <text x="420" y="15" font-family="Lexend" font-size="14" font-weight="bold" fill="#1E7A6F">7 anak</text>
+  <!-- Baris 3: Mangga (7 Buah - Terbanyak) -->
+  <g transform="translate(30, 180)">
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#7FD4C4" fill-opacity="0.15" stroke="#1E7A6F" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#1E7A6F">🥭 Mangga 🌟</text>
+    <!-- 7 Gambar Mangga Asli -->
+    <use href="#icon-mango" x="150" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="188" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="226" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="264" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="302" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="340" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="378" y="5" width="32" height="32"/>
+    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#1E7A6F">7 anak ⭐</text>
   </g>
 
-  <!-- Semangka -->
-  <g transform="translate(40, 200)">
-    <text x="0" y="14" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">🍉 Semangka</text>
-    <circle cx="150" cy="10" r="12" fill="#EF5350" stroke="#2B3445" stroke-width="2"/>
-    <circle cx="185" cy="10" r="12" fill="#EF5350" stroke="#2B3445" stroke-width="2"/>
-    <text x="420" y="15" font-family="Lexend" font-size="14" font-weight="bold" fill="#2B3445">2 anak</text>
+  <!-- Baris 4: Semangka (2 Buah) -->
+  <g transform="translate(30, 230)">
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFFFFF" fill-opacity="0.9" stroke="#8F8575" stroke-opacity="0.15"/>
+    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍉 Semangka</text>
+    <!-- 2 Gambar Semangka Asli -->
+    <use href="#icon-watermelon" x="150" y="5" width="32" height="32"/>
+    <use href="#icon-watermelon" x="188" y="5" width="32" height="32"/>
+    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#5B6474">2 anak</text>
   </g>
 </svg>
