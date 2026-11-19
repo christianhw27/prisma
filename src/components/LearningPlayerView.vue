@@ -2315,7 +2315,76 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <!-- ==================== MODE 8: MULTIPLE CHOICE DEFAULT (BESAR & VISUAL UNTUK ANAK SD) ==================== -->
+            <!-- ==================== MODE 8: COLOR CHOICE ("PILIH BULATAN WARNA MANIK") ==================== -->
+            <div v-else-if="currentQuestion.type === 'color_choice'" class="space-y-4 pt-1">
+              <div class="grid grid-cols-3 gap-3.5 sm:gap-6 max-w-xl mx-auto">
+                <button
+                  v-for="(opt, optIdx) in currentQuestion.colorOptions || []"
+                  :key="optIdx"
+                  type="button"
+                  @click="selectAnswer(optIdx)"
+                  :class="[
+                    'relative p-4 sm:p-6 rounded-3xl transition-all duration-200 cursor-pointer flex flex-col items-center justify-center text-center bg-white border-2 select-none group',
+                    isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx
+                      ? isCurrentQuestionCorrect
+                        ? 'border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/40 bg-[#7FD4C4]/15 scale-[1.03]'
+                        : 'border-[#D97706] shadow-md ring-4 ring-[#FFDE7A]/50 bg-[#FFDE7A]/25 scale-[1.03]'
+                      : isCurrentQuestionChecked && optIdx === currentQuestion.correctOptionIndex && !isCurrentQuestionCorrect
+                      ? 'border-2 border-dashed border-[#1E7A6F] bg-[#7FD4C4]/15 shadow-sm'
+                      : selectedAnswers[currentQuestionIndex] === optIdx
+                      ? 'border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/40 bg-[#7FD4C4]/10 scale-[1.03]'
+                      : 'border-[#8F8575]/25 hover:border-[#1E7A6F]/60 hover:bg-[#FFF8F0]/50 hover:shadow-sm'
+                  ]"
+                >
+                  <!-- Option Letter Badge (A, B, C) -->
+                  <span
+                    :class="[
+                      'absolute top-3 left-3 w-8 h-8 rounded-xl font-bold font-[\'Baloo_2\'] text-xs flex items-center justify-center transition-colors shadow-2xs',
+                      selectedAnswers[currentQuestionIndex] === optIdx
+                        ? isCurrentQuestionChecked
+                          ? isCurrentQuestionCorrect ? 'bg-[#1E7A6F] text-white' : 'bg-[#D97706] text-white'
+                          : 'bg-[#1E7A6F] text-white'
+                        : 'bg-[#FFF8F0] text-[#2B3445] border border-[#8F8575]/25'
+                    ]"
+                  >
+                    {{ String.fromCharCode(65 + optIdx) }}
+                  </span>
+
+                  <!-- Status Badge on Checked -->
+                  <div
+                    v-if="isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx"
+                    :class="[
+                      'absolute top-3 right-3 px-2 py-0.5 rounded-full text-white text-[10px] font-bold shadow-xs flex items-center gap-1',
+                      isCurrentQuestionCorrect ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'
+                    ]"
+                  >
+                    <span>{{ isCurrentQuestionCorrect ? '✓' : '💡' }}</span>
+                  </div>
+
+                  <!-- 3D Glossy Bead Sphere -->
+                  <div class="relative w-16 h-16 sm:w-20 sm:h-20 my-2 flex items-center justify-center">
+                    <div class="absolute -bottom-1 w-12 sm:w-14 h-3 bg-black/15 rounded-full blur-[2px]"></div>
+                    <div
+                      class="w-14 h-14 sm:w-18 sm:h-18 rounded-full shadow-inner relative overflow-hidden transition-transform duration-200 group-hover:scale-110"
+                      :style="{
+                        background: `radial-gradient(circle at 35% 30%, ${opt.lightColor || '#FFFFFF'}, ${opt.color} 55%, ${opt.darkColor || '#000000'} 100%)`,
+                        boxShadow: `0 4px 10px ${opt.color}55, inset 0 -4px 6px rgba(0,0,0,0.25)`
+                      }"
+                    >
+                      <!-- Specular Highlight Shine -->
+                      <div class="absolute top-1.5 left-2.5 w-4 h-2.5 sm:w-5 sm:h-3 rounded-full bg-white/70 rotate-[-25deg] blur-[0.5px]"></div>
+                    </div>
+                  </div>
+
+                  <!-- Color Name Label -->
+                  <span class="font-['Baloo_2'] text-base sm:text-xl font-bold text-[#2B3445] mt-1">
+                    {{ opt.name }}
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 9: MULTIPLE CHOICE DEFAULT (BESAR & VISUAL UNTUK ANAK SD) ==================== -->
             <div v-else class="grid grid-cols-1 gap-3.5 pt-1">
               <button
                 v-for="(opt, optIdx) in currentQuestion.options"
@@ -2648,6 +2717,18 @@ onBeforeUnmount(() => {
                       </span>
                     </div>
 
+                    <!-- Color Choice Review -->
+                    <div v-else-if="q.type === 'color_choice'" class="flex items-center gap-2.5">
+                      <span
+                        v-if="selectedAnswers[idx] !== undefined && q.colorOptions?.[selectedAnswers[idx]]"
+                        class="w-6 h-6 rounded-full inline-block shadow-2xs border border-black/10 shrink-0"
+                        :style="{ backgroundColor: q.colorOptions[selectedAnswers[idx]].color }"
+                      ></span>
+                      <span class="text-[#2B3445] font-bold text-sm font-['Baloo_2'] text-base">
+                        {{ selectedAnswers[idx] !== undefined && q.colorOptions?.[selectedAnswers[idx]] ? q.colorOptions[selectedAnswers[idx]].name : 'Tidak dijawab' }}
+                      </span>
+                    </div>
+
                     <!-- Matching Review -->
                     <div v-else-if="q.type === 'matching'" class="space-y-1">
                       <div v-for="(right, left) in (selectedAnswers[idx] || {})" :key="left" class="flex items-center gap-1.5 text-[#2B3445]">
@@ -2717,6 +2798,18 @@ onBeforeUnmount(() => {
                       />
                       <span class="text-[#2B3445] font-bold text-sm">
                         {{ q.imageOptions?.[q.correctOptionIndex]?.label || ('Pilihan ' + String.fromCharCode(65 + q.correctOptionIndex)) }}
+                      </span>
+                    </div>
+
+                    <!-- Color Choice Correct -->
+                    <div v-else-if="q.type === 'color_choice'" class="flex items-center gap-2.5">
+                      <span
+                        v-if="q.colorOptions?.[q.correctOptionIndex]"
+                        class="w-6 h-6 rounded-full inline-block shadow-2xs border border-black/10 shrink-0"
+                        :style="{ backgroundColor: q.colorOptions[q.correctOptionIndex].color }"
+                      ></span>
+                      <span class="text-[#1E7A6F] font-bold text-sm font-['Baloo_2'] text-base">
+                        {{ q.colorOptions?.[q.correctOptionIndex]?.name }}
                       </span>
                     </div>
 

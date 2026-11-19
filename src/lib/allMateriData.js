@@ -979,15 +979,15 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k1-b5-1",
           "num": 1,
-          "questionText": "Merah, kuning, kuning, merah, kuning, kuning, … Manik apa berikutnya?",
-          "instructionBadge": "Pilihan Ganda",
-          "type": "multiple_choice",
+          "questionText": "Perhatikan pola gelang Dina pada gambar. Manik warna apa yang harus dipasang pada tanda tanya (?)",
+          "instructionBadge": "Pilih Warna",
+          "type": "color_choice",
           "info": "",
           "points": 50,
           "options": [
-            "Manik Merah",
-            "Manik Kuning",
-            "Manik Hijau"
+            "Merah",
+            "Kuning",
+            "Hijau"
           ],
           "correctOptionIndex": 0,
           "imageOptions": null,
@@ -1000,8 +1000,28 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Pola berulang: Merah, Kuning, Kuning. Setelah dua manik kuning, giliran manik Merah berikutnya.",
-          "image": "/quiz/k1-b5-pola-gelang.svg"
+          "explanation": "Pola gelang Dina adalah 1 Merah, 2 Kuning (Merah - Kuning - Kuning). Setelah dua manik kuning, giliran manik Merah yang dipasang.",
+          "image": "/quiz/k1-b5-pola-gelang.svg",
+          "colorOptions": [
+            {
+              "name": "Merah",
+              "color": "#EF4444",
+              "lightColor": "#FCA5A5",
+              "darkColor": "#B91C1C"
+            },
+            {
+              "name": "Kuning",
+              "color": "#FBBF24",
+              "lightColor": "#FEF08A",
+              "darkColor": "#D97706"
+            },
+            {
+              "name": "Hijau",
+              "color": "#10B981",
+              "lightColor": "#A7F3D0",
+              "darkColor": "#047857"
+            }
+          ]
         },
         {
           "id": "q-materi-k1-b5-2",
