@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import {
   ArrowLeft,
   ArrowRight,
@@ -29,7 +29,11 @@ import {
   Volume2,
   VolumeX,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  PenTool,
+  Move,
+  Eraser,
+  GripVertical
 } from '@lucide/vue'
 import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel } from '../lib/materiService'
 import { playMascotChime, playButtonPop } from '../lib/soundEffects'
@@ -153,10 +157,24 @@ const stopAudioNarration = () => {
 
 watch(activeTab, () => {
   stopAudioNarration()
+  nextTick(() => {
+    updateMatchingLines()
+  })
+})
+
+watch(currentQuestionIndex, () => {
+  nextTick(() => {
+    updateMatchingLines()
+  })
+})
+
+onMounted(() => {
+  window.addEventListener('resize', updateMatchingLines)
 })
 
 onBeforeUnmount(() => {
   stopAudioNarration()
+  window.removeEventListener('resize', updateMatchingLines)
 })
 
 // ==================== TAB 2: QUIZ (PILIHAN GANDA & GAMBAR SOAL) ====================
@@ -197,8 +215,25 @@ const currentQuestionIndex = ref(0)
 const selectedAnswers = ref({})
 const isQuizSubmitted = ref(false)
 
-// State khusus untuk Tipe Soal Menjodohkan / Matching
+// ==================== 1. MENARIK GARIS NYATA (MATCHING WITH REAL LINES) ====================
+const matchingContainerRef = ref(null)
 const activeMatchingLeft = ref(null)
+const dragLineState = ref({
+  isDragging: false,
+  startItem: null,
+  startX: 0,
+  startY: 0,
+  currentX: 0,
+  currentY: 0
+})
+const linePairs = ref([])
+
+const matchingPairColors = [
+  { stroke: '#1E7A6F', border: 'border-[#1E7A6F]', bg: 'bg-[#7FD4C4]/20', text: 'text-[#1E7A6F]', badgeBg: 'bg-[#1E7A6F]', label: 'Pasangan 1' },
+  { stroke: '#D97706', border: 'border-[#D97706]', bg: 'bg-[#FFDE7A]/35', text: 'text-[#B45309]', badgeBg: 'bg-[#D97706]', label: 'Pasangan 2' },
+  { stroke: '#2563EB', border: 'border-[#2563EB]', bg: 'bg-[#94C6FF]/25', text: 'text-[#1D4ED8]', badgeBg: 'bg-[#2563EB]', label: 'Pasangan 3' },
+  { stroke: '#9333EA', border: 'border-[#9333EA]', bg: 'bg-[#E9D5FF]/35', text: 'text-[#7E22CE]', badgeBg: 'bg-[#9333EA]', label: 'Pasangan 4' }
+]
 
 const getMatchingAnswersForCurrent = () => {
   const cur = selectedAnswers.value[currentQuestionIndex.value]
@@ -207,48 +242,6 @@ const getMatchingAnswersForCurrent = () => {
   }
   return {}
 }
-
-const selectMatchingLeft = (leftItem) => {
-  playButtonPop()
-  if (activeMatchingLeft.value === leftItem) {
-    activeMatchingLeft.value = null
-  } else {
-    activeMatchingLeft.value = leftItem
-  }
-}
-
-const selectMatchingRight = (rightItem) => {
-  if (!activeMatchingLeft.value) return
-  playButtonPop()
-  const currentMap = { ...getMatchingAnswersForCurrent() }
-  // Hapus jika rightItem sudah terhubung dengan item kiri lain
-  for (const [k, v] of Object.entries(currentMap)) {
-    if (v === rightItem) delete currentMap[k]
-  }
-  currentMap[activeMatchingLeft.value] = rightItem
-  selectedAnswers.value[currentQuestionIndex.value] = currentMap
-  activeMatchingLeft.value = null
-}
-
-const removeMatchingPair = (leftItem) => {
-  playButtonPop()
-  const currentMap = { ...getMatchingAnswersForCurrent() }
-  delete currentMap[leftItem]
-  selectedAnswers.value[currentQuestionIndex.value] = currentMap
-}
-
-const resetMatching = () => {
-  playButtonPop()
-  selectedAnswers.value[currentQuestionIndex.value] = {}
-  activeMatchingLeft.value = null
-}
-
-const matchingPairColors = [
-  { border: 'border-[#1E7A6F]', bg: 'bg-[#7FD4C4]/20', text: 'text-[#1E7A6F]', badgeBg: 'bg-[#1E7A6F]', label: 'Pasangan 1' },
-  { border: 'border-[#D97706]', bg: 'bg-[#FFDE7A]/35', text: 'text-[#B45309]', badgeBg: 'bg-[#D97706]', label: 'Pasangan 2' },
-  { border: 'border-[#2563EB]', bg: 'bg-[#94C6FF]/25', text: 'text-[#1D4ED8]', badgeBg: 'bg-[#2563EB]', label: 'Pasangan 3' },
-  { border: 'border-[#9333EA]', bg: 'bg-[#E9D5FF]/35', text: 'text-[#7E22CE]', badgeBg: 'bg-[#9333EA]', label: 'Pasangan 4' }
-]
 
 const getPairColor = (leftItem) => {
   const pairs = getMatchingAnswersForCurrent()
@@ -266,6 +259,286 @@ const getPairColorForRight = (rightItem) => {
     }
   }
   return null
+}
+
+const updateMatchingLines = () => {
+  if (!matchingContainerRef.value) return
+  const containerRect = matchingContainerRef.value.getBoundingClientRect()
+  const pairs = getMatchingAnswersForCurrent()
+  const result = []
+
+  for (const [leftItem, rightItem] of Object.entries(pairs)) {
+    const leftEl = matchingContainerRef.value.querySelector(`[data-match-left-pin="${CSS.escape(leftItem)}"]`)
+    const rightEl = matchingContainerRef.value.querySelector(`[data-match-right-pin="${CSS.escape(rightItem)}"]`)
+
+    if (leftEl && rightEl) {
+      const leftRect = leftEl.getBoundingClientRect()
+      const rightRect = rightEl.getBoundingClientRect()
+
+      result.push({
+        left: leftItem,
+        right: rightItem,
+        x1: leftRect.left + leftRect.width / 2 - containerRect.left,
+        y1: leftRect.top + leftRect.height / 2 - containerRect.top,
+        x2: rightRect.left + rightRect.width / 2 - containerRect.left,
+        y2: rightRect.top + rightRect.height / 2 - containerRect.top,
+        color: getPairColor(leftItem)
+      })
+    }
+  }
+  linePairs.value = result
+}
+
+const startDragLine = (leftItem, e) => {
+  e.preventDefault()
+  playButtonPop()
+  if (!matchingContainerRef.value) return
+  const containerRect = matchingContainerRef.value.getBoundingClientRect()
+  const pinEl = matchingContainerRef.value.querySelector(`[data-match-left-pin="${CSS.escape(leftItem)}"]`)
+  const pinRect = pinEl ? pinEl.getBoundingClientRect() : { left: e.clientX, top: e.clientY, width: 0, height: 0 }
+
+  const startX = pinRect.left + pinRect.width / 2 - containerRect.left
+  const startY = pinRect.top + pinRect.height / 2 - containerRect.top
+
+  dragLineState.value = {
+    isDragging: true,
+    startItem: leftItem,
+    startX,
+    startY,
+    currentX: e.clientX - containerRect.left,
+    currentY: e.clientY - containerRect.top
+  }
+
+  const onPointerMove = (moveEv) => {
+    if (!dragLineState.value.isDragging) return
+    dragLineState.value.currentX = moveEv.clientX - containerRect.left
+    dragLineState.value.currentY = moveEv.clientY - containerRect.top
+  }
+
+  const onPointerUp = (upEv) => {
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', onPointerUp)
+
+    if (!dragLineState.value.isDragging) return
+    const el = document.elementFromPoint(upEv.clientX, upEv.clientY)
+    const targetRight = el?.closest('[data-match-right]')
+    if (targetRight) {
+      const rightItem = targetRight.getAttribute('data-match-right')
+      if (rightItem) {
+        connectMatchingPair(dragLineState.value.startItem, rightItem)
+      }
+    }
+    dragLineState.value.isDragging = false
+    dragLineState.value.startItem = null
+  }
+
+  window.addEventListener('pointermove', onPointerMove)
+  window.addEventListener('pointerup', onPointerUp)
+}
+
+const connectMatchingPair = (leftItem, rightItem) => {
+  playMascotChime()
+  const currentMap = { ...getMatchingAnswersForCurrent() }
+  for (const [k, v] of Object.entries(currentMap)) {
+    if (v === rightItem) delete currentMap[k]
+  }
+  currentMap[leftItem] = rightItem
+  selectedAnswers.value[currentQuestionIndex.value] = currentMap
+  activeMatchingLeft.value = null
+  nextTick(() => {
+    updateMatchingLines()
+  })
+}
+
+const selectMatchingLeft = (leftItem) => {
+  playButtonPop()
+  if (activeMatchingLeft.value === leftItem) {
+    activeMatchingLeft.value = null
+  } else {
+    activeMatchingLeft.value = leftItem
+  }
+}
+
+const selectMatchingRight = (rightItem) => {
+  if (!activeMatchingLeft.value) return
+  connectMatchingPair(activeMatchingLeft.value, rightItem)
+}
+
+const removeMatchingPair = (leftItem) => {
+  playButtonPop()
+  const currentMap = { ...getMatchingAnswersForCurrent() }
+  delete currentMap[leftItem]
+  selectedAnswers.value[currentQuestionIndex.value] = currentMap
+  nextTick(() => {
+    updateMatchingLines()
+  })
+}
+
+const resetMatching = () => {
+  playButtonPop()
+  selectedAnswers.value[currentQuestionIndex.value] = {}
+  activeMatchingLeft.value = null
+  linePairs.value = []
+}
+
+const getLinePath = (x1, y1, x2, y2) => {
+  const dx = Math.abs(x2 - x1) * 0.45
+  return `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`
+}
+
+// ==================== 2. MELINGKARI GAMBAR MANUAL (MANUAL CIRCLING) ====================
+const circlingContainerRef = ref(null)
+const isDrawingCircle = ref(false)
+const currentCirclePoints = ref([])
+const customCircledSvg = ref({}) // qIndex -> svg path string
+
+const getPointsPathD = (points) => {
+  if (!points || points.length < 2) return ''
+  let d = `M ${Math.round(points[0].x)} ${Math.round(points[0].y)}`
+  for (let i = 1; i < points.length; i++) {
+    d += ` L ${Math.round(points[i].x)} ${Math.round(points[i].y)}`
+  }
+  return d
+}
+
+const onCirclingPointerDown = (e) => {
+  if (!circlingContainerRef.value) return
+  const containerRect = circlingContainerRef.value.getBoundingClientRect()
+  isDrawingCircle.value = true
+  currentCirclePoints.value = [{
+    x: e.clientX - containerRect.left,
+    y: e.clientY - containerRect.top
+  }]
+
+  const onPointerMove = (moveEv) => {
+    if (!isDrawingCircle.value) return
+    currentCirclePoints.value.push({
+      x: moveEv.clientX - containerRect.left,
+      y: moveEv.clientY - containerRect.top
+    })
+  }
+
+  const onPointerUp = (upEv) => {
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', onPointerUp)
+
+    if (!isDrawingCircle.value) return
+    isDrawingCircle.value = false
+
+    const pts = currentCirclePoints.value
+    if (pts.length > 5) {
+      const xs = pts.map(p => p.x)
+      const ys = pts.map(p => p.y)
+      const minX = Math.min(...xs)
+      const maxX = Math.max(...xs)
+      const minY = Math.min(...ys)
+      const maxY = Math.max(...ys)
+      const centerX = (minX + maxX) / 2
+      const centerY = (minY + maxY) / 2
+
+      const cards = circlingContainerRef.value.querySelectorAll('[data-image-option-card]')
+      let targetIdx = -1
+
+      cards.forEach((cardEl) => {
+        const cRect = cardEl.getBoundingClientRect()
+        const cardRelLeft = cRect.left - containerRect.left
+        const cardRelTop = cRect.top - containerRect.top
+        const cardRelRight = cardRelLeft + cRect.width
+        const cardRelBottom = cardRelTop + cRect.height
+
+        // Cek apakah centroid goresan berada di area kartu
+        if (
+          centerX >= cardRelLeft - 30 &&
+          centerX <= cardRelRight + 30 &&
+          centerY >= cardRelTop - 30 &&
+          centerY <= cardRelBottom + 30
+        ) {
+          targetIdx = Number(cardEl.getAttribute('data-image-option-card'))
+        }
+      })
+
+      if (targetIdx >= 0) {
+        playMascotChime()
+        selectedAnswers.value[currentQuestionIndex.value] = targetIdx
+        customCircledSvg.value[currentQuestionIndex.value] = getPointsPathD(pts)
+        currentCirclePoints.value = []
+        return
+      }
+    }
+
+    currentCirclePoints.value = []
+  }
+
+  window.addEventListener('pointermove', onPointerMove)
+  window.addEventListener('pointerup', onPointerUp)
+}
+
+const selectImageOptionDirectly = (optIdx) => {
+  playButtonPop()
+  selectedAnswers.value[currentQuestionIndex.value] = optIdx
+  delete customCircledSvg.value[currentQuestionIndex.value]
+}
+
+const clearManualCircle = () => {
+  playButtonPop()
+  delete customCircledSvg.value[currentQuestionIndex.value]
+  selectedAnswers.value[currentQuestionIndex.value] = undefined
+}
+
+// ==================== 3. DRAG AND DROP MENGURUTKAN (REAL ORDERING) ====================
+const draggedOrderItem = ref(null)
+const dragOverSlotIdx = ref(null)
+
+const onCardDragStart = (item, e) => {
+  draggedOrderItem.value = item
+  if (e.dataTransfer) {
+    e.dataTransfer.setData('text/plain', item)
+    e.dataTransfer.effectAllowed = 'move'
+  }
+}
+
+const onSlotDragOver = (slotIdx, e) => {
+  e.preventDefault()
+  if (e.dataTransfer) {
+    e.dataTransfer.dropEffect = 'move'
+  }
+  dragOverSlotIdx.value = slotIdx
+}
+
+const onSlotDragLeave = (slotIdx) => {
+  if (dragOverSlotIdx.value === slotIdx) {
+    dragOverSlotIdx.value = null
+  }
+}
+
+const onSlotDrop = (slotIdx, e) => {
+  e.preventDefault()
+  dragOverSlotIdx.value = null
+  const item = draggedOrderItem.value || (e.dataTransfer ? e.dataTransfer.getData('text/plain') : null)
+  if (!item) return
+
+  playMascotChime()
+  const cur = [...getOrderingAnswersForCurrent()]
+  
+  // Lepas jika item sudah berada di slot lain
+  const oldIdx = cur.indexOf(item)
+  if (oldIdx >= 0) {
+    cur[oldIdx] = undefined
+  }
+
+  // Jika slot sudah terisi, pindahkan yang lama ke posisi lama atau kosongkan
+  cur[slotIdx] = item
+  selectedAnswers.value[currentQuestionIndex.value] = cur.filter(Boolean)
+  draggedOrderItem.value = null
+}
+
+const onDropToCardPool = (e) => {
+  e.preventDefault()
+  if (draggedOrderItem.value) {
+    playButtonPop()
+    removeFromOrdering(draggedOrderItem.value)
+    draggedOrderItem.value = null
+  }
 }
 
 // State khusus untuk Tipe Soal Mengurutkan / Ordering
@@ -1031,90 +1304,142 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- ==================== MODE 1: IMAGE CHOICE ("LINGKARI GAMBAR") ==================== -->
+            <!-- ==================== MODE 1: IMAGE CHOICE ("LINGKARI GAMBAR SECARA MANUAL") ==================== -->
             <div v-if="currentQuestion.type === 'image_choice'" class="space-y-4 pt-2">
-              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2 rounded-xl border border-[#7FD4C4]/40">
-                <MousePointerClick class="w-4 h-4 shrink-0" />
-                <span>Ketuk langsung gambar di bawah untuk melingkari jawaban pilihanmu!</span>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div
-                  v-for="(opt, optIdx) in currentQuestion.imageOptions || []"
-                  :key="optIdx"
-                  @click="selectAnswer(optIdx)"
-                  :class="[
-                    'relative rounded-3xl p-4 transition-all duration-200 cursor-pointer flex flex-col items-center text-center bg-white border-2 select-none group',
-                    selectedAnswers[currentQuestionIndex] === optIdx
-                      ? 'border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/40 bg-[#7FD4C4]/5 scale-[1.02]'
-                      : 'border-[#8F8575]/25 hover:border-[#1E7A6F]/60 hover:shadow-sm'
-                  ]"
-                >
-                  <!-- Animated Hand-Drawn Crayon Circle SVG Overlay ("Lingkari") -->
-                  <svg
-                    v-if="selectedAnswers[currentQuestionIndex] === optIdx"
-                    class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="none"
-                  >
-                    <ellipse
-                      cx="50"
-                      cy="50"
-                      rx="47"
-                      ry="45"
-                      fill="none"
-                      stroke="#1E7A6F"
-                      stroke-width="4.5"
-                      stroke-linecap="round"
-                      class="animate-draw-circle"
-                    />
-                  </svg>
-
-                  <!-- Selected Badge in top right corner -->
-                  <div
-                    v-if="selectedAnswers[currentQuestionIndex] === optIdx"
-                    class="absolute top-3 right-3 z-30 px-2.5 py-1 rounded-full bg-[#1E7A6F] text-white text-xs font-bold shadow-sm flex items-center gap-1"
-                  >
-                    <Check class="w-3.5 h-3.5" />
-                    <span>Dilingkari</span>
+              <!-- Interactive Circling Canvas Wrapper -->
+              <div
+                ref="circlingContainerRef"
+                @pointerdown="onCirclingPointerDown"
+                class="relative touch-none select-none rounded-3xl p-4 sm:p-6 bg-[#FFF8F0]/40 border-2 border-dashed border-[#8F8575]/25"
+              >
+                <!-- Controls & Instruction Bar -->
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5 bg-white p-3.5 rounded-2xl border border-[#8F8575]/20 shadow-2xs">
+                  <div class="flex items-center gap-2 text-xs font-bold text-[#1E7A6F]">
+                    <PenTool class="w-4 h-4 text-[#1E7A6F] shrink-0" />
+                    <span>Goreskan jarimu atau kursor mouse melingkari gambar yang benar secara bebas!</span>
                   </div>
+                  <div class="flex items-center gap-2">
+                    <button
+                      v-if="selectedAnswers[currentQuestionIndex] !== undefined"
+                      type="button"
+                      @click.stop="clearManualCircle"
+                      class="px-3 py-1.5 rounded-xl bg-[#FFF8F0] hover:bg-black/5 text-[#D97706] text-xs font-bold flex items-center gap-1.5 border border-[#D97706]/30 cursor-pointer transition active:scale-95"
+                    >
+                      <Eraser class="w-3.5 h-3.5" />
+                      <span>Hapus Coretan</span>
+                    </button>
+                    <span class="text-[11px] font-semibold text-[#5B6474] hidden sm:inline">
+                      (Bisa juga ketuk langsung gambar)
+                    </span>
+                  </div>
+                </div>
 
-                  <!-- Choice Letter Badge -->
-                  <span
+                <!-- SVG Overlay for Manual Freehand Circling -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none z-30 overflow-visible">
+                  <!-- Live stroke while drawing -->
+                  <path
+                    v-if="isDrawingCircle && currentCirclePoints.length > 1"
+                    :d="getPointsPathD(currentCirclePoints)"
+                    fill="none"
+                    stroke="#1E7A6F"
+                    stroke-width="5.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    opacity="0.8"
+                  />
+                  <!-- Saved freehand stroke -->
+                  <path
+                    v-else-if="customCircledSvg[currentQuestionIndex]"
+                    :d="customCircledSvg[currentQuestionIndex]"
+                    fill="none"
+                    stroke="#1E7A6F"
+                    stroke-width="5.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    filter="drop-shadow(0 2px 4px rgba(30,122,111,0.25))"
+                  />
+                </svg>
+
+                <!-- Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 relative z-10">
+                  <div
+                    v-for="(opt, optIdx) in currentQuestion.imageOptions || []"
+                    :key="optIdx"
+                    :data-image-option-card="optIdx"
+                    @click="selectImageOptionDirectly(optIdx)"
                     :class="[
-                      'absolute top-3 left-3 w-7 h-7 rounded-lg font-bold text-xs flex items-center justify-center transition-colors z-30',
+                      'relative rounded-3xl p-5 transition-all duration-200 cursor-pointer flex flex-col items-center text-center bg-white border-2 select-none group',
                       selectedAnswers[currentQuestionIndex] === optIdx
-                        ? 'bg-[#1E7A6F] text-white'
-                        : 'bg-[#FFF8F0] text-[#2B3445] border border-[#8F8575]/25'
+                        ? 'border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/40 bg-[#7FD4C4]/5 scale-[1.02]'
+                        : 'border-[#8F8575]/25 hover:border-[#1E7A6F]/60 hover:shadow-sm'
                     ]"
                   >
-                    {{ String.fromCharCode(65 + optIdx) }}
-                  </span>
+                    <!-- Fallback SVG Hand-Drawn Ring if selected via tap without manual freehand -->
+                    <svg
+                      v-if="selectedAnswers[currentQuestionIndex] === optIdx && !customCircledSvg[currentQuestionIndex]"
+                      class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      <ellipse
+                        cx="50"
+                        cy="50"
+                        rx="47"
+                        ry="45"
+                        fill="none"
+                        stroke="#1E7A6F"
+                        stroke-width="4.5"
+                        stroke-linecap="round"
+                        class="animate-draw-circle"
+                      />
+                    </svg>
 
-                  <!-- Image Container -->
-                  <div class="w-full aspect-square max-h-44 rounded-2xl overflow-hidden bg-[#FFF8F0] flex items-center justify-center p-3 my-2">
-                    <img
-                      :src="opt.image"
-                      :alt="opt.label"
-                      class="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
-                    />
+                    <!-- Selected Badge -->
+                    <div
+                      v-if="selectedAnswers[currentQuestionIndex] === optIdx"
+                      class="absolute top-3 right-3 z-30 px-2.5 py-1 rounded-full bg-[#1E7A6F] text-white text-xs font-bold shadow-sm flex items-center gap-1"
+                    >
+                      <Check class="w-3.5 h-3.5" />
+                      <span>Dilingkari</span>
+                    </div>
+
+                    <!-- Choice Letter Badge -->
+                    <span
+                      :class="[
+                        'absolute top-3 left-3 w-8 h-8 rounded-xl font-bold text-xs flex items-center justify-center transition-colors z-30',
+                        selectedAnswers[currentQuestionIndex] === optIdx
+                          ? 'bg-[#1E7A6F] text-white'
+                          : 'bg-[#FFF8F0] text-[#2B3445] border border-[#8F8575]/25'
+                      ]"
+                    >
+                      {{ String.fromCharCode(65 + optIdx) }}
+                    </span>
+
+                    <!-- Image Container -->
+                    <div class="w-full aspect-square max-h-48 rounded-2xl overflow-hidden bg-[#FFF8F0] flex items-center justify-center p-3 my-2">
+                      <img
+                        :src="opt.image"
+                        :alt="opt.label"
+                        class="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105 pointer-events-none"
+                      />
+                    </div>
+
+                    <!-- Image Label -->
+                    <p class="font-['Baloo_2'] text-base sm:text-lg font-bold text-[#2B3445] mt-1 leading-snug">
+                      {{ opt.label }}
+                    </p>
                   </div>
-
-                  <!-- Image Label -->
-                  <p class="font-['Baloo_2'] text-base sm:text-lg font-bold text-[#2B3445] mt-1 leading-snug">
-                    {{ opt.label }}
-                  </p>
                 </div>
               </div>
             </div>
 
-            <!-- ==================== MODE 2: MATCHING ("TARIK GARIS / PASANGKAN") ==================== -->
+            <!-- ==================== MODE 2: MATCHING ("TARIK GARIS NYATA / HUBUNGKAN") ==================== -->
             <div v-else-if="currentQuestion.type === 'matching'" class="space-y-4 pt-2">
               <div class="flex items-center justify-between bg-[#94C6FF]/20 px-4 py-2.5 rounded-xl border border-[#94C6FF]/40">
                 <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445]">
                   <Link class="w-4 h-4 text-[#1E7A6F] shrink-0" />
                   <span>
-                    {{ activeMatchingLeft ? `Memilih pasangan untuk "${activeMatchingLeft}" 👉 Ketuk salah satu di Kolom Kanan` : 'Ketuk item di Kolom Kiri, lalu pasangkan dengan item di Kolom Kanan!' }}
+                    <strong>Tarik Garis Langsung:</strong> Tekan titik konektor Kolom A lalu tarik garis ke Kolom B!
                   </span>
                 </div>
                 <button
@@ -1122,24 +1447,59 @@ onMounted(() => {
                   @click="resetMatching"
                   class="text-xs font-semibold text-[#B45309] hover:underline flex items-center gap-1 cursor-pointer"
                 >
-                  <Undo2 class="w-3 h-3" /> Reset
+                  <Undo2 class="w-3 h-3" /> Reset Garis
                 </button>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
+              <!-- Main Interactive Matching Board with Real SVG Line Drawing -->
+              <div
+                ref="matchingContainerRef"
+                class="relative grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-20 pt-2 pb-4 select-none"
+              >
+                <!-- SVG Canvas for Drawing and Connected Lines -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none z-20 overflow-visible">
+                  <!-- Permanent Connected Lines -->
+                  <g v-for="line in linePairs" :key="`${line.left}-${line.right}`">
+                    <path
+                      :d="getLinePath(line.x1, line.y1, line.x2, line.y2)"
+                      fill="none"
+                      :stroke="line.color.stroke"
+                      stroke-width="5"
+                      stroke-linecap="round"
+                    />
+                    <!-- End Dots -->
+                    <circle :cx="line.x1" :cy="line.y1" r="7" :fill="line.color.stroke" stroke="#FFFFFF" stroke-width="2.5" />
+                    <circle :cx="line.x2" :cy="line.y2" r="7" :fill="line.color.stroke" stroke="#FFFFFF" stroke-width="2.5" />
+                  </g>
+
+                  <!-- Live Dragging Line (while user draws with finger/mouse) -->
+                  <g v-if="dragLineState.isDragging">
+                    <path
+                      :d="getLinePath(dragLineState.startX, dragLineState.startY, dragLineState.currentX, dragLineState.currentY)"
+                      fill="none"
+                      stroke="#1E7A6F"
+                      stroke-width="5"
+                      stroke-linecap="round"
+                      stroke-dasharray="8 6"
+                    />
+                    <circle :cx="dragLineState.startX" :cy="dragLineState.startY" r="8" fill="#1E7A6F" stroke="#FFFFFF" stroke-width="3" />
+                    <circle :cx="dragLineState.currentX" :cy="dragLineState.currentY" r="9" fill="#FFDE7A" stroke="#1E7A6F" stroke-width="3" />
+                  </g>
+                </svg>
+
                 <!-- Kolom Kiri (A) -->
-                <div class="space-y-3">
+                <div class="space-y-3 relative z-10">
                   <h4 class="text-xs font-bold uppercase tracking-wider text-[#5B6474] px-1 flex items-center justify-between">
                     <span>Kolom A</span>
-                    <span class="text-[11px] font-normal">Pilih Item</span>
+                    <span class="text-[11px] font-normal">Tarik dari Titik Pin 👉</span>
                   </h4>
-                  <div class="space-y-2.5">
+                  <div class="space-y-3">
                     <div
                       v-for="(item, idx) in currentQuestion.leftItems || []"
                       :key="idx"
                       @click="selectMatchingLeft(item)"
                       :class="[
-                        'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none',
+                        'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none relative group',
                         activeMatchingLeft === item
                           ? 'border-[#1E7A6F] bg-[#7FD4C4]/25 ring-2 ring-[#1E7A6F] scale-[1.02] shadow-sm text-[#1E7A6F]'
                           : getMatchingAnswersForCurrent()[item]
@@ -1147,8 +1507,8 @@ onMounted(() => {
                           : 'bg-white border-[#8F8575]/25 hover:border-[#1E7A6F] text-[#2B3445]'
                       ]"
                     >
-                      <div class="flex items-center gap-2.5">
-                        <span class="w-6 h-6 rounded-lg bg-[#FFF8F0] border border-[#8F8575]/25 text-xs font-bold flex items-center justify-center text-[#5B6474]">
+                      <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-[#FFF8F0] border border-[#8F8575]/25 text-xs font-bold flex items-center justify-center text-[#5B6474]">
                           {{ idx + 1 }}
                         </span>
                         <span>{{ item }}</span>
@@ -1165,37 +1525,59 @@ onMounted(() => {
                           v-if="getMatchingAnswersForCurrent()[item]"
                           @click.stop="removeMatchingPair(item)"
                           class="w-6 h-6 rounded-full hover:bg-black/10 flex items-center justify-center text-xs text-[#5B6474]"
-                          title="Lepas pasangan"
+                          title="Putus garis pasangan"
                         >
                           ✕
                         </button>
+                        
+                        <!-- Connector Pin Dot on Right Edge -->
+                        <div
+                          :data-match-left-pin="item"
+                          @pointerdown.stop="startDragLine(item, $event)"
+                          class="w-7 h-7 rounded-full bg-white border-2 border-[#1E7A6F] flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-125 transition-transform shadow-xs"
+                          title="Tarik garis dari sini"
+                        >
+                          <span class="w-3 h-3 rounded-full bg-[#1E7A6F]"></span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <!-- Kolom Kanan (B) -->
-                <div class="space-y-3">
+                <div class="space-y-3 relative z-10">
                   <h4 class="text-xs font-bold uppercase tracking-wider text-[#5B6474] px-1 flex items-center justify-between">
                     <span>Kolom B</span>
-                    <span class="text-[11px] font-normal">Pasangannya</span>
+                    <span class="text-[11px] font-normal">Lepas Garis di Sini 🎯</span>
                   </h4>
-                  <div class="space-y-2.5">
+                  <div class="space-y-3">
                     <div
                       v-for="(item, idx) in currentQuestion.rightItems || []"
                       :key="idx"
+                      :data-match-right="item"
                       @click="selectMatchingRight(item)"
                       :class="[
-                        'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none',
+                        'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none relative group',
                         getPairColorForRight(item)
                           ? `${getPairColorForRight(item).border} ${getPairColorForRight(item).bg} text-[#2B3445]`
-                          : activeMatchingLeft
-                          ? 'bg-white border-dashed border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:scale-[1.01] text-[#2B3445]'
+                          : activeMatchingLeft || dragLineState.isDragging
+                          ? 'bg-white border-dashed border-[#1E7A6F] hover:bg-[#7FD4C4]/20 hover:scale-[1.02] text-[#2B3445]'
                           : 'bg-white border-[#8F8575]/25 text-[#2B3445]'
                       ]"
                     >
-                      <div class="flex items-center gap-2.5">
-                        <span class="w-6 h-6 rounded-lg bg-[#FFF8F0] border border-[#8F8575]/25 text-xs font-bold flex items-center justify-center text-[#5B6474]">
+                      <div class="flex items-center gap-3">
+                        <!-- Connector Pin Dot on Left Edge -->
+                        <div
+                          :data-match-right-pin="item"
+                          class="w-7 h-7 rounded-full bg-white border-2 border-[#1E7A6F] flex items-center justify-center shrink-0 shadow-xs"
+                        >
+                          <span
+                            class="w-3 h-3 rounded-full transition-colors"
+                            :class="getPairColorForRight(item) ? 'bg-[#1E7A6F]' : 'bg-[#8F8575]/40'"
+                          ></span>
+                        </div>
+
+                        <span class="w-7 h-7 rounded-lg bg-[#FFF8F0] border border-[#8F8575]/25 text-xs font-bold flex items-center justify-center text-[#5B6474]">
                           {{ String.fromCharCode(65 + idx) }}
                         </span>
                         <span>{{ item }}</span>
@@ -1213,12 +1595,12 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- ==================== MODE 3: ORDERING ("URUTKAN KOTAK") ==================== -->
-            <div v-else-if="currentQuestion.type === 'ordering'" class="space-y-5 pt-2">
+            <!-- ==================== MODE 3: ORDERING ("DRAG AND DROP MENGURUTKAN KARTU") ==================== -->
+            <div v-else-if="currentQuestion.type === 'ordering'" class="space-y-6 pt-2">
               <div class="flex items-center justify-between bg-[#7FD4C4]/20 px-4 py-2.5 rounded-xl border border-[#7FD4C4]/40">
                 <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445]">
-                  <ArrowUpDown class="w-4 h-4 text-[#1E7A6F] shrink-0" />
-                  <span>Ketuk kartu di bawah untuk menyusun urutan dari kotak 1 ke kotak berikutnya!</span>
+                  <Move class="w-4 h-4 text-[#1E7A6F] shrink-0" />
+                  <span><strong>Drag & Drop:</strong> Tarik kartu acak dan lepaskan ke dalam kotak urutan yang benar!</span>
                 </div>
                 <button
                   v-if="getOrderingAnswersForCurrent().length > 0"
@@ -1229,61 +1611,93 @@ onMounted(() => {
                 </button>
               </div>
 
-              <!-- Kotak Hasil Urutan (Slots) -->
+              <!-- Kotak Sasaran Urutan (Drop Targets) -->
               <div class="space-y-2">
-                <span class="text-xs font-bold text-[#5B6474] block">Kotak Susunan Urutan:</span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                <span class="text-xs font-bold text-[#5B6474] flex items-center gap-1.5">
+                  <GripVertical class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                  <span>Kotak Urutan Jawaban (Lepaskan kartu di sini):</span>
+                </span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                   <div
                     v-for="(_, slotIdx) in currentQuestion.orderItems || []"
                     :key="slotIdx"
-                    class="min-h-18 rounded-2xl border-2 p-3 flex flex-col justify-between transition-all"
-                    :class="getOrderingAnswersForCurrent()[slotIdx]
-                      ? 'bg-white border-[#1E7A6F] shadow-sm'
-                      : 'border-dashed border-[#8F8575]/35 bg-[#FFF8F0]/70 items-center justify-center'"
+                    @dragover="onSlotDragOver(slotIdx, $event)"
+                    @dragleave="onSlotDragLeave(slotIdx)"
+                    @drop="onSlotDrop(slotIdx, $event)"
+                    class="min-h-24 rounded-2xl border-2 p-3.5 flex flex-col justify-between transition-all duration-200 select-none"
+                    :class="[
+                      dragOverSlotIdx === slotIdx
+                        ? 'border-[#1E7A6F] bg-[#7FD4C4]/25 ring-4 ring-[#7FD4C4]/40 scale-105 shadow-md'
+                        : getOrderingAnswersForCurrent()[slotIdx]
+                        ? 'bg-white border-[#1E7A6F] shadow-sm'
+                        : 'border-dashed border-[#8F8575]/40 bg-[#FFF8F0]/70 items-center justify-center'
+                    ]"
                   >
                     <div class="flex items-center justify-between w-full">
-                      <span class="w-6 h-6 rounded-lg bg-[#1E7A6F] text-white text-xs font-bold flex items-center justify-center">
+                      <span class="w-7 h-7 rounded-lg bg-[#1E7A6F] text-white text-xs font-bold flex items-center justify-center shadow-xs">
                         {{ slotIdx + 1 }}
                       </span>
                       <button
                         v-if="getOrderingAnswersForCurrent()[slotIdx]"
                         @click="removeFromOrdering(getOrderingAnswersForCurrent()[slotIdx])"
-                        class="w-5 h-5 rounded-full hover:bg-black/10 text-xs text-[#5B6474] flex items-center justify-center"
+                        class="w-6 h-6 rounded-full hover:bg-black/10 text-xs text-[#5B6474] flex items-center justify-center cursor-pointer"
                         title="Keluarkan dari kotak"
                       >
                         ✕
                       </button>
                     </div>
 
-                    <p v-if="getOrderingAnswersForCurrent()[slotIdx]" class="font-bold text-sm text-[#2B3445] mt-2 leading-snug">
-                      {{ getOrderingAnswersForCurrent()[slotIdx] }}
-                    </p>
-                    <span v-else class="text-xs font-medium text-[#8F8575] py-2">
-                      Kotak {{ slotIdx + 1 }} Kosong
+                    <!-- Isi Kartu di dalam Kotak (Bisa di-drag lagi) -->
+                    <div
+                      v-if="getOrderingAnswersForCurrent()[slotIdx]"
+                      draggable="true"
+                      @dragstart="onCardDragStart(getOrderingAnswersForCurrent()[slotIdx], $event)"
+                      class="font-bold text-sm text-[#2B3445] mt-2 leading-snug cursor-grab active:cursor-grabbing flex items-center justify-between"
+                    >
+                      <span>{{ getOrderingAnswersForCurrent()[slotIdx] }}</span>
+                      <GripVertical class="w-3.5 h-3.5 text-[#1E7A6F] opacity-60" />
+                    </div>
+                    <span v-else class="text-xs font-medium text-[#8F8575] py-3">
+                      Drop Kartu {{ slotIdx + 1 }} ke Sini
                     </span>
                   </div>
                 </div>
               </div>
 
-              <!-- Bank Pilihan Kartu Tersedia -->
-              <div class="space-y-2 pt-2 border-t border-[#8F8575]/20">
-                <span class="text-xs font-bold text-[#5B6474] block">Pilihan Kartu yang Belum Masuk Kotak:</span>
-                <div class="flex flex-wrap gap-2.5">
-                  <button
+              <!-- Bank Kartu Acak (Drag Source) -->
+              <div
+                @dragover.prevent
+                @drop="onDropToCardPool"
+                class="space-y-3 pt-3 border-t border-[#8F8575]/20 bg-[#FFF8F0]/60 p-4 rounded-2xl border border-dashed border-[#8F8575]/30"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-[#5B6474] flex items-center gap-1.5">
+                    <GripVertical class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                    <span>Pilihan Kartu Acak (Pegang & Tarik ke Kotak Urutan):</span>
+                  </span>
+                  <span class="text-[11px] font-semibold text-[#1E7A6F] bg-white px-2.5 py-0.5 rounded-full border border-[#8F8575]/20">
+                    Bisa di-drag atau diketuk
+                  </span>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                  <div
                     v-for="(item, idx) in currentQuestion.orderItems || []"
                     :key="idx"
+                    :draggable="!getOrderingAnswersForCurrent().includes(item)"
+                    @dragstart="onCardDragStart(item, $event)"
                     @click="addToOrdering(item)"
-                    :disabled="getOrderingAnswersForCurrent().includes(item)"
                     :class="[
-                      'px-4 py-2.5 rounded-xl font-semibold text-sm transition-all border flex items-center gap-2 cursor-pointer',
+                      'px-5 py-3 rounded-2xl font-bold text-sm transition-all border-2 flex items-center gap-2.5 select-none',
                       getOrderingAnswersForCurrent().includes(item)
-                        ? 'opacity-35 bg-[#E0E0E0] border-transparent text-[#8F8575] cursor-not-allowed line-through'
-                        : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 text-[#2B3445] shadow-xs'
+                        ? 'opacity-30 bg-[#E0E0E0] border-transparent text-[#8F8575] cursor-not-allowed line-through scale-95'
+                        : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:shadow-md cursor-grab active:cursor-grabbing active:scale-105 active:rotate-1 text-[#2B3445] shadow-xs'
                     ]"
                   >
+                    <GripVertical v-if="!getOrderingAnswersForCurrent().includes(item)" class="w-4 h-4 text-[#1E7A6F] shrink-0" />
                     <span>{{ item }}</span>
-                    <span v-if="!getOrderingAnswersForCurrent().includes(item)" class="text-xs text-[#1E7A6F]">＋</span>
-                  </button>
+                    <span v-if="!getOrderingAnswersForCurrent().includes(item)" class="text-xs text-[#1E7A6F] font-bold">＋</span>
+                  </div>
                 </div>
               </div>
             </div>
