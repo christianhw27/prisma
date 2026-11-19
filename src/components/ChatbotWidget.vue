@@ -38,6 +38,7 @@ const props = defineProps({
 const isOpen = ref(false)
 const showTooltip = ref(true)
 const isServerOnline = ref(false)
+const isHostedWithoutBackend = ref(false)
 const serverDetails = ref(null)
 const isCheckingHealth = ref(false)
 const isLoading = ref(false)
@@ -94,6 +95,7 @@ const checkHealth = async () => {
   isCheckingHealth.value = true
   const res = await checkChatbotStatus()
   isServerOnline.value = res.isOnline
+  isHostedWithoutBackend.value = Boolean(res.isHostedWithoutBackend)
   serverDetails.value = res.data || null
   isCheckingHealth.value = false
 }
@@ -428,7 +430,7 @@ const formatMarkdown = (txt) => {
               </span>
             </div>
             <div class="flex items-center gap-1 text-[11px] text-white/80 leading-tight">
-              <span>{{ isServerOnline ? '🟢 Siap Membantu' : '🟡 Mode Cerdas' }}</span>
+              <span>{{ isServerOnline ? '🟢 Siap Membantu' : isHostedWithoutBackend ? '🟢 Mode Mandiri' : '🟡 Mode Cerdas' }}</span>
               <span class="text-white/50">•</span>
               <span class="text-white/90 font-medium">Teman PRISMA</span>
             </div>
