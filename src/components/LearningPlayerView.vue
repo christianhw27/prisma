@@ -1,30 +1,21 @@
 <script setup>
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import {
   ArrowLeft,
   ArrowRight,
-  BookOpen,
   CheckCircle2,
   XCircle,
   Play,
-  Pause,
   RotateCcw,
   Sparkles,
   Video,
   Trophy,
-  Clock,
-  Award,
   ChevronRight,
   Star,
   Check,
   HelpCircle,
   Layers,
   Film,
-  Volume2,
-  VolumeX,
-  Headphones,
-  Mic,
-  Music,
   MousePointerClick,
   Link,
   ArrowUpDown,
@@ -44,145 +35,15 @@ const props = defineProps({
 
 const emit = defineEmits(['back', 'finish', 'open-settings'])
 
-// 3 Main Tabs: 'materi' | 'video' | 'quiz'
-const activeTab = ref('materi')
+// 2 Tahap Pembelajaran: 'video' | 'quiz'
+const activeTab = ref('video')
 
-// ==================== TAB 1: MATERI (TEKS & GAMBAR) ====================
-const materiContent = computed(() => {
-  if (props.materi?.materiContent) return props.materi.materiContent
-  return {
-    text: props.materi?.description || 'Materi pembelajaran interaktif SD.',
-    image: props.materi?.image || '/es_batu_card.jpg',
-    points: props.materi?.learningPoints || []
-  }
+// Data Poin Pembelajaran untuk ringkasan di sidebar
+const learningPoints = computed(() => {
+  return props.materi?.materiContent?.points || props.materi?.learningPoints || []
 })
 
-// Paragraf teks materi yang bersih
-const textParagraphs = computed(() => {
-  const raw = materiContent.value?.text || props.materi?.description || ''
-  return raw.split('\n\n').filter(p => p.trim() !== '')
-})
-
-// ==================== AUDIO / SUARA NARASI MATERI ====================
-const audioPlayerRef = ref(null)
-const isAudioPlaying = ref(false)
-const audioCurrentTime = ref(0)
-const audioDuration = ref(0)
-const isSpeechActive = ref(false)
-
-const hasCustomAudio = computed(() => {
-  return Boolean(materiContent.value?.audioUrl && materiContent.value.audioUrl.trim() !== '')
-})
-
-const audioProgressPercent = computed(() => {
-  if (!audioDuration.value) return 0
-  return Math.min(100, Math.round((audioCurrentTime.value / audioDuration.value) * 100))
-})
-
-const formatAudioTime = (seconds) => {
-  if (!seconds || isNaN(seconds)) return '0:00'
-  const mins = Math.floor(seconds / 60)
-  const secs = Math.floor(seconds % 60)
-  return `${mins}:${secs < 10 ? '0' : ''}${secs}`
-}
-
-const onAudioTimeUpdate = () => {
-  if (audioPlayerRef.value) {
-    audioCurrentTime.value = audioPlayerRef.value.currentTime
-  }
-}
-
-const onAudioLoadedMetadata = () => {
-  if (audioPlayerRef.value) {
-    audioDuration.value = audioPlayerRef.value.duration
-  }
-}
-
-const onAudioEnded = () => {
-  isAudioPlaying.value = false
-  audioCurrentTime.value = 0
-}
-
-const stopAllAudio = () => {
-  if (audioPlayerRef.value) {
-    try { audioPlayerRef.value.pause() } catch (_) {}
-  }
-  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-    try { window.speechSynthesis.cancel() } catch (_) {}
-  }
-  isAudioPlaying.value = false
-  isSpeechActive.value = false
-}
-
-const togglePlayAudio = () => {
-  playButtonPop()
-  if (hasCustomAudio.value) {
-    if (!audioPlayerRef.value) return
-    if (isAudioPlaying.value) {
-      audioPlayerRef.value.pause()
-      isAudioPlaying.value = false
-    } else {
-      stopAllAudio()
-      audioPlayerRef.value.play().then(() => {
-        isAudioPlaying.value = true
-      }).catch(err => {
-        console.warn('Audio play failed:', err)
-      })
-    }
-  } else {
-    // Fallback TTS cerdas dengan Web Speech API
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
-      alert('Perangkat Anda belum mendukung fitur pembacaan suara otomatis.')
-      return
-    }
-    if (isAudioPlaying.value || isSpeechActive.value) {
-      stopAllAudio()
-    } else {
-      stopAllAudio()
-      const textToRead = `${props.materi?.title || ''}. ${materiContent.value?.text || props.materi?.description || ''}`
-      const utterance = new SpeechSynthesisUtterance(textToRead)
-      utterance.lang = 'id-ID'
-      utterance.rate = 0.95
-      utterance.pitch = 1.05
-      utterance.onstart = () => {
-        isAudioPlaying.value = true
-        isSpeechActive.value = true
-      }
-      utterance.onend = () => {
-        isAudioPlaying.value = false
-        isSpeechActive.value = false
-      }
-      utterance.onerror = () => {
-        isAudioPlaying.value = false
-        isSpeechActive.value = false
-      }
-      window.speechSynthesis.speak(utterance)
-    }
-  }
-}
-
-const restartAudio = () => {
-  playButtonPop()
-  if (hasCustomAudio.value && audioPlayerRef.value) {
-    audioPlayerRef.value.currentTime = 0
-    audioPlayerRef.value.play()
-    isAudioPlaying.value = true
-  } else {
-    togglePlayAudio()
-  }
-}
-
-// Hentikan suara jika berpindah tab atau berganti materi
-watch(activeTab, () => {
-  stopAllAudio()
-})
-watch(() => props.materi?.id, () => {
-  stopAllAudio()
-  audioCurrentTime.value = 0
-  audioDuration.value = 0
-})
-
-// ==================== TAB 2: VIDEO (2 VIDEO) ====================
+// ==================== TAHAP 1: VIDEO (2 VIDEO EDUKASI) ====================
 const selectedVideoIndex = ref(1) // 1 atau 2
 
 const videoList = computed(() => {
@@ -473,17 +334,13 @@ const resetQuiz = () => {
 
 // Reset tab & state saat materi berganti
 watch(() => props.materi?.id, () => {
-  activeTab.value = 'materi'
+  activeTab.value = 'video'
   selectedVideoIndex.value = 1
   resetQuiz()
 })
 
 onMounted(() => {
   window.scrollTo({ top: 0, behavior: 'instant' })
-})
-
-onBeforeUnmount(() => {
-  stopAllAudio()
 })
 </script>
 
@@ -540,7 +397,7 @@ onBeforeUnmount(() => {
       <!-- ==================== SIDEBAR NAVIGASI KIRI ==================== -->
       <aside class="lg:col-span-4 xl:col-span-3 space-y-4 lg:sticky lg:top-6">
         
-        <!-- CARD MENU BELAJAR (3 TAB) -->
+        <!-- CARD MENU BELAJAR (2 LANGKAH: VIDEO & QUIZ) -->
         <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-3.5 sm:p-4 shadow-xs space-y-3">
           <div class="px-3 pt-1 pb-1 flex items-center justify-between">
             <span class="text-xs font-semibold text-[#5B6474] uppercase tracking-wider flex items-center gap-1.5">
@@ -548,46 +405,12 @@ onBeforeUnmount(() => {
               <span>Menu Belajar</span>
             </span>
             <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#7FD4C4]/25 text-[#1E7A6F]">
-              3 Langkah
+              2 Langkah
             </span>
           </div>
 
           <nav class="space-y-2">
-            <!-- TAB 1: MATERI -->
-            <button
-              @click="activeTab = 'materi'; playButtonPop()"
-              :class="[
-                'w-full text-left p-3.5 rounded-2xl font-semibold transition-all duration-200 cursor-pointer flex items-center justify-between gap-3 group focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]',
-                activeTab === 'materi'
-                  ? 'bg-[#1E7A6F] text-white shadow-md ring-2 ring-[#1E7A6F]'
-                  : 'bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 text-[#2B3445] border border-[#8F8575]/25'
-              ]"
-            >
-              <div class="flex items-center gap-3 min-w-0">
-                <div
-                  :class="[
-                    'w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition',
-                    activeTab === 'materi' ? 'bg-white/20 text-[#FFDE7A]' : 'bg-[#7FD4C4]/30 text-[#1E7A6F]'
-                  ]"
-                >
-                  <BookOpen class="w-5 h-5" />
-                </div>
-                <div class="min-w-0">
-                  <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">1. Materi</h4>
-                  <p :class="['text-xs truncate font-normal', activeTab === 'materi' ? 'text-white/85' : 'text-[#5B6474]']">
-                    Teks, Gambar & Suara
-                  </p>
-                </div>
-              </div>
-              <span
-                v-if="activeTab === 'materi'"
-                class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full bg-white/20 text-white shrink-0"
-              >
-                Dibuka
-              </span>
-            </button>
-
-            <!-- TAB 2: VIDEO -->
+            <!-- LANGKAH 1: VIDEO -->
             <button
               @click="activeTab = 'video'; playButtonPop()"
               :class="[
@@ -607,9 +430,9 @@ onBeforeUnmount(() => {
                   <Video class="w-5 h-5" />
                 </div>
                 <div class="min-w-0">
-                  <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">2. Video</h4>
+                  <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">1. Video</h4>
                   <p :class="['text-xs truncate font-normal', activeTab === 'video' ? 'text-white/85' : 'text-[#5B6474]']">
-                    2 Video Edukasi
+                    Konsep & Praktik
                   </p>
                 </div>
               </div>
@@ -619,11 +442,11 @@ onBeforeUnmount(() => {
                   activeTab === 'video' ? 'bg-white/20 text-white' : 'bg-[#8F8575]/15 text-[#2B3445]'
                 ]"
               >
-                2 Video
+                {{ activeTab === 'video' ? 'Dibuka' : '2 Video' }}
               </span>
             </button>
 
-            <!-- TAB 3: QUIZ -->
+            <!-- LANGKAH 2: QUIZ -->
             <button
               @click="activeTab = 'quiz'; playButtonPop()"
               :class="[
@@ -643,9 +466,9 @@ onBeforeUnmount(() => {
                   <Sparkles class="w-5 h-5 text-[#2B3445]" />
                 </div>
                 <div class="min-w-0">
-                  <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">3. Quiz</h4>
+                  <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">2. Quiz</h4>
                   <p :class="['text-xs truncate font-normal', activeTab === 'quiz' ? 'text-white/85' : 'text-[#5B6474]']">
-                    Asesmen Pilihan Ganda
+                    Kuis Interaktif
                   </p>
                 </div>
               </div>
@@ -655,31 +478,36 @@ onBeforeUnmount(() => {
                   activeTab === 'quiz' ? 'bg-white/20 text-white' : 'bg-[#8F8575]/15 text-[#2B3445]'
                 ]"
               >
-                {{ questions.length }} Soal
+                {{ activeTab === 'quiz' ? 'Dibuka' : `${questions.length} Soal` }}
               </span>
             </button>
           </nav>
         </div>
 
-        <!-- CARD INFO TAMBAHAN SIDEBAR (POIN MATERI) -->
+        <!-- CARD INFO MATERI DI SIDEBAR -->
         <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-5 shadow-xs space-y-3.5 text-left hidden sm:block">
           <div class="flex items-center gap-2">
             <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
             <h4 class="text-xs font-bold font-['Baloo_2'] text-[#2B3445] uppercase tracking-wider">
-              Apa yang akan kamu pelajari?
+              Tentang Materi Ini
             </h4>
           </div>
 
-          <div class="space-y-2">
+          <p class="text-xs text-[#5B6474] leading-relaxed">
+            {{ materi.description }}
+          </p>
+
+          <div v-if="learningPoints.length" class="space-y-2 pt-2 border-t border-[#8F8575]/15">
+            <span class="text-[11px] font-bold text-[#2B3445] block">Poin Pembelajaran:</span>
             <div
-              v-for="(point, idx) in (materiContent.points?.length ? materiContent.points : materi.learningPoints)"
-              :key="point.id || idx"
-              class="flex items-center gap-2.5 p-2.5 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 text-xs font-medium text-[#2B3445]"
+              v-for="(point, idx) in learningPoints.slice(0, 3)"
+              :key="idx"
+              class="flex items-center gap-2 p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 text-xs font-medium text-[#2B3445]"
             >
-              <span class="w-5 h-5 rounded-full bg-[#7FD4C4] text-[#2B3445] text-[10px] font-bold flex items-center justify-center shrink-0">
+              <span class="w-4 h-4 rounded-full bg-[#7FD4C4] text-[#2B3445] text-[10px] font-bold flex items-center justify-center shrink-0">
                 {{ idx + 1 }}
               </span>
-              <span class="truncate">{{ typeof point === 'string' ? point : point.title }}</span>
+              <span class="truncate">{{ typeof point === 'string' ? point : (point.title || point.desc) }}</span>
             </div>
           </div>
         </div>
@@ -689,197 +517,31 @@ onBeforeUnmount(() => {
       <!-- ==================== MAIN CONTENT AREA KANAN ==================== -->
       <main class="lg:col-span-8 xl:col-span-9 min-w-0 space-y-6">
 
-    <!-- ==================== TAB 1 CONTENT: MATERI (TEKS & GAMBAR) ==================== -->
-    <div v-if="activeTab === 'materi'" class="space-y-6 animate-soft-pop">
-      <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-6 sm:p-8 lg:p-10 shadow-xs space-y-8">
+    <!-- ==================== LANGKAH 1: VIDEO (2 VIDEO EDUKASI) ==================== -->
+    <div v-if="activeTab === 'video'" class="space-y-6 animate-soft-pop">
+      <div class="card-prisma p-5 sm:p-7 lg:p-8 space-y-6">
         
-        <!-- Hero Header Materi -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-[#8F8575]/20 pb-8">
-          <div class="lg:col-span-7 space-y-3.5 text-left">
-            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#7FD4C4]/25 text-[#1E7A6F] border border-[#7FD4C4]">
-              <BookOpen class="w-3.5 h-3.5" /> Modul Bacaan Interaktif
+        <!-- Header Tahap Video -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-[#8F8575]/20 pb-5 text-left">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#94C6FF]/25 text-[#1E7A6F] border border-[#94C6FF]/50">
+              <Video class="w-3.5 h-3.5 text-[#1E7A6F]" /> Langkah 1: Video Pembelajaran
             </span>
-            <h2 class="text-2xl sm:text-4xl font-bold font-['Baloo_2'] text-[#2B3445] tracking-tight leading-tight">
+            <h2 class="font-['Baloo_2'] text-2xl sm:text-3xl font-bold text-[#2B3445] mt-1.5 leading-snug">
               {{ materi.title }}
             </h2>
-            <p class="text-base text-[#5B6474] font-normal leading-relaxed">
+            <p class="text-xs sm:text-sm text-[#5B6474] font-normal mt-0.5">
               {{ materi.description }}
             </p>
           </div>
 
-          <div class="lg:col-span-5 flex justify-center">
-            <div class="w-full max-w-sm aspect-video sm:aspect-4/3 rounded-3xl overflow-hidden shadow-xs border-2 border-[#8F8575]/20 bg-[#FFF8F0] relative group">
-              <img
-                :src="materiContent.image || materi.image || '/es_batu_card.jpg'"
-                :alt="materi.title"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div class="absolute bottom-3 left-3 right-3 bg-[#2B3445]/85 backdrop-blur-xs rounded-xl p-2 text-white text-[11px] font-semibold text-center">
-                Ilustrasi Pembelajaran Prisma
-              </div>
-            </div>
+          <div class="text-right shrink-0">
+            <span class="text-xs font-semibold px-3 py-1.5 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/25 text-[#2B3445] block">
+              2 Pilihan Video
+            </span>
           </div>
         </div>
 
-        <!-- ==================== SUARA / AUDIO MATERI INTERAKTIF ==================== -->
-        <div class="p-4 sm:p-6 rounded-3xl bg-[#FFF8F0] border-2 border-[#8F8575]/25 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xs transition">
-          <!-- Audio tag native jika materi memiliki file audio rekaman -->
-          <audio
-            v-if="hasCustomAudio"
-            ref="audioPlayerRef"
-            :src="materiContent.audioUrl"
-            @timeupdate="onAudioTimeUpdate"
-            @loadedmetadata="onAudioLoadedMetadata"
-            @ended="onAudioEnded"
-            class="hidden"
-          ></audio>
-
-          <div class="flex items-center gap-3.5 sm:gap-5 w-full sm:w-auto">
-            <!-- Tombol Play / Pause Utama (Mint #7FD4C4) -->
-            <button
-              @click="togglePlayAudio"
-              :class="[
-                'w-13 h-13 sm:w-16 sm:h-16 rounded-2xl sm:rounded-3xl flex items-center justify-center text-[#2B3445] shadow-sm transition-all duration-300 active:scale-90 cursor-pointer shrink-0 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]',
-                isAudioPlaying
-                  ? 'bg-[#FFDE7A] ring-4 ring-[#FFDE7A]/50 animate-pulse'
-                  : 'bg-[#7FD4C4] hover:bg-[#70cbba] ring-4 ring-[#7FD4C4]/30'
-              ]"
-              :title="isAudioPlaying ? 'Jeda Suara' : 'Dengarkan Penjelasan Suara'"
-            >
-              <Pause v-if="isAudioPlaying" class="w-6 h-6 sm:w-7 sm:h-7 fill-current" />
-              <Play v-else class="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-0.5 sm:ml-1" />
-            </button>
-
-            <!-- Informasi Narasi Suara -->
-            <div class="text-left space-y-1 flex-1 min-w-0">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-sm sm:text-base font-bold font-['Baloo_2'] text-[#2B3445]">
-                  {{ isAudioPlaying ? 'Sedang Memutar Suara Materi...' : 'Dengarkan Penjelasan Suara' }}
-                </span>
-                <span
-                  :class="[
-                    'text-[10px] font-semibold uppercase px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 text-[#2B3445]',
-                    hasCustomAudio ? 'bg-[#7FD4C4]' : 'bg-[#94C6FF]'
-                  ]"
-                >
-                  <Headphones class="w-3 h-3 text-[#1E7A6F]" />
-                  {{ hasCustomAudio ? 'Audio Rekaman' : 'Suara Otomatis' }}
-                </span>
-              </div>
-              <p class="text-xs text-[#5B6474]">
-                {{ hasCustomAudio ? 'Dengarkan rekaman audio narasi pembelajaran ini' : 'Klik tombol putar agar Prisma membacakan seluruh isi materi ini untukmu' }}
-              </p>
-
-              <!-- Progress bar untuk file custom audio -->
-              <div v-if="hasCustomAudio && audioDuration > 0" class="flex items-center gap-3 pt-1.5 max-w-sm">
-                <div class="flex-1 h-2 bg-[#8F8575]/20 rounded-full overflow-hidden">
-                  <div
-                    class="h-full bg-[#1E7A6F] rounded-full transition-all duration-200"
-                    :style="{ width: `${audioProgressPercent}%` }"
-                  ></div>
-                </div>
-                <span class="text-[11px] font-mono font-medium text-[#5B6474] shrink-0">
-                  {{ formatAudioTime(audioCurrentTime) }} / {{ formatAudioTime(audioDuration) }}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bagian Kanan: Gelombang Suara (Waveform) & Tombol Ulangi -->
-          <div class="flex items-center gap-2.5 self-end sm:self-center shrink-0">
-            <!-- Animasi Sound Wave dinamis saat suara aktif -->
-            <div v-if="isAudioPlaying" class="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-white border border-[#8F8575]/20 shadow-xs">
-              <span class="w-1.5 h-3.5 bg-[#1E7A6F] rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-              <span class="w-1.5 h-6 bg-[#7FD4C4] rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-              <span class="w-1.5 h-3 bg-[#FFDE7A] rounded-full animate-bounce [animation-delay:-0.45s]"></span>
-              <span class="w-1.5 h-5 bg-[#94C6FF] rounded-full animate-bounce"></span>
-            </div>
-
-            <!-- Tombol Ulangi dari Awal -->
-            <button
-              v-if="isAudioPlaying || audioCurrentTime > 0"
-              @click="restartAudio"
-              class="btn-prisma-white px-3.5 py-2 text-xs flex items-center gap-1.5 cursor-pointer"
-              title="Putar Ulang dari Awal"
-            >
-              <RotateCcw class="w-3.5 h-3.5 text-[#1E7A6F]" />
-              <span>Ulangi</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Teks Narasi Materi Utama -->
-        <div class="space-y-4 text-left">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center font-bold">
-              📖
-            </div>
-            <h3 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445]">
-              Uraian & Penjelasan Materi
-            </h3>
-          </div>
-
-          <!-- Bacaan Format: Lexend (18px / 31px), warna Tinta #2B3445 -->
-          <div class="space-y-4 text-[#2B3445] text-lg sm:text-[18px] leading-[31px] bg-[#FFF8F0] p-6 sm:p-8 rounded-3xl border border-[#8F8575]/20">
-            <p v-for="(p, idx) in textParagraphs" :key="idx" class="first-letter:text-2xl first-letter:font-bold first-letter:text-[#1E7A6F]">
-              {{ p }}
-            </p>
-          </div>
-        </div>
-
-        <!-- Poin-Poin Penting Belajar -->
-        <div v-if="materiContent.points?.length || materi.learningPoints?.length" class="space-y-4 text-left pt-2">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-xl bg-[#94C6FF]/30 text-[#1E7A6F] flex items-center justify-center font-bold">
-              💡
-            </div>
-            <h3 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445]">
-              Poin Penting yang Perlu Diingat
-            </h3>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div
-              v-for="(point, idx) in (materiContent.points?.length ? materiContent.points : materi.learningPoints)"
-              :key="point.id || idx"
-              class="p-5 rounded-2xl bg-[#FFF8F0] border-2 border-[#8F8575]/20 hover:border-[#1E7A6F] transition space-y-2"
-            >
-              <div class="flex items-center gap-2.5">
-                <span class="w-7 h-7 rounded-xl bg-[#7FD4C4] text-[#2B3445] text-xs font-bold flex items-center justify-center shrink-0">
-                  {{ idx + 1 }}
-                </span>
-                <h4 class="font-bold text-sm font-['Baloo_2'] text-[#2B3445]">
-                  {{ typeof point === 'string' ? point : point.title }}
-                </h4>
-              </div>
-              <p v-if="point.desc" class="text-xs text-[#5B6474] font-normal leading-relaxed pl-9">
-                {{ point.desc }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Action: Lanjut ke Video -->
-        <div class="pt-6 border-t border-[#8F8575]/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span class="text-xs text-[#5B6474]">
-            Sudah selesai membaca materi? Lanjutkan menonton video penjelasannya!
-          </span>
-          <button
-            @click="activeTab = 'video'; playButtonPop()"
-            class="btn-prisma-mint px-6 py-3.5 text-sm font-semibold flex items-center gap-2 cursor-pointer transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]"
-          >
-            <span>Tonton Video Pembelajaran</span>
-            <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
-          </button>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ==================== TAB 2 CONTENT: VIDEO (2 VIDEO) ==================== -->
-    <div v-if="activeTab === 'video'" class="space-y-6 animate-soft-pop">
-      <div class="card-prisma p-5 sm:p-7 lg:p-8 space-y-6">
-        
         <!-- Video 1 & Video 2 Selector Buttons -->
         <div class="flex items-center justify-center sm:justify-start gap-3 flex-wrap">
           <button
@@ -979,29 +641,39 @@ onBeforeUnmount(() => {
 
         <!-- Video Bottom Navigation -->
         <div class="pt-4 border-t border-[#8F8575]/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button
-            v-if="selectedVideoIndex === 1"
-            @click="switchVideo(2)"
-            class="btn-prisma-white px-5 py-2.5 text-xs font-semibold flex items-center gap-2 transition cursor-pointer"
-          >
-            <span>Tonton Video 2 Selanjutnya</span>
-            <ChevronRight class="w-4 h-4 text-[#1E7A6F]" />
-          </button>
-          <div v-else></div>
+          <div class="flex items-center gap-3">
+            <button
+              v-if="selectedVideoIndex === 1"
+              @click="switchVideo(2)"
+              class="btn-prisma-white px-5 py-2.5 text-xs font-semibold flex items-center gap-2 transition cursor-pointer"
+            >
+              <span>Tonton Video 2 (Praktik)</span>
+              <ChevronRight class="w-4 h-4 text-[#1E7A6F]" />
+            </button>
+            <button
+              v-else-if="selectedVideoIndex === 2"
+              @click="switchVideo(1)"
+              class="btn-prisma-white px-5 py-2.5 text-xs font-semibold flex items-center gap-2 transition cursor-pointer"
+            >
+              <ChevronRight class="w-4 h-4 text-[#1E7A6F] rotate-180" />
+              <span>Kembali ke Video 1 (Konsep)</span>
+            </button>
+          </div>
 
           <button
             @click="activeTab = 'quiz'; playButtonPop()"
-            class="btn-prisma-mint px-6 py-3 text-sm font-semibold flex items-center gap-2 cursor-pointer transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]"
+            class="btn-prisma-mint px-6 py-3.5 text-sm font-semibold flex items-center gap-2.5 cursor-pointer transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shadow-sm"
           >
-            <span>Uji Pemahaman di Tab Quiz</span>
+            <span>Lanjut ke Kuis Interaktif (Langkah 2)</span>
             <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
+            <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
           </button>
         </div>
 
       </div>
     </div>
 
-    <!-- ==================== TAB 3 CONTENT: QUIZ (PILIHAN GANDA & GAMBAR SOAL) ==================== -->
+    <!-- ==================== LANGKAH 2: QUIZ (PILIHAN GANDA & GAMBAR SOAL) ==================== -->
     <div v-if="activeTab === 'quiz'" class="space-y-6 animate-soft-pop">
       <div class="card-prisma p-6 sm:p-8 lg:p-10 space-y-6">
         
@@ -1009,7 +681,7 @@ onBeforeUnmount(() => {
         <div class="flex items-center justify-between border-b border-[#8F8575]/20 pb-5">
           <div class="text-left">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#FFDE7A]/40 text-[#2B3445] border border-[#8F8575]/25">
-              <Sparkles class="w-3.5 h-3.5 text-[#1E7A6F]" /> Kuis Pilihan Ganda
+              <Sparkles class="w-3.5 h-3.5 text-[#1E7A6F]" /> Langkah 2: Kuis Interaktif
             </span>
             <h2 class="font-['Baloo_2'] text-2xl sm:text-3xl font-bold text-[#2B3445] mt-1.5">
               {{ quizData.title || 'Kuis Pemahaman Materi' }}
@@ -1737,11 +1409,11 @@ onBeforeUnmount(() => {
             </button>
 
             <button
-              @click="activeTab = 'materi'; playButtonPop()"
+              @click="activeTab = 'video'; playButtonPop()"
               class="btn-prisma-white w-full sm:w-auto px-6 py-3 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
             >
-              <BookOpen class="w-4 h-4 text-[#1E7A6F]" />
-              <span>Baca Ulang Materi</span>
+              <Video class="w-4 h-4 text-[#1E7A6F]" />
+              <span>Tonton Ulang Video</span>
             </button>
 
             <button
