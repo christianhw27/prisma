@@ -160,6 +160,102 @@ const readingText = computed(() => {
   return props.materi?.bacaan || props.materi?.materiContent?.text || ''
 })
 
+const parsedReadingBlocks = computed(() => {
+  const text = readingText.value || ''
+  if (!text) return []
+
+  const lines = text.split('\n')
+  const blocks = []
+  let currentParagraph = []
+  let currentTableLines = []
+
+  const flushParagraph = () => {
+    if (currentParagraph.length) {
+      const content = currentParagraph.join('\n').trim()
+      if (content) {
+        blocks.push({ type: 'paragraph', content })
+      }
+      currentParagraph = []
+    }
+  }
+
+  const flushTable = () => {
+    if (currentTableLines.length) {
+      const validRows = []
+      for (const line of currentTableLines) {
+        const trimmed = line.trim()
+        if (!trimmed) continue
+        if (/^\|?(\s*:?-+:?\s*\|?)+$/.test(trimmed)) continue
+        let rawCells = trimmed.split('|')
+        if (trimmed.startsWith('|')) rawCells.shift()
+        if (trimmed.endsWith('|')) rawCells.pop()
+        const cells = rawCells.map(c => c.trim())
+        if (cells.length > 0 && cells.some(c => c.length > 0)) {
+          validRows.push(cells)
+        }
+      }
+
+      if (validRows.length >= 2) {
+        blocks.push({
+          type: 'table',
+          headers: validRows[0],
+          rows: validRows.slice(1)
+        })
+      } else if (validRows.length === 1) {
+        blocks.push({
+          type: 'table',
+          headers: validRows[0],
+          rows: []
+        })
+      } else {
+        blocks.push({
+          type: 'paragraph',
+          content: currentTableLines.join('\n')
+        })
+      }
+      currentTableLines = []
+    }
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    const trimmed = line.trim()
+    const isTableLine = trimmed.includes('|')
+
+    if (isTableLine) {
+      flushParagraph()
+      currentTableLines.push(line)
+    } else {
+      if (currentTableLines.length > 0) {
+        if (!trimmed) {
+          let nextIsTable = false
+          for (let j = i + 1; j < lines.length; j++) {
+            const nextTrim = lines[j].trim()
+            if (!nextTrim) continue
+            if (nextTrim.includes('|')) nextIsTable = true
+            break
+          }
+          if (nextIsTable) {
+            continue
+          } else {
+            flushTable()
+          }
+        } else {
+          flushTable()
+          currentParagraph.push(line)
+        }
+      } else {
+        currentParagraph.push(line)
+      }
+    }
+  }
+
+  flushParagraph()
+  flushTable()
+
+  return blocks
+})
+
 const readingGoal = computed(() => {
   return props.materi?.tujuan || ''
 })
@@ -1431,10 +1527,59 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- Paragraf Cerita (Kanan / Bawah) -->
-            <div :class="materi?.image ? 'md:col-span-7' : 'col-span-12'" class="space-y-3">
-              <p class="text-[#2B3445] font-['Lexend'] text-sm sm:text-base leading-relaxed sm:leading-loose whitespace-pre-line select-text">
-                {{ readingText }}
-              </p>
+            <div :class="materi?.image ? 'md:col-span-7' : 'col-span-12'" class="space-y-3.5">
+              <template v-for="(block, bIdx) in parsedReadingBlocks" :key="bIdx">
+                <!-- Teks Paragraf Normal -->
+                <p
+                  v-if="block.type === 'paragraph'"
+                  class="text-[#2B3445] font-['Lexend'] text-sm sm:text-base leading-relaxed sm:leading-loose whitespace-pre-line select-text"
+                >
+                  {{ block.content }}
+                </p>
+
+                <!-- Tabel Data Rapi & Responsif -->
+                <div
+                  v-else-if="block.type === 'table'"
+                  class="my-3 overflow-x-auto rounded-2xl border-2 border-[#1E7A6F]/20 bg-white shadow-xs"
+                >
+                  <table class="w-full border-collapse text-left font-['Lexend'] text-xs sm:text-sm">
+                    <thead>
+                      <tr class="bg-[#1E7A6F] text-white">
+                        <th
+                          v-for="(header, hIdx) in block.headers"
+                          :key="hIdx"
+                          class="px-3.5 sm:px-4 py-2.5 font-bold tracking-wide border-b border-[#145C53]"
+                          :class="hIdx === 0 ? 'rounded-tl-xl' : hIdx === block.headers.length - 1 ? 'rounded-tr-xl' : ''"
+                        >
+                          {{ header }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#8F8575]/15">
+                      <tr
+                        v-for="(row, rIdx) in block.rows"
+                        :key="rIdx"
+                        :class="rIdx % 2 === 0 ? 'bg-white' : 'bg-[#FFF8F0]/70'"
+                        class="hover:bg-[#7FD4C4]/15 transition-colors"
+                      >
+                        <td
+                          v-for="(cell, cIdx) in row"
+                          :key="cIdx"
+                          class="px-3.5 sm:px-4 py-2.5 text-[#2B3445] font-medium align-middle"
+                        >
+                          <span
+                            v-if="cell.includes('卌') || cell.includes('│')"
+                            class="font-mono text-sm sm:text-base font-bold text-[#1E7A6F] tracking-wider px-2 py-0.5 rounded-lg bg-[#7FD4C4]/20 border border-[#1E7A6F]/20 inline-block"
+                          >
+                            {{ cell }}
+                          </span>
+                          <span v-else>{{ cell }}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
             </div>
           </div>
         </div>

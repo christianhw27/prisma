@@ -1,5 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
-    <rect width="200" height="200" rx="28" fill="none"/>
     <ellipse cx="100" cy="165" rx="50" ry="12" fill="#EADBC8" opacity="0.6"/>
     <!-- Tangkai & Daun -->
     <path d="M 100 70 C 102 52, 112 45, 118 42" stroke="#6D4C41" stroke-width="6" stroke-linecap="round" fill="none"/>
@@ -7,5 +6,4 @@
     <!-- Badan Apel Merah Hati -->
     <path d="M 100 75 C 80 65, 60 75, 60 105 C 60 138, 85 152, 100 152 C 115 152, 140 138, 140 105 C 140 75, 120 65, 100 75 Z" fill="#E53935"/>
     <path d="M 72 90 C 78 82, 90 80, 95 82 C 85 85, 75 95, 72 105 Z" fill="#FFFFFF" opacity="0.45"/>
-    
-  </svg>
+    </svg>

@@ -54,6 +54,10 @@ function loadUserSession() {
         const proRegistry = JSON.parse(localStorage.getItem('prisma_pro_subscribers') || '{}')
         const verifiedRegistry = JSON.parse(localStorage.getItem('prisma_verified_emails') || '{}')
         const isEmailVerified = true
+        const isAdminUser = payload.role === 'admin' || meta.role === 'admin' || email.includes('admin')
+        const subscriber = proRegistry[email] || {}
+        let isPro = Boolean(subscriber.isPro || payload.isPro || isAdminUser)
+        let proExpiresAt = subscriber.expiresAt || payload.proExpiresAt || null
 
         // Check or initialize expiration date for non-admin PRO users
         if (isPro && !isAdminUser) {

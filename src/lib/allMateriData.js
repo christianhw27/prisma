@@ -8990,7 +8990,7 @@ export const allStructuredMateri = [
       "Kuis Bergambar"
     ],
     "materiContent": {
-      "text": "Kelas 6 sedang belajar tentang sampah plastik. Mereka melakukan survei kepada 30 murid kelas 6 tentang wadah minum yang dibawa ke sekolah. Setiap jawaban dicatat dengan turus, lalu dihitung menjadi tabel frekuensi.\n\nWadah minum | Turus | Frekuensi (murid)\n\nBotol isi ulang | ||||/ ||||/ || | 12\n\nBotol plastik sekali pakai | ||||/ |||| | 9\n\nGelas plastik sekali pakai | ||||/ | | 6\n\nTidak membawa minum | ||| | 3\n\nKeesokan harinya, sebuah tulisan di majalah dinding berbunyi: “Sebagian besar murid kelas 6 sudah membawa botol isi ulang!”",
+      "text": "Kelas 6 sedang belajar tentang sampah plastik. Mereka melakukan survei kepada 30 murid kelas 6 tentang wadah minum yang dibawa ke sekolah. Setiap jawaban dicatat dengan turus, lalu dihitung menjadi tabel frekuensi.\n\nWadah minum | Turus | Frekuensi (murid)\n\nBotol isi ulang | 卌 卌 ││ | 12\n\nBotol plastik sekali pakai | 卌 ││││ | 9\n\nGelas plastik sekali pakai | 卌 │ | 6\n\nTidak membawa minum | │││ | 3\n\nKeesokan harinya, sebuah tulisan di majalah dinding berbunyi: “Sebagian besar murid kelas 6 sudah membawa botol isi ulang!”",
       "image": "/covers/cover-k6-b3.jpg",
       "audioUrl": "",
       "points": [
@@ -9161,7 +9161,7 @@ export const allStructuredMateri = [
         }
       ]
     },
-    "bacaan": "Kelas 6 sedang belajar tentang sampah plastik. Mereka melakukan survei kepada 30 murid kelas 6 tentang wadah minum yang dibawa ke sekolah. Setiap jawaban dicatat dengan turus, lalu dihitung menjadi tabel frekuensi.\n\nWadah minum | Turus | Frekuensi (murid)\n\nBotol isi ulang | ||||/ ||||/ || | 12\n\nBotol plastik sekali pakai | ||||/ |||| | 9\n\nGelas plastik sekali pakai | ||||/ | | 6\n\nTidak membawa minum | ||| | 3\n\nKeesokan harinya, sebuah tulisan di majalah dinding berbunyi: “Sebagian besar murid kelas 6 sudah membawa botol isi ulang!”",
+    "bacaan": "Kelas 6 sedang belajar tentang sampah plastik. Mereka melakukan survei kepada 30 murid kelas 6 tentang wadah minum yang dibawa ke sekolah. Setiap jawaban dicatat dengan turus, lalu dihitung menjadi tabel frekuensi.\n\nWadah minum | Turus | Frekuensi (murid)\n\nBotol isi ulang | 卌 卌 ││ | 12\n\nBotol plastik sekali pakai | 卌 ││││ | 9\n\nGelas plastik sekali pakai | 卌 │ | 6\n\nTidak membawa minum | │││ | 3\n\nKeesokan harinya, sebuah tulisan di majalah dinding berbunyi: “Sebagian besar murid kelas 6 sudah membawa botol isi ulang!”",
     "tujuan": "Tujuan literasi: menganalisis informasi teks dan visual secara kritis, termasuk menguji sebuah klaim dengan data.Tujuan numerasi: menyajikan dan menganalisis data dalam tabel frekuensi dan diagram batang."
   },
   {
