@@ -5030,7 +5030,7 @@ export const allStructuredMateri = [
       "Kuis Bergambar"
     ],
     "materiContent": {
-      "text": "Sekolah mengadakan lomba kebersihan. Setiap kelas mengumpulkan sampah plastik selama satu minggu, lalu menyetorkannya ke bank sampah desa. Hasilnya disajikan dalam piktogram berikut.\n\nKelas | Piktogram (■ = 2 kantong)\n\nKelas 1 | ■ ■ ■\n\nKelas 2 | ■ ■ ■ ■\n\nKelas 3 | ■ ■ ■ ■ ■ ■\n\nKelas 4 | ■ ■ ■ ■ ■",
+      "text": "Sekolah mengadakan lomba kebersihan. Setiap kelas mengumpulkan sampah plastik selama satu minggu, lalu menyetorkannya ke bank sampah desa. Hasilnya disajikan dalam piktogram berikut.\n\nKelas | Piktogram (🗑️ = 2 kantong)\n\nKelas 1 | 🗑️ 🗑️ 🗑️\n\nKelas 2 | 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 3 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 4 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️",
       "image": "/covers/cover-k3-b8.jpg",
       "audioUrl": "",
       "points": [
@@ -5077,15 +5077,15 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k3-b8-1",
           "num": 1,
-          "questionText": "Satu ■ = 2 kantong. Kelas 3 punya 6 ■. Berapa kantong?",
+          "questionText": "Satu tempat sampah 🗑️ mewakili 2 kantong sampah. Kelas 3 mengumpulkan 6 tempat sampah 🗑️. Berapa kantong sampah seluruhnya?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
           "info": "",
           "points": 50,
           "options": [
-            "6",
-            "8",
-            "12"
+            "6 kantong",
+            "8 kantong",
+            "12 kantong"
           ],
           "correctOptionIndex": 2,
           "imageOptions": null,
@@ -5098,12 +5098,13 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "6 × 2 = 12."
+          "explanation": "Kelas 3 mengumpulkan 6 tempat sampah. Karena 1 tempat sampah mewakili 2 kantong, maka 6 × 2 = 12 kantong sampah.",
+          "image": "/quiz/k3-b8-piktogram-kebersihan.svg"
         },
         {
           "id": "q-materi-k3-b8-2",
           "num": 2,
-          "questionText": "Berdasarkan piktogram sampah di atas, kesimpulan manakah yang paling tepat?",
+          "questionText": "Berdasarkan data piktogram di atas, kesimpulan manakah yang benar?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
           "info": "",
@@ -5123,7 +5124,7 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Pada piktogram, Kelas 3 memiliki 6 gambar tempat sampah (6 × 2 = 12 kantong), yaitu jumlah terbanyak dibandingkan kelas lainnya.",
+          "explanation": "Pada piktogram, Kelas 3 memiliki tempat sampah terbanyak (6 tempat sampah = 12 kantong sampah). Jadi, Kelas 3 mengumpulkan sampah paling banyak.",
           "image": "/quiz/k3-b8-piktogram-kebersihan.svg"
         }
       ]
@@ -5162,15 +5163,15 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k3-b8-1",
           "num": 1,
-          "questionText": "Satu ■ = 2 kantong. Kelas 3 punya 6 ■. Berapa kantong?",
+          "questionText": "Satu tempat sampah 🗑️ mewakili 2 kantong sampah. Kelas 3 mengumpulkan 6 tempat sampah 🗑️. Berapa kantong sampah seluruhnya?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
           "info": "",
           "points": 50,
           "options": [
-            "6",
-            "8",
-            "12"
+            "6 kantong",
+            "8 kantong",
+            "12 kantong"
           ],
           "correctOptionIndex": 2,
           "imageOptions": null,
@@ -5183,12 +5184,13 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "6 × 2 = 12."
+          "explanation": "Kelas 3 mengumpulkan 6 tempat sampah. Karena 1 tempat sampah mewakili 2 kantong, maka 6 × 2 = 12 kantong sampah.",
+          "image": "/quiz/k3-b8-piktogram-kebersihan.svg"
         },
         {
           "id": "q-materi-k3-b8-2",
           "num": 2,
-          "questionText": "Berdasarkan piktogram sampah di atas, kesimpulan manakah yang paling tepat?",
+          "questionText": "Berdasarkan data piktogram di atas, kesimpulan manakah yang benar?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
           "info": "",
@@ -5208,12 +5210,12 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Pada piktogram, Kelas 3 memiliki 6 gambar tempat sampah (6 × 2 = 12 kantong), yaitu jumlah terbanyak dibandingkan kelas lainnya.",
+          "explanation": "Pada piktogram, Kelas 3 memiliki tempat sampah terbanyak (6 tempat sampah = 12 kantong sampah). Jadi, Kelas 3 mengumpulkan sampah paling banyak.",
           "image": "/quiz/k3-b8-piktogram-kebersihan.svg"
         }
       ]
     },
-    "bacaan": "Sekolah mengadakan lomba kebersihan. Setiap kelas mengumpulkan sampah plastik selama satu minggu, lalu menyetorkannya ke bank sampah desa. Hasilnya disajikan dalam piktogram berikut.\n\nKelas | Piktogram (■ = 2 kantong)\n\nKelas 1 | ■ ■ ■\n\nKelas 2 | ■ ■ ■ ■\n\nKelas 3 | ■ ■ ■ ■ ■ ■\n\nKelas 4 | ■ ■ ■ ■ ■",
+    "bacaan": "Sekolah mengadakan lomba kebersihan. Setiap kelas mengumpulkan sampah plastik selama satu minggu, lalu menyetorkannya ke bank sampah desa. Hasilnya disajikan dalam piktogram berikut.\n\nKelas | Piktogram (🗑️ = 2 kantong)\n\nKelas 1 | 🗑️ 🗑️ 🗑️\n\nKelas 2 | 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 3 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 4 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️",
     "tujuan": "Tujuan literasi: menulis kesimpulan berdasarkan data.Tujuan numerasi: membaca dan menyajikan data dalam piktogram (satu gambar mewakili lebih dari satu) dan diagram batang."
   },
   {
