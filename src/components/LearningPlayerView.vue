@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import {
   ArrowLeft,
   ArrowRight,
@@ -24,7 +24,12 @@ import {
   Hash,
   CheckSquare,
   Compass,
-  MapPin
+  MapPin,
+  BookOpen,
+  Volume2,
+  VolumeX,
+  ChevronDown,
+  ChevronUp
 } from '@lucide/vue'
 import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel } from '../lib/materiService'
 import { playMascotChime, playButtonPop } from '../lib/soundEffects'
@@ -90,7 +95,71 @@ const setPlaybackSpeed = (speed) => {
   }
 }
 
-// ==================== TAB 3: QUIZ (PILIHAN GANDA & GAMBAR SOAL) ====================
+// ==================== BACAAN MELEKAT DI ATAS KUIS ====================
+const readingText = computed(() => {
+  return props.materi?.bacaan || props.materi?.materiContent?.text || ''
+})
+
+const readingGoal = computed(() => {
+  return props.materi?.tujuan || ''
+})
+
+const isBacaanExpanded = ref(true)
+const isPlayingAudio = ref(false)
+let currentAudioElement = null
+
+const toggleAudioNarration = () => {
+  playButtonPop()
+  if (isPlayingAudio.value) {
+    stopAudioNarration()
+    return
+  }
+
+  const customAudioUrl = props.materi?.materiContent?.audioUrl || props.materi?.audioUrl
+  if (customAudioUrl) {
+    if (!currentAudioElement) {
+      currentAudioElement = new Audio(customAudioUrl)
+      currentAudioElement.onended = () => { isPlayingAudio.value = false }
+      currentAudioElement.onerror = () => { isPlayingAudio.value = false }
+    }
+    currentAudioElement.currentTime = 0
+    currentAudioElement.play().catch(() => { isPlayingAudio.value = false })
+    isPlayingAudio.value = true
+    return
+  }
+
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window && readingText.value) {
+    window.speechSynthesis.cancel()
+    const utterance = new SpeechSynthesisUtterance(readingText.value)
+    utterance.lang = 'id-ID'
+    utterance.rate = 0.9
+    utterance.onend = () => { isPlayingAudio.value = false }
+    utterance.onerror = () => { isPlayingAudio.value = false }
+    window.speechSynthesis.speak(utterance)
+    isPlayingAudio.value = true
+  }
+}
+
+const stopAudioNarration = () => {
+  if (currentAudioElement) {
+    currentAudioElement.pause()
+    currentAudioElement.currentTime = 0
+  }
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    window.speechSynthesis.cancel()
+  }
+  isPlayingAudio.value = false
+}
+
+watch(activeTab, () => {
+  stopAudioNarration()
+})
+
+onBeforeUnmount(() => {
+  stopAudioNarration()
+})
+
+// ==================== TAB 2: QUIZ (PILIHAN GANDA & GAMBAR SOAL) ====================
 const quizData = computed(() => {
   if (props.materi?.quiz?.questions?.length) {
     return props.materi.quiz
@@ -544,12 +613,12 @@ onMounted(() => {
                     activeTab === 'quiz' ? 'bg-white/20 text-[#FFDE7A]' : 'bg-[#FFDE7A]/40 text-[#2B3445]'
                   ]"
                 >
-                  <Sparkles class="w-5 h-5 text-[#2B3445]" />
+                  <BookOpen class="w-5 h-5 text-[#2B3445]" />
                 </div>
                 <div class="min-w-0">
                   <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">2. Quiz</h4>
                   <p :class="['text-xs truncate font-normal', activeTab === 'quiz' ? 'text-white/85' : 'text-[#5B6474]']">
-                    Kuis Interaktif
+                    Bacaan & Kuis
                   </p>
                 </div>
               </div>
@@ -754,8 +823,95 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- ==================== LANGKAH 2: QUIZ (PILIHAN GANDA & GAMBAR SOAL) ==================== -->
+    <!-- ==================== LANGKAH 2: QUIZ (BACAAN & KUIS INTERAKTIF) ==================== -->
     <div v-if="activeTab === 'quiz'" class="space-y-6 animate-soft-pop">
+      
+      <!-- ==================== KARTU BACAAN MELEKAT DI ATAS KUIS ==================== -->
+      <section
+        v-if="readingText"
+        class="bg-white rounded-3xl border-2 border-[#1E7A6F]/25 p-5 sm:p-7 shadow-xs space-y-4 text-left relative overflow-hidden transition-all duration-300"
+      >
+        <!-- Top Accent Strip -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1E7A6F] via-[#7FD4C4] to-[#FFDE7A]"></div>
+
+        <!-- Header Kartu Bacaan -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0 border border-[#1E7A6F]/20">
+              <BookOpen class="w-5 h-5 text-[#1E7A6F]" />
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#1E7A6F] text-white">
+                  Teks Bacaan Melekat
+                </span>
+                <span v-if="materi.title" class="text-xs font-semibold text-[#5B6474] hidden sm:inline">
+                  {{ materi.title }}
+                </span>
+              </div>
+              <h3 class="font-['Baloo_2'] text-lg sm:text-xl font-bold text-[#2B3445] mt-0.5 leading-snug">
+                Bacalah Cerita Ini Sebelum Menjawab Soal Kuis
+              </h3>
+            </div>
+          </div>
+
+          <!-- Aksi: Suara Narasi & Buka/Tutup Bacaan -->
+          <div class="flex items-center gap-2">
+            <!-- Tombol Dengar Narasi Suara -->
+            <button
+              type="button"
+              @click="toggleAudioNarration"
+              class="px-3 py-1.5 rounded-xl border border-[#1E7A6F]/30 bg-[#7FD4C4]/20 hover:bg-[#7FD4C4]/35 text-[#1E7A6F] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
+              :title="isPlayingAudio ? 'Hentikan suara' : 'Dengarkan suara cerita'"
+            >
+              <Volume2 v-if="!isPlayingAudio" class="w-3.5 h-3.5" />
+              <VolumeX v-else class="w-3.5 h-3.5 text-[#D97706]" />
+              <span>{{ isPlayingAudio ? 'Hentikan Suara' : 'Dengar Cerita' }}</span>
+            </button>
+
+            <!-- Toggle Sembunyikan / Buka -->
+            <button
+              type="button"
+              @click="isBacaanExpanded = !isBacaanExpanded; playButtonPop()"
+              class="px-3 py-1.5 rounded-xl border border-[#8F8575]/25 bg-[#FFF8F0] hover:bg-black/5 text-[#2B3445] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
+            >
+              <span>{{ isBacaanExpanded ? 'Sembunyikan' : 'Buka Bacaan' }}</span>
+              <ChevronUp v-if="isBacaanExpanded" class="w-3.5 h-3.5 text-[#5B6474]" />
+              <ChevronDown v-else class="w-3.5 h-3.5 text-[#5B6474]" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Tujuan Belajar (jika ada) -->
+        <div v-if="readingGoal && isBacaanExpanded" class="bg-[#FFF8F0] px-4 py-2.5 rounded-2xl border border-[#8F8575]/20 text-xs text-[#5B6474] flex items-start gap-2">
+          <Sparkles class="w-3.5 h-3.5 text-[#1E7A6F] shrink-0 mt-0.5" />
+          <p class="leading-relaxed">
+            <strong class="text-[#2B3445]">Tujuan Pembelajaran:</strong> {{ readingGoal }}
+          </p>
+        </div>
+
+        <!-- Konten Teks Bacaan -->
+        <div
+          v-show="isBacaanExpanded"
+          class="bg-[#FFF8F0]/80 p-5 sm:p-6 rounded-2xl border border-[#8F8575]/20 max-h-72 sm:max-h-80 overflow-y-auto space-y-3"
+        >
+          <p class="text-[#2B3445] font-['Lexend'] text-sm sm:text-base leading-relaxed sm:leading-loose whitespace-pre-line select-text">
+            {{ readingText }}
+          </p>
+        </div>
+
+        <!-- Ringkasan jika sedang disembunyikan -->
+        <div
+          v-if="!isBacaanExpanded"
+          @click="isBacaanExpanded = true; playButtonPop()"
+          class="bg-[#FFF8F0] p-3 rounded-2xl border border-dashed border-[#8F8575]/35 text-xs text-[#5B6474] flex items-center justify-between cursor-pointer hover:bg-[#7FD4C4]/15 transition"
+        >
+          <span class="truncate max-w-xl italic">"{{ readingText.slice(0, 110) }}..."</span>
+          <span class="text-[#1E7A6F] font-bold shrink-0 ml-2">Buka Cerita ▾</span>
+        </div>
+      </section>
+
+      <!-- ==================== KARTU KUIS AKTIF ==================== -->
       <div class="card-prisma p-6 sm:p-8 lg:p-10 space-y-6">
         
         <!-- Header Quiz -->
