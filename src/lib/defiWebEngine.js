@@ -10,22 +10,26 @@ const GEMINI_MODEL = 'gemini-1.5-flash'
 
 // ── 2. Persona Kak Defi untuk Gemini ──────────────────────────────────────
 const DEFI_SYSTEM_PROMPT = `
-Kamu adalah Defi, kakak pendamping belajar yang ramah, sabar, dan ceria di platform PRISMA untuk siswa SD (Kelas 1-6, termasuk siswa berkebutuhan khusus/ABK).
-Jawab pertanyaan siswa dalam bahasa Indonesia yang sederhana, hangat, dan mudah dipahami anak SD.
-Gunakan kalimat pendek (maksimal 10-12 kata per kalimat), berikan langkah-langkah jika perlu menggunakan angka 1. 2. 3. dalam satu paragraf mengalir tanpa enter/newline berlebihan.
-Selalu akhiri dengan satu kalimat penyemangat positif.
+Kamu adalah Kak Defi, teman belajar ceria dan pintar di PRISMA untuk siswa SD.
+Tugas utamamu adalah menjawab pertanyaan siswa secara TEPAT, SANGAT SINGKAT, dan JELAS demi menghemat token, namun tetap hangat dan ramah anak.
+
+Pedoman Wajib (Hemat Token):
+1. LANGSUNG ke inti jawaban! Jangan gunakan basa-basi atau kalimat pengantar yang panjang.
+2. Jelaskan dalam 2 sampai 3 kalimat pendek dan sederhana yang mudah dipahami anak SD.
+3. Jika berupa langkah cara/hitungan, tulis maksimal 2-3 butir langkah singkat (1., 2., 3.).
+4. Akhiri dengan satu kalimat penyemangat singkat (misalnya: "Tetap semangat belajar ya! ✨").
+5. Hindari kata-kata rumit atau penjelasan bertele-tele. Maksimal panjang jawaban 50-70 kata.
 `
 
 const DEFI_VISION_PROMPT = `
-Kamu adalah Kak Defi, kakak pendamping belajar yang ramah, sabar, dan ceria di platform media belajar PRISMA untuk siswa SD (termasuk siswa berkebutuhan khusus/ABK).
-Tugas utamamu adalah MEMBACA dan MENJELASKAN foto atau jepretan kamera yang diunggah siswa (bisa berupa foto tulisan tangan di buku tulis, lembar soal matematika/literasi, teks bacaan, atau gambar diagram).
+Kamu adalah Kak Defi, kakak pendamping belajar yang ramah dan ceria di PRISMA untuk siswa SD.
+Tugas utamamu adalah MEMBACA dan MENJELASKAN foto atau jepretan kamera tulisan tangan / buku soal siswa.
 
-Panduan penting:
-1. Bacalah tulisan tangan atau teks cetak pada foto dengan sangat teliti (OCR). Kenali angka, simbol matematika, dan kata-kata tulisan tangan siswa.
-2. Tuliskan kembali apa soal atau tulisan yang kamu lihat di foto tersebut secara singkat dan jelas (misalnya: "Dari fotomu, Kak Defi membaca soal berikut: ...").
-3. Berikan cara penyelesaian atau penjelasannya langkah demi langkah (1., 2., 3.) dengan bahasa Indonesia yang hangat, sederhana, ramah anak, dan mudah dipahami anak SD.
-4. Jangan gunakan kata-kata yang rumit. Jika ada perhitungan, jabarkan langkahnya dengan jelas dan runtut.
-5. Selalu akhiri dengan satu kalimat penyemangat positif yang menyenangkan!
+Panduan penting (Singkat & Jelas):
+1. Bacalah tulisan tangan atau teks cetak pada foto dengan teliti (OCR).
+2. Tuliskan kembali apa soal yang terbaca secara singkat.
+3. Berikan langkah penyelesaiannya secara ringkas dan runtut (1., 2., 3.) dengan bahasa yang mudah dipahami anak SD.
+4. Akhiri dengan satu kalimat penyemangat ceria.
 `
 
 // ── 3. Kamus Lemma & Sinonim Bahasa Indonesia (dari main.py) ───────────────
@@ -653,7 +657,13 @@ export function solveDynamicMath(query, kelas = null) {
   }
 }
 
-// ── 8. Pencarian Cerdas TF-IDF / Keyword di 421 Materi PRISMA ─────────────
+// ── 8. Pencarian Cerdas Dataset PRISMA (Ketat & Bebas Salah Tebak) ──────────
+const GENERIC_QUERY_WORDS = new Set([
+  'cara', 'buat', 'membuat', 'bikin', 'arti', 'maksud', 'jelaskan', 'pengertian',
+  'contoh', 'apa', 'siapa', 'kapan', 'dimana', 'bagaimana', 'mengapa', 'kenapa',
+  'berapa', 'apakah', 'ada', 'bisa', 'tahu', 'kak', 'defi', 'tanya', 'tolong'
+])
+
 let datasetCache = null
 
 export async function getClientDataset() {
@@ -673,13 +683,17 @@ export async function searchDefiDataset(query, filterKelas = null, filterKategor
   const dataset = await getClientDataset()
   if (!dataset || !dataset.length) return null
 
-  // Normalisasi & Lemmatisasi query
+  // Normalisasi & Ekstraksi kata konten spesifik
   const clean = query.toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
-  const rawWords = clean.split(/\s+/).filter(w => w.length > 1 && !INDO_STOPWORDS.has(w))
+  const allWords = clean.split(/\s+/).filter(w => w.length > 1 && !INDO_STOPWORDS.has(w))
+  const contentWords = allWords.filter(w => !GENERIC_QUERY_WORDS.has(w))
 
-  // Terapkan lemma & perluas sinonim
+  // Jika tidak ada kata subjek materi yang jelas, JANGAN dipaksa ambil dari CSV -> serahkan ke AI
+  if (contentWords.length === 0) return null
+
+  // Terapkan lemma & perluas sinonim untuk kata konten
   const queryTokens = new Set()
-  for (const w of rawWords) {
+  for (const w of contentWords) {
     const lemma = INDO_LEMMA_MAP[w] || w
     queryTokens.add(lemma)
     if (SYNONYMS[lemma]) {
@@ -705,17 +719,35 @@ export async function searchDefiDataset(query, filterKelas = null, filterKategor
     let score = 0
     const topic = (item.pertanyaan_atau_topik || '').toLowerCase()
     const keywords = (item.kata_kunci || '').toLowerCase()
-    const ans = (item.jawaban || '').toLowerCase()
 
-    // Cocok persis seluruh frasa
-    if (clean.length > 5 && topic.includes(clean)) {
-      score += 30
+    // Cocok persis seluruh frasa materi
+    if (clean.length > 8 && topic.includes(clean)) {
+      score += 40
     }
 
+    let matchedContentCount = 0
     for (const token of queryTokens) {
-      if (topic.includes(token)) score += 4.0
-      if (keywords.includes(token)) score += 3.0
-      if (ans.includes(token)) score += 0.5
+      let matched = false
+      if (topic.includes(token)) {
+        score += 12.0
+        matched = true
+      } else if (keywords.includes(token)) {
+        score += 8.0
+        matched = true
+      }
+      if (matched) matchedContentCount++
+    }
+
+    // Jika tidak ada kata materi yang cocok di judul atau kata kunci, lewati! JANGAN dipaksa!
+    if (matchedContentCount === 0) continue
+
+    // Ambang cakupan materi: minimal 60% kata materi harus cocok atau punya skor tinggi
+    const contentCoverage = matchedContentCount / contentWords.length
+    if (contentCoverage < 0.6 && score < 30) continue
+
+    // Nilai tambahan untuk kata pelengkap jika materi utama sudah cocok
+    for (const w of allWords.filter(w => GENERIC_QUERY_WORDS.has(w))) {
+      if (topic.includes(w)) score += 2.0
     }
 
     if (score > bestScore) {
@@ -724,12 +756,13 @@ export async function searchDefiDataset(query, filterKelas = null, filterKategor
     }
   }
 
-  // Ambang batas (threshold setara 0.35 di TF-IDF Python)
-  if (best && bestScore >= 5.0) {
+  // Ambang batas ketat: hanya ambil jika benar-benar yakin materi kurikulum cocok
+  // Jika ragu atau tidak cocok, kembalikan null agar dialihkan ke AI Gemini!
+  if (best && bestScore >= 20.0) {
     return {
       sumber: 'lokal_csv',
       status: 'success',
-      confidence: Math.min(1.0, Math.round((bestScore / 25) * 100) / 100),
+      confidence: Math.min(1.0, Math.round((bestScore / 40) * 100) / 100),
       jawaban: cleanJawaban(best.jawaban),
       metadata: {
         id_data: best.id_data,
@@ -758,7 +791,7 @@ export async function askGeminiWeb(prompt, base64Photo = null, mimeType = 'image
 
     // Tambahkan persona sistem
     const systemPrompt = base64Photo ? DEFI_VISION_PROMPT : DEFI_SYSTEM_PROMPT
-    const contextualPrompt = `Konteks siswa: ${kelas || 'Siswa SD umum'}.\n${prompt || 'Tolong baca dan jelaskan soal pada foto ini ya Kak Defi!'}`
+    const contextualPrompt = `Konteks siswa: ${kelas || 'Siswa SD umum'}.\nPertanyaan: ${prompt || 'Jawab pertanyaan ini ya Kak Defi!'}`
 
     parts.push({ text: `${systemPrompt}\n\nPertanyaan siswa: ${contextualPrompt}` })
 
@@ -776,8 +809,8 @@ export async function askGeminiWeb(prompt, base64Photo = null, mimeType = 'image
     const payload = {
       contents: [{ parts }],
       generationConfig: {
-        temperature: base64Photo ? 0.2 : 0.4,
-        maxOutputTokens: 800
+        temperature: base64Photo ? 0.2 : 0.3,
+        maxOutputTokens: base64Photo ? 500 : 180 // Hemat token: 180 token cukup untuk 2-3 kalimat padat jelas
       }
     }
 

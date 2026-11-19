@@ -88,7 +88,7 @@ export async function sendChatText({ pertanyaan, kelas = '', kategori = '' }) {
   const geminiAnswer = await askGeminiWeb(clean, null, null, kelas)
   if (geminiAnswer) {
     return {
-      sumber: 'gemini_vision',
+      sumber: 'gemini_ai',
       status: 'success',
       confidence: 1.0,
       jawaban: geminiAnswer,
