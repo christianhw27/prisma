@@ -1894,14 +1894,15 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k2-b1-2",
           "num": 2,
-          "questionText": "45 = ___ puluhan dan ___ satuan",
-          "instructionBadge": "Isi Angka",
-          "type": "fill_in_blank",
-          "info": "",
+          "questionText": "Lengkapilah nilai tempat bilangan 45 berikut:\n45 = ___ puluhan dan ___ satuan",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
+          "info": "Pilih pasangan nilai tempat yang benar",
           "points": 50,
           "options": [
-            "4",
-            "5"
+            "4 puluhan dan 5 satuan",
+            "5 puluhan dan 4 satuan",
+            "40 puluhan dan 5 satuan"
           ],
           "correctOptionIndex": 0,
           "imageOptions": null,
@@ -1910,14 +1911,11 @@ export const allStructuredMateri = [
           "rightItems": null,
           "orderItems": null,
           "correctOrder": null,
-          "expectedAnswers": [
-            "4",
-            "5"
-          ],
+          "expectedAnswers": null,
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Angka kiri puluhan, angka kanan satuan."
+          "explanation": "Pada bilangan 45, angka kiri (4) menempati nilai puluhan dan angka kanan (5) menempati nilai satuan. Jadi 45 = 4 puluhan dan 5 satuan."
         }
       ]
     },
