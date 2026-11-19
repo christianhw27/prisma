@@ -8,7 +8,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k1-b1.jpg",
     "description": "Belajar membaca kata dan kalimat sederhana melalui cerita Sari yang memetik tomat bersama Nenek, sekaligus belajar membilang benda sampai 20 dan menjumlahkan dengan benda konkret.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -20,7 +20,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Sari pergi ke kebun Nenek. Di kebun ada tomat merah. Sari memetik 5 tomat dan Nenek memetik 4 tomat. Semua tomat ditaruh di keranjang.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k1-b1.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -248,7 +248,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k1-b2.jpg",
     "description": "Melatih kemampuan menyimak percakapan antara Ibu dan Dimas serta belajar mengurangi bilangan sampai 20 dengan benda konkret.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -260,7 +260,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Ibu meminta tolong kepada Dimas, “Dimas, tolong ambil kue di meja, ya.” Dimas menjawab, “Baik, Bu.” Di meja ada 12 kue. Ibu meminta Dimas memberikan 5 kue untuk Bu Tini. Setelah kue diberikan, kue di meja tinggal sedikit. Ibu berterima kasih karena Dimas sudah membantu.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k1-b2.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -450,7 +450,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k1-b3.jpg",
     "description": "Belajar menceritakan isi gambar dengan kalimat sederhana serta mengenal bangun datar (segitiga, segi empat, lingkaran) dan posisi benda (atas, bawah, kiri, kanan).",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -462,7 +462,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kamar Rina rapi. Jendela kamarnya berbentuk persegi dan jam dindingnya berbentuk lingkaran. Jam itu ada di atas pintu. Bantal ada di atas kasur, sedangkan sandal ada di bawah kasur. Meja belajar ada di sebelah kiri kasur, dan lemari ada di sebelah kanan kasur.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k1-b3.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -694,7 +694,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k1-b4.jpg",
     "description": "Mengenal huruf vokal dan membaca suku kata melalui cerita Edo membantu Kakek mengambil telur, serta membandingkan banyak benda dan mengurutkan bilangan sampai 20\\.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -706,7 +706,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pagi ini Edo membantu Kakek mengambil telur di kandang ayam. Di kandang kiri ada 9 telur, dan di kandang kanan ada 12 telur. Kakek ingin tahu kandang mana yang telurnya lebih banyak, jadi Edo menghitung telur dengan teliti.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k1-b4.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -916,7 +916,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k1-b5.jpg",
     "description": "Belajar mengikuti petunjuk tertulis sederhana dalam membuat gelang serta mengenali, meniru, dan melanjutkan pola berulang (warna, bentuk, dan bilangan).",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -928,7 +928,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Dina membuat gelang untuk Ibu dari manik merah dan manik kuning. Ia memasang satu manik merah, lalu dua manik kuning, kemudian mengulanginya lagi dari awal. Susunan gelangnya menjadi merah, kuning, kuning, merah, kuning, kuning, dan seterusnya.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k1-b5.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -1146,7 +1146,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k1-b6.jpg",
     "description": "Mengenal kata berlawanan arti (antonim) dan membandingkan panjang, tinggi, serta berat benda secara langsung dalam persiapan lomba sekolah.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -1158,7 +1158,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Besok ada lomba di sekolah. Bu Guru membawa pita merah yang panjang dan pita biru yang pendek. Bu Guru juga membawa dua kotak hadiah. Kotak besar ternyata ringan karena isinya balon, sedangkan kotak kecil ternyata berat karena isinya kelereng. Lala tinggi dan Upik rendah, jadi Lala yang membantu menggantung pita di atas pintu.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k1-b6.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -1390,7 +1390,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k1-b7.jpg",
     "description": "Belajar menceritakan pengalaman secara berurutan menggunakan kata penghubung waktu serta mengenal nama hari, bagian hari, dan lama kegiatan.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -1402,7 +1402,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Bima bersekolah setiap hari Senin sampai Sabtu. Pada pagi hari, Bima mandi lalu sarapan, kemudian berangkat ke sekolah. Siang hari, ia pulang dan makan siang. Sore hari, Bima bermain bola bersama teman. Malam hari, ia belajar lalu tidur. Hari Minggu Bima libur dan membantu Ibu di kebun.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k1-b7.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -1616,7 +1616,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k1-b8.jpg",
     "description": "Belajar menyimak pertanyaan dan menjawab dengan kalimat lengkap serta mengelompokkan, membilang, dan menyajikan data dengan turus dan piktogram.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -1628,7 +1628,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Bu Guru menanyakan buah kesukaan murid-murid. Setiap anak lalu menempel gambar buah kesukaannya di papan. Ada 5 gambar pisang, 3 gambar jeruk, 7 gambar mangga, dan 2 gambar semangka. Hasilnya disusun menjadi piktogram berikut.\n\nBuah | Piktogram (● = 1 anak) | Banyak\n\nPisang | ● ● ● ● ● | 5\n\nJeruk | ● ● ● | 3\n\nMangga | ● ● ● ● ● ● ● | 7\n\nSemangka | ● ● | 2",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k1-b8.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -1739,7 +1739,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Hitung gambar di baris pisang."
+          "explanation": "Hitung gambar di baris pisang.",
+          "image": "/quiz/k1-b8-piktogram-buah.svg"
         }
       ]
     },
@@ -1856,7 +1857,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k2-b1.jpg",
     "description": "Memahami isi bacaan tentang kesehatan serta belajar membaca bilangan sampai 100, menentukan nilai tempat (puluhan dan satuan), dan membandingkan bilangan.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -1868,7 +1869,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Setiap pagi, Bayu sarapan sebelum berangkat sekolah. Ibu memasak nasi, telur, dan sayur bayam. Sarapan membuat badan kuat dan pikiran segar.\n\nHari Senin, kelas 2 mengadakan kegiatan makan buah bersama. Bu Guru membawa 45 jeruk dan 32 pisang. Sebelum makan, semua murid mencuci tangan dengan sabun.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k2-b1.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -2072,7 +2073,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k2-b2.jpg",
     "description": "Belajar menulis kalimat sederhana dengan huruf kapital dan tanda titik serta memahami pecahan setengah (1/2) dan seperempat (1/4).",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -2084,7 +2085,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Ibu membuat satu kue bolu bundar. Nisa dan adiknya, Raka, ingin makan kue. Ibu memotong kue menjadi 2 bagian sama besar. Nisa mendapat satu bagian, Raka juga mendapat satu bagian.\n\nSore harinya, Ibu membuat satu kue bolu lagi. Kue itu dipotong menjadi 4 bagian sama besar untuk Ayah, Kakek, Nisa, dan Raka. Semua senang karena bisa berbagi.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k2-b2.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -2300,7 +2301,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k2-b3.jpg",
     "description": "Belajar merespons dan mengajukan pertanyaan dengan santun dalam percakapan serta mengukur panjang dan berat dengan satuan tidak baku.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -2312,7 +2313,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Bu Ani bertanya, “Anak-anak, berapa panjang meja ini?” Dodi mengangkat tangan. “Boleh saya mengukur, Bu?” tanyanya. Dodi mengukur meja dengan jengkal tangannya. Panjang meja 6 jengkal Dodi.\n\nLalu Lala mengukur meja yang sama. Hasilnya 7 jengkal Lala. “Maaf, Bu, kenapa hasilnya berbeda?” tanya Lala dengan sopan. Bu Ani tersenyum. “Karena panjang jengkal tangan kalian tidak sama.”",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k2-b3.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -2500,7 +2501,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k2-b4.jpg",
     "description": "Melatih membaca nyaring teks pendek dengan lafal dan intonasi yang tepat serta mengenali dan melanjutkan pola bilangan lompat 2, 5, dan 10 sampai 100\\.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -2512,7 +2513,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Sore itu, Tegar dan Sinta bermain di pematang sawah. “Lihat, ada katak!” seru Sinta. Katak hijau melompat dari batu ke batu. Batu-batu itu sudah diberi nomor oleh Tegar.\n\nKatak mulai dari batu nomor 0, lalu melompat ke batu 2, 4, 6, dan 8. “Wah, katak itu selalu melewati satu batu!” kata Tegar sambil tertawa. Sinta pun ingin tahu ke batu nomor berapa katak itu akan melompat berikutnya.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k2-b4.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -2574,7 +2575,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Setiap lompatan tambah 2."
+          "explanation": "Setiap lompatan tambah 2.",
+          "image": "/quiz/k2-b4-lompat-katak.svg"
         },
         {
           "id": "q-materi-k2-b4-2",
@@ -2694,7 +2696,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k2-b5.jpg",
     "description": "Memahami dan mengikuti instruksi tertulis dalam permainan serta memahami makna tanda \"=\" sebagai keseimbangan nilai dan mencari bilangan yang belum diketahui.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -2706,7 +2708,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kak Rani membuat permainan timbangan. Semua kelereng sama beratnya. Dalam permainan ini, kelereng ditaruh di piring kiri dan piring kanan, dan timbangan harus seimbang. Jika timbangan miring, kelereng ditambahkan di piring yang lebih ringan.\n\nDi piring kiri ada 8 kelereng merah dan 5 kelereng biru. Di piring kanan ada 10 kelereng hijau. Timbangan miring ke kiri, jadi piring kanan perlu ditambah kelereng supaya seimbang.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k2-b5.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -2886,7 +2888,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k2-b6.jpg",
     "description": "Belajar menulis deskripsi singkat tentang bentuk benda serta mengenali ciri bangun datar dan menyusun atau mengurai bangun datar menjadi bangun lain.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -2898,7 +2900,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kakek membuat mainan dari kayu untuk Sari. Mainan itu bernama tangram. Tangram terdiri dari tujuh keping: lima segitiga, satu persegi, dan satu jajargenjang (segi empat yang miring).\n\nSari menyusun keping-keping itu menjadi bentuk rumah, perahu, dan kucing. “Hebat! Dari keping yang sama bisa jadi banyak bentuk,” kata Kakek. Malam harinya, Sari menulis tentang mainan barunya di buku harian.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k2-b6.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -3088,7 +3090,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k2-b7.jpg",
     "description": "Belajar membaca informasi dari jadwal kegiatan serta membaca jam tepat dan setengah jam dan membandingkan lama kegiatan.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -3100,7 +3102,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Raka menempel jadwal hari Minggu di dinding kamarnya.\n\nJam | Kegiatan\n\n06.00 | Bangun tidur dan mandi\n\n07.00 | Sarapan bersama keluarga\n\n08.30 | Kerja bakti di lingkungan RT\n\n10.00 | Bermain di rumah Doni\n\n12.00 | Makan siang\n\nRaka melihat jam dinding. Jarum pendek ada di antara angka 8 dan 9, sedangkan jarum panjang menunjuk angka 6. “Ayo, waktunya kerja bakti!” ajak Ayah.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k2-b7.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -3328,7 +3330,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k2-b8.jpg",
     "description": "Melatih percakapan jual beli dengan santun serta mengenal nilai uang rupiah dan menghitung total belanja serta kembalian sampai Rp20.000.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -3340,7 +3342,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Nisa disuruh Ibu membeli telur dan gula di warung Bu Siti. Sesampainya di warung, Nisa menyapa dengan sopan, “Selamat pagi, Bu Siti. Saya mau membeli telur dan gula.” Bu Siti membalas sapaan Nisa dan menyebutkan harganya: telur Rp8.000 dan gula Rp7.000. Nisa membayar dengan selembar uang Rp20.000. Bu Siti memberikan belanjaan dan kembaliannya, lalu Nisa berterima kasih, “Terima kasih, Bu.”",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k2-b8.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -3532,7 +3534,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k3-b1.jpg",
     "description": "Belajar menemukan ide pokok setiap paragraf melalui bacaan tentang petambak bandeng serta membaca, menulis, menentukan nilai tempat, dan membandingkan bilangan sampai 10.000.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -3544,7 +3546,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Desa Pak Hasan dekat dengan pantai. Banyak warga bekerja di tambak. Tambak adalah kolam besar untuk memelihara ikan bandeng dan udang.\n\nBulan ini, Pak Hasan panen bandeng. Ia mendapat 2.345 ekor bandeng. Tetangganya, Pak Karim, mendapat 3.150 ekor. Ikan-ikan itu dijual ke pasar dan ke tempat pengolahan ikan.\n\nPanen yang baik membutuhkan air tambak yang bersih. Karena itu, para petambak rajin membersihkan tambak. Mereka juga memberi pakan ikan setiap hari.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k3-b1.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -3724,7 +3726,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k3-b2.jpg",
     "description": "Belajar membaca kata-kata baru dengan fasih dan memahami artinya serta melakukan operasi perkalian dan pembagian bilangan sampai 100 dalam soal cerita.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -3736,7 +3738,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Besok kelas 3 mengadakan syukuran karena semua murid naik kelas. Wali kelas, Bu Rahma, meminta setiap kelompok membawa kue. Di kelas ada 6 kelompok. Setiap kelompok membawa 1 kotak kue lapis berisi 8 potong.\n\nPada hari acara, semua kue dikumpulkan di meja guru. Ada 24 murid di kelas 3. Bu Rahma membagikan kue sama banyak kepada semua murid. Sebelum makan, mereka berdoa bersama.\n\nDalam cerita ini ada beberapa kata baru. Syukuran adalah acara untuk berterima kasih kepada Tuhan. Kelompok adalah beberapa orang yang bekerja bersama. Wali kelas adalah guru yang bertanggung jawab atas satu kelas.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k3-b2.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -3956,7 +3958,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k3-b3.jpg",
     "description": "Belajar menulis teks laporan sederhana dari hasil pengukuran serta mengukur panjang dan berat dengan satuan baku (m, cm, kg, g).",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -3968,7 +3970,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Hari Kamis, petugas puskesmas datang ke sekolah. Mereka memeriksa kesehatan murid di ruang UKS. Satu per satu murid ditimbang dan diukur tingginya.\n\nBerat badan diukur dengan timbangan dalam satuan kilogram (kg). Tinggi badan diukur dengan alat pengukur tinggi dalam satuan sentimeter (cm).\n\nTinggi badan Wulan 128 cm dan beratnya 26 kg. Tinggi badan Fajar 1 meter 32 sentimeter dan beratnya 29 kg. Petugas berpesan agar murid makan makanan bergizi dan rajin berolahraga.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k3-b3.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -4188,7 +4190,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k3-b4.jpg",
     "description": "Belajar menemukan informasi penting dalam teks informasi serta menjumlahkan dan mengurangkan bilangan sampai 1.000 dengan teknik menyimpan dan meminjam.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -4200,7 +4202,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Sekolah mengadakan pameran kerajinan dari bahan bekas. Kelas 3 membuat tas dari bungkus kopi dan pot dari botol plastik. Pameran berlangsung selama dua hari di aula sekolah.\n\nPada hari pertama, pengunjung yang datang sebanyak 368 orang. Pada hari kedua, pengunjung bertambah menjadi 457 orang. Hasil penjualan kerajinan dipakai untuk membeli buku perpustakaan.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k3-b4.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -4380,7 +4382,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k3-b5.jpg",
     "description": "Melatih kemampuan membuat dan menjawab pertanyaan 5W1H dari bacaan serta mengenal, membandingkan, dan mengurutkan pecahan berpenyebut sampai 12\\.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -4392,7 +4394,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pada hari Sabtu, Ayah membuat roti bakar di dapur. Roti pertama dipotong menjadi 3 bagian sama besar untuk Ibu, Kak Dimas, dan Lia. Roti kedua, yang ukurannya sama, dipotong menjadi 6 bagian sama besar untuk teman-teman Kak Dimas yang datang bermain.\n\nLia memperhatikan potongan roti itu. “Ayah, mengapa potongan roti teman Kak Dimas lebih kecil?” tanyanya. Ayah tersenyum, “Karena rotinya dibagi untuk lebih banyak orang.”",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k3-b5.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -4628,7 +4630,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k3-b6.jpg",
     "description": "Belajar membaca informasi dari tabel jadwal serta membaca waktu dalam jam dan menit dan menghitung lama kegiatan.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -4640,7 +4642,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kelas 3 akan berwisata ke kebun binatang. Bu Rahma membagikan jadwal berikut.\n\nKegiatan | Mulai | Selesai\n\nPerjalanan berangkat | 07.15 | 08.45\n\nBerkeliling kebun binatang | 09.00 | 11.30\n\nMakan siang | 11.30 | 12.15\n\nPerjalanan pulang | 12.30 | 14.00\n\nBu Rahma berpesan, “Datanglah ke sekolah 15 menit sebelum bus berangkat, ya.”",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k3-b6.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -4832,7 +4834,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k3-b7.jpg",
     "description": "Belajar menulis teks deskripsi benda serta mengenali ciri bangun datar (sisi, sudut, sudut siku-siku) dan menghitung keliling bangun datar.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -4844,7 +4846,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Musim angin telah tiba. Arif membuat layang-layang dari bambu dan kertas minyak berwarna merah. Kerangkanya terdiri dari dua bilah bambu yang bersilangan tegak lurus. Tepi layang-layang diberi tali: dua sisi atas masing-masing 30 cm, dan dua sisi bawah masing-masing 45 cm.\n\nArif juga membuat bingkai foto berbentuk persegi panjang untuk adiknya. Panjang bingkai 20 cm dan lebarnya 15 cm.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k3-b7.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -5034,7 +5036,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k3-b8.jpg",
     "description": "Belajar menulis kesimpulan berdasarkan data serta membaca dan menyajikan data dalam piktogram berskala dan diagram batang.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -5046,7 +5048,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Sekolah mengadakan lomba kebersihan. Setiap kelas mengumpulkan sampah plastik selama satu minggu, lalu menyetorkannya ke bank sampah desa. Hasilnya disajikan dalam piktogram berikut.\n\nKelas | Piktogram (■ = 2 kantong)\n\nKelas 1 | ■ ■ ■\n\nKelas 2 | ■ ■ ■ ■\n\nKelas 3 | ■ ■ ■ ■ ■ ■\n\nKelas 4 | ■ ■ ■ ■ ■",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k3-b8.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -5236,7 +5238,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k4-b1.jpg",
     "description": "Melatih kemampuan menceritakan kembali isi cerita dengan urutan yang benar serta mengenal dan menerapkan konsep pecahan senilai.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -5248,7 +5250,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Malam itu ada rapat warga di rumah Pak RT. Pak RT memesan dua martabak manis yang sama besar di warung Bu Siti.\n\nMartabak pertama dipotong menjadi 4 bagian sama besar. Martabak kedua dipotong menjadi 8 bagian sama besar. Andi mengambil 2 potong dari martabak pertama. Dewi mengambil 4 potong dari martabak kedua.\n\n“Wah, Dewi mengambil lebih banyak!” seru Andi. Dewi menggeleng. “Coba lihat, bagian kita sama besar, kok.” Pak RT tertawa, lalu menjelaskan bahwa 2/4 dan 4/8 sama-sama setengah martabak.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k4-b1.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -5428,7 +5430,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k4-b2.jpg",
     "description": "Belajar menyajikan pendapat dengan pilihan kata, sikap tubuh, dan intonasi yang tepat serta mengenal hubungan antara pecahan, desimal, dan persen.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -5440,7 +5442,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Koperasi sekolah menempelkan pengumuman baru: “DISKON AKHIR BULAN! Semua buku tulis diskon 10%. Pensil diskon 25%.” Harga sebuah buku tulis Rp5.000, sedangkan sebuah pensil Rp2.000.\n\nTia dan Gilang membaca pengumuman itu. “Menurutku, kita beli pensil sekarang karena diskonnya paling besar,” kata Tia. Gilang menatap Tia dan menjawab dengan tenang, “Aku setuju, tetapi kita juga perlu buku tulis untuk ujian minggu depan.”",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k4-b2.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -5672,7 +5674,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k4-b3.jpg",
     "description": "Belajar menulis rangkaian kalimat yang beragam untuk menjelaskan data serta mengukur luas dan volume dengan satuan persegi dan kubus dan membaca diagram batang.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -5684,7 +5686,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kelas 4 punya kebun sayur di belakang sekolah. Kebun dibagi menjadi petak-petak persegi yang sama besar. Lahan kangkung terdiri dari 3 baris, setiap baris 4 petak. Lahan bayam terdiri dari 2 baris, setiap baris 5 petak.\n\nSetiap minggu, murid mencatat hasil panen kangkung dalam ikat. Mereka juga membuat bak kompos dari kotak-kotak kayu kecil berbentuk kubus. Bak itu panjangnya 3 kotak, lebarnya 2 kotak, dan tingginya 2 kotak.\n\nMinggu | Hasil panen kangkung (ikat)\n\n1 | 6\n\n2 | 8\n\n3 | 5\n\n4 | 9",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k4-b3.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -5876,7 +5878,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k4-b4.jpg",
     "description": "Memahami fungsi kata hubung (dan, lalu, tetapi, karena) dalam teks serta menjumlahkan dan mengurangkan pecahan berpenyebut sama.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -5888,7 +5890,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Menjelang ulang tahun sekolah, murid kelas 4 mengecat pagar. Pagar dibagi menjadi 8 bagian yang sama panjang. Hari Senin, kelompok Adi mengecat 3/8 bagian. Hari Selasa, kelompok Mira mengecat 2/8 bagian lagi.\n\nMereka ingin selesai pada hari Rabu, tetapi cat tinggal sedikit. Karena itu, Pak Kebun membeli cat baru, lalu semua murid bekerja sama menyelesaikan pagar.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k4-b4.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -6070,7 +6072,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k4-b5.jpg",
     "description": "Belajar menuliskan jawaban soal cerita dalam kalimat lengkap serta melakukan perkalian dan pembagian bersusun termasuk pembagian bersisa.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -6082,7 +6084,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pak Bowo punya peternakan ayam petelur di ujung desa. Setiap hari, ayam-ayamnya menghasilkan 245 butir telur. Telur-telur itu disusun di rak; satu rak berisi 30 butir.\n\nPak Bowo menjual telur ke warung-warung di desa. Hari ini ada 6 warung yang memesan, dan setiap warung memesan 2 rak telur.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k4-b5.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -6262,7 +6264,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k4-b6.jpg",
     "description": "Melatih membaca puisi dengan lafal, intonasi, dan ekspresi yang tepat serta mengenali dan mengembangkan pola bilangan membesar dan mengecil.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -6274,7 +6276,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Untuk pentas seni, panitia menyusun kursi penonton di aula. Baris pertama berisi 6 kursi, baris kedua 8 kursi, baris ketiga 10 kursi, dan seterusnya. Pada acara itu, Rara membacakan puisi karyanya sendiri.\n\nKebun SekolahkuTunas kecil tumbuh perlahan,disiram hujan, disapa mentari.Seperti aku yang terus belajar,setiap hari, tak kenal henti.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k4-b6.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -6454,7 +6456,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k4-b7.jpg",
     "description": "Belajar menulis teks petunjuk yang runtut serta menghitung keliling persegi dan persegi panjang dan mengenal jenis sudut.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -6466,7 +6468,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pak Karto ingin membuat kandang kambing berbentuk persegi panjang di belakang rumahnya. Panjang kandang 6 m dan lebarnya 4 m. Seluruh tepi kandang akan dipagari bambu, kecuali pintu selebar 1 m.\n\nAgar kandang kokoh, setiap pojoknya harus membentuk sudut siku-siku. Rina, anak Pak Karto, membantu memeriksa setiap pojok dengan penggaris segitiga.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k4-b7.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -6674,7 +6676,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k4-b8.jpg",
     "description": "Belajar menganalisis teks iklan sederhana (informasi, ajakan, klaim) serta menentukan faktor dan kelipatan bilangan dalam masalah sehari-hari.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -6686,7 +6688,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "KUE BASAH BU RATNATersedia kemasan isi 4, 6, dan 12 buah!Cocok untuk arisan, syukuran, dan ulang tahun.Pesan sekarang, dijamin segar setiap hari!\n\nBu Ratna menerima pesanan 24 kue lumpur. Ia ingin semua kue masuk ke dalam kotak tanpa ada yang tersisa, jadi ia perlu memilih kemasan yang tepat.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k4-b8.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -6878,7 +6880,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k5-b1.jpg",
     "description": "Menganalisis informasi dari teks visual (poster iklan) serta membaca nilai tempat bilangan sampai 1.000.000 dan menyelesaikan masalah keuangan.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -6890,7 +6892,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "TOKO SEPEDA MAJU JAYASepeda Gunung Anak — Rp850.000GRATIS helm untuk pembelian bulan Desember!Buka setiap hari pukul 08.00–17.00\n\nLaras melihat poster itu di papan pengumuman balai desa. Ia ingin sekali punya sepeda untuk berangkat sekolah. Tabungannya sekarang Rp475.000. Setiap minggu, Laras menabung Rp25.000 dari uang saku dan upah membantu ibunya berjualan di pasar.\n\n“Helmnya gratis, berarti aku harus beli bulan ini!” kata Laras. Ibu tersenyum, “Hitung dulu, Nak. Cukup atau belum uangmu?”",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k5-b1.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -7082,7 +7084,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k5-b2.jpg",
     "description": "Memahami struktur teks prosedur dan mempresentasikan langkahnya secara runtut serta menghitung operasi pecahan campuran, perkalian pecahan, dan desimal.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -7094,7 +7096,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Es Buah Segar (untuk 4 gelas)\n\nBahan: 1 1/2 gelas potongan semangka, 3/4 gelas potongan melon, 1/2 gelas nata de coco, 2 sendok makan sirup, air dingin, dan es batu secukupnya.\n\nLangkah-langkah:\n\nCuci tangan dan cuci buah sampai bersih.\n\nPotong semangka dan melon berbentuk dadu kecil.\n\nMasukkan semua buah dan nata de coco ke mangkuk besar.\n\nTuang air dingin dan sirup, lalu aduk perlahan.\n\nTambahkan es batu.\n\nSajikan dalam 4 gelas.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k5-b2.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -7302,7 +7304,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k5-b3.jpg",
     "description": "Belajar menulis paragraf deskripsi berdasarkan pengamatan (membedakan fakta dan perasaan) serta menentukan keliling dan luas bangun datar gabungan.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -7314,7 +7316,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pemerintah desa membangun taman bermain di samping balai desa. Bentuk taman seperti huruf L. Bagian pertama berbentuk persegi panjang dengan panjang 12 m dan lebar 8 m. Bagian kedua berbentuk persegi dengan sisi 6 m. Persegi itu menempel di atas ujung kiri persegi panjang, sehingga satu sisinya berimpit sepanjang 6 m.\n\nTaman akan ditanami rumput, dan seluruh tepinya akan dipagari bambu. Kepala desa mengajak warga bergotong royong pada hari Minggu.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k5-b3.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -7381,7 +7383,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Jumlahkan luas kedua bagian."
+          "explanation": "Jumlahkan luas kedua bagian.",
+          "image": "/quiz/k5-b3-taman-l.svg"
         },
         {
           "id": "q-materi-k5-b3-2",
@@ -7504,7 +7507,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k5-b4.jpg",
     "description": "Belajar menganalisis kata kunci dalam soal cerita untuk memilih cara penyelesaian masalah yang berkaitan dengan KPK dan FPB.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -7516,7 +7519,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Di desa ada dua kegiatan rutin. Anggota karang taruna membersihkan saluran air setiap 4 hari sekali. Ibu-ibu PKK merawat taman desa setiap 6 hari sekali. Hari ini, 1 Desember, kedua kelompok bekerja pada hari yang sama.\n\nSetelah bekerja, pengurus desa menyiapkan 24 kotak susu dan 36 bungkus roti untuk anak-anak yang ikut membantu. Semua makanan akan dimasukkan ke dalam bingkisan. Setiap bingkisan harus berisi susu dan roti dalam jumlah yang sama, tanpa ada sisa.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k5-b4.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -7726,7 +7729,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k5-b5.jpg",
     "description": "Memahami struktur dan kata sebab-akibat dalam teks eksplanasi serta mengukur besar sudut dalam derajat menggunakan busur dan mengenal jenis sudut.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -7738,7 +7741,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Di depan balai desa berdiri menara jam yang tinggi. Setiap satu jam, jarum panjangnya berputar satu putaran penuh, yaitu 360 derajat.\n\nMuka jam dibagi menjadi 12 angka yang jaraknya sama. Karena itu, sudut antara dua angka yang berdekatan adalah 360° : 12 = 30°. Pada pukul 3.00, kedua jarum membentuk sudut siku-siku, yaitu 90°. Pada pukul 6.00, kedua jarum membentuk garis lurus, yaitu 180°. Itulah sebabnya jam dapat dipakai untuk belajar tentang sudut.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k5-b5.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -7972,7 +7975,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k5-b6.jpg",
     "description": "Belajar membaca dan menafsirkan petunjuk dalam infografik serta menghitung volume kubus dan balok dan mengonversi satuan cm3 ke liter.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -7984,7 +7987,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kelas 5 ingin memelihara ikan di akuarium. Sebelumnya, mereka membaca infografik yang ditempel di dinding kelas.\n\nMERAWAT IKAN HIAS DI AKUARIUM1. Isi air sampai 6 cm di bawah bibir akuarium.2. Ganti 1/4 air setiap minggu.3. Beri makan 2 kali sehari, sedikit saja.4. Ingat: 1 liter = 1.000 cm³.\n\nAkuarium kelas berbentuk balok dengan panjang 40 cm, lebar 25 cm, dan tinggi 30 cm.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k5-b6.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -8051,7 +8054,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Panjang × lebar × tinggi."
+          "explanation": "Panjang × lebar × tinggi.",
+          "image": "/quiz/k5-b6-akuarium-balok.svg"
         },
         {
           "id": "q-materi-k5-b6-2",
@@ -8176,7 +8180,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k5-b7.jpg",
     "description": "Belajar membaca berita dan menemukan unsur 5W1H serta menghitung persen dari suatu jumlah dan menentukan hasil setelah kenaikan persen.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -8188,7 +8192,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Panen Padi Desa Sukamaju Naik 20 Persen\n\nSukamaju, Senin — Kelompok tani Desa Sukamaju memanen padi di lahan seluas 50 hektare. Tahun lalu, hasil panen mereka sebanyak 200 ton. Tahun ini, hasilnya naik 20 persen.\n\nKetua kelompok tani, Pak Joko, mengatakan kenaikan itu terjadi karena petani memakai bibit unggul dan mengatur pengairan sawah dengan baik. Sebanyak 25 persen hasil panen tahun ini akan disimpan di lumbung desa sebagai persediaan.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k5-b7.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -8398,7 +8402,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k5-b8.jpg",
     "description": "Belajar menulis teks laporan kegiatan sederhana serta membaca, membandingkan, mengurutkan, menjumlahkan, dan mengurangkan bilangan desimal.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -8410,7 +8414,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pada Pekan Olahraga Sekolah, kelas 5 mengikuti lomba lompat jauh di lapangan. Setiap peserta melompat satu kali, lalu hasilnya dicatat dalam meter.\n\nPeserta | Hasil lompatan (m)\n\nAndi | 2,45\n\nBunga | 2,8\n\nCitra | 2,54\n\nDeni | 2,08\n\nPanitia akan memberi medali kepada tiga peserta dengan lompatan terjauh.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k5-b8.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -8616,7 +8620,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k6-b1.jpg",
     "description": "Belajar menganalisis teks secara kritis untuk membedakan fakta dengan opini serta bernalar proporsional menggunakan rasio dan rasio satuan.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -8628,7 +8632,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pak Darto adalah petani padi di desa kami. Ia membuat pupuk cair sendiri. Petugas penyuluh pertanian mengajarinya mencampur 1 liter cairan pupuk dengan 4 liter air. Jika campurannya terlalu pekat, daun padi bisa layu. Jika terlalu encer, pupuk kurang bermanfaat.\n\nPak Darto juga perlu membeli kompos. Toko Subur menjual 5 kg kompos seharga Rp60.000. Toko Makmur menjual 3 kg kompos seharga Rp39.000. Tetangganya berkata, “Toko Makmur pasti lebih murah karena harganya di bawah Rp40.000.” Pak Darto memilih menghitung dulu sebelum membeli.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k6-b1.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -8818,7 +8822,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k6-b2.jpg",
     "description": "Belajar menulis teks petunjuk arah yang runtut dan jelas serta menentukan lokasi pada peta berpetak, mengenal ciri kubus dan balok, dan tampak bangun ruang.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -8830,7 +8834,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pramuka kelas 6 berkemah di lapangan desa. Kak Pembina membuat permainan mencari harta karun. Setiap regu mendapat peta berpetak. Kolom diberi huruf A sampai F dari kiri ke kanan. Baris diberi angka 1 sampai 6 dari atas ke bawah.\n\nTenda regu Elang ada di petak B2. Tiang bendera ada di petak D4. Petunjuknya berbunyi: “Dari tiang bendera, berjalanlah 1 petak ke kanan, lalu 1 petak ke bawah. Di sana ada kotak kayu berisi harta karun.”\n\nKotak kayu itu berbentuk balok. Kotak itu disusun dari kubus-kubus kecil: panjangnya 4 kubus, lebarnya 2 kubus, dan tingginya 3 kubus.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k6-b2.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -9018,7 +9022,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k6-b3.jpg",
     "description": "Melatih kemampuan menguji klaim dengan data secara kritis serta menyajikan dan menganalisis data dalam tabel frekuensi dan diagram batang.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -9030,7 +9034,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kelas 6 sedang belajar tentang sampah plastik. Mereka melakukan survei kepada 30 murid kelas 6 tentang wadah minum yang dibawa ke sekolah. Setiap jawaban dicatat dengan turus, lalu dihitung menjadi tabel frekuensi.\n\nWadah minum | Turus | Frekuensi (murid)\n\nBotol isi ulang | ||||/ ||||/ || | 12\n\nBotol plastik sekali pakai | ||||/ |||| | 9\n\nGelas plastik sekali pakai | ||||/ | | 6\n\nTidak membawa minum | ||| | 3\n\nKeesokan harinya, sebuah tulisan di majalah dinding berbunyi: “Sebagian besar murid kelas 6 sudah membawa botol isi ulang!”",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k6-b3.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -9210,7 +9214,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k6-b4.jpg",
     "description": "Belajar menyampaikan gagasan berbasis fakta dan imajinasi serta menentukan kejadian yang kemungkinannya lebih besar atau lebih kecil dalam percobaan acak.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -9222,7 +9226,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Pada acara jalan sehat desa, panitia menyiapkan undian doorprize. Di dalam kotak undian ada 50 kupon: 30 kupon bertuliskan “payung”, 15 kupon “kipas angin”, dan 5 kupon “sepeda”. Semua kupon sama bentuk dan ukurannya, lalu diaduk sampai tercampur.\n\nBima bersemangat. “Aku yakin pasti dapat sepeda!” katanya. Ayahnya tersenyum. “Mungkin saja, Nak. Tapi coba lihat dulu berapa banyak kupon sepeda di kotak itu.”",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k6-b4.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -9456,7 +9460,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Materi.jpg",
+    "image": "/covers/cover-k6-b5.jpg",
     "description": "Belajar memahami teks instruksi yang memuat beberapa syarat serta menyelesaikan operasi hitung campuran dengan urutan pengerjaan yang benar.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -9468,7 +9472,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Regu Elang mendapat tugas dari Kak Pembina: “Belilah perlengkapan kemah dengan uang kas Rp150.000. Syaratnya, beli 4 botol air mineral besar, 2 bungkus roti, dan 1 senter. Simpan sisa uang di kotak kas, lalu catat semua pengeluaran di buku regu.”\n\nDi toko, harga air mineral besar Rp6.000 per botol, roti Rp12.500 per bungkus, dan senter Rp45.000.",
-      "image": "/Banner_Materi.jpg",
+      "image": "/covers/cover-k6-b5.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -9650,7 +9654,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/es_batu_card.jpg",
+    "image": "/covers/cover-k6-b6.jpg",
     "description": "Memahami teks eksplanasi tentang benda berbentuk bundar di sekitar serta mengenal unsur lingkaran dan menghitung keliling serta luas lingkaran.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -9662,7 +9666,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Di belakang rumah Nenek ada sumur tua berbentuk lingkaran. Diameter bibir sumur itu 70 cm. Nenek juga punya tampah, yaitu wadah bundar dari anyaman bambu untuk menampi beras. Jari-jari tampah itu 28 cm.\n\nBanyak benda dibuat bundar karena bentuk lingkaran tidak punya sudut, sehingga tekanan dari segala arah tersebar merata dan benda menjadi lebih kuat. Bentuk bundar juga mudah diputar. Itulah sebabnya roda, sumur, dan tampah dibuat berbentuk lingkaran.",
-      "image": "/es_batu_card.jpg",
+      "image": "/covers/cover-k6-b6.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -9854,7 +9858,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard.jpg",
+    "image": "/covers/cover-k6-b7.jpg",
     "description": "Belajar menulis kesimpulan laporan percobaan berdasarkan data serta menentukan rata-rata (mean), median, dan modus dari sekumpulan data.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -9866,7 +9870,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Kelas 6 melakukan percobaan menanam kacang hijau di 8 gelas plastik. Setiap gelas diberi kapas basah dan disiram setiap pagi. Gelas-gelas itu diletakkan di tempat yang berbeda di dalam kelas.\n\nSetelah 7 hari, tinggi tanaman diukur dalam sentimeter: 8, 10, 7, 10, 12, 9, 10, 6. Tanaman tertinggi (12 cm) berada di dekat jendela yang terkena cahaya matahari. Tanaman terpendek (6 cm) berada di pojok kelas yang gelap.",
-      "image": "/Banner_Dashboard.jpg",
+      "image": "/covers/cover-k6-b7.jpg",
       "audioUrl": "",
       "points": [
         {
@@ -10056,7 +10060,7 @@ export const allStructuredMateri = [
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
     "badge": "Gratis",
-    "image": "/Banner_Dashboard2.jpg",
+    "image": "/covers/cover-k6-b8.jpg",
     "description": "Belajar menyampaikan gagasan tentang suatu tempat berdasarkan peta serta menggunakan skala untuk menghitung jarak sebenarnya dan jarak pada peta.",
     "duration": "± 5-7 menit",
     "activityType": "Materi + Video + Kuis",
@@ -10068,7 +10072,7 @@ export const allStructuredMateri = [
     ],
     "materiContent": {
       "text": "Karang taruna membuat peta Desa Sukamaju dengan skala 1 : 10.000. Pada peta, jarak dari balai desa ke sekolah 5 cm, dari sekolah ke puskesmas 8 cm, dan dari balai desa ke pantai 15 cm.\n\nPeta itu akan dipasang di depan balai desa agar tamu mudah menemukan tempat-tempat penting. Rani diminta menulis keterangan singkat di bawah peta.",
-      "image": "/Banner_Dashboard2.jpg",
+      "image": "/covers/cover-k6-b8.jpg",
       "audioUrl": "",
       "points": [
         {
