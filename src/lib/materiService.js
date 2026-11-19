@@ -700,11 +700,27 @@ function loadFromLocalStorage() {
   saveToLocalStorage()
 }
 
+function cleanOldLocalStorageKeys() {
+  try {
+    const keysToRemove = []
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i)
+      if (k && k.startsWith('prisma_materi_list_') && k !== STORAGE_KEY) {
+        keysToRemove.push(k)
+      }
+    }
+    keysToRemove.forEach(k => localStorage.removeItem(k))
+  } catch (e) {
+    console.warn('Cleanup old storage keys error:', e)
+  }
+}
+
 function saveToLocalStorage() {
+  cleanOldLocalStorageKeys()
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(materiList.value))
   } catch (e) {
-    console.error('Failed to save materi to localStorage:', e)
+    console.warn('Penyimpanan offline localStorage penuh, materi tetap berjalan di memori aplikasi:', e)
   }
 }
 
