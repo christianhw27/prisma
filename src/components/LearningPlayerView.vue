@@ -43,7 +43,7 @@ import { currentUser } from '../lib/authService'
 const props = defineProps({
   materi: {
     type: Object,
-    required: true
+    default: () => ({})
   }
 })
 
@@ -154,28 +154,6 @@ const stopAudioNarration = () => {
   }
   isPlayingAudio.value = false
 }
-
-watch(activeTab, () => {
-  stopAudioNarration()
-  nextTick(() => {
-    updateMatchingLines()
-  })
-})
-
-watch(currentQuestionIndex, () => {
-  nextTick(() => {
-    updateMatchingLines()
-  })
-})
-
-onMounted(() => {
-  window.addEventListener('resize', updateMatchingLines)
-})
-
-onBeforeUnmount(() => {
-  stopAudioNarration()
-  window.removeEventListener('resize', updateMatchingLines)
-})
 
 // ==================== TAB 2: QUIZ (PILIHAN GANDA & GAMBAR SOAL) ====================
 const quizData = computed(() => {
@@ -775,13 +753,44 @@ watch(() => props.materi?.id, () => {
   resetQuiz()
 })
 
+watch(activeTab, () => {
+  stopAudioNarration()
+  nextTick(() => {
+    updateMatchingLines()
+  })
+})
+
+watch(currentQuestionIndex, () => {
+  nextTick(() => {
+    updateMatchingLines()
+  })
+})
+
 onMounted(() => {
   window.scrollTo({ top: 0, behavior: 'instant' })
+  window.addEventListener('resize', updateMatchingLines)
+})
+
+onBeforeUnmount(() => {
+  stopAudioNarration()
+  window.removeEventListener('resize', updateMatchingLines)
 })
 </script>
 
 <template>
-  <div class="w-full flex flex-col space-y-6 animate-soft-pop pb-12 font-['Lexend'] text-[#2B3445]">
+  <!-- Loading State jika data materi sedang dimuat -->
+  <div v-if="!materi || !materi.id" class="w-full min-h-[60vh] flex flex-col items-center justify-center p-8 text-center space-y-4">
+    <div class="w-14 h-14 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center animate-spin text-2xl border border-[#7FD4C4]/40">
+      ⏳
+    </div>
+    <h3 class="font-['Baloo_2'] text-xl font-bold text-[#2B3445]">Menyiapkan Petualangan Belajar...</h3>
+    <p class="text-xs text-[#5B6474] max-w-sm">Mohon tunggu sebentar, sedang menyiapkan video dan kuis interaktif untukmu.</p>
+    <button @click="emit('back')" class="btn-prisma-mint px-5 py-2.5 text-xs font-semibold mt-2 cursor-pointer shadow-xs">
+      Kembali ke Daftar Materi
+    </button>
+  </div>
+
+  <div v-else class="w-full flex flex-col space-y-6 animate-soft-pop pb-12 font-['Lexend'] text-[#2B3445]">
     <!-- ==================== TOP BAR HEADER ==================== -->
     <header class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
       <div class="flex items-center gap-3">
@@ -798,20 +807,20 @@ onMounted(() => {
           <div class="flex items-center gap-2 flex-wrap">
             <!-- Badge Kelas: Latar Putih dengan border Garis -->
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-white text-[#2B3445] border border-[#8F8575]">
-              {{ getKelasFromLevel(materi.level) }}
+              {{ getKelasFromLevel(materi?.level) }}
             </span>
             <!-- Kategori Literasi (Peach) / Numerasi (Langit) -->
             <span
               :class="[
                 'px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-[#2B3445]',
-                materi.mataPelajaran === 'Bahasa Indonesia' ? 'bg-[#FFB899]' : 'bg-[#94C6FF]'
+                materi?.mataPelajaran === 'Bahasa Indonesia' ? 'bg-[#FFB899]' : 'bg-[#94C6FF]'
               ]"
             >
-              {{ materi.mataPelajaran || 'IPAS' }}
+              {{ materi?.mataPelajaran || 'IPAS' }}
             </span>
           </div>
           <h1 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445] leading-tight mt-0.5">
-            {{ materi.title }}
+            {{ materi?.title }}
           </h1>
         </div>
       </div>
@@ -923,10 +932,10 @@ onMounted(() => {
         <!-- CARD INFO MATERI DI SIDEBAR -->
         <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-5 shadow-xs space-y-3.5 text-left hidden sm:block">
           <!-- Thumbnail Cover Materi -->
-          <div v-if="materi.image" class="w-full aspect-video rounded-2xl overflow-hidden border border-[#8F8575]/25 bg-[#FFF8F0] shadow-2xs group relative">
+          <div v-if="materi?.image" class="w-full aspect-video rounded-2xl overflow-hidden border border-[#8F8575]/25 bg-[#FFF8F0] shadow-2xs group relative">
             <img
-              :src="materi.image"
-              :alt="materi.title"
+              :src="materi?.image"
+              :alt="materi?.title"
               class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
@@ -939,7 +948,7 @@ onMounted(() => {
           </div>
 
           <p class="text-xs text-[#5B6474] leading-relaxed">
-            {{ materi.description }}
+            {{ materi?.description }}
           </p>
 
           <div v-if="learningPoints.length" class="space-y-2 pt-2 border-t border-[#8F8575]/15">
@@ -973,10 +982,10 @@ onMounted(() => {
               <Video class="w-3.5 h-3.5 text-[#1E7A6F]" /> Langkah 1: Video Pembelajaran
             </span>
             <h2 class="font-['Baloo_2'] text-2xl sm:text-3xl font-bold text-[#2B3445] mt-1.5 leading-snug">
-              {{ materi.title }}
+              {{ materi?.title }}
             </h2>
             <p class="text-xs sm:text-sm text-[#5B6474] font-normal mt-0.5">
-              {{ materi.description }}
+              {{ materi?.description }}
             </p>
           </div>
 
@@ -1140,8 +1149,8 @@ onMounted(() => {
                 <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#1E7A6F] text-white">
                   Teks Bacaan Melekat
                 </span>
-                <span v-if="materi.title" class="text-xs font-semibold text-[#5B6474] hidden sm:inline">
-                  {{ materi.title }}
+                <span v-if="materi?.title" class="text-xs font-semibold text-[#5B6474] hidden sm:inline">
+                  {{ materi?.title }}
                 </span>
               </div>
               <h3 class="font-['Baloo_2'] text-lg sm:text-xl font-bold text-[#2B3445] mt-0.5 leading-snug">
@@ -1192,16 +1201,16 @@ onMounted(() => {
         >
           <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
             <!-- Ilustrasi Cerita Cover (Kiri / Atas) -->
-            <div v-if="materi.image" class="md:col-span-5 rounded-2xl overflow-hidden border border-[#8F8575]/25 bg-white shadow-xs">
+            <div v-if="materi?.image" class="md:col-span-5 rounded-2xl overflow-hidden border border-[#8F8575]/25 bg-white shadow-xs">
               <img
-                :src="materi.image"
-                :alt="materi.title"
+                :src="materi?.image"
+                :alt="materi?.title"
                 class="w-full h-44 sm:h-52 md:h-full max-h-64 object-cover"
               />
             </div>
 
             <!-- Paragraf Cerita (Kanan / Bawah) -->
-            <div :class="materi.image ? 'md:col-span-7' : 'col-span-12'" class="space-y-3">
+            <div :class="materi?.image ? 'md:col-span-7' : 'col-span-12'" class="space-y-3">
               <p class="text-[#2B3445] font-['Lexend'] text-sm sm:text-base leading-relaxed sm:leading-loose whitespace-pre-line select-text">
                 {{ readingText }}
               </p>

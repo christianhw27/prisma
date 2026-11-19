@@ -1230,7 +1230,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
     <!-- ==================== VIEW: DETAIL MATERI ==================== -->
     <main v-else-if="currentNav === 'materi-detail'" class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 pt-24 sm:pt-28 pb-6 flex-1">
       <MateriDetailView
-        :materi="activeMateriItem || materiList[0]"
+        :materi="activeMateriItem || (materiList && materiList.length ? materiList[0] : null)"
         @back="navigateTo('materi')"
         @start="handleStartAdventure"
       />
@@ -1239,7 +1239,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
     <!-- ==================== VIEW: LEARNING PLAYER ==================== -->
     <main v-else-if="currentNav === 'learning-player'" class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 pt-24 sm:pt-28 pb-6 flex-1">
       <LearningPlayerView
-        :materi="activeMateriItem || materiList[0]"
+        :materi="activeMateriItem || (materiList && materiList.length ? materiList[0] : null)"
         @back="navigateTo('materi-detail')"
         @finish="navigateTo('materi')"
         @open-settings="openSettings"
