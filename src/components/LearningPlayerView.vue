@@ -30,12 +30,13 @@ import {
   VolumeX,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
   PenTool,
   Move,
   Eraser,
   GripVertical
 } from '@lucide/vue'
-import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel } from '../lib/materiService'
+import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel, materiList } from '../lib/materiService'
 import { playMascotChime, playButtonPop, playCorrectChime, playEncouragingSound } from '../lib/soundEffects'
 import { saveQuizAttempt, submitToMateriLeaderboard } from '../lib/quizService'
 import { currentUser } from '../lib/authService'
@@ -47,7 +48,62 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['back', 'finish', 'open-settings'])
+const emit = defineEmits(['back', 'finish', 'open-settings', 'change-materi'])
+
+// ==================== NAVIGASI ANTAR-BAB (BAB SEBELUMNYA & BAB SELANJUTNYA) ====================
+const currentMateriIndex = computed(() => {
+  if (!props.materi?.id || !materiList.value?.length) return -1
+  return materiList.value.findIndex(m => String(m.id) === String(props.materi.id))
+})
+
+const currentKelasMateriList = computed(() => {
+  if (!props.materi?.level || !materiList.value?.length) return materiList.value || []
+  const curKelas = getKelasFromLevel(props.materi.level)
+  return materiList.value.filter(m => getKelasFromLevel(m.level) === curKelas)
+})
+
+const chapterNumberInKelas = computed(() => {
+  const list = currentKelasMateriList.value
+  if (!list.length) return 1
+  const idx = list.findIndex(m => String(m.id) === String(props.materi.id))
+  return idx >= 0 ? idx + 1 : 1
+})
+
+const totalChaptersInKelas = computed(() => {
+  return currentKelasMateriList.value.length || 8
+})
+
+const nextMateri = computed(() => {
+  const list = materiList.value || []
+  const idx = currentMateriIndex.value
+  if (idx >= 0 && idx < list.length - 1) {
+    return list[idx + 1]
+  }
+  return null
+})
+
+const prevMateri = computed(() => {
+  const list = materiList.value || []
+  const idx = currentMateriIndex.value
+  if (idx > 0) {
+    return list[idx - 1]
+  }
+  return null
+})
+
+const goToNextChapter = () => {
+  if (!nextMateri.value) return
+  playMascotChime()
+  emit('change-materi', nextMateri.value)
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const goToPrevChapter = () => {
+  if (!prevMateri.value) return
+  playButtonPop()
+  emit('change-materi', prevMateri.value)
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 
 // 2 Tahap Pembelajaran: 'video' | 'quiz'
 const activeTab = ref('video')
@@ -870,18 +926,18 @@ onBeforeUnmount(() => {
 
   <div v-else class="w-full flex flex-col space-y-6 animate-soft-pop pb-12 font-['Lexend'] text-[#2B3445]">
     <!-- ==================== TOP BAR HEADER ==================== -->
-    <header class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
+    <header class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 sm:p-5 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0">
         <button
           @click="emit('back')"
-          class="p-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]"
-          title="Kembali ke Daftar Materi"
+          class="p-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shrink-0"
+          title="Kembali ke Detail Materi"
         >
           <ArrowLeft class="w-4 h-4 text-[#1E7A6F]" />
           <span class="hidden sm:inline">Kembali</span>
         </button>
 
-        <div>
+        <div class="min-w-0">
           <div class="flex items-center gap-2 flex-wrap">
             <!-- Badge Kelas: Latar Putih dengan border Garis -->
             <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-white text-[#2B3445] border border-[#8F8575]">
@@ -896,20 +952,49 @@ onBeforeUnmount(() => {
             >
               {{ materi?.mataPelajaran || 'IPAS' }}
             </span>
+            <!-- Indikator Bab -->
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#7FD4C4]/25 text-[#1E7A6F]">
+              Bab {{ chapterNumberInKelas }} dari {{ totalChaptersInKelas }}
+            </span>
           </div>
-          <h1 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445] leading-tight mt-0.5">
+          <h1 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445] leading-tight mt-0.5 truncate">
             {{ materi?.title }}
           </h1>
         </div>
       </div>
 
-      <div class="flex items-center gap-2 self-end sm:self-center">
+      <!-- Quick Chapter Nav & Exit Actions -->
+      <div class="flex items-center gap-2 self-stretch sm:self-end md:self-center justify-end shrink-0 flex-wrap">
+        <!-- Tombol Bab Sebelumnya -->
+        <button
+          v-if="prevMateri"
+          @click="goToPrevChapter"
+          class="p-2 sm:px-3 sm:py-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold"
+          :title="`Bab Sebelumnya: ${prevMateri.title}`"
+        >
+          <ChevronLeft class="w-4 h-4 text-[#1E7A6F]" />
+          <span class="hidden lg:inline">Bab Sebelumnya</span>
+        </button>
+
+        <!-- Tombol Bab Selanjutnya (Utama) -->
+        <button
+          v-if="nextMateri"
+          @click="goToNextChapter"
+          class="btn-prisma-mint px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition active:scale-95 shadow-xs"
+          :title="`Bab Selanjutnya: ${nextMateri.title}`"
+        >
+          <span>Bab Selanjutnya</span>
+          <ChevronRight class="w-4 h-4 text-[#1E7A6F]" />
+        </button>
+
+        <!-- Selesai Belajar -->
         <button
           @click="emit('finish')"
-          class="btn-prisma-mint px-4 py-2.5 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-2 cursor-pointer transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]"
+          class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-white hover:bg-[#FFF8F0] border border-[#8F8575]/30 text-[#5B6474] hover:text-[#2B3445] text-xs sm:text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition active:scale-95"
+          title="Selesai Belajar & Kembali ke Daftar Materi"
         >
           <CheckCircle2 class="w-4 h-4 text-[#1E7A6F]" />
-          <span>Selesai Belajar</span>
+          <span class="hidden sm:inline">Keluar</span>
         </button>
       </div>
     </header>
@@ -1005,6 +1090,53 @@ onBeforeUnmount(() => {
               </span>
             </button>
           </nav>
+        </div>
+
+        <!-- CARD NAVIGASI BAB (BAB SEBELUMNYA & BAB SELANJUTNYA) -->
+        <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 shadow-xs space-y-3">
+          <div class="px-2 pt-0.5 flex items-center justify-between">
+            <span class="text-xs font-semibold text-[#5B6474] uppercase tracking-wider flex items-center gap-1.5">
+              <Compass class="w-3.5 h-3.5 text-[#1E7A6F]" />
+              <span>Navigasi Bab</span>
+            </span>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#FFDE7A]/35 text-[#B45309]">
+              Bab {{ chapterNumberInKelas }}/{{ totalChaptersInKelas }}
+            </span>
+          </div>
+
+          <!-- Highlight Bab Selanjutnya -->
+          <div v-if="nextMateri" class="p-3.5 rounded-2xl bg-[#7FD4C4]/15 border border-[#7FD4C4]/40 space-y-2 text-left">
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="font-bold text-[#1E7A6F] uppercase tracking-wider flex items-center gap-1">
+                <span>Bab Selanjutnya</span>
+                <span>👉</span>
+              </span>
+              <span class="text-[#5B6474] font-medium">{{ getKelasFromLevel(nextMateri.level) }}</span>
+            </div>
+            <h4 class="font-['Baloo_2'] text-sm font-bold text-[#2B3445] leading-snug line-clamp-2">
+              {{ nextMateri.title }}
+            </h4>
+            <button
+              @click="goToNextChapter"
+              class="w-full btn-prisma-mint py-2 px-3 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs transition active:scale-95"
+            >
+              <span>Buka Bab Selanjutnya</span>
+              <ArrowRight class="w-3.5 h-3.5 text-[#1E7A6F]" />
+            </button>
+          </div>
+          <div v-else class="p-3 rounded-2xl bg-[#FFF8F0] border border-[#8F8575]/20 text-center text-xs text-[#5B6474]">
+            🎉 Kamu berada di bab terakhir pada jenjang ini!
+          </div>
+
+          <!-- Tombol Bab Sebelumnya jika ada -->
+          <button
+            v-if="prevMateri"
+            @click="goToPrevChapter"
+            class="w-full p-2 rounded-xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/25 text-[#2B3445] transition cursor-pointer flex items-center justify-center gap-1.5 text-xs font-semibold"
+          >
+            <ChevronLeft class="w-3.5 h-3.5 text-[#1E7A6F]" />
+            <span class="truncate">Ke {{ prevMateri.title }}</span>
+          </button>
         </div>
 
         <!-- CARD INFO MATERI DI SIDEBAR -->
@@ -1173,7 +1305,7 @@ onBeforeUnmount(() => {
 
         <!-- Video Bottom Navigation -->
         <div class="pt-4 border-t border-[#8F8575]/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2.5 flex-wrap">
             <button
               v-if="selectedVideoIndex === 1"
               @click="switchVideo(2)"
@@ -1189,6 +1321,17 @@ onBeforeUnmount(() => {
             >
               <ChevronRight class="w-4 h-4 text-[#1E7A6F] rotate-180" />
               <span>Kembali ke Video 1 (Konsep)</span>
+            </button>
+
+            <!-- Shortcut Langsung ke Bab Selanjutnya -->
+            <button
+              v-if="nextMateri"
+              @click="goToNextChapter"
+              class="px-4 py-2.5 rounded-2xl bg-white hover:bg-[#7FD4C4]/15 border border-[#8F8575]/25 text-[#1E7A6F] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
+              :title="`Lanjut ke ${nextMateri.title}`"
+            >
+              <span>Lompat ke Bab Selanjutnya</span>
+              <ChevronRight class="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -2511,6 +2654,42 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
+          <!-- Next Chapter Celebration Banner (jika ada bab berikutnya) -->
+          <div
+            v-if="nextMateri"
+            class="p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-[#1E7A6F] to-[#145C53] text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-5 text-left border-2 border-[#7FD4C4]/35 animate-soft-pop"
+          >
+            <div class="flex items-center gap-4 min-w-0">
+              <div class="w-14 h-14 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-3xl shrink-0 shadow-xs">
+                🚀
+              </div>
+              <div class="space-y-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-[11px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-[#FFDE7A] text-[#2B3445]">
+                    Bab Selanjutnya
+                  </span>
+                  <span class="text-xs text-[#FFF8F0]/80 font-normal">
+                    {{ getKelasFromLevel(nextMateri.level) }}
+                  </span>
+                </div>
+                <h4 class="font-['Baloo_2'] text-xl sm:text-2xl font-bold leading-tight truncate text-white">
+                  {{ nextMateri.title }}
+                </h4>
+                <p class="text-xs sm:text-sm text-[#FFF8F0]/85 font-normal line-clamp-1">
+                  {{ nextMateri.description }}
+                </p>
+              </div>
+            </div>
+
+            <button
+              @click="goToNextChapter"
+              class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#FFDE7A] hover:bg-[#ffe699] text-[#2B3445] font-['Baloo_2'] font-bold text-base flex items-center justify-center gap-2.5 cursor-pointer shadow-md transition active:scale-95 shrink-0"
+            >
+              <span>Lanjut ke Bab Selanjutnya</span>
+              <ArrowRight class="w-5 h-5 text-[#2B3445]" />
+            </button>
+          </div>
+
           <!-- Question Review (Pembahasan Ramah Anak: Benar = Mint, Coba Lagi = Kuning) -->
           <div class="space-y-4 text-left">
             <h4 class="font-['Baloo_2'] text-xl font-bold text-[#2B3445] flex items-center gap-2">
@@ -2706,7 +2885,7 @@ onBeforeUnmount(() => {
           </div>
 
           <!-- Bottom Actions after Quiz -->
-          <div class="pt-6 border-t border-[#8F8575]/20 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div class="pt-6 border-t border-[#8F8575]/20 flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
             <button
               @click="resetQuiz"
               class="btn-prisma-white w-full sm:w-auto px-6 py-3 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
@@ -2723,9 +2902,19 @@ onBeforeUnmount(() => {
               <span>Tonton Ulang Video</span>
             </button>
 
+            <!-- Tombol Utama: Lanjut ke Bab Selanjutnya -->
+            <button
+              v-if="nextMateri"
+              @click="goToNextChapter"
+              class="btn-prisma-mint w-full sm:w-auto px-7 py-3 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-95"
+            >
+              <span>Lanjut ke Bab Selanjutnya</span>
+              <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
+            </button>
+
             <button
               @click="emit('finish')"
-              class="btn-prisma-mint w-full sm:w-auto px-7 py-3 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              class="px-6 py-3 rounded-2xl bg-white hover:bg-[#FFF8F0] border border-[#8F8575]/30 text-[#5B6474] hover:text-[#2B3445] text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
             >
               <CheckCircle2 class="w-4 h-4 text-[#1E7A6F]" />
               <span>Selesai & Keluar</span>

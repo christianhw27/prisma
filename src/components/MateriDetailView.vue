@@ -1,8 +1,10 @@
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import {
   ArrowLeft,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   Droplets,
   Wind,
   Cloud,
@@ -10,6 +12,7 @@ import {
   Video,
   Sparkles
 } from '@lucide/vue'
+import { materiList, getKelasFromLevel } from '../lib/materiService'
 
 const props = defineProps({
   materi: {
@@ -18,7 +21,26 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['back', 'start'])
+const emit = defineEmits(['back', 'start', 'change-materi'])
+
+const currentMateriIndex = computed(() => {
+  if (!props.materi?.id || !materiList.value?.length) return -1
+  return materiList.value.findIndex(m => String(m.id) === String(props.materi.id))
+})
+
+const nextMateri = computed(() => {
+  const list = materiList.value || []
+  const idx = currentMateriIndex.value
+  if (idx >= 0 && idx < list.length - 1) return list[idx + 1]
+  return null
+})
+
+const prevMateri = computed(() => {
+  const list = materiList.value || []
+  const idx = currentMateriIndex.value
+  if (idx > 0) return list[idx - 1]
+  return null
+})
 
 onMounted(() => {
   window.scrollTo({ top: 0, behavior: 'instant' })
@@ -28,8 +50,8 @@ onMounted(() => {
 <template>
   <div class="w-full flex flex-col flex-1 pt-4 sm:pt-6 pb-12 px-4 sm:px-6 lg:px-10 space-y-4 sm:space-y-5 bg-[#FFF8F0]">
     <div class="w-full max-w-[1440px] mx-auto space-y-4 sm:space-y-5">
-    <!-- Tombol Kembali -->
-    <div>
+    <!-- Header Navigasi Detail Materi & Switcher Bab -->
+    <div class="flex items-center justify-between gap-3 flex-wrap">
       <button
         @click="emit('back')"
         class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#5B6474] hover:text-[#1E7A6F] transition cursor-pointer"
@@ -37,6 +59,28 @@ onMounted(() => {
         <ArrowLeft class="w-4 h-4" />
         Kembali ke Materi
       </button>
+
+      <div class="flex items-center gap-2">
+        <button
+          v-if="prevMateri"
+          @click="emit('change-materi', prevMateri)"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#8F8575]/25 text-xs font-semibold text-[#5B6474] hover:text-[#1E7A6F] transition cursor-pointer"
+          :title="`Bab Sebelumnya: ${prevMateri.title}`"
+        >
+          <ChevronLeft class="w-3.5 h-3.5 text-[#1E7A6F]" />
+          <span class="hidden sm:inline">Bab Sebelumnya</span>
+        </button>
+
+        <button
+          v-if="nextMateri"
+          @click="emit('change-materi', nextMateri)"
+          class="btn-prisma-mint px-3.5 py-1.5 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer shadow-xs"
+          :title="`Bab Selanjutnya: ${nextMateri.title}`"
+        >
+          <span>Bab Selanjutnya</span>
+          <ChevronRight class="w-3.5 h-3.5 text-[#1E7A6F]" />
+        </button>
+      </div>
     </div>
 
     <!-- Main Card Detail Container -->
@@ -117,14 +161,24 @@ onMounted(() => {
             </div>
           </div>
 
-          <!-- CTA Mulai Petualangan -->
-          <div class="pt-4">
+          <!-- CTA Mulai Petualangan & Navigasi Bab -->
+          <div class="pt-4 flex items-center gap-3 flex-wrap">
             <button
               @click="emit('start')"
-              class="w-full sm:w-auto btn-prisma-mint px-8 py-3.5 font-semibold text-sm inline-flex items-center justify-center gap-2.5 cursor-pointer shadow-sm"
+              class="w-full sm:w-auto btn-prisma-mint px-8 py-3.5 font-semibold text-sm inline-flex items-center justify-center gap-2.5 cursor-pointer shadow-sm active:scale-95"
             >
               <span>Mulai Petualangan</span>
               <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
+            </button>
+
+            <button
+              v-if="nextMateri"
+              @click="emit('change-materi', nextMateri)"
+              class="w-full sm:w-auto btn-prisma-white px-6 py-3.5 font-semibold text-sm inline-flex items-center justify-center gap-2 cursor-pointer hover:border-[#1E7A6F]"
+              :title="`Lanjut ke ${nextMateri.title}`"
+            >
+              <span>Lanjut ke Bab Selanjutnya</span>
+              <ChevronRight class="w-4 h-4 text-[#1E7A6F]" />
             </button>
           </div>
         </div>

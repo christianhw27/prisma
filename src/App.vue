@@ -440,6 +440,14 @@ const handleStartAdventure = (item) => {
   window.scrollTo({ top: 0, behavior: 'instant' })
 }
 
+const handleSwitchMateri = (newMateri) => {
+  if (newMateri) {
+    activeMateriItem.value = newMateri
+    sessionStorage.setItem('prisma_active_materi_id', String(newMateri.id))
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }
+}
+
 const handlePreviewFromAdmin = (item) => {
   activeMateriItem.value = item
   currentNav.value = 'materi-detail'
@@ -1252,6 +1260,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
         :materi="activeMateriItem || (materiList && materiList.length ? materiList[0] : null)"
         @back="navigateTo('materi')"
         @start="handleStartAdventure"
+        @change-materi="handleSwitchMateri"
       />
     </main>
 
@@ -1262,6 +1271,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
         @back="navigateTo('materi-detail')"
         @finish="navigateTo('materi')"
         @open-settings="openSettings"
+        @change-materi="handleSwitchMateri"
       />
     </main>
 
