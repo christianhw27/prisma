@@ -511,6 +511,18 @@ const onSlotDragLeave = (slotIdx) => {
   }
 }
 
+// State khusus untuk Tipe Soal Mengurutkan / Ordering
+const getOrderingAnswersForCurrent = () => {
+  const cur = selectedAnswers.value[currentQuestionIndex.value]
+  const total = currentQuestion.value?.orderItems?.length || 0
+  if (Array.isArray(cur)) {
+    const res = [...cur]
+    while (res.length < total) res.push(null)
+    return res
+  }
+  return Array(total).fill(null)
+}
+
 const onSlotDrop = (slotIdx, e) => {
   e.preventDefault()
   dragOverSlotIdx.value = null
@@ -522,13 +534,13 @@ const onSlotDrop = (slotIdx, e) => {
   
   // Lepas jika item sudah berada di slot lain
   const oldIdx = cur.indexOf(item)
-  if (oldIdx >= 0) {
-    cur[oldIdx] = undefined
-  }
+  const existingInSlot = cur[slotIdx]
 
-  // Jika slot sudah terisi, pindahkan yang lama ke posisi lama atau kosongkan
+  if (oldIdx >= 0) {
+    cur[oldIdx] = existingInSlot || null
+  }
   cur[slotIdx] = item
-  selectedAnswers.value[currentQuestionIndex.value] = cur.filter(Boolean)
+  selectedAnswers.value[currentQuestionIndex.value] = cur
   draggedOrderItem.value = null
 }
 
@@ -541,31 +553,32 @@ const onDropToCardPool = (e) => {
   }
 }
 
-// State khusus untuk Tipe Soal Mengurutkan / Ordering
-const getOrderingAnswersForCurrent = () => {
-  const cur = selectedAnswers.value[currentQuestionIndex.value]
-  if (Array.isArray(cur)) return cur
-  return []
-}
-
 const addToOrdering = (item) => {
   playButtonPop()
   const cur = [...getOrderingAnswersForCurrent()]
   if (!cur.includes(item)) {
-    cur.push(item)
-    selectedAnswers.value[currentQuestionIndex.value] = cur
+    const firstEmpty = cur.findIndex(x => !x)
+    if (firstEmpty !== -1) {
+      cur[firstEmpty] = item
+      selectedAnswers.value[currentQuestionIndex.value] = cur
+    }
   }
 }
 
 const removeFromOrdering = (item) => {
   playButtonPop()
-  const cur = getOrderingAnswersForCurrent().filter(i => i !== item)
-  selectedAnswers.value[currentQuestionIndex.value] = cur
+  const cur = [...getOrderingAnswersForCurrent()]
+  const idx = cur.indexOf(item)
+  if (idx !== -1) {
+    cur[idx] = null
+    selectedAnswers.value[currentQuestionIndex.value] = cur
+  }
 }
 
 const resetOrdering = () => {
   playButtonPop()
-  selectedAnswers.value[currentQuestionIndex.value] = []
+  const total = currentQuestion.value?.orderItems?.length || 0
+  selectedAnswers.value[currentQuestionIndex.value] = Array(total).fill(null)
 }
 
 // State khusus untuk Isi Angka (Fill in the Blank)
@@ -637,7 +650,7 @@ const isQuestionAnswered = (idx) => {
     return typeof ans === 'object' && !Array.isArray(ans) && Object.keys(ans).length === (q.pairs?.length || 0)
   }
   if (q.type === 'ordering') {
-    return Array.isArray(ans) && ans.length === (q.orderItems?.length || 0)
+    return Array.isArray(ans) && ans.filter(Boolean).length === (q.orderItems?.length || 0)
   }
   if (q.type === 'multi_select') {
     return Array.isArray(ans) && ans.length > 0
@@ -659,7 +672,7 @@ const checkAnswerCorrectness = (q, ans) => {
   }
   if (q.type === 'ordering' && q.correctOrder?.length) {
     if (Array.isArray(ans)) {
-      return JSON.stringify(ans) === JSON.stringify(q.correctOrder)
+      return JSON.stringify(ans.filter(Boolean)) === JSON.stringify(q.correctOrder)
     }
     return false
   }
@@ -2178,14 +2191,14 @@ onMounted(() => {
                     <div v-else-if="q.type === 'ordering'" class="space-y-1">
                       <div class="flex flex-wrap gap-1.5 items-center">
                         <span
-                          v-for="(item, oIdx) in (selectedAnswers[idx] || [])"
+                          v-for="(item, oIdx) in ((selectedAnswers[idx] || []).filter(Boolean))"
                           :key="oIdx"
                           class="px-2 py-0.5 rounded-md bg-white border border-[#8F8575]/25 font-bold text-[#2B3445]"
                         >
                           {{ oIdx + 1 }}. {{ item }}
                         </span>
                       </div>
-                      <span v-if="!selectedAnswers[idx] || selectedAnswers[idx].length === 0" class="text-[#8F8575]">Belum diurutkan</span>
+                      <span v-if="!selectedAnswers[idx] || (selectedAnswers[idx] || []).filter(Boolean).length === 0" class="text-[#8F8575]">Belum diurutkan</span>
                     </div>
 
                     <!-- True False Review -->
