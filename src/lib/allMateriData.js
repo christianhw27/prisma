@@ -104,22 +104,22 @@ export const allStructuredMateri = [
           "info": "",
           "points": 50,
           "options": [
-            "Tomat Segar",
-            "Wortel Oranye",
-            "Apel Manis"
+            "Pilihan A",
+            "Pilihan B",
+            "Pilihan C"
           ],
           "correctOptionIndex": 0,
           "imageOptions": [
             {
-              "label": "Tomat Segar",
+              "label": "",
               "image": "/quiz/items/tomat.svg"
             },
             {
-              "label": "Wortel Oranye",
+              "label": "",
               "image": "/quiz/items/wortel.svg"
             },
             {
-              "label": "Apel Manis",
+              "label": "",
               "image": "/quiz/items/apel.svg"
             }
           ],
@@ -757,17 +757,17 @@ export const allStructuredMateri = [
           "info": "",
           "points": 50,
           "options": [
-            "Kandang Kiri (9 Telur)",
-            "Kandang Kanan (12 Telur)"
+            "Pilihan A",
+            "Pilihan B"
           ],
           "correctOptionIndex": 1,
           "imageOptions": [
             {
-              "label": "Kandang Kiri (9 Telur)",
+              "label": "",
               "image": "/quiz/items/kandang-9-telur.svg"
             },
             {
-              "label": "Kandang Kanan (12 Telur)",
+              "label": "",
               "image": "/quiz/items/kandang-12-telur.svg"
             }
           ],
@@ -1661,10 +1661,10 @@ export const allStructuredMateri = [
           "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
           "points": 50,
           "options": [
-            "Pisang (5 anak)",
-            "Jeruk (3 anak)",
-            "Mangga (7 anak - Terbanyak)",
-            "Semangka (2 anak)"
+            "Pisang",
+            "Jeruk",
+            "Mangga",
+            "Semangka"
           ],
           "correctOptionIndex": 2,
           "imageOptions": null,
@@ -2084,22 +2084,22 @@ export const allStructuredMateri = [
           "info": "",
           "points": 50,
           "options": [
-            "Pecahan 1/2 (Sama Besar)",
-            "Kue Tidak Sama Besar",
-            "Kue Dibagi 4 (Pecahan 1/4)"
+            "Pilihan A",
+            "Pilihan B",
+            "Pilihan C"
           ],
           "correctOptionIndex": 0,
           "imageOptions": [
             {
-              "label": "Pecahan 1/2 (Sama Besar)",
+              "label": "",
               "image": "/quiz/items/kue-setengah.svg"
             },
             {
-              "label": "Kue Tidak Sama Besar",
+              "label": "",
               "image": "/quiz/items/kue-tidak-sama.svg"
             },
             {
-              "label": "Kue Dibagi 4 (Pecahan 1/4)",
+              "label": "",
               "image": "/quiz/items/kue-seperempat.svg"
             }
           ],
@@ -3107,22 +3107,22 @@ export const allStructuredMateri = [
           "info": "",
           "points": 50,
           "options": [
-            "Pukul 07.00",
-            "Pukul 12.35",
-            "Pukul 07.30"
+            "Pilihan A",
+            "Pilihan B",
+            "Pilihan C"
           ],
           "correctOptionIndex": 0,
           "imageOptions": [
             {
-              "label": "Pukul 07.00",
+              "label": "",
               "image": "/quiz/items/jam-0700.svg"
             },
             {
-              "label": "Pukul 12.35",
+              "label": "",
               "image": "/quiz/items/jam-1235.svg"
             },
             {
-              "label": "Pukul 07.30",
+              "label": "",
               "image": "/quiz/items/jam-0730.svg"
             }
           ],
@@ -4395,17 +4395,17 @@ export const allStructuredMateri = [
           "info": "",
           "points": 50,
           "options": [
-            "Potongan 1/3 (Lebih Besar)",
-            "Potongan 1/6 (Lebih Kecil)"
+            "Pilihan A",
+            "Pilihan B"
           ],
           "correctOptionIndex": 0,
           "imageOptions": [
             {
-              "label": "Potongan 1/3 (Lebih Besar)",
+              "label": "",
               "image": "/quiz/items/roti-sepertiga.svg"
             },
             {
-              "label": "Potongan 1/6 (Lebih Kecil)",
+              "label": "",
               "image": "/quiz/items/roti-seperenam.svg"
             }
           ],
@@ -6493,22 +6493,22 @@ export const allStructuredMateri = [
           "info": "",
           "points": 50,
           "options": [
-            "Sudut Lancip (< 90°)",
-            "Sudut Siku-Siku (90°)",
-            "Sudut Tumpul (> 90°)"
+            "Pilihan A",
+            "Pilihan B",
+            "Pilihan C"
           ],
           "correctOptionIndex": 1,
           "imageOptions": [
             {
-              "label": "Sudut Lancip (< 90°)",
+              "label": "",
               "image": "/quiz/items/sudut-lancip.svg"
             },
             {
-              "label": "Sudut Siku-Siku (90°)",
+              "label": "",
               "image": "/quiz/items/sudut-sikusiku.svg"
             },
             {
-              "label": "Sudut Tumpul (> 90°)",
+              "label": "",
               "image": "/quiz/items/sudut-tumpul.svg"
             }
           ],

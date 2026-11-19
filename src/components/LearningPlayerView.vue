@@ -1623,16 +1623,16 @@ onBeforeUnmount(() => {
                     </span>
 
                     <!-- Image Container -->
-                    <div class="w-full aspect-square max-h-40 rounded-2xl flex items-center justify-center p-2 my-1 bg-transparent">
+                    <div class="w-full aspect-square max-h-48 rounded-2xl flex items-center justify-center p-3 my-2 bg-transparent">
                       <img
                         :src="opt.image"
-                        :alt="opt.label"
+                        :alt="opt.label || ('Pilihan ' + String.fromCharCode(65 + optIdx))"
                         class="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105 pointer-events-none"
                       />
                     </div>
 
-                    <!-- Image Label -->
-                    <p class="font-['Baloo_2'] text-base sm:text-lg font-bold text-[#2B3445] mt-1 leading-snug">
+                    <!-- Image Label (Hanya tampil jika ada label teks) -->
+                    <p v-if="opt.label && opt.label.trim()" class="font-['Baloo_2'] text-base sm:text-lg font-bold text-[#2B3445] mt-1 leading-snug">
                       {{ opt.label }}
                     </p>
                   </div>
@@ -2644,7 +2644,7 @@ onBeforeUnmount(() => {
                         class="w-12 h-12 rounded-xl object-contain bg-white border border-[#8F8575]/25 p-1"
                       />
                       <span class="text-[#2B3445] font-bold text-sm">
-                        {{ q.imageOptions?.[selectedAnswers[idx]]?.label || 'Tidak dijawab' }}
+                        {{ q.imageOptions?.[selectedAnswers[idx]]?.label || (selectedAnswers[idx] !== undefined ? 'Pilihan ' + String.fromCharCode(65 + selectedAnswers[idx]) : 'Tidak dijawab') }}
                       </span>
                     </div>
 
@@ -2716,7 +2716,7 @@ onBeforeUnmount(() => {
                         class="w-12 h-12 rounded-xl object-contain bg-white border border-[#1E7A6F]/30 p-1"
                       />
                       <span class="text-[#2B3445] font-bold text-sm">
-                        {{ q.imageOptions?.[q.correctOptionIndex]?.label }}
+                        {{ q.imageOptions?.[q.correctOptionIndex]?.label || ('Pilihan ' + String.fromCharCode(65 + q.correctOptionIndex)) }}
                       </span>
                     </div>
 
