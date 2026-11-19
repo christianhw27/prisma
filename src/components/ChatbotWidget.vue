@@ -15,7 +15,9 @@ import {
   Calculator,
   BookOpen,
   MessageCircle,
-  HelpCircle
+  HelpCircle,
+  Maximize2,
+  Minimize2
 } from '@lucide/vue'
 import {
   checkChatbotStatus,
@@ -36,6 +38,7 @@ const props = defineProps({
 
 // State widget
 const isOpen = ref(false)
+const isMaximized = ref(false)
 const showTooltip = ref(true)
 const isServerOnline = ref(false)
 const isHostedWithoutBackend = ref(false)
@@ -44,6 +47,12 @@ const isCheckingHealth = ref(false)
 const isLoading = ref(false)
 const isAutoSpeechEnabled = ref(false)
 const currentlySpeakingId = ref(null)
+
+const toggleMaximize = () => {
+  playButtonPop()
+  isMaximized.value = !isMaximized.value
+  scrollToBottom()
+}
 
 // Class filter
 const selectedKelas = ref(props.currentKelas || 'Semua')
@@ -351,13 +360,13 @@ const formatMarkdown = (txt) => {
       v-if="!isOpen"
       type="button"
       @click="toggleChat"
-      class="group relative w-15 h-15 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center border-3 border-white focus:outline-none focus:ring-4 focus:ring-[#7FD4C4]/50 cursor-pointer"
+      class="group relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center border-4 border-white focus:outline-none focus:ring-4 focus:ring-[#7FD4C4]/50 cursor-pointer"
       aria-label="Buka Chatbot Kak Defi"
     >
       <!-- Defi Mascot Icon -->
       <div class="relative flex items-center justify-center">
         <!-- Smiling Bot Mascot SVG -->
-        <svg class="w-8 h-8 sm:w-9 sm:h-9 group-hover:rotate-6 transition-transform duration-300 drop-shadow-sm" viewBox="0 0 36 36" fill="none">
+        <svg class="w-9 h-9 sm:w-11 sm:h-11 group-hover:rotate-6 transition-transform duration-300 drop-shadow-sm" viewBox="0 0 36 36" fill="none">
           <!-- Antena & Sparkle -->
           <line x1="18" y1="3" x2="18" y2="7" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
           <circle cx="18" cy="3" r="2.5" fill="#FFDE7A" stroke="white" stroke-width="1"/>
@@ -378,12 +387,10 @@ const formatMarkdown = (txt) => {
 
         <!-- Status Dot (Hijau bila server online, oranye standby) -->
         <span
-          class="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center shadow-xs"
-          :class="isServerOnline ? 'bg-emerald-500' : 'bg-amber-400'"
-          :title="isServerOnline ? 'Server Defi Online' : 'Mode Cadangan Cerdas'"
+          class="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full border-2 border-white flex items-center justify-center shadow-xs bg-emerald-500"
+          title="Kak Defi Siap Membantu"
         >
           <span
-            v-if="isServerOnline"
             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
           ></span>
         </span>
@@ -393,16 +400,21 @@ const formatMarkdown = (txt) => {
     <!-- ==================== JENDELA CHAT LENGKAP (EXPANDED) ==================== -->
     <div
       v-else
-      class="fixed inset-x-3 bottom-3 sm:static w-auto sm:w-[410px] h-[85vh] sm:h-[600px] max-h-[85vh] bg-[#FFF8F0] rounded-3xl shadow-2xl border-2 border-[#1E7A6F]/30 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+      class="fixed inset-x-2 bottom-2 sm:inset-auto sm:right-6 sm:bottom-6 bg-[#FFF8F0] rounded-3xl shadow-2xl border-2 border-[#1E7A6F]/30 flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in zoom-in-95 z-50"
+      :class="[
+        isMaximized
+          ? 'w-[calc(100vw-1rem)] sm:w-[680px] md:w-[780px] lg:w-[860px] h-[92vh] max-h-[95vh]'
+          : 'w-[calc(100vw-1rem)] sm:w-[480px] md:w-[540px] lg:w-[560px] h-[86vh] sm:h-[680px] md:h-[730px] max-h-[92vh]'
+      ]"
     >
       
       <!-- HEADER JENDELA CHAT -->
-      <header class="bg-gradient-to-r from-[#1E7A6F] to-[#165B53] text-white px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between shadow-md shrink-0">
+      <header class="bg-gradient-to-r from-[#1E7A6F] to-[#165B53] text-white px-4 py-3.5 sm:px-6 sm:py-4.5 flex items-center justify-between shadow-md shrink-0">
         <!-- Profil Kak Defi -->
-        <div class="flex items-center gap-3">
-          <div class="relative w-11 h-11 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center border border-white/20 shadow-xs">
+        <div class="flex items-center gap-3.5">
+          <div class="relative w-12 h-12 sm:w-13 sm:h-13 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center border border-white/20 shadow-xs shrink-0">
             <!-- Smiling Mini Bot SVG -->
-            <svg class="w-7 h-7 drop-shadow-sm" viewBox="0 0 36 36" fill="none">
+            <svg class="w-8 h-8 drop-shadow-sm" viewBox="0 0 36 36" fill="none">
               <line x1="18" y1="4" x2="18" y2="8" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
               <circle cx="18" cy="3.5" r="2" fill="#FFDE7A"/>
               <rect x="5" y="8" width="26" height="22" rx="10" fill="white" />
@@ -416,76 +428,86 @@ const formatMarkdown = (txt) => {
               <circle cx="26.5" cy="21" r="1.2" fill="#FF8A8A" />
             </svg>
             <span
-              class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#1E7A6F]"
-              :class="isServerOnline ? 'bg-emerald-400' : 'bg-amber-300'"
+              class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#1E7A6F] bg-emerald-400"
             ></span>
           </div>
           <div>
-            <div class="flex items-center gap-1.5">
-              <h2 class="font-['Baloo_2'] font-extrabold text-base sm:text-lg leading-tight tracking-wide text-white">
+            <div class="flex items-center gap-2">
+              <h2 class="font-['Baloo_2'] font-extrabold text-lg sm:text-xl leading-tight tracking-wide text-white">
                 Kak Defi
               </h2>
-              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-[#FFDE7A] text-[#2B3445] leading-none">
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-[#FFDE7A] text-[#2B3445] leading-none">
                 AI SD
               </span>
             </div>
-            <div class="flex items-center gap-1 text-[11px] text-white/80 leading-tight">
-              <span>{{ isServerOnline ? '🟢 Siap Membantu' : isHostedWithoutBackend ? '🟢 Mode Mandiri' : '🟡 Mode Cerdas' }}</span>
+            <div class="flex items-center gap-1.5 text-xs sm:text-sm text-white/80 leading-tight mt-0.5">
+              <span>🟢 Siap Membantu</span>
               <span class="text-white/50">•</span>
-              <span class="text-white/90 font-medium">Teman PRISMA</span>
+              <span class="text-white/95 font-medium">Teman Belajar PRISMA</span>
             </div>
           </div>
         </div>
 
         <!-- Tombol Aksi Header -->
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1.5">
           <!-- Tombol Auto-Voice (Membaca Jawaban) -->
           <button
             type="button"
             @click="toggleAutoSpeech"
-            class="p-2 rounded-xl transition cursor-pointer"
+            class="p-2 sm:p-2.5 rounded-xl transition cursor-pointer"
             :class="isAutoSpeechEnabled ? 'bg-[#FFDE7A] text-[#2B3445]' : 'bg-white/10 text-white hover:bg-white/20'"
             :title="isAutoSpeechEnabled ? 'Suara Narasi Otomatis Aktif' : 'Aktifkan Suara Narasi Otomatis (Ramah Siswa)'"
           >
-            <Volume2 v-if="isAutoSpeechEnabled" class="w-4 h-4" />
-            <VolumeX v-else class="w-4 h-4 opacity-75" />
+            <Volume2 v-if="isAutoSpeechEnabled" class="w-4.5 h-4.5" />
+            <VolumeX v-else class="w-4.5 h-4.5 opacity-75" />
           </button>
 
           <!-- Tombol Segarkan Obrolan -->
           <button
             type="button"
             @click="resetChat"
-            class="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition cursor-pointer"
+            class="p-2 sm:p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 transition cursor-pointer"
             title="Mulai Percakapan Baru"
           >
-            <RotateCcw class="w-4 h-4" />
+            <RotateCcw class="w-4.5 h-4.5" />
+          </button>
+
+          <!-- Tombol Perbesar / Perkecil Ukuran Jendela Chat -->
+          <button
+            type="button"
+            @click="toggleMaximize"
+            class="hidden sm:flex p-2 sm:p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 transition cursor-pointer"
+            :title="isMaximized ? 'Perkecil Ukuran Jendela' : 'Perbesar Ukuran Jendela Chat'"
+          >
+            <Minimize2 v-if="isMaximized" class="w-4.5 h-4.5" />
+            <Maximize2 v-else class="w-4.5 h-4.5" />
           </button>
 
           <!-- Tombol Tutup / Minimize -->
           <button
             type="button"
             @click="toggleChat"
-            class="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition cursor-pointer ml-1"
+            class="p-2 sm:p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 transition cursor-pointer ml-0.5"
             title="Tutup Chat"
           >
-            <X class="w-4 h-4" />
+            <X class="w-4.5 h-4.5" />
           </button>
         </div>
       </header>
 
       <!-- BAR PILIHAN KELAS (FILTER KONTEKS SISWA) -->
-      <div class="bg-white/80 border-b border-[#8F8575]/20 px-3 py-2 flex items-center justify-between gap-2 shrink-0 overflow-x-auto text-xs">
+      <div class="bg-white/85 border-b border-[#8F8575]/20 px-4 py-2.5 flex items-center justify-between gap-3 shrink-0 overflow-x-auto text-xs sm:text-sm">
         <div class="flex items-center gap-1.5 shrink-0 text-[#5B6474] font-medium">
-          <BookOpen class="w-3.5 h-3.5 text-[#1E7A6F]" />
+          <BookOpen class="w-4 h-4 text-[#1E7A6F]" />
           <span>Fokus:</span>
         </div>
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
           <button
             v-for="kelas in kelasOptions"
             :key="kelas"
             type="button"
             @click="selectedKelas = kelas; playButtonPop()"
-            class="px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition cursor-pointer"
+            class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer"
             :class="selectedKelas === kelas ? 'bg-[#1E7A6F] text-white shadow-xs' : 'bg-[#FFF8F0] text-[#5B6474] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/20'"
           >
             {{ kelas }}
@@ -496,7 +518,7 @@ const formatMarkdown = (txt) => {
       <!-- AREA DAFTAR PESAN (CHAT BODY) -->
       <div
         ref="chatContainerRef"
-        class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 bg-gradient-to-b from-[#FFF8F0] via-white to-[#FFF8F0]/50"
+        class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-5 bg-gradient-to-b from-[#FFF8F0] via-white to-[#FFF8F0]/50"
       >
         
         <!-- Render Tiap Pesan -->
@@ -509,13 +531,13 @@ const formatMarkdown = (txt) => {
           <!-- Bubble Pesan Siswa -->
           <div
             v-if="msg.sender === 'user'"
-            class="max-w-[85%] bg-gradient-to-br from-[#1E7A6F] to-[#165B53] text-white p-3.5 rounded-2xl rounded-br-xs shadow-sm space-y-2"
+            class="max-w-[85%] bg-gradient-to-br from-[#1E7A6F] to-[#165B53] text-white p-4 sm:p-5 rounded-3xl rounded-br-xs shadow-sm space-y-2.5"
           >
             <!-- Lampiran Foto jika ada -->
-            <div v-if="msg.photoUrl" class="rounded-xl overflow-hidden border-2 border-white/30 max-h-48 bg-black/10">
+            <div v-if="msg.photoUrl" class="rounded-2xl overflow-hidden border-2 border-white/30 max-h-56 bg-black/10">
               <img :src="msg.photoUrl" alt="Foto soal siswa" class="w-full h-auto object-cover" />
             </div>
-            <p class="text-sm font-normal leading-relaxed whitespace-pre-wrap">
+            <p class="text-sm sm:text-base font-normal leading-relaxed whitespace-pre-wrap">
               {{ msg.text }}
             </p>
           </div>
@@ -523,23 +545,23 @@ const formatMarkdown = (txt) => {
           <!-- Bubble Pesan Kak Defi -->
           <div
             v-else
-            class="max-w-[90%] flex items-start gap-2.5"
+            class="max-w-[92%] flex items-start gap-3"
           >
             <!-- Defi Avatar Bubble -->
-            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border border-white mt-1">
-              <Bot class="w-4 h-4" />
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border border-white mt-1">
+              <Bot class="w-5 h-5" />
             </div>
 
             <!-- Kartu Jawaban -->
-            <div class="bg-white p-3.5 sm:p-4 rounded-2xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-xs text-[#2B3445] space-y-2.5">
+            <div class="bg-white p-4 sm:p-5.5 rounded-3xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-xs text-[#2B3445] space-y-3">
               
               <!-- Badge Kategori Jawaban -->
-              <div class="flex items-center justify-between gap-2 border-b border-[#8F8575]/15 pb-1.5">
+              <div class="flex items-center justify-between gap-2 border-b border-[#8F8575]/15 pb-2">
                 <span
-                  class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold border"
+                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold border"
                   :class="getSourceBadge(msg.sumber).color"
                 >
-                  <component :is="getSourceBadge(msg.sumber).icon" class="w-3 h-3" />
+                  <component :is="getSourceBadge(msg.sumber).icon" class="w-3.5 h-3.5" />
                   <span>{{ getSourceBadge(msg.sumber).label }}</span>
                 </span>
 
@@ -547,17 +569,17 @@ const formatMarkdown = (txt) => {
                 <button
                   type="button"
                   @click="speakMessage(msg.id, msg.text)"
-                  class="inline-flex items-center gap-1 text-[11px] font-bold text-[#1E7A6F] hover:text-[#165B53] transition cursor-pointer px-1.5 py-0.5 rounded-md hover:bg-[#7FD4C4]/15"
+                  class="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E7A6F] hover:text-[#165B53] transition cursor-pointer px-2.5 py-1 rounded-lg hover:bg-[#7FD4C4]/15"
                   :title="currentlySpeakingId === msg.id ? 'Hentikan suara' : 'Dengarkan suara Kak Defi'"
                 >
-                  <Volume2 class="w-3.5 h-3.5" :class="currentlySpeakingId === msg.id ? 'animate-pulse text-[#D97706]' : ''" />
+                  <Volume2 class="w-4 h-4" :class="currentlySpeakingId === msg.id ? 'animate-pulse text-[#D97706]' : ''" />
                   <span>{{ currentlySpeakingId === msg.id ? 'Membaca...' : 'Dengarkan' }}</span>
                 </button>
               </div>
 
               <!-- Teks Jawaban Ramah Anak -->
               <div
-                class="text-sm leading-relaxed font-normal text-[#2B3445] whitespace-pre-wrap space-y-1.5"
+                class="text-sm sm:text-base leading-relaxed font-normal text-[#2B3445] whitespace-pre-wrap space-y-2"
                 v-html="formatMarkdown(msg.text)"
               ></div>
             </div>
@@ -565,18 +587,18 @@ const formatMarkdown = (txt) => {
         </div>
 
         <!-- QUICK CHIPS SUGGESTIONS (Hanya muncul jika baru mulai) -->
-        <div v-if="messages.length <= 2" class="pt-2 space-y-1.5">
-          <p class="text-[11px] font-bold text-[#5B6474] uppercase tracking-wider flex items-center gap-1">
-            <Sparkles class="w-3 h-3 text-[#1E7A6F]" />
+        <div v-if="messages.length <= 2" class="pt-2 space-y-2">
+          <p class="text-xs sm:text-sm font-bold text-[#5B6474] uppercase tracking-wider flex items-center gap-1.5">
+            <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
             <span>Coba tanyakan contoh ini:</span>
           </p>
-          <div class="flex flex-wrap gap-1.5">
+          <div class="flex flex-wrap gap-2">
             <button
               v-for="(chip, idx) in quickChips"
               :key="idx"
               type="button"
               @click="sendChip(chip.text)"
-              class="px-3 py-1.5 rounded-xl bg-white border border-[#8F8575]/25 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 text-[#2B3445] text-xs font-medium transition cursor-pointer text-left shadow-2xs active:scale-95"
+              class="px-3.5 py-2 rounded-2xl bg-white border border-[#8F8575]/25 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 text-[#2B3445] text-xs sm:text-sm font-medium transition cursor-pointer text-left shadow-2xs active:scale-95"
             >
               {{ chip.label }}
             </button>
@@ -584,16 +606,16 @@ const formatMarkdown = (txt) => {
         </div>
 
         <!-- INDIKATOR DEFI SEDANG BERPIKIR (TYPING INDICATOR) -->
-        <div v-if="isLoading" class="flex items-start gap-2.5">
-          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border border-white mt-1 animate-pulse">
-            <Bot class="w-4 h-4" />
+        <div v-if="isLoading" class="flex items-start gap-3">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border border-white mt-1 animate-pulse">
+            <Bot class="w-5 h-5" />
           </div>
-          <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-xs flex items-center gap-2">
-            <span class="text-xs text-[#5B6474] font-medium">Kak Defi sedang berpikir</span>
-            <div class="flex items-center gap-1">
-              <span class="w-1.5 h-1.5 bg-[#1E7A6F] rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-              <span class="w-1.5 h-1.5 bg-[#1E7A6F] rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-              <span class="w-1.5 h-1.5 bg-[#1E7A6F] rounded-full animate-bounce"></span>
+          <div class="bg-white px-5 py-3.5 rounded-3xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-xs flex items-center gap-2.5">
+            <span class="text-sm text-[#5B6474] font-medium">Kak Defi sedang berpikir</span>
+            <div class="flex items-center gap-1.5">
+              <span class="w-2 h-2 bg-[#1E7A6F] rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+              <span class="w-2 h-2 bg-[#1E7A6F] rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+              <span class="w-2 h-2 bg-[#1E7A6F] rounded-full animate-bounce"></span>
             </div>
           </div>
         </div>
@@ -601,18 +623,18 @@ const formatMarkdown = (txt) => {
       </div>
 
       <!-- PRATINJAU FOTO TERPILIH (JIKA ADA FOTO YANG AKAN DIUNGGAH) -->
-      <div v-if="photoPreviewUrl" class="px-4 py-2.5 bg-white border-t border-[#8F8575]/20 flex items-center justify-between gap-3 shrink-0">
-        <div class="flex items-center gap-2.5 overflow-hidden">
-          <img :src="photoPreviewUrl" alt="Thumbnail foto" class="w-10 h-10 object-cover rounded-lg border border-[#1E7A6F]" />
-          <div class="truncate text-xs">
+      <div v-if="photoPreviewUrl" class="px-4 py-3 bg-white border-t border-[#8F8575]/20 flex items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <img :src="photoPreviewUrl" alt="Thumbnail foto" class="w-12 h-12 object-cover rounded-xl border-2 border-[#1E7A6F]" />
+          <div class="truncate text-xs sm:text-sm">
             <p class="font-bold text-[#2B3445] truncate">{{ selectedPhoto?.name }}</p>
-            <p class="text-[11px] text-[#1E7A6F]">Foto siap dikirim ke Kak Defi 📸</p>
+            <p class="text-xs text-[#1E7A6F] font-semibold">Foto siap dikirim ke Kak Defi 📸</p>
           </div>
         </div>
         <button
           type="button"
           @click="removeSelectedPhoto"
-          class="p-1 rounded-lg text-[#8F8575] hover:text-red-500 hover:bg-red-50 transition cursor-pointer"
+          class="p-1.5 rounded-xl text-[#8F8575] hover:text-red-500 hover:bg-red-50 transition cursor-pointer"
           title="Batalkan foto"
         >
           <X class="w-4 h-4" />
@@ -620,8 +642,8 @@ const formatMarkdown = (txt) => {
       </div>
 
       <!-- FOOTER FORM INPUT PESAN -->
-      <footer class="p-3 bg-white border-t border-[#8F8575]/20 shrink-0">
-        <form @submit.prevent="handleSend" class="flex items-center gap-2">
+      <footer class="p-3.5 sm:p-4 bg-white border-t border-[#8F8575]/20 shrink-0">
+        <form @submit.prevent="handleSend" class="flex items-center gap-2.5">
           
           <!-- Hidden Input Foto -->
           <input
@@ -636,11 +658,11 @@ const formatMarkdown = (txt) => {
           <button
             type="button"
             @click="triggerFileInput"
-            class="p-2.5 rounded-2xl border-2 transition cursor-pointer shrink-0"
+            class="p-3 sm:p-3.5 rounded-2xl border-2 transition cursor-pointer shrink-0"
             :class="selectedPhoto ? 'bg-[#7FD4C4]/25 border-[#1E7A6F] text-[#1E7A6F]' : 'border-[#8F8575]/25 text-[#5B6474] hover:border-[#1E7A6F] hover:bg-[#FFF8F0]'"
             title="Kirim Foto Soal / Catatan"
           >
-            <ImageIcon class="w-5 h-5" />
+            <ImageIcon class="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
           <!-- Input Teks -->
@@ -649,7 +671,7 @@ const formatMarkdown = (txt) => {
               v-model="inputText"
               type="text"
               :placeholder="selectedPhoto ? 'Tuliskan pertanyaan foto ini...' : 'Tanya apa saja ke Kak Defi...'"
-              class="w-full py-2.5 pl-3.5 pr-2 rounded-2xl bg-[#FFF8F0]/70 border-2 border-[#8F8575]/25 focus:border-[#1E7A6F] focus:bg-white text-sm text-[#2B3445] placeholder-[#8F8575] focus:outline-none transition"
+              class="w-full py-3 sm:py-3.5 pl-4 pr-3 rounded-2xl bg-[#FFF8F0]/70 border-2 border-[#8F8575]/25 focus:border-[#1E7A6F] focus:bg-white text-sm sm:text-base text-[#2B3445] placeholder-[#8F8575] focus:outline-none transition shadow-inner"
               :disabled="isLoading"
             />
           </div>
@@ -658,14 +680,14 @@ const formatMarkdown = (txt) => {
           <button
             type="submit"
             :disabled="(!inputText.trim() && !selectedPhoto) || isLoading"
-            class="p-2.5 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white shadow-xs hover:shadow-md transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0 active:scale-95"
+            class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white shadow-xs hover:shadow-md transition cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0 active:scale-95"
             title="Kirim Pesan"
           >
-            <Send class="w-5 h-5" />
+            <Send class="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </form>
 
-        <div class="mt-2 text-center text-[10px] text-[#8F8575]">
+        <div class="mt-2 text-center text-xs text-[#8F8575]">
           PRISMA Defi AI • Pendamping Belajar Inklusif SD
         </div>
       </footer>
