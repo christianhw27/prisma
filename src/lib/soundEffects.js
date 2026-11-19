@@ -117,3 +117,65 @@ export function playFanfare() {
     osc.stop(now + 0.62)
   })
 }
+
+/**
+ * Play a cheerful, bright chime when answering correctly (instant feedback)
+ */
+export function playCorrectChime() {
+  if (!soundEnabled) return
+  const ctx = getAudioContext()
+  if (!ctx) return
+
+  const now = ctx.currentTime
+  // Uplifting triad: E5 -> G#5 -> B5
+  const notes = [659.25, 830.61, 987.77]
+
+  notes.forEach((freq, index) => {
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(freq, now + index * 0.09)
+
+    gain.gain.setValueAtTime(0.001, now + index * 0.09)
+    gain.gain.linearRampToValueAtTime(0.14, now + index * 0.09 + 0.02)
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.09 + 0.45)
+
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+
+    osc.start(now + index * 0.09)
+    osc.stop(now + index * 0.09 + 0.46)
+  })
+}
+
+/**
+ * Play a gentle, encouraging soft marimba tone for "coba lagi" (never harsh or negative)
+ */
+export function playEncouragingSound() {
+  if (!soundEnabled) return
+  const ctx = getAudioContext()
+  if (!ctx) return
+
+  const now = ctx.currentTime
+  // Soft, warm, playful two-tone prompt: F#4 -> A4
+  const notes = [369.99, 440.00]
+
+  notes.forEach((freq, index) => {
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'triangle'
+    osc.frequency.setValueAtTime(freq, now + index * 0.12)
+
+    gain.gain.setValueAtTime(0.001, now + index * 0.12)
+    gain.gain.linearRampToValueAtTime(0.1, now + index * 0.12 + 0.03)
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.12 + 0.35)
+
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+
+    osc.start(now + index * 0.12)
+    osc.stop(now + index * 0.12 + 0.36)
+  })
+}
