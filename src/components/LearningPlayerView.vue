@@ -1595,78 +1595,70 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
-      <!-- ==================== KARTU KUIS AKTIF ==================== -->
-      <div class="card-prisma p-6 sm:p-8 lg:p-10 space-y-6">
+      <!-- ==================== KARTU KUIS AKTIF (COMPACT & RAMAH ANAK SD) ==================== -->
+      <div class="card-prisma p-5 sm:p-7 lg:p-8 space-y-6 text-left">
         
-        <!-- Header Quiz -->
-        <div class="flex items-center justify-between border-b border-[#8F8575]/20 pb-5">
-          <div class="text-left">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#FFDE7A]/40 text-[#2B3445] border border-[#8F8575]/25">
-              <Sparkles class="w-3.5 h-3.5 text-[#1E7A6F]" /> Langkah 2: Kuis Interaktif
-            </span>
-            <h2 class="font-['Baloo_2'] text-2xl sm:text-3xl font-bold text-[#2B3445] mt-1.5">
-              {{ quizData.title || 'Kuis Pemahaman Materi' }}
-            </h2>
-          </div>
-
-          <div v-if="!isQuizSubmitted" class="text-right">
-            <span class="text-xs font-normal text-[#5B6474] block">Progres Kuis</span>
-            <span class="text-sm font-bold text-[#2B3445]">
-              {{ currentQuestionIndex + 1 }} / {{ questions.length }} Soal
-            </span>
-          </div>
-        </div>
-
         <!-- ==================== QUIZ ACTIVE QUESTION VIEW ==================== -->
-        <div v-if="!isQuizSubmitted && questions.length > 0" class="space-y-6">
+        <div v-if="!isQuizSubmitted && questions.length > 0" class="space-y-5">
           
-          <!-- Progress Bar -->
-          <div class="w-full h-2.5 bg-[#FFF8F0] rounded-full overflow-hidden border border-[#8F8575]/25">
-            <div
-              class="h-full bg-[#7FD4C4] transition-all duration-300 rounded-full"
-              :style="{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }"
-            ></div>
-          </div>
+          <!-- Compact Unified Header (Soal, Tipe, Progress, Poin) -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#8F8575]/20">
+            <!-- Left: Question Indicator & Type Badge -->
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#1E7A6F] text-white text-xs font-bold tracking-wide shadow-2xs">
+                <span>Soal {{ currentQuestionIndex + 1 }} dari {{ questions.length }}</span>
+              </span>
 
-          <!-- Question Card Box -->
-          <div class="bg-[#FFF8F0] rounded-3xl p-6 sm:p-8 border-2 border-[#8F8575]/25 space-y-6 text-left">
-            
-            <!-- Question Badge, Type & Points -->
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <div class="flex items-center gap-2">
-                <span class="px-3.5 py-1.5 rounded-xl bg-[#1E7A6F] text-white text-xs font-semibold">
-                  Pertanyaan {{ currentQuestionIndex + 1 }}
-                </span>
-                <span
-                  class="px-3 py-1 rounded-xl text-xs font-semibold border flex items-center gap-1.5"
-                  :class="
-                    currentQuestion.type === 'image_choice' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
-                    currentQuestion.type === 'matching' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
-                    currentQuestion.type === 'ordering' ? 'bg-[#7FD4C4]/40 text-[#2B3445] border-[#8F8575]/30' :
-                    currentQuestion.type === 'true_false' ? 'bg-[#FFB899]/40 text-[#2B3445] border-[#8F8575]/30' :
-                    currentQuestion.type === 'fill_in_blank' ? 'bg-[#7FD4C4]/35 text-[#2B3445] border-[#8F8575]/30' :
-                    currentQuestion.type === 'multi_select' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
-                    currentQuestion.type === 'grid_map' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
-                    'bg-white text-[#5B6474] border-[#8F8575]/25'
-                  "
-                >
-                  <Sparkles v-if="currentQuestion.type === 'image_choice'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                  <Link v-else-if="currentQuestion.type === 'matching'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                  <ArrowUpDown v-else-if="currentQuestion.type === 'ordering'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                  <Hash v-else-if="currentQuestion.type === 'fill_in_blank'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                  <CheckSquare v-else-if="currentQuestion.type === 'multi_select'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                  <Compass v-else-if="currentQuestion.type === 'grid_map'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                  <span>{{ currentQuestion.instructionBadge || 'Kuis Pilihan Ganda' }}</span>
-                </span>
-              </div>
-
-              <span class="px-3 py-1 rounded-xl bg-[#FFDE7A]/50 text-[#2B3445] border border-[#8F8575]/30 text-xs font-semibold">
-                +{{ currentQuestion.points || 50 }} Poin
+              <span
+                class="px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-1.5"
+                :class="
+                  currentQuestion.type === 'image_choice' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
+                  currentQuestion.type === 'matching' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
+                  currentQuestion.type === 'ordering' ? 'bg-[#7FD4C4]/40 text-[#2B3445] border-[#8F8575]/30' :
+                  currentQuestion.type === 'true_false' ? 'bg-[#FFB899]/40 text-[#2B3445] border-[#8F8575]/30' :
+                  currentQuestion.type === 'fill_in_blank' ? 'bg-[#7FD4C4]/35 text-[#2B3445] border-[#8F8575]/30' :
+                  currentQuestion.type === 'multi_select' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
+                  currentQuestion.type === 'grid_map' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
+                  'bg-[#FFF8F0] text-[#5B6474] border-[#8F8575]/25'
+                "
+              >
+                <Sparkles v-if="currentQuestion.type === 'image_choice'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                <Link v-else-if="currentQuestion.type === 'matching'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                <ArrowUpDown v-else-if="currentQuestion.type === 'ordering'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                <Hash v-else-if="currentQuestion.type === 'fill_in_blank'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                <CheckSquare v-else-if="currentQuestion.type === 'multi_select'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                <Compass v-else-if="currentQuestion.type === 'grid_map'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                <span>{{ currentQuestion.instructionBadge || 'Pilihan Ganda' }}</span>
               </span>
             </div>
 
-            <!-- Question Text -->
-            <h3 class="font-['Baloo_2'] text-xl sm:text-2xl font-bold text-[#2B3445] leading-snug">
+            <!-- Middle: Mini Progress Bar (sm+) -->
+            <div class="hidden sm:flex items-center gap-2.5 flex-1 max-w-xs mx-2">
+              <div class="w-full h-2.5 bg-[#FFF8F0] rounded-full overflow-hidden border border-[#8F8575]/20">
+                <div
+                  class="h-full bg-gradient-to-r from-[#7FD4C4] to-[#1E7A6F] transition-all duration-300 rounded-full"
+                  :style="{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }"
+                ></div>
+              </div>
+              <span class="text-[11px] font-bold text-[#5B6474] shrink-0">
+                {{ Math.round(((currentQuestionIndex + 1) / questions.length) * 100) }}%
+              </span>
+            </div>
+
+            <!-- Right: Points Badge -->
+            <div class="flex items-center gap-2">
+              <span class="px-3.5 py-1.5 rounded-xl bg-[#FFDE7A]/60 text-[#2B3445] border border-[#8F8575]/30 text-xs font-bold flex items-center gap-1.5 shadow-2xs">
+                <Sparkles class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                <span>+{{ currentQuestion.points || 50 }} Poin</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Main Question Box (Visual yang Menonjol untuk Anak SD) -->
+          <div class="space-y-6">
+            
+            <!-- Question Text (Besar & Jelas) -->
+            <h3 class="font-['Baloo_2'] text-xl sm:text-2xl lg:text-3xl font-bold text-[#2B3445] leading-snug">
               {{ currentQuestion.questionText }}
             </h3>
 
@@ -2563,44 +2555,45 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <!-- ==================== MODE 8: MULTIPLE CHOICE DEFAULT ==================== -->
-            <div v-else class="grid grid-cols-1 gap-3 pt-2">
+            <!-- ==================== MODE 8: MULTIPLE CHOICE DEFAULT (BESAR & VISUAL UNTUK ANAK SD) ==================== -->
+            <div v-else class="grid grid-cols-1 gap-3.5 pt-1">
               <button
                 v-for="(opt, optIdx) in currentQuestion.options"
                 :key="optIdx"
                 @click="selectAnswer(optIdx)"
                 :class="[
-                  'w-full p-4 sm:p-5 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-4 transition-all duration-150 cursor-pointer text-left border-2',
+                  'w-full p-4 sm:p-5 rounded-3xl font-medium flex items-center gap-4 sm:gap-5 transition-all duration-200 cursor-pointer text-left border-2 select-none group',
                   isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx
                     ? isCurrentQuestionCorrect
-                      ? 'bg-[#7FD4C4]/20 border-[#1E7A6F] text-[#1E7A6F] shadow-sm ring-4 ring-[#7FD4C4]/40 font-bold'
-                      : 'bg-[#FFDE7A]/30 border-[#D97706] text-[#B45309] shadow-sm ring-4 ring-[#FFDE7A]/50 font-bold'
+                      ? 'bg-[#7FD4C4]/20 border-[#1E7A6F] text-[#1E7A6F] shadow-sm ring-4 ring-[#7FD4C4]/40 scale-[1.01]'
+                      : 'bg-[#FFDE7A]/30 border-[#D97706] text-[#B45309] shadow-sm ring-4 ring-[#FFDE7A]/50 scale-[1.01]'
                     : isCurrentQuestionChecked && optIdx === currentQuestion.correctOptionIndex && !isCurrentQuestionCorrect
-                    ? 'bg-[#7FD4C4]/15 border-2 border-dashed border-[#1E7A6F] text-[#1E7A6F] font-bold'
+                    ? 'bg-[#7FD4C4]/15 border-2 border-dashed border-[#1E7A6F] text-[#1E7A6F]'
                     : selectedAnswers[currentQuestionIndex] === optIdx
-                    ? 'bg-white border-[#1E7A6F] text-[#2B3445] shadow-sm ring-2 ring-[#7FD4C4]/30'
-                    : 'bg-white border-[#8F8575]/25 hover:border-[#1E7A6F] text-[#2B3445]'
+                    ? 'bg-white border-[#1E7A6F] text-[#2B3445] shadow-md ring-4 ring-[#7FD4C4]/30 scale-[1.01]'
+                    : 'bg-white border-[#8F8575]/25 hover:border-[#1E7A6F] hover:bg-[#FFF8F0]/60 hover:shadow-sm text-[#2B3445]'
                 ]"
               >
-                <!-- Option Letter Badge (A, B, C, D) -->
+                <!-- Option Letter Badge (A, B, C, D) - Big, tactile & playful -->
                 <span
                   :class="[
-                    'w-9 h-9 rounded-xl font-bold text-sm flex items-center justify-center shrink-0 transition-colors',
+                    'w-11 h-11 sm:w-13 sm:h-13 rounded-2xl font-bold font-[\'Baloo_2\'] text-lg sm:text-xl flex items-center justify-center shrink-0 transition-all duration-200 shadow-2xs',
                     isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx
                       ? isCurrentQuestionCorrect
-                        ? 'bg-[#1E7A6F] text-white'
-                        : 'bg-[#D97706] text-white'
+                        ? 'bg-[#1E7A6F] text-white ring-2 ring-[#1E7A6F]'
+                        : 'bg-[#D97706] text-white ring-2 ring-[#D97706]'
                       : isCurrentQuestionChecked && optIdx === currentQuestion.correctOptionIndex && !isCurrentQuestionCorrect
-                      ? 'bg-[#1E7A6F] text-white'
+                      ? 'bg-[#1E7A6F] text-white ring-2 ring-[#1E7A6F]'
                       : selectedAnswers[currentQuestionIndex] === optIdx
                       ? 'bg-[#1E7A6F] text-white'
-                      : 'bg-[#FFF8F0] text-[#2B3445] border border-[#8F8575]/25'
+                      : 'bg-[#FFF8F0] text-[#2B3445] border-2 border-[#8F8575]/20 group-hover:border-[#1E7A6F]/50 group-hover:bg-[#7FD4C4]/20'
                   ]"
                 >
                   {{ String.fromCharCode(65 + optIdx) }}
                 </span>
 
-                <span class="flex-1 font-semibold leading-snug">
+                <!-- Option Text - Large & Clear for Elementary Students -->
+                <span class="flex-1 font-['Baloo_2'] text-base sm:text-xl font-bold text-[#2B3445] leading-snug">
                   {{ opt }}
                 </span>
 
@@ -2608,24 +2601,24 @@ onBeforeUnmount(() => {
                 <span
                   v-if="isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx"
                   :class="[
-                    'px-3 py-1 rounded-full text-xs font-bold text-white shrink-0 flex items-center gap-1',
+                    'px-3.5 py-1.5 rounded-full text-xs font-bold text-white shrink-0 flex items-center gap-1 shadow-xs',
                     isCurrentQuestionCorrect ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'
                   ]"
                 >
-                  <Check v-if="isCurrentQuestionCorrect" class="w-3.5 h-3.5" />
-                  <Info v-else class="w-3.5 h-3.5" />
+                  <Check v-if="isCurrentQuestionCorrect" class="w-4 h-4" />
+                  <Info v-else class="w-4 h-4" />
                   <span>{{ isCurrentQuestionCorrect ? 'Tepat! 🎉' : 'Pilihanmu 💡' }}</span>
                 </span>
                 <span
                   v-else-if="isCurrentQuestionChecked && optIdx === currentQuestion.correctOptionIndex && !isCurrentQuestionCorrect"
-                  class="px-3 py-1 rounded-full text-xs font-bold bg-[#1E7A6F] text-white shrink-0 flex items-center gap-1"
+                  class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1E7A6F] text-white shrink-0 flex items-center gap-1 shadow-xs"
                 >
-                  <Star class="w-3.5 h-3.5" />
+                  <Star class="w-4 h-4" />
                   <span>Kunci Jawaban ⭐</span>
                 </span>
                 <Check
                   v-else-if="selectedAnswers[currentQuestionIndex] === optIdx"
-                  class="w-5 h-5 text-[#1E7A6F] shrink-0"
+                  class="w-6 h-6 text-[#1E7A6F] shrink-0"
                 />
               </button>
             </div>
