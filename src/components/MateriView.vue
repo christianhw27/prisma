@@ -30,26 +30,9 @@ const handleOpenItem = (item) => {
 
 // Filter States (Khusus Jenjang SD: Kelas 1 sampai 6)
 const selectedKelas = ref('Semua')
-const selectedMapel = ref('Semua')
 
 // Filter Options
 const kelasOptions = ['Semua', ...KELAS_SD_OPTIONS]
-const mapelOptions = ['Semua', 'Matematika', 'Bahasa Indonesia', 'IPAS', 'Literasi & Numerasi']
-
-function matchesMapel(itemMapelRaw, filterRaw) {
-  if (!filterRaw || filterRaw === 'Semua') return true
-  const itemMapel = (itemMapelRaw || '').toLowerCase()
-  const filter = filterRaw.toLowerCase()
-  if (filter === 'literasi & numerasi') {
-    return (
-      itemMapel.includes('literasi') ||
-      itemMapel.includes('numerasi') ||
-      itemMapel.includes('matematika') ||
-      itemMapel.includes('bahasa')
-    )
-  }
-  return itemMapel.includes(filter)
-}
 
 // Detection for Category in Development (Empty category in database vs search mismatch)
 const isCategoryInDevelopment = computed(() => {
@@ -57,7 +40,6 @@ const isCategoryInDevelopment = computed(() => {
   if (props.searchQuery.trim() !== '') return false
 
   const categoryTotal = materiList.value.filter((item) => {
-    if (!matchesMapel(item.mataPelajaran, selectedMapel.value)) return false
     if (selectedKelas.value !== 'Semua') {
       const k = getKelasFromLevel(item.level)
       if (k !== selectedKelas.value) return false
@@ -69,21 +51,16 @@ const isCategoryInDevelopment = computed(() => {
 })
 
 const developmentCategoryLabel = computed(() => {
-  const parts = []
-  if (selectedKelas.value !== 'Semua') parts.push(selectedKelas.value)
-  if (selectedMapel.value !== 'Semua') parts.push(selectedMapel.value)
-  return parts.length ? parts.join(' • ') : 'Kategori Ini'
+  return selectedKelas.value !== 'Semua' ? selectedKelas.value : 'Kategori Ini'
 })
 
 const hasActiveFilter = computed(() =>
   selectedKelas.value !== 'Semua' ||
-  selectedMapel.value !== 'Semua' ||
   props.searchQuery.trim() !== ''
 )
 
 const filteredMateri = computed(() => {
   return materiList.value.filter((item) => {
-    if (!matchesMapel(item.mataPelajaran, selectedMapel.value)) return false
     if (selectedKelas.value !== 'Semua') {
       const k = getKelasFromLevel(item.level)
       if (k !== selectedKelas.value) return false
@@ -104,7 +81,6 @@ const filteredMateri = computed(() => {
 const resetFilters = () => {
   playButtonPop()
   selectedKelas.value = 'Semua'
-  selectedMapel.value = 'Semua'
 }
 </script>
 
@@ -159,50 +135,26 @@ const resetFilters = () => {
           </div>
 
           <!-- Filter Area -->
-          <div class="space-y-4 bg-[#FFF8F0] p-5 rounded-2xl border border-[#8F8575]/20">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Filter 1: Tingkat Kelas -->
-              <div class="space-y-2 text-left">
-                <label class="text-xs font-semibold text-[#2B3445] block">
-                  Tingkat Kelas
-                </label>
-                <div class="flex flex-wrap gap-2">
-                  <button
-                    v-for="opt in kelasOptions"
-                    :key="opt"
-                    @click="selectedKelas = opt; playButtonPop()"
-                    :class="[
-                      'px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer border',
-                      selectedKelas === opt
-                        ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]'
-                        : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#1E7A6F]'
-                    ]"
-                  >
-                    {{ opt }}
-                  </button>
-                </div>
-              </div>
-
-              <!-- Filter 2: Mata Pelajaran -->
-              <div class="space-y-2 text-left">
-                <label class="text-xs font-semibold text-[#2B3445] block">
-                  Mata Pelajaran
-                </label>
-                <div class="flex flex-wrap gap-2">
-                  <button
-                    v-for="opt in mapelOptions"
-                    :key="opt"
-                    @click="selectedMapel = opt; playButtonPop()"
-                    :class="[
-                      'px-3.5 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer border',
-                      selectedMapel === opt
-                        ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]'
-                        : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#1E7A6F]'
-                    ]"
-                  >
-                    {{ opt }}
-                  </button>
-                </div>
+          <div class="space-y-3 bg-[#FFF8F0] p-4 sm:p-5 rounded-2xl border border-[#8F8575]/20">
+            <!-- Filter: Tingkat Kelas -->
+            <div class="space-y-2 text-left">
+              <label class="text-xs font-semibold text-[#2B3445] block">
+                Tingkat Kelas
+              </label>
+              <div class="flex flex-wrap gap-2">
+                <button
+                  v-for="opt in kelasOptions"
+                  :key="opt"
+                  @click="selectedKelas = opt; playButtonPop()"
+                  :class="[
+                    'px-4 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer border',
+                    selectedKelas === opt
+                      ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]'
+                      : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#1E7A6F]'
+                  ]"
+                >
+                  {{ opt }}
+                </button>
               </div>
             </div>
           </div>
