@@ -148,9 +148,11 @@ const normalizeRoute = (raw) => {
   if (!raw) return ''
   try {
     const clean = decodeURIComponent(raw).replace(/^#\/?/, '').trim().toLowerCase().replace(/[\s_]+/g, '-')
+    if (clean === 'materi-detail') return 'learning-player'
     return ALL_KNOWN_ROUTES.includes(clean) ? clean : ''
   } catch {
     const fallback = raw.replace(/^#\/?/, '').trim().toLowerCase().replace(/[\s_]+/g, '-')
+    if (fallback === 'materi-detail') return 'learning-player'
     return ALL_KNOWN_ROUTES.includes(fallback) ? fallback : ''
   }
 }
@@ -424,15 +426,19 @@ const navigateTo = (tab) => {
 
 // Flow Handlers
 const handleOpenDetail = (item) => {
-  const targetItem = item || materiList.value[0]
-  activeMateriItem.value = targetItem
-  currentNav.value = 'materi-detail'
+  const targetItem = item || (materiList.value.length ? materiList.value[0] : null)
+  if (targetItem) {
+    activeMateriItem.value = targetItem
+    sessionStorage.setItem('prisma_active_materi_id', String(targetItem.id))
+  }
+  currentNav.value = 'learning-player'
   window.scrollTo({ top: 0, behavior: 'instant' })
 }
 
 const handleStartAdventure = (item) => {
   if (item) {
     activeMateriItem.value = item
+    sessionStorage.setItem('prisma_active_materi_id', String(item.id))
   } else if (!activeMateriItem.value && materiList.value.length) {
     activeMateriItem.value = materiList.value[0]
   }
@@ -449,8 +455,11 @@ const handleSwitchMateri = (newMateri) => {
 }
 
 const handlePreviewFromAdmin = (item) => {
-  activeMateriItem.value = item
-  currentNav.value = 'materi-detail'
+  if (item) {
+    activeMateriItem.value = item
+    sessionStorage.setItem('prisma_active_materi_id', String(item.id))
+  }
+  currentNav.value = 'learning-player'
   window.scrollTo({ top: 0, behavior: 'instant' })
 }
 
@@ -1254,12 +1263,13 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
       />
     </main>
 
-    <!-- ==================== VIEW: DETAIL MATERI ==================== -->
+    <!-- ==================== VIEW: DETAIL MATERI (LANGSUNG KE LEARNING PLAYER) ==================== -->
     <main v-else-if="currentNav === 'materi-detail'" class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 pt-24 sm:pt-28 pb-6 flex-1">
-      <MateriDetailView
+      <LearningPlayerView
         :materi="activeMateriItem || (materiList && materiList.length ? materiList[0] : null)"
         @back="navigateTo('materi')"
-        @start="handleStartAdventure"
+        @finish="navigateTo('materi')"
+        @open-settings="openSettings"
         @change-materi="handleSwitchMateri"
       />
     </main>
@@ -1268,7 +1278,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
     <main v-else-if="currentNav === 'learning-player'" class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 pt-24 sm:pt-28 pb-6 flex-1">
       <LearningPlayerView
         :materi="activeMateriItem || (materiList && materiList.length ? materiList[0] : null)"
-        @back="navigateTo('materi-detail')"
+        @back="navigateTo('materi')"
         @finish="navigateTo('materi')"
         @open-settings="openSettings"
         @change-materi="handleSwitchMateri"

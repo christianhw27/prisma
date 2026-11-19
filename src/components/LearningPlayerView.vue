@@ -1027,7 +1027,7 @@ onBeforeUnmount(() => {
         <button
           @click="emit('back')"
           class="p-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shrink-0"
-          title="Kembali ke Detail Materi"
+          title="Kembali ke Katalog Materi"
         >
           <ArrowLeft class="w-4 h-4 text-[#1E7A6F]" />
           <span class="hidden sm:inline">Kembali</span>
