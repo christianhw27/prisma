@@ -1603,32 +1603,10 @@ onBeforeUnmount(() => {
           
           <!-- Compact Unified Header (Soal, Tipe, Progress, Poin) -->
           <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#8F8575]/20">
-            <!-- Left: Question Indicator & Type Badge -->
+            <!-- Left: Question Indicator -->
             <div class="flex items-center gap-2">
               <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#1E7A6F] text-white text-xs font-bold tracking-wide shadow-2xs">
                 <span>Soal {{ currentQuestionIndex + 1 }} dari {{ questions.length }}</span>
-              </span>
-
-              <span
-                class="px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-1.5"
-                :class="
-                  currentQuestion.type === 'image_choice' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
-                  currentQuestion.type === 'matching' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
-                  currentQuestion.type === 'ordering' ? 'bg-[#7FD4C4]/40 text-[#2B3445] border-[#8F8575]/30' :
-                  currentQuestion.type === 'true_false' ? 'bg-[#FFB899]/40 text-[#2B3445] border-[#8F8575]/30' :
-                  currentQuestion.type === 'fill_in_blank' ? 'bg-[#7FD4C4]/35 text-[#2B3445] border-[#8F8575]/30' :
-                  currentQuestion.type === 'multi_select' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
-                  currentQuestion.type === 'grid_map' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
-                  'bg-[#FFF8F0] text-[#5B6474] border-[#8F8575]/25'
-                "
-              >
-                <Sparkles v-if="currentQuestion.type === 'image_choice'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                <Link v-else-if="currentQuestion.type === 'matching'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                <ArrowUpDown v-else-if="currentQuestion.type === 'ordering'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                <Hash v-else-if="currentQuestion.type === 'fill_in_blank'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                <CheckSquare v-else-if="currentQuestion.type === 'multi_select'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                <Compass v-else-if="currentQuestion.type === 'grid_map'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                <span>{{ currentQuestion.instructionBadge || 'Pilihan Ganda' }}</span>
               </span>
             </div>
 
@@ -1695,26 +1673,16 @@ onBeforeUnmount(() => {
                 @pointerdown="onCirclingPointerDown"
                 class="relative touch-none select-none rounded-3xl p-4 sm:p-6 bg-[#FFF8F0]/40 border-2 border-dashed border-[#8F8575]/25"
               >
-                <!-- Controls & Instruction Bar -->
-                <div class="flex flex-wrap items-center justify-between gap-3 mb-5 bg-white p-3.5 rounded-2xl border border-[#8F8575]/20 shadow-2xs">
-                  <div class="flex items-center gap-2 text-xs font-bold text-[#1E7A6F]">
-                    <PenTool class="w-4 h-4 text-[#1E7A6F] shrink-0" />
-                    <span>Goreskan jarimu atau kursor mouse melingkari gambar yang benar secara bebas!</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <button
-                      v-if="selectedAnswers[currentQuestionIndex] !== undefined"
-                      type="button"
-                      @click.stop="clearManualCircle"
-                      class="px-3 py-1.5 rounded-xl bg-[#FFF8F0] hover:bg-black/5 text-[#D97706] text-xs font-bold flex items-center gap-1.5 border border-[#D97706]/30 cursor-pointer transition active:scale-95"
-                    >
-                      <Eraser class="w-3.5 h-3.5" />
-                      <span>Hapus Coretan</span>
-                    </button>
-                    <span class="text-[11px] font-semibold text-[#5B6474] hidden sm:inline">
-                      (Bisa juga ketuk langsung gambar)
-                    </span>
-                  </div>
+                <!-- Clean Controls (Hanya tampil tombol Hapus Coretan jika ada coretan manual) -->
+                <div v-if="selectedAnswers[currentQuestionIndex] !== undefined && customCircledSvg[currentQuestionIndex]" class="flex justify-end mb-3">
+                  <button
+                    type="button"
+                    @click.stop="clearManualCircle"
+                    class="px-3.5 py-1.5 rounded-xl bg-white text-[#D97706] text-xs font-bold flex items-center gap-1.5 border border-[#D97706]/30 hover:bg-black/5 cursor-pointer transition active:scale-95 shadow-2xs"
+                  >
+                    <Eraser class="w-3.5 h-3.5" />
+                    <span>Hapus Coretan</span>
+                  </button>
                 </div>
 
                 <!-- SVG Overlay for Manual Freehand Circling -->
@@ -1848,19 +1816,13 @@ onBeforeUnmount(() => {
 
             <!-- ==================== MODE 2: MATCHING ("TARIK GARIS NYATA / HUBUNGKAN") ==================== -->
             <div v-else-if="currentQuestion.type === 'matching'" class="space-y-4 pt-2">
-              <div class="flex items-center justify-between bg-[#94C6FF]/20 px-4 py-2.5 rounded-xl border border-[#94C6FF]/40">
-                <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445]">
-                  <Link class="w-4 h-4 text-[#1E7A6F] shrink-0" />
-                  <span>
-                    <strong>Tarik Garis Langsung:</strong> Tekan titik konektor Kolom A lalu tarik garis ke Kolom B!
-                  </span>
-                </div>
+              <!-- Clean Reset Action (Hanya jika ada garis yang terhubung) -->
+              <div v-if="Object.keys(getMatchingAnswersForCurrent()).length > 0" class="flex justify-end -mb-2">
                 <button
-                  v-if="Object.keys(getMatchingAnswersForCurrent()).length > 0"
                   @click="resetMatching"
-                  class="text-xs font-semibold text-[#B45309] hover:underline flex items-center gap-1 cursor-pointer"
+                  class="text-xs font-bold text-[#B45309] hover:text-[#92400E] flex items-center gap-1.5 cursor-pointer bg-white px-3.5 py-1.5 rounded-xl border border-[#D97706]/30 shadow-2xs transition active:scale-95"
                 >
-                  <Undo2 class="w-3 h-3" /> Reset Garis
+                  <Undo2 class="w-3.5 h-3.5" /> <span>Reset Garis</span>
                 </button>
               </div>
 
@@ -2045,134 +2007,109 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- ==================== MODE 3: ORDERING ("DRAG AND DROP MENGURUTKAN KARTU") ==================== -->
-            <div v-else-if="currentQuestion.type === 'ordering'" class="space-y-6 pt-2">
-              <div class="flex items-center justify-between bg-[#7FD4C4]/20 px-4 py-2.5 rounded-xl border border-[#7FD4C4]/40">
-                <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445]">
-                  <Move class="w-4 h-4 text-[#1E7A6F] shrink-0" />
-                  <span><strong>Drag & Drop:</strong> Tarik kartu acak dan lepaskan ke dalam kotak urutan yang benar!</span>
-                </div>
+            <div v-else-if="currentQuestion.type === 'ordering'" class="space-y-6 pt-1">
+              <!-- Reset Urutan Button (Hanya jika ada kartu yang sudah ditaruh) -->
+              <div v-if="getOrderingAnswersForCurrent().length > 0" class="flex justify-end -mb-2">
                 <button
-                  v-if="getOrderingAnswersForCurrent().length > 0"
                   @click="resetOrdering"
-                  class="text-xs font-semibold text-[#B45309] hover:underline flex items-center gap-1 cursor-pointer"
+                  class="text-xs font-bold text-[#B45309] hover:text-[#92400E] flex items-center gap-1.5 cursor-pointer bg-white px-3.5 py-1.5 rounded-xl border border-[#D97706]/30 shadow-2xs transition active:scale-95"
                 >
-                  <Undo2 class="w-3 h-3" /> Reset Urutan
+                  <Undo2 class="w-3.5 h-3.5" /> <span>Reset Urutan</span>
                 </button>
               </div>
 
               <!-- Kotak Sasaran Urutan (Drop Targets) -->
-              <div class="space-y-2">
-                <span class="text-xs font-bold text-[#5B6474] flex items-center gap-1.5">
-                  <GripVertical class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                  <span>Kotak Urutan Jawaban (Lepaskan kartu di sini):</span>
-                </span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                  <div
-                    v-for="(_, slotIdx) in currentQuestion.orderItems || []"
-                    :key="slotIdx"
-                    @dragover="onSlotDragOver(slotIdx, $event)"
-                    @dragleave="onSlotDragLeave(slotIdx)"
-                    @drop="onSlotDrop(slotIdx, $event)"
-                    class="min-h-24 rounded-2xl border-2 p-3.5 flex flex-col justify-between transition-all duration-200 select-none"
-                    :class="[
-                      dragOverSlotIdx === slotIdx
-                        ? 'border-[#1E7A6F] bg-[#7FD4C4]/25 ring-4 ring-[#7FD4C4]/40 scale-105 shadow-md'
-                        : isCurrentQuestionChecked && getOrderingAnswersForCurrent()[slotIdx]
-                        ? isSlotCorrect(slotIdx)
-                          ? 'bg-[#7FD4C4]/20 border-[#1E7A6F] shadow-sm ring-2 ring-[#7FD4C4]/40'
-                          : 'bg-[#FFDE7A]/30 border-[#D97706] shadow-sm ring-2 ring-[#FFDE7A]/50'
-                        : getOrderingAnswersForCurrent()[slotIdx]
-                        ? 'bg-white border-[#1E7A6F] shadow-sm'
-                        : 'border-dashed border-[#8F8575]/40 bg-[#FFF8F0]/70 items-center justify-center'
-                    ]"
-                  >
-                    <div class="flex items-center justify-between w-full">
-                      <span
-                        class="w-7 h-7 rounded-lg text-white text-xs font-bold flex items-center justify-center shadow-xs"
-                        :class="isCurrentQuestionChecked && getOrderingAnswersForCurrent()[slotIdx] ? (isSlotCorrect(slotIdx) ? 'bg-[#1E7A6F]' : 'bg-[#D97706]') : 'bg-[#1E7A6F]'"
-                      >
-                        {{ slotIdx + 1 }}
-                      </span>
-                      <span
-                        v-if="isCurrentQuestionChecked && getOrderingAnswersForCurrent()[slotIdx]"
-                        :class="[
-                          'px-2 py-0.5 rounded-md text-[10px] font-bold text-white',
-                          isSlotCorrect(slotIdx) ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'
-                        ]"
-                      >
-                        {{ isSlotCorrect(slotIdx) ? '✓ Tepat' : '💡 Belum Pas' }}
-                      </span>
-                      <button
-                        v-else-if="getOrderingAnswersForCurrent()[slotIdx]"
-                        @click="removeFromOrdering(getOrderingAnswersForCurrent()[slotIdx])"
-                        class="w-6 h-6 rounded-full hover:bg-black/10 text-xs text-[#5B6474] flex items-center justify-center cursor-pointer"
-                        title="Keluarkan dari kotak"
-                      >
-                        ✕
-                      </button>
-                    </div>
-
-                    <!-- Isi Kartu di dalam Kotak (Bisa di-drag lagi) -->
-                    <div
-                      v-if="getOrderingAnswersForCurrent()[slotIdx]"
-                      draggable="true"
-                      @dragstart="onCardDragStart(getOrderingAnswersForCurrent()[slotIdx], $event)"
-                      class="font-bold text-sm text-[#2B3445] mt-2 leading-snug cursor-grab active:cursor-grabbing flex items-center justify-between"
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div
+                  v-for="(_, slotIdx) in currentQuestion.orderItems || []"
+                  :key="slotIdx"
+                  @dragover="onSlotDragOver(slotIdx, $event)"
+                  @dragleave="onSlotDragLeave(slotIdx)"
+                  @drop="onSlotDrop(slotIdx, $event)"
+                  class="min-h-24 rounded-3xl border-2 p-4 flex flex-col justify-between transition-all duration-200 select-none"
+                  :class="[
+                    dragOverSlotIdx === slotIdx
+                      ? 'border-[#1E7A6F] bg-[#7FD4C4]/25 ring-4 ring-[#7FD4C4]/40 scale-105 shadow-md'
+                      : isCurrentQuestionChecked && getOrderingAnswersForCurrent()[slotIdx]
+                      ? isSlotCorrect(slotIdx)
+                        ? 'bg-[#7FD4C4]/20 border-[#1E7A6F] shadow-sm ring-2 ring-[#7FD4C4]/40'
+                        : 'bg-[#FFDE7A]/30 border-[#D97706] shadow-sm ring-2 ring-[#FFDE7A]/50'
+                      : getOrderingAnswersForCurrent()[slotIdx]
+                      ? 'bg-white border-[#1E7A6F] shadow-sm'
+                      : 'border-dashed border-[#8F8575]/35 bg-[#FFF8F0]/70 items-center justify-center'
+                  ]"
+                >
+                  <div class="flex items-center justify-between w-full">
+                    <span
+                      class="w-8 h-8 rounded-xl text-white text-xs font-bold flex items-center justify-center shadow-xs font-['Baloo_2']"
+                      :class="isCurrentQuestionChecked && getOrderingAnswersForCurrent()[slotIdx] ? (isSlotCorrect(slotIdx) ? 'bg-[#1E7A6F]' : 'bg-[#D97706]') : 'bg-[#1E7A6F]'"
                     >
-                      <span>{{ getOrderingAnswersForCurrent()[slotIdx] }}</span>
-                      <GripVertical class="w-3.5 h-3.5 text-[#1E7A6F] opacity-60" />
-                    </div>
-                    <span v-else class="text-xs font-medium text-[#8F8575] py-3">
-                      Drop Kartu {{ slotIdx + 1 }} ke Sini
+                      {{ slotIdx + 1 }}
+                    </span>
+                    <span
+                      v-if="isCurrentQuestionChecked && getOrderingAnswersForCurrent()[slotIdx]"
+                      :class="[
+                        'px-2.5 py-0.5 rounded-lg text-xs font-bold text-white',
+                        isSlotCorrect(slotIdx) ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'
+                      ]"
+                    >
+                      {{ isSlotCorrect(slotIdx) ? '✓ Tepat' : '💡 Belum Pas' }}
+                    </span>
+                    <button
+                      v-else-if="getOrderingAnswersForCurrent()[slotIdx]"
+                      @click="removeFromOrdering(getOrderingAnswersForCurrent()[slotIdx])"
+                      class="w-6 h-6 rounded-full hover:bg-black/10 text-xs text-[#5B6474] flex items-center justify-center cursor-pointer transition active:scale-95"
+                      title="Keluarkan dari kotak"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <!-- Isi Kartu di dalam Kotak -->
+                  <div
+                    v-if="getOrderingAnswersForCurrent()[slotIdx]"
+                    draggable="true"
+                    @dragstart="onCardDragStart(getOrderingAnswersForCurrent()[slotIdx], $event)"
+                    class="font-['Baloo_2'] font-bold text-base sm:text-lg text-[#2B3445] mt-2 leading-snug cursor-grab active:cursor-grabbing text-center py-1"
+                  >
+                    <span>{{ getOrderingAnswersForCurrent()[slotIdx] }}</span>
+                  </div>
+                  <div v-else class="py-3 text-center">
+                    <span class="text-xs font-semibold text-[#8F8575]/60 font-['Baloo_2']">
+                      Urutan {{ slotIdx + 1 }}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <!-- Bank Kartu Acak (Drag Source) -->
+              <!-- Pilihan Kartu (Drag / Tap Source) -->
               <div
                 @dragover.prevent
                 @drop="onDropToCardPool"
-                class="space-y-3 pt-3 border-t border-[#8F8575]/20 bg-[#FFF8F0]/60 p-4 rounded-2xl border border-dashed border-[#8F8575]/30"
+                class="pt-3 border-t border-[#8F8575]/20 bg-[#FFF8F0]/50 p-4 sm:p-5 rounded-3xl border border-dashed border-[#8F8575]/30"
               >
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-[#5B6474] flex items-center gap-1.5">
-                    <GripVertical class="w-3.5 h-3.5 text-[#1E7A6F]" />
-                    <span>Pilihan Kartu Acak (Pegang & Tarik ke Kotak Urutan):</span>
-                  </span>
-                  <span class="text-[11px] font-semibold text-[#1E7A6F] bg-white px-2.5 py-0.5 rounded-full border border-[#8F8575]/20">
-                    Bisa di-drag atau diketuk
-                  </span>
-                </div>
-
-                <div class="flex flex-wrap gap-3">
+                <div class="flex flex-wrap gap-3 justify-center sm:justify-start">
                   <div
                     v-for="(item, idx) in currentQuestion.orderItems || []"
                     :key="idx"
                     :draggable="!getOrderingAnswersForCurrent().includes(item)"
                     @dragstart="onCardDragStart(item, $event)"
                     @click="addToOrdering(item)"
+                    class="px-5 py-3.5 rounded-2xl font-['Baloo_2'] font-bold text-base sm:text-lg transition-all border-2 flex items-center select-none"
                     :class="[
-                      'px-5 py-3 rounded-2xl font-bold text-sm transition-all border-2 flex items-center gap-2.5 select-none',
                       getOrderingAnswersForCurrent().includes(item)
                         ? 'opacity-30 bg-[#E0E0E0] border-transparent text-[#8F8575] cursor-not-allowed line-through scale-95'
-                        : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:shadow-md cursor-grab active:cursor-grabbing active:scale-105 active:rotate-1 text-[#2B3445] shadow-xs'
+                        : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:shadow-md cursor-pointer active:scale-105 text-[#2B3445] shadow-xs'
                     ]"
                   >
-                    <GripVertical v-if="!getOrderingAnswersForCurrent().includes(item)" class="w-4 h-4 text-[#1E7A6F] shrink-0" />
                     <span>{{ item }}</span>
-                    <span v-if="!getOrderingAnswersForCurrent().includes(item)" class="text-xs text-[#1E7A6F] font-bold">＋</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- ==================== MODE 4: TRUE / FALSE ("LINGKARI B ATAU S") ==================== -->
-            <div v-else-if="currentQuestion.type === 'true_false'" class="space-y-4 pt-2">
-              <div class="flex items-center gap-2 text-xs font-medium text-[#2B3445] bg-[#FFB899]/25 px-3.5 py-2 rounded-xl border border-[#FFB899]/40">
-                <Sparkles class="w-4 h-4 text-[#1E7A6F] shrink-0" />
-                <span>Lingkari B jika pernyataan ini Benar, atau lingkari S jika pernyataan ini Salah!</span>
-              </div>
+            <div v-else-if="currentQuestion.type === 'true_false'" class="space-y-4 pt-1">
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-1">
                 <!-- Opsi B (Benar) -->
@@ -2332,10 +2269,10 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- ==================== MODE 5: FILL IN THE BLANK ("ISI ANGKA / JAWABAN") ==================== -->
-            <div v-else-if="currentQuestion.type === 'fill_in_blank'" class="space-y-4 pt-2">
-              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2.5 rounded-xl border border-[#7FD4C4]/40">
-                <Hash class="w-4 h-4 shrink-0" />
-                <span>{{ currentQuestion.hint || 'Tuliskan angka jawaban yang tepat pada kotak di bawah!' }}</span>
+            <div v-else-if="currentQuestion.type === 'fill_in_blank'" class="space-y-4 pt-1">
+              <div v-if="currentQuestion.hint && !currentQuestion.hint.includes('Tuliskan angka jawaban')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#7FD4C4]/20 text-[#1E7A6F] text-xs font-bold border border-[#1E7A6F]/20">
+                <Hash class="w-3.5 h-3.5 shrink-0" />
+                <span>{{ currentQuestion.hint }}</span>
               </div>
 
               <div class="max-w-md mx-auto space-y-4 pt-1">
@@ -2366,9 +2303,6 @@ onBeforeUnmount(() => {
 
                 <!-- Tombol Cepat Angka untuk Siswa SD -->
                 <div class="bg-[#FFF8F0] p-4 rounded-2xl border border-[#8F8575]/25 space-y-2.5">
-                  <span class="text-[11px] font-semibold text-[#5B6474] text-center block uppercase tracking-wider">
-                    Tombol Bantuan Angka:
-                  </span>
                   <div class="grid grid-cols-5 gap-2 max-w-xs mx-auto">
                     <button
                       v-for="digit in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']"
@@ -2401,10 +2335,10 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- ==================== MODE 6: MULTI SELECT ("PILIH SEMUA YANG BENAR") ==================== -->
-            <div v-else-if="currentQuestion.type === 'multi_select'" class="space-y-4 pt-2">
-              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2.5 rounded-xl border border-[#7FD4C4]/40">
-                <CheckSquare class="w-4 h-4 shrink-0" />
-                <span>{{ currentQuestion.hint || 'Bisa memilih lebih dari satu jawaban. Ketuk semua pilihan yang benar!' }}</span>
+            <div v-else-if="currentQuestion.type === 'multi_select'" class="space-y-4 pt-1">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#7FD4C4]/20 text-[#1E7A6F] text-xs font-bold border border-[#1E7A6F]/20">
+                <CheckSquare class="w-3.5 h-3.5 shrink-0" />
+                <span>Pilih semua yang benar</span>
               </div>
 
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 pt-1">
@@ -2472,10 +2406,10 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- ==================== MODE 7: GRID MAP ("PILIH PETAK DI PETA / KOORDINAT") ==================== -->
-            <div v-else-if="currentQuestion.type === 'grid_map'" class="space-y-4 pt-2">
-              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2.5 rounded-xl border border-[#7FD4C4]/40">
-                <Compass class="w-4 h-4 shrink-0" />
-                <span>{{ currentQuestion.hint || 'Mulai dari petak D4, ikuti petunjuk langkah lalu ketuk petak tujuanmu di papan peta!' }}</span>
+            <div v-else-if="currentQuestion.type === 'grid_map'" class="space-y-4 pt-1">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#7FD4C4]/20 text-[#1E7A6F] text-xs font-bold border border-[#1E7A6F]/20">
+                <Compass class="w-3.5 h-3.5 shrink-0" />
+                <span>Ketuk petak tujuanmu di papan peta</span>
               </div>
 
               <div class="max-w-md mx-auto bg-white p-4 rounded-3xl border-2 border-[#8F8575]/25 space-y-3">
