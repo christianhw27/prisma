@@ -1316,7 +1316,7 @@ onBeforeUnmount(() => {
             </div>
 
             <!-- Optional Question Banner Image (if any) -->
-            <div v-if="currentQuestion.image && currentQuestion.type !== 'image_choice'" class="w-full flex justify-center py-2">
+            <div v-if="currentQuestion.image" class="w-full flex justify-center py-2">
               <div class="max-w-md w-full aspect-video sm:aspect-16/10 rounded-2xl overflow-hidden shadow-sm border border-[#8F8575]/25 bg-white relative">
                 <img
                   :src="currentQuestion.image"
@@ -2159,8 +2159,8 @@ onBeforeUnmount(() => {
                   {{ q.questionText }}
                 </p>
 
-                <!-- Gambar Soal di Pembahasan (jika bukan image_choice) -->
-                <div v-if="q.image && q.type !== 'image_choice'" class="w-full flex justify-start py-1">
+                <!-- Gambar Soal di Pembahasan -->
+                <div v-if="q.image" class="w-full flex justify-start py-1">
                   <img :src="q.image" alt="Gambar Soal" class="max-h-48 rounded-xl border border-[#8F8575]/25 object-contain" />
                 </div>
 

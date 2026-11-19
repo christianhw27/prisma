@@ -131,7 +131,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Tomat itu bulat dan merah."
+          "explanation": "Tomat itu bulat dan merah.",
+          "image": "/quiz/k1-b1-tomat.svg"
         }
       ]
     },
@@ -777,7 +778,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "12 lebih banyak dari 9."
+          "explanation": "12 lebih banyak dari 9.",
+          "image": "/quiz/k1-b4-telur-kandang.svg"
         },
         {
           "id": "q-materi-k1-b4-2",
@@ -1009,7 +1011,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Polanya diulang lagi dari merah."
+          "explanation": "Polanya diulang lagi dari merah.",
+          "image": "/quiz/k1-b5-pola-gelang.svg"
         },
         {
           "id": "q-materi-k1-b5-2",
@@ -2167,7 +2170,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Setengah: 2 bagian yang sama besar."
+          "explanation": "Setengah: 2 bagian yang sama besar.",
+          "image": "/quiz/k2-b2-pecahan-kue.svg"
         },
         {
           "id": "q-materi-k2-b2-2",
@@ -3189,7 +3193,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Jam tepat: jarum panjang di angka 12."
+          "explanation": "Jam tepat: jarum panjang di angka 12.",
+          "image": "/quiz/k2-b7-jam-dinding.svg"
         },
         {
           "id": "q-materi-k2-b7-2",
@@ -4471,7 +4476,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Dibagi untuk lebih sedikit orang, potongannya lebih besar."
+          "explanation": "Dibagi untuk lebih sedikit orang, potongannya lebih besar.",
+          "image": "/quiz/k3-b5-pecahan-roti.svg"
         },
         {
           "id": "q-materi-k3-b5-2",
@@ -6573,7 +6579,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Sudut siku-siku seperti pojok buku."
+          "explanation": "Sudut siku-siku seperti pojok buku.",
+          "image": "/quiz/k4-b7-jenis-sudut.svg"
         }
       ]
     },
@@ -8904,7 +8911,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": "E5",
           "initialCell": "D4",
-          "explanation": "Ke kanan: D → E. Ke bawah: 4 → 5."
+          "explanation": "Ke kanan: D → E. Ke bawah: 4 → 5.",
+          "image": "/quiz/k6-b2-peta-perkemahan.svg"
         },
         {
           "id": "q-materi-k6-b2-2",

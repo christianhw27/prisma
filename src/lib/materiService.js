@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { supabase, isSupabaseConfigured } from './supabaseClient.js'
 import { allStructuredMateri } from './allMateriData.js'
 
-const STORAGE_KEY = 'prisma_materi_list_v13'
+const STORAGE_KEY = 'prisma_materi_list_v14'
 
 export const KELAS_SD_OPTIONS = ['Kelas 1', 'Kelas 2', 'Kelas 3', 'Kelas 4', 'Kelas 5', 'Kelas 6']
 
@@ -137,13 +137,15 @@ export function sanitizeMateriItem(item) {
     }
   }
 
-  // 3. Tab Quiz (Pilihan Ganda dengan dukungan Gambar Soal)
+  // 3. Tab Quiz (Pilihan Ganda & Soal Sangat Interaktif PRISMA)
   if (!clean.quiz) {
     const rawQuestions = clean.assessment?.questions || []
     clean.quiz = {
       title: clean.assessment?.title || 'Kuis Pemahaman Materi',
       questions: rawQuestions.length ? rawQuestions.map((q, idx) => ({
+        ...q,
         id: q.id || `q-${idx + 1}`,
+        type: q.type || 'multiple_choice',
         questionText: q.questionText || '',
         image: q.image || (idx === 0 ? clean.image || '' : ''),
         points: Number(q.points) || 25,
@@ -153,6 +155,7 @@ export function sanitizeMateriItem(item) {
       })) : [
         {
           id: 'q-1',
+          type: 'multiple_choice',
           questionText: 'Apa poin utama yang dipelajari pada materi ini?',
           image: clean.image || '',
           points: 50,
@@ -164,7 +167,9 @@ export function sanitizeMateriItem(item) {
     }
   } else if (clean.quiz.questions) {
     clean.quiz.questions = clean.quiz.questions.map((q, idx) => ({
+      ...q,
       id: q.id || `q-${idx + 1}`,
+      type: q.type || 'multiple_choice',
       questionText: q.questionText || '',
       image: q.image || '',
       points: Number(q.points) || 25,
