@@ -14,6 +14,4 @@
     <ellipse cx="98" cy="100" rx="12" ry="16" fill="#FFF3E0" stroke="#FFB74D" stroke-width="2"/>
     <ellipse cx="122" cy="100" rx="12" ry="16" fill="#FFF3E0" stroke="#FFB74D" stroke-width="2"/>
     <ellipse cx="146" cy="98" rx="12" ry="16" fill="#FFF3E0" stroke="#FFB74D" stroke-width="2"/>
-    <!-- Badge Label -->
-    <rect x="55" y="18" width="110" height="34" rx="12" fill="#1E7A6F"/>
     </svg>

@@ -261,6 +261,7 @@ const readingGoal = computed(() => {
 })
 
 const isBacaanExpanded = ref(true)
+const isLearningPointsOpen = ref(false)
 const isPlayingAudio = ref(false)
 let currentAudioElement = null
 
@@ -1020,262 +1021,103 @@ onBeforeUnmount(() => {
     </button>
   </div>
 
-  <div v-else class="w-full flex flex-col space-y-6 animate-soft-pop pb-12 font-['Lexend'] text-[#2B3445]">
+  <div v-else class="w-full max-w-5xl mx-auto flex flex-col space-y-6 animate-soft-pop pb-12 font-['Lexend'] text-[#2B3445]">
+    <!-- ==================== TOP BAR HEADER ==================== -->
     <!-- ==================== TOP BAR HEADER ==================== -->
     <header class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 sm:p-5 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
       <div class="flex items-center gap-3 min-w-0">
         <button
           @click="emit('back')"
-          class="p-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shrink-0"
+          class="p-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shrink-0 active:scale-95"
           title="Kembali ke Katalog Materi"
         >
           <ArrowLeft class="w-4 h-4 text-[#1E7A6F]" />
           <span class="hidden sm:inline">Kembali</span>
         </button>
 
-        <div class="min-w-0">
+        <div class="min-w-0 text-left">
           <div class="flex items-center gap-2 flex-wrap">
-            <!-- Badge Kelas: Latar Putih dengan border Garis -->
-            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-white text-[#2B3445] border border-[#8F8575]">
-              {{ getKelasFromLevel(materi?.level) }}
-            </span>
-            <!-- Kategori Literasi (Peach) / Numerasi (Langit) -->
-            <span
-              :class="[
-                'px-2.5 py-0.5 rounded-full text-[11px] font-semibold text-[#2B3445]',
-                materi?.mataPelajaran === 'Bahasa Indonesia' ? 'bg-[#FFB899]' : 'bg-[#94C6FF]'
-              ]"
-            >
-              {{ materi?.mataPelajaran || 'IPAS' }}
-            </span>
-            <!-- Indikator Bab -->
-            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#7FD4C4]/25 text-[#1E7A6F]">
-              Bab {{ chapterNumberInKelas }} dari {{ totalChaptersInKelas }}
+            <span class="px-3 py-0.5 rounded-full text-xs font-bold bg-[#FFF8F0] text-[#1E7A6F] border border-[#1E7A6F]/25">
+              {{ getKelasFromLevel(materi?.level) }} • Bab {{ chapterNumberInKelas }} dari {{ totalChaptersInKelas }}
             </span>
           </div>
-          <h1 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445] leading-tight mt-0.5 truncate">
+          <h1 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445] leading-tight mt-1 truncate">
             {{ materi?.title }}
           </h1>
         </div>
       </div>
 
-      <!-- Quick Chapter Nav & Exit Actions -->
+      <!-- Quick Chapter Stepper Navigation -->
       <div class="flex items-center gap-2 self-stretch sm:self-end md:self-center justify-end shrink-0 flex-wrap">
-        <!-- Tombol Bab Sebelumnya -->
         <button
           v-if="prevMateri"
           @click="goToPrevChapter"
-          class="p-2 sm:px-3 sm:py-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold"
+          class="p-2 sm:px-3.5 sm:py-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold active:scale-95"
           :title="`Bab Sebelumnya: ${prevMateri.title}`"
         >
           <ChevronLeft class="w-4 h-4 text-[#1E7A6F]" />
-          <span class="hidden lg:inline">Bab Sebelumnya</span>
+          <span class="hidden sm:inline">Bab Sebelumnya</span>
         </button>
 
-        <!-- Tombol Bab Selanjutnya (Utama) -->
         <button
           v-if="nextMateri"
           @click="goToNextChapter"
-          class="btn-prisma-mint px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition active:scale-95 shadow-xs"
+          class="btn-prisma-mint px-4 py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition active:scale-95 shadow-xs"
           :title="`Bab Selanjutnya: ${nextMateri.title}`"
         >
           <span>Bab Selanjutnya</span>
           <ChevronRight class="w-4 h-4 text-[#1E7A6F]" />
         </button>
-
-        <!-- Selesai Belajar -->
-        <button
-          @click="emit('finish')"
-          class="px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl bg-white hover:bg-[#FFF8F0] border border-[#8F8575]/30 text-[#5B6474] hover:text-[#2B3445] text-xs sm:text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition active:scale-95"
-          title="Selesai Belajar & Kembali ke Daftar Materi"
-        >
-          <CheckCircle2 class="w-4 h-4 text-[#1E7A6F]" />
-          <span class="hidden sm:inline">Keluar</span>
-        </button>
       </div>
     </header>
 
-    <!-- ==================== BODY GRID (SIDEBAR NAV + MAIN CONTENT) ==================== -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      
-      <!-- ==================== SIDEBAR NAVIGASI KIRI ==================== -->
-      <aside class="lg:col-span-4 xl:col-span-3 space-y-4 lg:sticky lg:top-6">
-        
-        <!-- CARD MENU BELAJAR (2 LANGKAH: VIDEO & QUIZ) -->
-        <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-3.5 sm:p-4 shadow-xs space-y-3">
-          <div class="px-3 pt-1 pb-1 flex items-center justify-between">
-            <span class="text-xs font-semibold text-[#5B6474] uppercase tracking-wider flex items-center gap-1.5">
-              <Layers class="w-3.5 h-3.5 text-[#1E7A6F]" />
-              <span>Menu Belajar</span>
-            </span>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#7FD4C4]/25 text-[#1E7A6F]">
-              2 Langkah
-            </span>
-          </div>
+    <!-- ==================== TAHAP PEMBELAJARAN (TAB BAR BESAR & TACTILE) ==================== -->
+    <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-2 sm:p-2.5 shadow-xs flex items-center justify-center gap-2 w-full">
+      <button
+        @click="activeTab = 'video'; playButtonPop()"
+        :class="[
+          'flex-1 py-3 px-4 sm:px-6 rounded-2xl font-[\'Baloo_2\'] text-sm sm:text-base font-bold transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 select-none',
+          activeTab === 'video'
+            ? 'bg-[#1E7A6F] text-white shadow-sm ring-2 ring-[#1E7A6F]'
+            : 'bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 text-[#2B3445]'
+        ]"
+      >
+        <Video class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+        <span>1. Video Edukasi</span>
+        <span
+          :class="[
+            'text-[10px] font-semibold px-2 py-0.5 rounded-full hidden sm:inline-block',
+            activeTab === 'video' ? 'bg-white/20 text-white' : 'bg-[#8F8575]/15 text-[#5B6474]'
+          ]"
+        >
+          2 Video
+        </span>
+      </button>
 
-          <nav class="space-y-2">
-            <!-- LANGKAH 1: VIDEO -->
-            <button
-              @click="activeTab = 'video'; playButtonPop()"
-              :class="[
-                'w-full text-left p-3.5 rounded-2xl font-semibold transition-all duration-200 cursor-pointer flex items-center justify-between gap-3 group focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]',
-                activeTab === 'video'
-                  ? 'bg-[#1E7A6F] text-white shadow-md ring-2 ring-[#1E7A6F]'
-                  : 'bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 text-[#2B3445] border border-[#8F8575]/25'
-              ]"
-            >
-              <div class="flex items-center gap-3 min-w-0">
-                <div
-                  :class="[
-                    'w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition',
-                    activeTab === 'video' ? 'bg-white/20 text-white' : 'bg-[#94C6FF]/30 text-[#1E7A6F]'
-                  ]"
-                >
-                  <Video class="w-5 h-5" />
-                </div>
-                <div class="min-w-0">
-                  <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">1. Video</h4>
-                  <p :class="['text-xs truncate font-normal', activeTab === 'video' ? 'text-white/85' : 'text-[#5B6474]']">
-                    Konsep & Praktik
-                  </p>
-                </div>
-              </div>
-              <span
-                :class="[
-                  'text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full shrink-0',
-                  activeTab === 'video' ? 'bg-white/20 text-white' : 'bg-[#8F8575]/15 text-[#2B3445]'
-                ]"
-              >
-                {{ activeTab === 'video' ? 'Dibuka' : '2 Video' }}
-              </span>
-            </button>
+      <button
+        @click="activeTab = 'quiz'; playButtonPop()"
+        :class="[
+          'flex-1 py-3 px-4 sm:px-6 rounded-2xl font-[\'Baloo_2\'] text-sm sm:text-base font-bold transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 select-none',
+          activeTab === 'quiz'
+            ? 'bg-[#1E7A6F] text-white shadow-sm ring-2 ring-[#1E7A6F]'
+            : 'bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 text-[#2B3445]'
+        ]"
+      >
+        <BookOpen class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+        <span>2. Cerita & Kuis</span>
+        <span
+          :class="[
+            'text-[10px] font-semibold px-2 py-0.5 rounded-full hidden sm:inline-block',
+            activeTab === 'quiz' ? 'bg-white/20 text-white' : 'bg-[#8F8575]/15 text-[#5B6474]'
+          ]"
+        >
+          {{ questions.length }} Soal
+        </span>
+      </button>
+    </div>
 
-            <!-- LANGKAH 2: QUIZ -->
-            <button
-              @click="activeTab = 'quiz'; playButtonPop()"
-              :class="[
-                'w-full text-left p-3.5 rounded-2xl font-semibold transition-all duration-200 cursor-pointer flex items-center justify-between gap-3 group focus:outline-none focus:ring-2 focus:ring-[#1E7A6F]',
-                activeTab === 'quiz'
-                  ? 'bg-[#1E7A6F] text-white shadow-md ring-2 ring-[#1E7A6F]'
-                  : 'bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 text-[#2B3445] border border-[#8F8575]/25'
-              ]"
-            >
-              <div class="flex items-center gap-3 min-w-0">
-                <div
-                  :class="[
-                    'w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition',
-                    activeTab === 'quiz' ? 'bg-white/20 text-[#FFDE7A]' : 'bg-[#FFDE7A]/40 text-[#2B3445]'
-                  ]"
-                >
-                  <BookOpen class="w-5 h-5 text-[#2B3445]" />
-                </div>
-                <div class="min-w-0">
-                  <h4 class="text-sm font-bold font-['Baloo_2'] truncate leading-tight">2. Quiz</h4>
-                  <p :class="['text-xs truncate font-normal', activeTab === 'quiz' ? 'text-white/85' : 'text-[#5B6474]']">
-                    Bacaan & Kuis
-                  </p>
-                </div>
-              </div>
-              <span
-                :class="[
-                  'text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full shrink-0',
-                  activeTab === 'quiz' ? 'bg-white/20 text-white' : 'bg-[#8F8575]/15 text-[#2B3445]'
-                ]"
-              >
-                {{ activeTab === 'quiz' ? 'Dibuka' : `${questions.length} Soal` }}
-              </span>
-            </button>
-          </nav>
-        </div>
-
-        <!-- CARD NAVIGASI BAB (BAB SEBELUMNYA & BAB SELANJUTNYA) -->
-        <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 shadow-xs space-y-3">
-          <div class="px-2 pt-0.5 flex items-center justify-between">
-            <span class="text-xs font-semibold text-[#5B6474] uppercase tracking-wider flex items-center gap-1.5">
-              <Compass class="w-3.5 h-3.5 text-[#1E7A6F]" />
-              <span>Navigasi Bab</span>
-            </span>
-            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#FFDE7A]/35 text-[#B45309]">
-              Bab {{ chapterNumberInKelas }}/{{ totalChaptersInKelas }}
-            </span>
-          </div>
-
-          <!-- Highlight Bab Selanjutnya -->
-          <div v-if="nextMateri" class="p-3.5 rounded-2xl bg-[#7FD4C4]/15 border border-[#7FD4C4]/40 space-y-2 text-left">
-            <div class="flex items-center justify-between text-[11px]">
-              <span class="font-bold text-[#1E7A6F] uppercase tracking-wider flex items-center gap-1">
-                <span>Bab Selanjutnya</span>
-                <span>👉</span>
-              </span>
-              <span class="text-[#5B6474] font-medium">{{ getKelasFromLevel(nextMateri.level) }}</span>
-            </div>
-            <h4 class="font-['Baloo_2'] text-sm font-bold text-[#2B3445] leading-snug line-clamp-2">
-              {{ nextMateri.title }}
-            </h4>
-            <button
-              @click="goToNextChapter"
-              class="w-full btn-prisma-mint py-2 px-3 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs transition active:scale-95"
-            >
-              <span>Buka Bab Selanjutnya</span>
-              <ArrowRight class="w-3.5 h-3.5 text-[#1E7A6F]" />
-            </button>
-          </div>
-          <div v-else class="p-3 rounded-2xl bg-[#FFF8F0] border border-[#8F8575]/20 text-center text-xs text-[#5B6474]">
-            🎉 Kamu berada di bab terakhir pada jenjang ini!
-          </div>
-
-          <!-- Tombol Bab Sebelumnya jika ada -->
-          <button
-            v-if="prevMateri"
-            @click="goToPrevChapter"
-            class="w-full p-2 rounded-xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/25 text-[#2B3445] transition cursor-pointer flex items-center justify-center gap-1.5 text-xs font-semibold"
-          >
-            <ChevronLeft class="w-3.5 h-3.5 text-[#1E7A6F]" />
-            <span class="truncate">Ke {{ prevMateri.title }}</span>
-          </button>
-        </div>
-
-        <!-- CARD INFO MATERI DI SIDEBAR -->
-        <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-5 shadow-xs space-y-3.5 text-left hidden sm:block">
-          <!-- Thumbnail Cover Materi -->
-          <div v-if="materi?.image" class="w-full aspect-video rounded-2xl overflow-hidden border border-[#8F8575]/25 bg-[#FFF8F0] shadow-2xs group relative">
-            <img
-              :src="materi?.image"
-              :alt="materi?.title"
-              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
-
-          <div class="flex items-center gap-2">
-            <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
-            <h4 class="text-xs font-bold font-['Baloo_2'] text-[#2B3445] uppercase tracking-wider">
-              Tentang Materi Ini
-            </h4>
-          </div>
-
-          <p class="text-xs text-[#5B6474] leading-relaxed">
-            {{ materi?.description }}
-          </p>
-
-          <div v-if="learningPoints.length" class="space-y-2 pt-2 border-t border-[#8F8575]/15">
-            <span class="text-[11px] font-bold text-[#2B3445] block">Poin Pembelajaran:</span>
-            <div
-              v-for="(point, idx) in learningPoints.slice(0, 3)"
-              :key="idx"
-              class="flex items-center gap-2 p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 text-xs font-medium text-[#2B3445]"
-            >
-              <span class="w-4 h-4 rounded-full bg-[#7FD4C4] text-[#2B3445] text-[10px] font-bold flex items-center justify-center shrink-0">
-                {{ idx + 1 }}
-              </span>
-              <span class="truncate">{{ typeof point === 'string' ? point : (point.title || point.desc) }}</span>
-            </div>
-          </div>
-        </div>
-
-      </aside>
-
-      <!-- ==================== MAIN CONTENT AREA KANAN ==================== -->
-      <main class="lg:col-span-8 xl:col-span-9 min-w-0 space-y-6">
+    <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+    <div class="w-full space-y-6">
 
     <!-- ==================== LANGKAH 1: VIDEO (2 VIDEO EDUKASI) ==================== -->
     <div v-if="activeTab === 'video'" class="space-y-6 animate-soft-pop">
@@ -1447,31 +1289,23 @@ onBeforeUnmount(() => {
     <!-- ==================== LANGKAH 2: QUIZ (BACAAN & KUIS INTERAKTIF) ==================== -->
     <div v-if="activeTab === 'quiz'" class="space-y-6 animate-soft-pop">
       
-      <!-- ==================== KARTU BACAAN MELEKAT DI ATAS KUIS ==================== -->
+      <!-- ==================== KARTU BACAAN CERITA ==================== -->
       <section
         v-if="readingText"
-        class="bg-white rounded-3xl border-2 border-[#1E7A6F]/25 p-5 sm:p-7 shadow-xs space-y-4 text-left relative overflow-hidden transition-all duration-300"
+        class="bg-white rounded-3xl border border-[#8F8575]/25 p-5 sm:p-7 shadow-xs space-y-4 text-left transition-all duration-300"
       >
-        <!-- Top Accent Strip -->
-        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1E7A6F] via-[#7FD4C4] to-[#FFDE7A]"></div>
-
         <!-- Header Kartu Bacaan -->
-        <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#8F8575]/15 pb-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0 border border-[#1E7A6F]/20">
               <BookOpen class="w-5 h-5 text-[#1E7A6F]" />
             </div>
             <div>
-              <div class="flex items-center gap-2">
-                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#1E7A6F] text-white">
-                  Teks Bacaan Melekat
-                </span>
-                <span v-if="materi?.title" class="text-xs font-semibold text-[#5B6474] hidden sm:inline">
-                  {{ materi?.title }}
-                </span>
-              </div>
-              <h3 class="font-['Baloo_2'] text-lg sm:text-xl font-bold text-[#2B3445] mt-0.5 leading-snug">
-                Bacalah Cerita Ini Sebelum Menjawab Soal Kuis
+              <span class="text-xs font-bold text-[#1E7A6F] uppercase tracking-wider block">
+                Bacaan Cerita
+              </span>
+              <h3 class="font-['Baloo_2'] text-lg sm:text-xl font-bold text-[#2B3445] leading-snug">
+                {{ materi?.title }}
               </h3>
             </div>
           </div>
@@ -1482,11 +1316,11 @@ onBeforeUnmount(() => {
             <button
               type="button"
               @click="toggleAudioNarration"
-              class="px-3 py-1.5 rounded-xl border border-[#1E7A6F]/30 bg-[#7FD4C4]/20 hover:bg-[#7FD4C4]/35 text-[#1E7A6F] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
+              class="px-3.5 py-2 rounded-xl border border-[#1E7A6F]/30 bg-[#7FD4C4]/20 hover:bg-[#7FD4C4]/35 text-[#1E7A6F] text-xs font-bold flex items-center gap-1.5 transition cursor-pointer active:scale-95"
               :title="isPlayingAudio ? 'Hentikan suara' : 'Dengarkan suara cerita'"
             >
-              <Volume2 v-if="!isPlayingAudio" class="w-3.5 h-3.5" />
-              <VolumeX v-else class="w-3.5 h-3.5 text-[#D97706]" />
+              <Volume2 v-if="!isPlayingAudio" class="w-4 h-4" />
+              <VolumeX v-else class="w-4 h-4 text-[#D97706]" />
               <span>{{ isPlayingAudio ? 'Hentikan Suara' : 'Dengar Cerita' }}</span>
             </button>
 
@@ -1494,27 +1328,19 @@ onBeforeUnmount(() => {
             <button
               type="button"
               @click="isBacaanExpanded = !isBacaanExpanded; playButtonPop()"
-              class="px-3 py-1.5 rounded-xl border border-[#8F8575]/25 bg-[#FFF8F0] hover:bg-black/5 text-[#2B3445] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
+              class="px-3.5 py-2 rounded-xl border border-[#8F8575]/25 bg-[#FFF8F0] hover:bg-black/5 text-[#2B3445] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer active:scale-95"
             >
-              <span>{{ isBacaanExpanded ? 'Sembunyikan' : 'Buka Bacaan' }}</span>
+              <span>{{ isBacaanExpanded ? 'Sembunyikan' : 'Buka Cerita' }}</span>
               <ChevronUp v-if="isBacaanExpanded" class="w-3.5 h-3.5 text-[#5B6474]" />
               <ChevronDown v-else class="w-3.5 h-3.5 text-[#5B6474]" />
             </button>
           </div>
         </div>
 
-        <!-- Tujuan Belajar (jika ada) -->
-        <div v-if="readingGoal && isBacaanExpanded" class="bg-[#FFF8F0] px-4 py-2.5 rounded-2xl border border-[#8F8575]/20 text-xs text-[#5B6474] flex items-start gap-2">
-          <Sparkles class="w-3.5 h-3.5 text-[#1E7A6F] shrink-0 mt-0.5" />
-          <p class="leading-relaxed">
-            <strong class="text-[#2B3445]">Tujuan Pembelajaran:</strong> {{ readingGoal }}
-          </p>
-        </div>
-
         <!-- Konten Teks Bacaan & Ilustrasi Cerita -->
         <div
           v-show="isBacaanExpanded"
-          class="bg-[#FFF8F0]/80 p-5 sm:p-6 rounded-2xl border border-[#8F8575]/20 max-h-80 sm:max-h-96 overflow-y-auto space-y-4"
+          class="space-y-4 pt-1"
         >
           <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
             <!-- Ilustrasi Cerita Cover (Kiri / Atas) -->
@@ -3003,9 +2829,43 @@ onBeforeUnmount(() => {
         </div>
 
       </div>
+
+      <!-- Collapsible Poin & Tujuan Pembelajaran Drawer -->
+      <div v-if="learningPoints.length > 0" class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 sm:p-5 shadow-xs text-left">
+        <button
+          type="button"
+          @click="isLearningPointsOpen = !isLearningPointsOpen; playButtonPop()"
+          class="w-full flex items-center justify-between text-xs font-bold text-[#2B3445] cursor-pointer"
+        >
+          <div class="flex items-center gap-2">
+            <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
+            <span>Poin & Tujuan Pembelajaran ({{ learningPoints.length }} Poin)</span>
+          </div>
+          <ChevronDown
+            class="w-4 h-4 text-[#5B6474] transition-transform duration-200"
+            :class="{ 'rotate-180': isLearningPointsOpen }"
+          />
+        </button>
+
+        <div v-show="isLearningPointsOpen" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 mt-3 border-t border-[#8F8575]/15">
+          <div
+            v-for="(lp, idx) in learningPoints"
+            :key="idx"
+            class="p-3.5 rounded-2xl bg-[#FFF8F0] border border-[#8F8575]/20 text-xs space-y-1"
+          >
+            <h5 class="font-bold text-[#1E7A6F] flex items-center gap-1.5 font-['Baloo_2'] text-sm">
+              <span class="w-5 h-5 rounded-full bg-[#7FD4C4]/30 flex items-center justify-center text-[10px]">{{ idx + 1 }}</span>
+              <span>{{ typeof lp === 'string' ? lp : lp.title }}</span>
+            </h5>
+            <p v-if="lp.desc" class="text-[#5B6474] text-[11px] leading-relaxed">
+              {{ lp.desc }}
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-      </main>
     </div>
 
   </div>
