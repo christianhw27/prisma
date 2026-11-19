@@ -297,7 +297,7 @@ const getSourceBadge = (sumber) => {
     case 'ollama_lokal':
       return { label: 'AI Defi (Offline)', icon: Bot, color: 'bg-amber-50 text-amber-700 border-amber-200' }
     case 'gemini_vision':
-      return { label: 'Analisis Foto', icon: Sparkles, color: 'bg-indigo-50 text-indigo-700 border-indigo-200' }
+      return { label: 'AI Kak Defi', icon: Sparkles, color: 'bg-indigo-50 text-indigo-700 border-indigo-200' }
     case 'system_greeting':
       return { label: 'Sapaan Defi', icon: Bot, color: 'bg-[#FFF8F0] text-[#1E7A6F] border-[#1E7A6F]/30' }
     default:
@@ -560,12 +560,6 @@ const formatMarkdown = (txt) => {
                 class="text-sm leading-relaxed font-normal text-[#2B3445] whitespace-pre-wrap space-y-1.5"
                 v-html="formatMarkdown(msg.text)"
               ></div>
-
-              <!-- Notifikasi Fallback Ramah jika server offline -->
-              <div v-if="msg.isFallback" class="p-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-[11px] flex items-center gap-1.5">
-                <AlertCircle class="w-3.5 h-3.5 shrink-0 text-amber-600" />
-                <span>Tips: Jalankan server di terminal dengan <code>uvicorn main:app --reload</code> untuk AI & 420+ materi lengkap.</span>
-              </div>
             </div>
           </div>
         </div>
