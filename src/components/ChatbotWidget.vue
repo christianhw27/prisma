@@ -29,13 +29,6 @@ import {
 } from '../lib/chatbotService'
 import { playButtonPop, playMascotChime } from '../lib/soundEffects'
 
-const props = defineProps({
-  currentKelas: {
-    type: String,
-    default: 'Semua'
-  }
-})
-
 // State widget
 const isOpen = ref(false)
 const isMaximized = ref(false)
@@ -53,10 +46,6 @@ const toggleMaximize = () => {
   isMaximized.value = !isMaximized.value
   scrollToBottom()
 }
-
-// Class filter
-const selectedKelas = ref(props.currentKelas || 'Semua')
-const kelasOptions = ['Semua', 'Kelas 1', 'Kelas 2', 'Kelas 3', 'Kelas 4', 'Kelas 5', 'Kelas 6']
 
 // Chat history
 const messages = ref([
@@ -108,13 +97,6 @@ const checkHealth = async () => {
   serverDetails.value = res.data || null
   isCheckingHealth.value = false
 }
-
-// Watchers
-watch(() => props.currentKelas, (newVal) => {
-  if (newVal && newVal !== 'Semua') {
-    selectedKelas.value = newVal
-  }
-})
 
 // Toggle widget open/close
 const toggleChat = () => {
@@ -226,12 +208,12 @@ const handleSend = async () => {
       result = await sendChatPhoto({
         foto: photo,
         pertanyaan: text || 'Jelaskan soal pada gambar ini',
-        kelas: selectedKelas.value !== 'Semua' ? selectedKelas.value : ''
+        kelas: ''
       })
     } else {
       result = await sendChatText({
         pertanyaan: text,
-        kelas: selectedKelas.value !== 'Semua' ? selectedKelas.value : '',
+        kelas: '',
         kategori: ''
       })
     }
@@ -494,26 +476,6 @@ const formatMarkdown = (txt) => {
           </button>
         </div>
       </header>
-
-      <!-- BAR PILIHAN KELAS (FILTER KONTEKS SISWA) -->
-      <div class="bg-white/85 border-b border-[#8F8575]/20 px-4 py-2.5 flex items-center justify-between gap-3 shrink-0 overflow-x-auto text-xs sm:text-sm">
-        <div class="flex items-center gap-1.5 shrink-0 text-[#5B6474] font-medium">
-          <BookOpen class="w-4 h-4 text-[#1E7A6F]" />
-          <span>Fokus:</span>
-        </div>
-        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-          <button
-            v-for="kelas in kelasOptions"
-            :key="kelas"
-            type="button"
-            @click="selectedKelas = kelas; playButtonPop()"
-            class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer"
-            :class="selectedKelas === kelas ? 'bg-[#1E7A6F] text-white shadow-xs' : 'bg-[#FFF8F0] text-[#5B6474] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/20'"
-          >
-            {{ kelas }}
-          </button>
-        </div>
-      </div>
 
       <!-- AREA DAFTAR PESAN (CHAT BODY) -->
       <div

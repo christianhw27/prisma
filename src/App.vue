@@ -1524,9 +1524,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
     />
 
     <!-- Chatbot Defi Floating Widget (Selalu ada di pojok kanan bawah layar) -->
-    <ChatbotWidget
-      :current-kelas="selectedKelasTab !== 'Semua' ? selectedKelasTab : (selectedMateri?.kelas || 'Semua')"
-    />
+    <ChatbotWidget />
   </div>
 </template>
 
