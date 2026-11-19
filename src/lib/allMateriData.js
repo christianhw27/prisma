@@ -57,12 +57,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Belajar Membaca Kalimat Sederhana",
+        "url": "https://www.youtube.com/watch?v=mtiMWOsyQtU"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Membilang & Penjumlahan Benda Konkret",
+        "url": "https://www.youtube.com/watch?v=UMceXqMpSzI"
       }
     },
     "quiz": {
@@ -295,12 +295,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Pengurangan & Hitung Mundur",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menyimak Percakapan & Isi Cerita",
+        "url": "https://www.youtube.com/watch?v=puD1GJ9FM40"
       },
       "video2": {
-        "title": "Video 2: Simulasi Berbagi Benda Ceria",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Pengurangan dengan Benda Konkret",
+        "url": "https://www.youtube.com/watch?v=gGC16Ur1u8Q"
       }
     },
     "quiz": {
@@ -497,12 +497,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengenal Segitiga, Segi Empat, dan Lingkaran",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menceritakan Gambar Kalimat Sederhana",
+        "url": "https://www.youtube.com/watch?v=ta0lePV6Ibs"
       },
       "video2": {
-        "title": "Video 2: Berkreasi Menyusun Pola dan Bentuk",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Mengenal Bangun Datar & Posisi Benda",
+        "url": "https://www.youtube.com/watch?v=ew9-eHdeYZQ"
       }
     },
     "quiz": {
@@ -737,12 +737,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Perkalian sebagai Penjumlahan Berulang",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Mengenal Huruf Vokal & Suku Kata",
+        "url": "https://www.youtube.com/watch?v=ht27e_FWW6M"
       },
       "video2": {
-        "title": "Video 2: Trik Seru Menghitung Perkalian Cepat",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Membandingkan Banyak Benda",
+        "url": "https://www.youtube.com/watch?v=YzaKpr4GVE4"
       }
     },
     "quiz": {
@@ -965,12 +965,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Memahami Petunjuk Sederhana",
+        "url": "https://www.youtube.com/watch?v=KsQlJ_R2vWs"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Mengenal Pola Bentuk, Warna & Bilangan",
+        "url": "https://www.youtube.com/watch?v=OTBvmm2wLy4"
       }
     },
     "quiz": {
@@ -1171,12 +1171,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Mengenal Kata Lawan (Antonim)",
+        "url": "https://www.youtube.com/watch?v=eWZ8cZM32n8"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Membandingkan Panjang, Tinggi & Berat",
+        "url": "https://www.youtube.com/watch?v=eNkvOHUmI9w"
       }
     },
     "quiz": {
@@ -1420,12 +1420,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menceritakan Urutan Kejadian",
+        "url": "https://www.youtube.com/watch?v=ROmcl8zu3Pg"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Mengenal Waktu, Jam & Nama Hari",
+        "url": "https://www.youtube.com/watch?v=CP6ld1nETZQ"
       }
     },
     "quiz": {
@@ -1641,12 +1641,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Membaca Piktogram dan Diagram Batang",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menjawab Pertanyaan dengan Kalimat Lengkap",
+        "url": "https://www.youtube.com/watch?v=NSR5EADduX4"
       },
       "video2": {
-        "title": "Video 2: Menghitung Frekuensi dan Menyajikan Data",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Turus & Piktogram (Diagram Gambar)",
+        "url": "https://www.youtube.com/watch?v=MtxIkLD-X6A"
       }
     },
     "quiz": {
@@ -1855,12 +1855,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Memahami Teks Bacaan Kesehatan",
+        "url": "https://www.youtube.com/watch?v=CfhmEyvUKTo"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Nilai Tempat Puluhan & Satuan",
+        "url": "https://www.youtube.com/watch?v=MEfaz3KDx4k"
       }
     },
     "quiz": {
@@ -2066,12 +2066,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Konsep Pecahan Sederhana",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Penggunaan Huruf Kapital & Tanda Titik",
+        "url": "https://www.youtube.com/watch?v=IS0NR2ad3VM"
       },
       "video2": {
-        "title": "Video 2: Praktik Memotong Kue & Berbagi Rata",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Mengenal Pecahan Setengah & Seperempat",
+        "url": "https://www.youtube.com/watch?v=Oal-H7B6CB0"
       }
     },
     "quiz": {
@@ -2295,12 +2295,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengukur Panjang, Berat & Waktu",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Berbicara & Bertanya dengan Santun",
+        "url": "https://www.youtube.com/watch?v=G4vee8WSdoY"
       },
       "video2": {
-        "title": "Video 2: Eksperimen Menimbang dan Membandingkan",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Pengukuran Panjang Satuan Tidak Baku",
+        "url": "https://www.youtube.com/watch?v=_KpQ6oH-sXc"
       }
     },
     "quiz": {
@@ -2490,12 +2490,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Membaca Nyaring Lafal & Intonasi",
+        "url": "https://www.youtube.com/watch?v=-tGcleDP8_Y"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Pola Bilangan Loncat 2, 5, dan 10",
+        "url": "https://www.youtube.com/watch?v=HoL5fCruMgc"
       }
     },
     "quiz": {
@@ -2685,12 +2685,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengukur Panjang, Berat & Waktu",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Memahami Instruksi Aturan Permainan",
+        "url": "https://www.youtube.com/watch?v=2x5vLdqpTDg"
       },
       "video2": {
-        "title": "Video 2: Eksperimen Menimbang dan Membandingkan",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Kalimat Matematika & Tanda Sama Dengan",
+        "url": "https://www.youtube.com/watch?v=rCccAUxOtcM"
       }
     },
     "quiz": {
@@ -2882,12 +2882,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengenal Segitiga, Segi Empat, dan Lingkaran",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menulis Deskripsi Bentuk Benda",
+        "url": "https://www.youtube.com/watch?v=Tv0t7eCTgt0"
       },
       "video2": {
-        "title": "Video 2: Berkreasi Menyusun Pola dan Bentuk",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Mengenal & Mengurai Bangun Datar (Tangram)",
+        "url": "https://www.youtube.com/watch?v=IVHeQE-15to"
       }
     },
     "quiz": {
@@ -3089,12 +3089,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengukur Panjang, Berat & Waktu",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Membaca Informasi Jadwal Kegiatan",
+        "url": "https://www.youtube.com/watch?v=uhbdaztiX7A"
       },
       "video2": {
-        "title": "Video 2: Eksperimen Menimbang dan Membandingkan",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Membaca Jam & Menghitung Durasi Waktu",
+        "url": "https://www.youtube.com/watch?v=dCMtKTg08SY"
       }
     },
     "quiz": {
@@ -3325,12 +3325,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Percakapan Jual Beli yang Santun",
+        "url": "https://www.youtube.com/watch?v=oQKT01sGtNE"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Mengenal Pecahan Nilai Uang Rupiah",
+        "url": "https://www.youtube.com/watch?v=DPJxd0PyWBc"
       }
     },
     "quiz": {
@@ -3524,12 +3524,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menemukan Ide Pokok Paragraf",
+        "url": "https://www.youtube.com/watch?v=tvXLCdpCi4k"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Nilai Tempat Bilangan sampai 10.000",
+        "url": "https://www.youtube.com/watch?v=CJJGR7ywlZA"
       }
     },
     "quiz": {
@@ -3721,12 +3721,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Perkalian sebagai Penjumlahan Berulang",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Kosakata Baru & Makna Kata",
+        "url": "https://www.youtube.com/watch?v=nC7-1ZrdxE8"
       },
       "video2": {
-        "title": "Video 2: Trik Seru Menghitung Perkalian Cepat",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Perkalian & Pembagian Soal Cerita",
+        "url": "https://www.youtube.com/watch?v=eO_qB5C0dDc"
       }
     },
     "quiz": {
@@ -3953,12 +3953,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengukur Panjang, Berat & Waktu",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menulis Laporan Hasil Pengamatan",
+        "url": "https://www.youtube.com/watch?v=an09GYO1tXo"
       },
       "video2": {
-        "title": "Video 2: Eksperimen Menimbang dan Membandingkan",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Konversi Satuan Panjang & Berat",
+        "url": "https://www.youtube.com/watch?v=WxURZg-NcsA"
       }
     },
     "quiz": {
@@ -4180,12 +4180,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menemukan Informasi Penting Teks Informasi",
+        "url": "https://www.youtube.com/watch?v=IWcPTRIpxI4"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Penjumlahan & Pengurangan Bersusun",
+        "url": "https://www.youtube.com/watch?v=wCAz8A6l_hA"
       }
     },
     "quiz": {
@@ -4377,12 +4377,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Konsep Pecahan Sederhana",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Kata Tanya 5W1H (Adiksimba)",
+        "url": "https://www.youtube.com/watch?v=CK4u3vU-ksY"
       },
       "video2": {
-        "title": "Video 2: Praktik Memotong Kue & Berbagi Rata",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Membandingkan & Mengurutkan Pecahan",
+        "url": "https://www.youtube.com/watch?v=t_Ow9KiF7ZI"
       }
     },
     "quiz": {
@@ -4626,12 +4626,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Membaca Jadwal Perjalanan & Acara",
+        "url": "https://www.youtube.com/watch?v=NkvTBS4aWS0"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Menghitung Durasi Lama Kegiatan",
+        "url": "https://www.youtube.com/watch?v=fTpxa06Fcwo"
       }
     },
     "quiz": {
@@ -4830,12 +4830,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Membaca Denah & Arah Mata Angin",
+        "url": "https://www.youtube.com/watch?v=gt2jdI9-ikA"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Garis Sejajar & Sudut Bangun Datar",
+        "url": "https://www.youtube.com/watch?v=kMnhhmjEBG0"
       }
     },
     "quiz": {
@@ -5032,12 +5032,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Membaca Piktogram dan Diagram Batang",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menyajikan Rangkuman Informasi",
+        "url": "https://www.youtube.com/watch?v=NkvTBS4aWS0"
       },
       "video2": {
-        "title": "Video 2: Menghitung Frekuensi dan Menyajikan Data",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Membaca & Membuat Diagram Batang",
+        "url": "https://www.youtube.com/watch?v=sEw79fJ3b24"
       }
     },
     "quiz": {
@@ -5230,12 +5230,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Konsep Pecahan Sederhana",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Gagasan Pokok & Gagasan Pendukung",
+        "url": "https://www.youtube.com/watch?v=pKaV8kb0DOo"
       },
       "video2": {
-        "title": "Video 2: Praktik Memotong Kue & Berbagi Rata",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Pembulatan & Penaksiran Bilangan",
+        "url": "https://www.youtube.com/watch?v=nRAv3boSDio"
       }
     },
     "quiz": {
@@ -5427,12 +5427,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Unsur Intrinsik Cerita Fiksi",
+        "url": "https://www.youtube.com/watch?v=4ONOx7tCHWo"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Kalimat Matematika Soal Cerita",
+        "url": "https://www.youtube.com/watch?v=SLZKHvG01Bk"
       }
     },
     "quiz": {
@@ -5671,12 +5671,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menjelaskan Data dalam Bentuk Teks",
+        "url": "https://www.youtube.com/watch?v=TmfhbTwvNwA"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Volume Kubus & Balok Satuan",
+        "url": "https://www.youtube.com/watch?v=1XOvoj0_DDs"
       }
     },
     "quiz": {
@@ -5871,12 +5871,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Konjungsi (Kata Hubung)",
+        "url": "https://www.youtube.com/watch?v=6e2rV6S--Ao"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Penjumlahan & Pengurangan Pecahan",
+        "url": "https://www.youtube.com/watch?v=LL54N3-B5w4"
       }
     },
     "quiz": {
@@ -6065,12 +6065,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Perkalian sebagai Penjumlahan Berulang",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menjawab Pertanyaan dengan Kalimat Efektif",
+        "url": "https://www.youtube.com/watch?v=CfhmEyvUKTo"
       },
       "video2": {
-        "title": "Video 2: Trik Seru Menghitung Perkalian Cepat",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Perkalian & Pembagian Bersusun (Porogapit)",
+        "url": "https://www.youtube.com/watch?v=Vq5uHb0tvyk"
       }
     },
     "quiz": {
@@ -6257,12 +6257,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Membaca Puisi (Lafal, Intonasi, Ekspresi)",
+        "url": "https://www.youtube.com/watch?v=6E5JY02vzIo"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Pola Bilangan Membesar & Mengecil",
+        "url": "https://www.youtube.com/watch?v=Qfr-zb_7UEg"
       }
     },
     "quiz": {
@@ -6449,12 +6449,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menulis Teks Petunjuk",
+        "url": "https://www.youtube.com/watch?v=vzkPLnrS6VY"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Keliling Bangun Datar & Jenis Sudut",
+        "url": "https://www.youtube.com/watch?v=_M0Ih0NlDRE"
       }
     },
     "quiz": {
@@ -6670,12 +6670,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menganalisis Teks Iklan",
+        "url": "https://www.youtube.com/watch?v=mbdO2bVE8jE"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Faktor & Kelipatan Bilangan (KPK FPB)",
+        "url": "https://www.youtube.com/watch?v=76-J3XTnUCE"
       }
     },
     "quiz": {
@@ -6879,12 +6879,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menganalisis Teks Visual & Poster",
+        "url": "https://www.youtube.com/watch?v=XofB9GwJrMk"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Bilangan sampai 1.000.000 & Soal Uang",
+        "url": "https://www.youtube.com/watch?v=IQWJwjWT3ZE"
       }
     },
     "quiz": {
@@ -7083,12 +7083,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Struktur Teks Prosedur",
+        "url": "https://www.youtube.com/watch?v=a93eEhJlJCo"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Operasi Pecahan & Mengenal Desimal",
+        "url": "https://www.youtube.com/watch?v=MjPaEgSqT0k"
       }
     },
     "quiz": {
@@ -7303,12 +7303,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Paragraf Deskripsi Pengamatan",
+        "url": "https://www.youtube.com/watch?v=VR2HjB-X2qQ"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Luas & Keliling Bangun Gabungan",
+        "url": "https://www.youtube.com/watch?v=M-uqgNZh5NE"
       }
     },
     "quiz": {
@@ -7501,12 +7501,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Analisis Kata Kunci Soal Cerita",
+        "url": "https://www.youtube.com/watch?v=kJsGZ63spwo"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Menyelesaikan Masalah KPK & FPB",
+        "url": "https://www.youtube.com/watch?v=3ygWpV02OaY"
       }
     },
     "quiz": {
@@ -7728,12 +7728,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengukur Panjang, Berat & Waktu",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Teks Eksplanasi & Sebab-Akibat",
+        "url": "https://www.youtube.com/watch?v=hnK92kWR6k4"
       },
       "video2": {
-        "title": "Video 2: Eksperimen Menimbang dan Membandingkan",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Mengukur Sudut dengan Busur Derajat",
+        "url": "https://www.youtube.com/watch?v=-SoT6A65IQ4"
       }
     },
     "quiz": {
@@ -7975,12 +7975,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menafsirkan Petunjuk Infografik",
+        "url": "https://www.youtube.com/watch?v=belMbpq4nhs"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Volume Kubus & Balok (Satuan Liter)",
+        "url": "https://www.youtube.com/watch?v=eV50S-SXp6Y"
       }
     },
     "quiz": {
@@ -8175,12 +8175,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Unsur Teks Berita 5W+1H",
+        "url": "https://www.youtube.com/watch?v=ZKY9IxM70hU"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Menghitung Persentase Kenaikan & Nilai",
+        "url": "https://www.youtube.com/watch?v=mjeW0W33VSU"
       }
     },
     "quiz": {
@@ -8402,12 +8402,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menulis Laporan Kegiatan",
+        "url": "https://www.youtube.com/watch?v=Eu7AaQ4nxeM"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Operasi Hitung Bilangan Desimal",
+        "url": "https://www.youtube.com/watch?v=SjV72FM0bIU"
       }
     },
     "quiz": {
@@ -8620,12 +8620,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Perbandingan, Rasio & Skala",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Membedakan Fakta & Opini",
+        "url": "https://www.youtube.com/watch?v=KqqKZ626bcs"
       },
       "video2": {
-        "title": "Video 2: Pengukuran Sudut & Bangun Ruang",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Penalaran Proporsional & Rasio",
+        "url": "https://www.youtube.com/watch?v=ju6K5iyvsAs"
       }
     },
     "quiz": {
@@ -8822,12 +8822,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Perbandingan, Rasio & Skala",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Membaca Denah & Petunjuk Arah",
+        "url": "https://www.youtube.com/watch?v=gt2jdI9-ikA"
       },
       "video2": {
-        "title": "Video 2: Pengukuran Sudut & Bangun Ruang",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Sistem Koordinat & Bangun Ruang",
+        "url": "https://www.youtube.com/watch?v=l_WICeXa6nc"
       }
     },
     "quiz": {
@@ -9018,12 +9018,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Membaca Piktogram dan Diagram Batang",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menganalisis Data & Menguji Klaim",
+        "url": "https://www.youtube.com/watch?v=Z2uEHw1xfGc"
       },
       "video2": {
-        "title": "Video 2: Menghitung Frekuensi dan Menyajikan Data",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Tabel Frekuensi & Diagram Batang",
+        "url": "https://www.youtube.com/watch?v=XnjU-CzsaCE"
       }
     },
     "quiz": {
@@ -9215,12 +9215,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Perbandingan, Rasio & Skala",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menyampaikan Gagasan Berdasarkan Fakta",
+        "url": "https://www.youtube.com/watch?v=uZ6l8PJ-xIA"
       },
       "video2": {
-        "title": "Video 2: Pengukuran Sudut & Bangun Ruang",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Peluang Kejadian Percobaan Acak",
+        "url": "https://www.youtube.com/watch?v=kziWQza17rg"
       }
     },
     "quiz": {
@@ -9456,12 +9456,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Memahami Teks Petunjuk & Instruksi",
+        "url": "https://www.youtube.com/watch?v=l_3LaBQbjEM"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Operasi Hitung Campuran Bilangan",
+        "url": "https://www.youtube.com/watch?v=4cBNmbDeRjA"
       }
     },
     "quiz": {
@@ -9655,12 +9655,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Mengenal Segitiga, Segi Empat, dan Lingkaran",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Teks Eksplanasi Fenomena Sekitar",
+        "url": "https://www.youtube.com/watch?v=m4Uewcf3C3o"
       },
       "video2": {
-        "title": "Video 2: Berkreasi Menyusun Pola dan Bentuk",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Keliling & Luas Lingkaran",
+        "url": "https://www.youtube.com/watch?v=ywzQODy6QWU"
       }
     },
     "quiz": {
@@ -9859,12 +9859,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Konsep Penjumlahan Benda Konkret",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Menulis Kesimpulan Laporan Percobaan",
+        "url": "https://www.youtube.com/watch?v=bnftc1ycecs"
       },
       "video2": {
-        "title": "Video 2: Lagu & Cerita Belajar Berhitung",
-        "url": "https://res.cloudinary.com/demo/video/upload/elephants.mp4"
+        "title": "Video 2: Numerasi - Statistika (Mean, Median, Modus)",
+        "url": "https://www.youtube.com/watch?v=soYN4EzC7uA"
       }
     },
     "quiz": {
@@ -10061,12 +10061,12 @@ export const allStructuredMateri = [
     },
     "videos": {
       "video1": {
-        "title": "Video 1: Memahami Perbandingan, Rasio & Skala",
-        "url": "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+        "title": "Video 1: Literasi - Mengenal & Membaca Informasi Peta",
+        "url": "https://www.youtube.com/watch?v=v5tYjyf6ya4"
       },
       "video2": {
-        "title": "Video 2: Pengukuran Sudut & Bangun Ruang",
-        "url": "https://res.cloudinary.com/demo/video/upload/sea_turtle.mp4"
+        "title": "Video 2: Numerasi - Skala & Jarak Sebenarnya",
+        "url": "https://www.youtube.com/watch?v=xMTZZYC44fE"
       }
     },
     "quiz": {
