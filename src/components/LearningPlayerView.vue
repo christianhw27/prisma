@@ -19,7 +19,12 @@ import {
   MousePointerClick,
   Link,
   ArrowUpDown,
-  Undo2
+  Undo2,
+  Info,
+  Hash,
+  CheckSquare,
+  Compass,
+  MapPin
 } from '@lucide/vue'
 import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel } from '../lib/materiService'
 import { playMascotChime, playButtonPop } from '../lib/soundEffects'
@@ -221,6 +226,53 @@ const resetOrdering = () => {
   selectedAnswers.value[currentQuestionIndex.value] = []
 }
 
+// State khusus untuk Isi Angka (Fill in the Blank)
+const onFillInBlankInput = (val) => {
+  selectedAnswers.value[currentQuestionIndex.value] = val
+}
+
+const appendDigit = (digit) => {
+  playButtonPop()
+  const cur = String(selectedAnswers.value[currentQuestionIndex.value] || '')
+  selectedAnswers.value[currentQuestionIndex.value] = cur + digit
+}
+
+const backspaceDigit = () => {
+  playButtonPop()
+  const cur = String(selectedAnswers.value[currentQuestionIndex.value] || '')
+  selectedAnswers.value[currentQuestionIndex.value] = cur.slice(0, -1)
+}
+
+const clearDigit = () => {
+  playButtonPop()
+  selectedAnswers.value[currentQuestionIndex.value] = ''
+}
+
+// State khusus untuk Pilih Semua yang Benar (Multi Select)
+const getMultiSelectAnswersForCurrent = () => {
+  const cur = selectedAnswers.value[currentQuestionIndex.value]
+  if (Array.isArray(cur)) return cur
+  return []
+}
+
+const toggleMultiSelect = (optIdx) => {
+  playButtonPop()
+  const cur = [...getMultiSelectAnswersForCurrent()]
+  const pos = cur.indexOf(optIdx)
+  if (pos >= 0) {
+    cur.splice(pos, 1)
+  } else {
+    cur.push(optIdx)
+  }
+  selectedAnswers.value[currentQuestionIndex.value] = cur
+}
+
+// State khusus untuk Peta Koordinat (Grid Map)
+const selectGridCell = (cell) => {
+  playButtonPop()
+  selectedAnswers.value[currentQuestionIndex.value] = cell
+}
+
 const currentQuestion = computed(() => {
   return questions.value[currentQuestionIndex.value] || {}
 })
@@ -245,6 +297,15 @@ const isQuestionAnswered = (idx) => {
   if (q.type === 'ordering') {
     return Array.isArray(ans) && ans.length === (q.orderItems?.length || 0)
   }
+  if (q.type === 'multi_select') {
+    return Array.isArray(ans) && ans.length > 0
+  }
+  if (q.type === 'fill_in_blank') {
+    return typeof ans === 'string' && ans.trim().length > 0
+  }
+  if (q.type === 'grid_map') {
+    return typeof ans === 'string' && ans.trim().length > 0
+  }
   return true
 }
 
@@ -259,6 +320,26 @@ const checkAnswerCorrectness = (q, ans) => {
       return JSON.stringify(ans) === JSON.stringify(q.correctOrder)
     }
     return false
+  }
+  if (q.type === 'multi_select' && q.multiCorrectIndices?.length) {
+    if (!Array.isArray(ans)) return false
+    const sortedUser = [...ans].sort((a, b) => a - b)
+    const sortedCorrect = [...q.multiCorrectIndices].sort((a, b) => a - b)
+    return sortedUser.length === sortedCorrect.length && sortedUser.every((v, i) => v === sortedCorrect[i])
+  }
+  if (q.type === 'fill_in_blank') {
+    if (typeof ans !== 'string') return false
+    const cleanUser = ans.trim().toLowerCase().replace(/[\s\.\,]/g, '')
+    if (!cleanUser) return false
+    const expected = (q.expectedAnswers && q.expectedAnswers.length) ? q.expectedAnswers : [q.options?.[q.correctOptionIndex] || '']
+    return expected.some(exp => {
+      const cleanExp = String(exp).trim().toLowerCase().replace(/[\s\.\,]/g, '')
+      return cleanUser === cleanExp || cleanUser.includes(cleanExp) || cleanExp.includes(cleanUser)
+    })
+  }
+  if (q.type === 'grid_map') {
+    const target = String(q.correctCell || 'E5').trim().toUpperCase()
+    return String(ans).trim().toUpperCase() === target
   }
   return ans === q.correctOptionIndex
 }
@@ -723,12 +804,18 @@ onMounted(() => {
                     currentQuestion.type === 'matching' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
                     currentQuestion.type === 'ordering' ? 'bg-[#7FD4C4]/40 text-[#2B3445] border-[#8F8575]/30' :
                     currentQuestion.type === 'true_false' ? 'bg-[#FFB899]/40 text-[#2B3445] border-[#8F8575]/30' :
+                    currentQuestion.type === 'fill_in_blank' ? 'bg-[#7FD4C4]/35 text-[#2B3445] border-[#8F8575]/30' :
+                    currentQuestion.type === 'multi_select' ? 'bg-[#94C6FF]/35 text-[#2B3445] border-[#8F8575]/30' :
+                    currentQuestion.type === 'grid_map' ? 'bg-[#FFDE7A]/50 text-[#2B3445] border-[#8F8575]/30' :
                     'bg-white text-[#5B6474] border-[#8F8575]/25'
                   "
                 >
                   <Sparkles v-if="currentQuestion.type === 'image_choice'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
                   <Link v-else-if="currentQuestion.type === 'matching'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
                   <ArrowUpDown v-else-if="currentQuestion.type === 'ordering'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                  <Hash v-else-if="currentQuestion.type === 'fill_in_blank'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                  <CheckSquare v-else-if="currentQuestion.type === 'multi_select'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
+                  <Compass v-else-if="currentQuestion.type === 'grid_map'" class="w-3.5 h-3.5 text-[#1E7A6F]" />
                   <span>{{ currentQuestion.instructionBadge || 'Kuis Pilihan Ganda' }}</span>
                 </span>
               </div>
@@ -742,6 +829,17 @@ onMounted(() => {
             <h3 class="font-['Baloo_2'] text-xl sm:text-2xl font-bold text-[#2B3445] leading-snug">
               {{ currentQuestion.questionText }}
             </h3>
+
+            <!-- Informasi Tambahan / Piktogram / Konteks (jika ada) -->
+            <div v-if="currentQuestion.info" class="flex items-start gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#FFF8F0] border-2 border-[#FFDE7A] text-xs sm:text-sm text-[#2B3445] shadow-xs">
+              <div class="w-7 h-7 rounded-xl bg-[#FFDE7A] text-[#2B3445] flex items-center justify-center shrink-0 mt-0.5">
+                <Info class="w-4 h-4" />
+              </div>
+              <div class="leading-relaxed">
+                <span class="font-bold text-[#1E7A6F] block text-xs uppercase tracking-wider mb-0.5">Petunjuk Informasi:</span>
+                <span>{{ currentQuestion.info }}</span>
+              </div>
+            </div>
 
             <!-- Optional Question Banner Image (if any) -->
             <div v-if="currentQuestion.image && currentQuestion.type !== 'image_choice'" class="w-full flex justify-center py-2">
@@ -1119,7 +1217,173 @@ onMounted(() => {
               </div>
             </div>
 
-            <!-- ==================== MODE 5: MULTIPLE CHOICE DEFAULT ==================== -->
+            <!-- ==================== MODE 5: FILL IN THE BLANK ("ISI ANGKA / JAWABAN") ==================== -->
+            <div v-else-if="currentQuestion.type === 'fill_in_blank'" class="space-y-4 pt-2">
+              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2.5 rounded-xl border border-[#7FD4C4]/40">
+                <Hash class="w-4 h-4 shrink-0" />
+                <span>{{ currentQuestion.hint || 'Tuliskan angka jawaban yang tepat pada kotak di bawah!' }}</span>
+              </div>
+
+              <div class="max-w-md mx-auto space-y-4 pt-1">
+                <div class="relative">
+                  <input
+                    type="text"
+                    :value="selectedAnswers[currentQuestionIndex] || ''"
+                    @input="onFillInBlankInput($event.target.value)"
+                    placeholder="Ketik jawabanmu di sini..."
+                    class="w-full px-6 py-4 rounded-2xl border-2 border-[#8F8575]/30 focus:border-[#1E7A6F] focus:ring-4 focus:ring-[#7FD4C4]/30 outline-none text-2xl font-bold text-center text-[#2B3445] bg-white transition shadow-xs font-['Baloo_2']"
+                  />
+                </div>
+
+                <!-- Tombol Cepat Angka untuk Siswa SD -->
+                <div class="bg-[#FFF8F0] p-4 rounded-2xl border border-[#8F8575]/25 space-y-2.5">
+                  <span class="text-[11px] font-semibold text-[#5B6474] text-center block uppercase tracking-wider">
+                    Tombol Bantuan Angka:
+                  </span>
+                  <div class="grid grid-cols-5 gap-2 max-w-xs mx-auto">
+                    <button
+                      v-for="digit in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']"
+                      :key="digit"
+                      type="button"
+                      @click="appendDigit(digit)"
+                      class="h-11 rounded-xl bg-white border border-[#8F8575]/25 font-['Baloo_2'] text-xl font-bold text-[#2B3445] hover:bg-[#7FD4C4]/25 hover:border-[#1E7A6F] active:scale-95 transition cursor-pointer shadow-2xs"
+                    >
+                      {{ digit }}
+                    </button>
+                  </div>
+                  <div class="flex justify-center gap-2 pt-1">
+                    <button
+                      type="button"
+                      @click="backspaceDigit"
+                      class="px-4 py-2 rounded-xl bg-white border border-[#8F8575]/25 text-xs font-semibold text-[#5B6474] hover:text-[#2B3445] hover:bg-black/5 active:scale-95 transition cursor-pointer"
+                    >
+                      ⌫ Hapus Satu
+                    </button>
+                    <button
+                      type="button"
+                      @click="clearDigit"
+                      class="px-4 py-2 rounded-xl bg-white border border-[#8F8575]/25 text-xs font-semibold text-[#5B6474] hover:text-[#2B3445] hover:bg-black/5 active:scale-95 transition cursor-pointer"
+                    >
+                      Kosongkan
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 6: MULTI SELECT ("PILIH SEMUA YANG BENAR") ==================== -->
+            <div v-else-if="currentQuestion.type === 'multi_select'" class="space-y-4 pt-2">
+              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2.5 rounded-xl border border-[#7FD4C4]/40">
+                <CheckSquare class="w-4 h-4 shrink-0" />
+                <span>{{ currentQuestion.hint || 'Bisa memilih lebih dari satu jawaban. Ketuk semua pilihan yang benar!' }}</span>
+              </div>
+
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5 pt-1">
+                <button
+                  v-for="(opt, optIdx) in currentQuestion.options || []"
+                  :key="optIdx"
+                  type="button"
+                  @click="toggleMultiSelect(optIdx)"
+                  :class="[
+                    'p-4 rounded-2xl font-medium text-base flex items-center justify-between gap-3 transition-all cursor-pointer border-2 select-none',
+                    getMultiSelectAnswersForCurrent().includes(optIdx)
+                      ? 'bg-[#7FD4C4]/20 border-[#1E7A6F] text-[#1E7A6F] font-bold shadow-sm ring-2 ring-[#7FD4C4]/40 scale-[1.02]'
+                      : 'bg-white border-[#8F8575]/25 hover:border-[#1E7A6F] text-[#2B3445]'
+                  ]"
+                >
+                  <div class="flex items-center gap-3">
+                    <div
+                      :class="[
+                        'w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-colors',
+                        getMultiSelectAnswersForCurrent().includes(optIdx)
+                          ? 'bg-[#1E7A6F] border-[#1E7A6F] text-white'
+                          : 'border-[#8F8575]/40 bg-white'
+                      ]"
+                    >
+                      <Check v-if="getMultiSelectAnswersForCurrent().includes(optIdx)" class="w-4 h-4" />
+                    </div>
+                    <span class="font-['Baloo_2'] text-lg">{{ opt }}</span>
+                  </div>
+
+                  <span
+                    v-if="getMultiSelectAnswersForCurrent().includes(optIdx)"
+                    class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#1E7A6F] text-white"
+                  >
+                    Dipilih
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 7: GRID MAP ("PILIH PETAK DI PETA / KOORDINAT") ==================== -->
+            <div v-else-if="currentQuestion.type === 'grid_map'" class="space-y-4 pt-2">
+              <div class="flex items-center gap-2 text-xs font-medium text-[#1E7A6F] bg-[#7FD4C4]/20 px-3.5 py-2.5 rounded-xl border border-[#7FD4C4]/40">
+                <Compass class="w-4 h-4 shrink-0" />
+                <span>{{ currentQuestion.hint || 'Mulai dari petak D4, ikuti petunjuk langkah lalu ketuk petak tujuanmu di papan peta!' }}</span>
+              </div>
+
+              <div class="max-w-md mx-auto bg-white p-4 rounded-3xl border-2 border-[#8F8575]/25 space-y-3">
+                <div class="flex items-center justify-between text-xs font-semibold px-2">
+                  <span class="flex items-center gap-1.5 text-[#1E7A6F]">
+                    <MapPin class="w-3.5 h-3.5" /> Posisi Awal: <strong class="bg-[#FFF8F0] px-2 py-0.5 rounded-lg border border-[#8F8575]/25">{{ currentQuestion.initialCell || 'D4' }}</strong>
+                  </span>
+                  <span class="text-[#2B3445]">
+                    Pilihanmu: <strong class="text-[#1E7A6F] bg-[#7FD4C4]/20 px-2 py-0.5 rounded-lg border border-[#1E7A6F]/30">{{ selectedAnswers[currentQuestionIndex] || '-' }}</strong>
+                  </span>
+                </div>
+
+                <!-- 6x6 Grid Table (Kolom A-F, Baris 1-6) -->
+                <div class="overflow-x-auto pb-1">
+                  <div class="min-w-[280px]">
+                    <!-- Kolom Header A, B, C, D, E, F -->
+                    <div class="grid grid-cols-7 gap-1.5 text-center text-xs font-bold text-[#5B6474] mb-1.5">
+                      <div></div>
+                      <div v-for="col in (currentQuestion.gridColumns || ['A','B','C','D','E','F'])" :key="col" class="py-1">
+                        {{ col }}
+                      </div>
+                    </div>
+
+                    <!-- Baris 1 sampai 6 -->
+                    <div
+                      v-for="row in (currentQuestion.gridRows || [1, 2, 3, 4, 5, 6])"
+                      :key="row"
+                      class="grid grid-cols-7 gap-1.5 mb-1.5 items-center"
+                    >
+                      <!-- Label Baris -->
+                      <div class="text-xs font-bold text-[#5B6474] text-center">
+                        {{ row }}
+                      </div>
+
+                      <!-- Petak A-F untuk Baris ini -->
+                      <button
+                        v-for="col in (currentQuestion.gridColumns || ['A','B','C','D','E','F'])"
+                        :key="`${col}${row}`"
+                        type="button"
+                        @click="selectGridCell(`${col}${row}`)"
+                        :class="[
+                          'h-11 sm:h-12 rounded-xl text-xs sm:text-sm font-bold flex flex-col items-center justify-center transition-all cursor-pointer border select-none relative',
+                          selectedAnswers[currentQuestionIndex] === `${col}${row}`
+                            ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm ring-2 ring-[#7FD4C4] scale-105 z-10'
+                            : `${col}${row}` === (currentQuestion.initialCell || 'D4')
+                            ? 'bg-[#FFDE7A]/50 border-[#D97706] text-[#B45309]'
+                            : 'bg-[#FFF8F0] border-[#8F8575]/25 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 text-[#2B3445]'
+                        ]"
+                      >
+                        <span>{{ col }}{{ row }}</span>
+                        <span v-if="`${col}${row}` === (currentQuestion.initialCell || 'D4') && selectedAnswers[currentQuestionIndex] !== `${col}${row}`" class="text-[9px] font-normal leading-none text-[#B45309]">
+                          Awal
+                        </span>
+                        <span v-else-if="selectedAnswers[currentQuestionIndex] === `${col}${row}`" class="text-[9px] font-normal leading-none text-white">
+                          Tujuan
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==================== MODE 8: MULTIPLE CHOICE DEFAULT ==================== -->
             <div v-else class="grid grid-cols-1 gap-3 pt-2">
               <button
                 v-for="(opt, optIdx) in currentQuestion.options"
@@ -1336,6 +1600,28 @@ onMounted(() => {
                       {{ selectedAnswers[idx] === 0 ? 'Benar (B)' : selectedAnswers[idx] === 1 ? 'Salah (S)' : 'Tidak dijawab' }}
                     </span>
 
+                    <!-- Fill in the blank Review -->
+                    <span v-else-if="q.type === 'fill_in_blank'" class="text-[#2B3445] font-bold text-sm font-['Baloo_2'] text-base">
+                      {{ selectedAnswers[idx] || 'Tidak dijawab' }}
+                    </span>
+
+                    <!-- Multi Select Review -->
+                    <div v-else-if="q.type === 'multi_select'" class="flex flex-wrap gap-1.5 items-center">
+                      <span
+                        v-for="selIdx in (selectedAnswers[idx] || [])"
+                        :key="selIdx"
+                        class="px-2.5 py-0.5 rounded-lg bg-white border border-[#8F8575]/25 font-bold text-[#2B3445]"
+                      >
+                        {{ q.options[selIdx] }}
+                      </span>
+                      <span v-if="!selectedAnswers[idx] || selectedAnswers[idx].length === 0" class="text-[#8F8575]">Belum dipilih</span>
+                    </div>
+
+                    <!-- Grid Map Review -->
+                    <span v-else-if="q.type === 'grid_map'" class="text-[#2B3445] font-bold text-sm">
+                      Petak {{ selectedAnswers[idx] || 'Tidak dijawab' }}
+                    </span>
+
                     <!-- Multiple Choice Review -->
                     <span v-else class="text-[#2B3445] font-bold text-sm">
                       {{ selectedAnswers[idx] !== undefined ? `${String.fromCharCode(65 + selectedAnswers[idx])}. ${q.options[selectedAnswers[idx]]}` : 'Tidak dijawab' }}
@@ -1382,6 +1668,27 @@ onMounted(() => {
                     <!-- True False Correct -->
                     <span v-else-if="q.type === 'true_false'" class="text-[#2B3445] font-bold text-sm">
                       {{ q.correctOptionIndex === 0 ? 'Benar (B)' : 'Salah (S)' }}
+                    </span>
+
+                    <!-- Fill in the blank Correct -->
+                    <span v-else-if="q.type === 'fill_in_blank'" class="text-[#1E7A6F] font-bold font-['Baloo_2'] text-base">
+                      {{ q.expectedAnswers?.[0] || q.options?.[q.correctOptionIndex] }}
+                    </span>
+
+                    <!-- Multi Select Correct -->
+                    <div v-else-if="q.type === 'multi_select'" class="flex flex-wrap gap-1.5 items-center">
+                      <span
+                        v-for="cIdx in (q.multiCorrectIndices || [])"
+                        :key="cIdx"
+                        class="px-2.5 py-0.5 rounded-lg bg-white border border-[#1E7A6F]/40 font-bold text-[#1E7A6F]"
+                      >
+                        {{ q.options[cIdx] }}
+                      </span>
+                    </div>
+
+                    <!-- Grid Map Correct -->
+                    <span v-else-if="q.type === 'grid_map'" class="text-[#1E7A6F] font-bold text-sm">
+                      Petak {{ q.correctCell || 'E5' }}
                     </span>
 
                     <!-- Multiple Choice Correct -->
