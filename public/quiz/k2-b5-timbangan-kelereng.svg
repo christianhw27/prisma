@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 260" width="100%" height="100%">
+  <rect width="580" height="260" fill="none"/>
+
+  <text x="290" y="28" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="18" font-weight="bold" fill="#2B3445">
+    Timbangan Kelereng yang Seimbang
+  </text>
+
+  <!-- Defs for marbles -->
+  <defs>
+    <!-- Kelereng Biru -->
+    <g id="marble-blue">
+      <circle cx="8" cy="8" r="7" fill="#42A5F5" stroke="#1E88E5" stroke-width="1"/>
+      <circle cx="5" cy="5" r="2" fill="#FFFFFF" opacity="0.7"/>
+    </g>
+    <!-- Kelereng Kuning -->
+    <g id="marble-yellow">
+      <circle cx="8" cy="8" r="7" fill="#FFCA28" stroke="#F57C00" stroke-width="1"/>
+      <circle cx="5" cy="5" r="2" fill="#FFFFFF" opacity="0.7"/>
+    </g>
+    <!-- Kelereng Hijau -->
+    <g id="marble-green">
+      <circle cx="8" cy="8" r="7" fill="#66BB6A" stroke="#2E7D32" stroke-width="1"/>
+      <circle cx="5" cy="5" r="2" fill="#FFFFFF" opacity="0.7"/>
+    </g>
+  </defs>
+
+  <!-- Timbangan Base & Pillar -->
+  <g transform="translate(290, 80)">
+    <!-- Base -->
+    <polygon points="-40,140 40,140 25,125 -25,125" fill="#8D6E63"/>
+    <rect x="-6" y="0" width="12" height="125" rx="3" fill="#A1887F"/>
+    <!-- Pivot Fulcrum -->
+    <circle cx="0" cy="0" r="10" fill="#D7CCC8" stroke="#5D4037" stroke-width="2"/>
+    <!-- Beam (Seimbang mendatar) -->
+    <rect x="-190" y="-5" width="380" height="10" rx="4" fill="#BCAAA4" stroke="#5D4037" stroke-width="1.5"/>
+
+    <!-- Left Pan (Piringan Kiri) -->
+    <g transform="translate(-160, 0)">
+      <line x1="0" y1="5" x2="-35" y2="70" stroke="#78909C" stroke-width="1.5"/>
+      <line x1="0" y1="5" x2="35" y2="70" stroke="#78909C" stroke-width="1.5"/>
+      <!-- Pan tray -->
+      <path d="M -45 70 C -45 90, 45 90, 45 70 Z" fill="#CFD8DC" stroke="#78909C" stroke-width="1.5"/>
+
+      <!-- 8 Kelereng Biru + 5 Kelereng Kuning -->
+      <g transform="translate(-32, 52)">
+        <!-- Baris bawah 5 biru -->
+        <use href="#marble-blue" x="0" y="8"/>
+        <use href="#marble-blue" x="12" y="8"/>
+        <use href="#marble-blue" x="24" y="8"/>
+        <use href="#marble-blue" x="36" y="8"/>
+        <use href="#marble-blue" x="48" y="8"/>
+        <!-- Baris tengah 3 biru + 2 kuning -->
+        <use href="#marble-blue" x="6" y="-4"/>
+        <use href="#marble-blue" x="18" y="-4"/>
+        <use href="#marble-blue" x="30" y="-4"/>
+        <use href="#marble-yellow" x="42" y="-4"/>
+        <!-- Baris atas 3 kuning -->
+        <use href="#marble-yellow" x="12" y="-16"/>
+        <use href="#marble-yellow" x="24" y="-16"/>
+        <use href="#marble-yellow" x="36" y="-16"/>
+      </g>
+      <rect x="-50" y="95" width="100" height="24" rx="6" fill="#FFF8F0" stroke="#FFDE7A" stroke-width="1.2"/>
+      <text x="0" y="112" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="12" font-weight="bold" fill="#1E7A6F">
+        8 + 5 (13)
+      </text>
+    </g>
+
+    <!-- Right Pan (Piringan Kanan) -->
+    <g transform="translate(160, 0)">
+      <line x1="0" y1="5" x2="-35" y2="70" stroke="#78909C" stroke-width="1.5"/>
+      <line x1="0" y1="5" x2="35" y2="70" stroke="#78909C" stroke-width="1.5"/>
+      <!-- Pan tray -->
+      <path d="M -45 70 C -45 90, 45 90, 45 70 Z" fill="#CFD8DC" stroke="#78909C" stroke-width="1.5"/>
+
+      <!-- 10 Kelereng Hijau + Kotak Misteri (?) -->
+      <g transform="translate(-40, 52)">
+        <!-- 6 Kelereng hijau tumpuk di kiri -->
+        <use href="#marble-green" x="0" y="8"/>
+        <use href="#marble-green" x="12" y="8"/>
+        <use href="#marble-green" x="24" y="8"/>
+        <use href="#marble-green" x="6" y="-4"/>
+        <use href="#marble-green" x="18" y="-4"/>
+        <use href="#marble-green" x="12" y="-16"/>
+      </g>
+      <!-- Kantong / Kotak Misteri bertanda ? -->
+      <g transform="translate(5, 45)">
+        <rect x="0" y="0" width="34" height="34" rx="8" fill="#FFDE7A" stroke="#D97706" stroke-width="1.5"/>
+        <text x="17" y="24" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="20" font-weight="bold" fill="#B45309">
+          ?
+        </text>
+      </g>
+      <rect x="-50" y="95" width="100" height="24" rx="6" fill="#FFF8F0" stroke="#FFDE7A" stroke-width="1.2"/>
+      <text x="0" y="112" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="12" font-weight="bold" fill="#D97706">
+        10 + ___
+      </text>
+    </g>
+  </g>
+</svg>

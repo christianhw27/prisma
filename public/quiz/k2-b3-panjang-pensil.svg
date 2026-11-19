@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 230" width="100%" height="100%">
+  <rect width="580" height="230" fill="none"/>
+
+  <text x="290" y="28" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="18" font-weight="bold" fill="#2B3445">
+    Mengukur Panjang Pensil dengan Klip Kertas
+  </text>
+
+  <!-- Defs for paperclip icon -->
+  <defs>
+    <g id="paperclip">
+      <path d="M 4 8 C 4 3, 16 3, 16 8 L 16 20 C 16 26, 6 26, 6 20 L 6 9 C 6 6, 14 6, 14 9 L 14 18" fill="none" stroke="#5B6474" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+  </defs>
+
+  <!-- Baris 1: Pensil Ani (5 Klip) -->
+  <g transform="translate(30, 50)">
+    <rect x="0" y="0" width="520" height="65" rx="14" fill="#FFF8F0" stroke="#8F8575" stroke-opacity="0.25" stroke-width="1.5"/>
+    <text x="20" y="38" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">
+      Pensil Ani
+    </text>
+
+    <!-- Pensil Ani (Panjang 140px) -->
+    <g transform="translate(115, 20)">
+      <polygon points="0,12 18,3 18,21" fill="#FFCC80"/>
+      <polygon points="0,12 8,7 8,17" fill="#2B3445"/>
+      <rect x="18" y="3" width="110" height="18" fill="#FF8A65" stroke="#D84315" stroke-width="1"/>
+      <rect x="128" y="3" width="12" height="18" fill="#CFD8DC"/>
+      <path d="M 140 3 C 145 3, 148 7, 148 12 C 148 17, 145 21, 140 21 Z" fill="#F48FB1"/>
+    </g>
+
+    <!-- 5 Klip Kertas Sejajar -->
+    <g transform="translate(280, 18)">
+      <use href="#paperclip" x="0" y="0"/>
+      <use href="#paperclip" x="24" y="0"/>
+      <use href="#paperclip" x="48" y="0"/>
+      <use href="#paperclip" x="72" y="0"/>
+      <use href="#paperclip" x="96" y="0"/>
+    </g>
+
+    <text x="495" y="38" text-anchor="end" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#D84315">
+      5 klip
+    </text>
+  </g>
+
+  <!-- Baris 2: Pensil Edo (8 Klip) -->
+  <g transform="translate(30, 130)">
+    <rect x="0" y="0" width="520" height="65" rx="14" fill="#FFFFFF" stroke="#8F8575" stroke-opacity="0.25" stroke-width="1.5"/>
+    <text x="20" y="38" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">
+      Pensil Edo
+    </text>
+
+    <!-- Pensil Edo (Panjang 210px) -->
+    <g transform="translate(115, 20)">
+      <polygon points="0,12 18,3 18,21" fill="#FFCC80"/>
+      <polygon points="0,12 8,7 8,17" fill="#2B3445"/>
+      <rect x="18" y="3" width="170" height="18" fill="#4DB6AC" stroke="#00796B" stroke-width="1"/>
+      <rect x="188" y="3" width="12" height="18" fill="#CFD8DC"/>
+      <path d="M 200 3 C 205 3, 208 7, 208 12 C 208 17, 205 21, 200 21 Z" fill="#F48FB1"/>
+    </g>
+
+    <!-- 8 Klip Kertas Sejajar -->
+    <g transform="translate(325, 18)">
+      <use href="#paperclip" x="0" y="0"/>
+      <use href="#paperclip" x="18" y="0"/>
+      <use href="#paperclip" x="36" y="0"/>
+      <use href="#paperclip" x="54" y="0"/>
+      <use href="#paperclip" x="72" y="0"/>
+      <use href="#paperclip" x="90" y="0"/>
+      <use href="#paperclip" x="108" y="0"/>
+      <use href="#paperclip" x="126" y="0"/>
+    </g>
+
+    <text x="495" y="38" text-anchor="end" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#00796B">
+      8 klip
+    </text>
+  </g>
+</svg>

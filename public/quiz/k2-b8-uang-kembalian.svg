@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 260" width="100%" height="100%">
+  <!-- Background transparent -->
+  <rect width="580" height="260" fill="none"/>
+
+  <text x="290" y="28" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="18" font-weight="bold" fill="#2B3445">
+    Pembayaran di Warung Bu Siti
+  </text>
+
+  <!-- Left: Uang Pembayaran Nisa (Uang Kertas Rp 20.000) -->
+  <g transform="translate(35, 55)">
+    <!-- Banknote Shadow -->
+    <rect x="3" y="5" width="240" height="135" rx="12" fill="#000000" opacity="0.08"/>
+    <!-- Banknote Body (Hijau Uang Rp 20.000) -->
+    <rect x="0" y="0" width="240" height="135" rx="12" fill="#81C784" stroke="#2E7D32" stroke-width="2"/>
+    <!-- Inner Pattern & Border -->
+    <rect x="6" y="6" width="228" height="123" rx="8" fill="#A5D6A7" stroke="#388E3C" stroke-width="1.2" stroke-dasharray="6 3"/>
+    <rect x="12" y="12" width="216" height="111" rx="6" fill="#C8E6C9" opacity="0.6"/>
+
+    <!-- Bank Indonesia Header -->
+    <text x="20" y="28" font-family="'Lexend', sans-serif" font-size="9" font-weight="bold" fill="#1B5E20" letter-spacing="1">
+      NEGARA KESATUAN REPUBLIK INDONESIA
+    </text>
+    <text x="20" y="40" font-family="'Lexend', sans-serif" font-size="8" font-weight="bold" fill="#2E7D32">
+      BANK INDONESIA
+    </text>
+
+    <!-- Nominal Besar -->
+    <text x="185" y="44" font-family="'Baloo 2', cursive, sans-serif" font-size="20" font-weight="bold" fill="#1B5E20">
+      20000
+    </text>
+
+    <!-- Center Ornament & Portrait Placeholder -->
+    <circle cx="70" cy="80" r="28" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+    <circle cx="70" cy="74" r="14" fill="#81C784"/>
+    <path d="M 50 102 C 50 88, 90 88, 90 102 Z" fill="#4CAF50"/>
+    <text x="70" y="116" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="7" font-weight="bold" fill="#1B5E20">
+      PAHLAWAN
+    </text>
+
+    <!-- Text Terbilang -->
+    <text x="110" y="78" font-family="'Lexend', sans-serif" font-size="9" font-weight="bold" fill="#1B5E20">
+      DUA PULUH RIBU
+    </text>
+    <text x="110" y="90" font-family="'Lexend', sans-serif" font-size="9" font-weight="bold" fill="#1B5E20">
+      RUPIAH
+    </text>
+
+    <!-- Nominal Bawah -->
+    <rect x="108" y="100" width="116" height="22" rx="6" fill="#2E7D32"/>
+    <text x="166" y="115" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="13" font-weight="bold" fill="#FFFFFF">
+      Rp 20.000
+    </text>
+
+    <!-- Badge label -->
+    <rect x="40" y="148" width="160" height="26" rx="8" fill="#FFF8F0" stroke="#8F8575" stroke-width="1.2"/>
+    <text x="120" y="165" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="11" font-weight="bold" fill="#2B3445">
+      💵 Uang yang Dibayar
+    </text>
+  </g>
+
+  <!-- Right: Struk Belanjaan & Hitungan -->
+  <g transform="translate(305, 45)">
+    <!-- Nota / Struk Card -->
+    <rect x="0" y="0" width="240" height="195" rx="16" fill="#FFFFFF" stroke="#8F8575" stroke-opacity="0.3" stroke-width="1.5"/>
+    <!-- Top Struk Accent -->
+    <path d="M 0 16 C 0 7, 7 0, 16 0 L 224 0 C 233 0, 240 7, 240 16 L 240 32 L 0 32 Z" fill="#FFDE7A" opacity="0.45"/>
+    <text x="120" y="21" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="13" font-weight="bold" fill="#2B3445">
+      🧾 Struk Belanja Nisa
+    </text>
+
+    <!-- Daftar Belanja -->
+    <g transform="translate(20, 52)">
+      <text x="0" y="0" font-family="'Lexend', sans-serif" font-size="12" fill="#5B6474">🥚 Telur</text>
+      <text x="200" y="0" text-anchor="end" font-family="'Lexend', sans-serif" font-size="12" font-weight="bold" fill="#2B3445">Rp 8.000</text>
+
+      <text x="0" y="26" font-family="'Lexend', sans-serif" font-size="12" fill="#5B6474">🍚 Gula Pasir</text>
+      <text x="200" y="26" text-anchor="end" font-family="'Lexend', sans-serif" font-size="12" font-weight="bold" fill="#2B3445">Rp 7.000</text>
+
+      <line x1="0" y1="38" x2="200" y2="38" stroke="#8F8575" stroke-opacity="0.3" stroke-dasharray="4 3"/>
+
+      <!-- Total Belanja -->
+      <text x="0" y="56" font-family="'Lexend', sans-serif" font-size="12" font-weight="bold" fill="#1E7A6F">Total Belanja</text>
+      <text x="200" y="56" text-anchor="end" font-family="'Baloo 2', cursive, sans-serif" font-size="14" font-weight="bold" fill="#1E7A6F">Rp 15.000</text>
+
+      <rect x="-8" y="72" width="216" height="52" rx="10" fill="#FFF8F0" stroke="#FFDE7A" stroke-width="1.5"/>
+      <text x="0" y="90" font-family="'Lexend', sans-serif" font-size="11" font-weight="bold" fill="#5B6474">Uang Pembayaran:</text>
+      <text x="200" y="90" text-anchor="end" font-family="'Lexend', sans-serif" font-size="11" font-weight="bold" fill="#2E7D32">Rp 20.000</text>
+
+      <text x="0" y="111" font-family="'Lexend', sans-serif" font-size="12" font-weight="bold" fill="#B45309">Uang Kembalian:</text>
+      <text x="200" y="112" text-anchor="end" font-family="'Baloo 2', cursive, sans-serif" font-size="16" font-weight="bold" fill="#D97706">? ? ?</text>
+    </g>
+  </g>
+</svg>

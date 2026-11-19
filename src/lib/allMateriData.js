@@ -353,7 +353,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Hitung mundur dari 12: 11, 10, 9, 8, 7."
+          "explanation": "Hitung mundur dari 12: 11, 10, 9, 8, 7.",
+          "image": "/quiz/k1-b2-kue-sisa.svg"
         }
       ]
     },
@@ -437,7 +438,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Hitung mundur dari 12: 11, 10, 9, 8, 7."
+          "explanation": "Hitung mundur dari 12: 11, 10, 9, 8, 7.",
+          "image": "/quiz/k1-b2-kue-sisa.svg"
         }
       ]
     },
@@ -2348,7 +2350,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "8 klip lebih banyak dari 5 klip."
+          "explanation": "8 klip lebih banyak dari 5 klip.",
+          "image": "/quiz/k2-b3-panjang-pensil.svg"
         },
         {
           "id": "q-materi-k2-b3-2",
@@ -2431,7 +2434,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "8 klip lebih banyak dari 5 klip."
+          "explanation": "8 klip lebih banyak dari 5 klip.",
+          "image": "/quiz/k2-b3-panjang-pensil.svg"
         },
         {
           "id": "q-materi-k2-b3-2",
@@ -2739,7 +2743,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Kiri 13. Supaya kanan juga 13, 10 + 3."
+          "explanation": "Kiri 13. Supaya kanan juga 13, 10 + 3.",
+          "image": "/quiz/k2-b5-timbangan-kelereng.svg"
         },
         {
           "id": "q-materi-k2-b5-2",
@@ -2818,7 +2823,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Kiri 13. Supaya kanan juga 13, 10 + 3."
+          "explanation": "Kiri 13. Supaya kanan juga 13, 10 + 3.",
+          "image": "/quiz/k2-b5-timbangan-kelereng.svg"
         },
         {
           "id": "q-materi-k2-b5-2",
@@ -2935,7 +2941,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Gabungkan sisi terpanjangnya, jadilah persegi."
+          "explanation": "Gabungkan sisi terpanjangnya, jadilah persegi.",
+          "image": "/quiz/k2-b6-tangram-segitiga.svg"
         },
         {
           "id": "q-materi-k2-b6-2",
@@ -3019,7 +3026,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Gabungkan sisi terpanjangnya, jadilah persegi."
+          "explanation": "Gabungkan sisi terpanjangnya, jadilah persegi.",
+          "image": "/quiz/k2-b6-tangram-segitiga.svg"
         },
         {
           "id": "q-materi-k2-b6-2",
@@ -3379,7 +3387,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "8 ribu + 7 ribu = 15 ribu."
+          "explanation": "8 ribu + 7 ribu = 15 ribu.",
+          "image": "/quiz/k2-b8-belanja-total.svg"
         },
         {
           "id": "q-materi-k2-b8-2",
@@ -3405,7 +3414,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "20 ribu − 15 ribu = 5 ribu."
+          "explanation": "20 ribu − 15 ribu = 5 ribu.",
+          "image": "/quiz/k2-b8-uang-kembalian.svg"
         }
       ]
     },
@@ -3464,7 +3474,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "8 ribu + 7 ribu = 15 ribu."
+          "explanation": "8 ribu + 7 ribu = 15 ribu.",
+          "image": "/quiz/k2-b8-belanja-total.svg"
         },
         {
           "id": "q-materi-k2-b8-2",
@@ -3490,7 +3501,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "20 ribu − 15 ribu = 5 ribu."
+          "explanation": "20 ribu − 15 ribu = 5 ribu.",
+          "image": "/quiz/k2-b8-uang-kembalian.svg"
         }
       ]
     },
@@ -6934,7 +6946,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "850.000 − 475.000 = 375.000."
+          "explanation": "850.000 − 475.000 = 375.000.",
+          "image": "/quiz/k5-b1-tabungan-sepeda.svg"
         },
         {
           "id": "q-materi-k5-b1-2",
@@ -7019,7 +7032,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "850.000 − 475.000 = 375.000."
+          "explanation": "850.000 − 475.000 = 375.000.",
+          "image": "/quiz/k5-b1-tabungan-sepeda.svg"
         },
         {
           "id": "q-materi-k5-b1-2",
@@ -8902,7 +8916,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "4 × 2 × 3 = 24."
+          "explanation": "4 × 2 × 3 = 24.",
+          "image": "/quiz/k6-b2-kubus-satuan.svg"
         }
       ]
     },
@@ -8986,7 +9001,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "4 × 2 × 3 = 24."
+          "explanation": "4 × 2 × 3 = 24.",
+          "image": "/quiz/k6-b2-kubus-satuan.svg"
         }
       ]
     },
@@ -9711,7 +9727,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Jari-jari = diameter : 2."
+          "explanation": "Jari-jari = diameter : 2.",
+          "image": "/quiz/k6-b6-lingkaran-sumur.svg"
         },
         {
           "id": "q-materi-k6-b6-2",
@@ -9737,7 +9754,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "22/7 × 70 = 220."
+          "explanation": "22/7 × 70 = 220.",
+          "image": "/quiz/k6-b6-lingkaran-sumur.svg"
         }
       ]
     },
@@ -9796,7 +9814,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Jari-jari = diameter : 2."
+          "explanation": "Jari-jari = diameter : 2.",
+          "image": "/quiz/k6-b6-lingkaran-sumur.svg"
         },
         {
           "id": "q-materi-k6-b6-2",
@@ -9822,7 +9841,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "22/7 × 70 = 220."
+          "explanation": "22/7 × 70 = 220.",
+          "image": "/quiz/k6-b6-lingkaran-sumur.svg"
         }
       ]
     },

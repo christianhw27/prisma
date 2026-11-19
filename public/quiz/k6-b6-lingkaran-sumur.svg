@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 250" width="100%" height="100%">
+  <rect width="560" height="250" fill="none"/>
+
+  <text x="280" y="28" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="18" font-weight="bold" fill="#2B3445">
+    Penampang Bibir Sumur Bulat
+  </text>
+
+  <!-- Left: Gambar Lingkaran Sumur -->
+  <g transform="translate(140, 135)">
+    <!-- Bibir Sumur (Ring luar batu bata) -->
+    <circle cx="0" cy="0" r="85" fill="#E0E0E0" stroke="#757575" stroke-width="3"/>
+    <circle cx="0" cy="0" r="75" fill="#80DEEA" stroke="#00838F" stroke-width="2"/>
+    <circle cx="0" cy="0" r="65" fill="#4DD0E1" opacity="0.4"/>
+
+    <!-- Titik Pusat -->
+    <circle cx="0" cy="0" r="4.5" fill="#D32F2F"/>
+    <text x="-12" y="18" font-family="'Lexend', sans-serif" font-size="11" font-weight="bold" fill="#D32F2F">Pusat</text>
+
+    <!-- Garis Diameter (d = 70 cm) -->
+    <line x1="-75" y1="0" x2="75" y2="0" stroke="#D32F2F" stroke-width="2.5"/>
+    <!-- Panah di kedua ujung diameter -->
+    <polygon points="-75,0 -67,-4 -67,4" fill="#D32F2F"/>
+    <polygon points="75,0 67,-4 67,4" fill="#D32F2F"/>
+
+    <!-- Label Diameter di atas garis -->
+    <rect x="-65" y="-25" width="130" height="20" rx="6" fill="#FFFFFF" stroke="#D32F2F" stroke-width="1.2"/>
+    <text x="0" y="-11" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="11" font-weight="bold" fill="#D32F2F">
+      Diameter (d) = 70 cm
+    </text>
+  </g>
+
+  <!-- Right: Card Keterangan Rumus Hubungan Diameter & Jari-Jari -->
+  <g transform="translate(285, 55)">
+    <rect x="0" y="0" width="235" height="160" rx="16" fill="#FFF8F0" stroke="#8F8575" stroke-opacity="0.3" stroke-width="1.5"/>
+
+    <text x="20" y="32" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">
+      Keterangan Lingkaran:
+    </text>
+
+    <!-- Point 1: Diameter -->
+    <g transform="translate(20, 52)">
+      <circle cx="6" cy="6" r="4" fill="#D32F2F"/>
+      <text x="18" y="10" font-family="'Lexend', sans-serif" font-size="12" fill="#5B6474">
+        Diameter (d): garis tengah
+      </text>
+      <text x="18" y="28" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#D32F2F">
+        d = 70 cm
+      </text>
+    </g>
+
+    <!-- Point 2: Jari-jari -->
+    <g transform="translate(20, 98)">
+      <circle cx="6" cy="6" r="4" fill="#1E7A6F"/>
+      <text x="18" y="10" font-family="'Lexend', sans-serif" font-size="12" fill="#5B6474">
+        Jari-jari (r): setengah diameter
+      </text>
+      <rect x="18" y="18" width="180" height="26" rx="6" fill="#FFFFFF" stroke="#1E7A6F" stroke-width="1.2"/>
+      <text x="108" y="35" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="13" font-weight="bold" fill="#1E7A6F">
+        r = d ÷ 2 = ?
+      </text>
+    </g>
+  </g>
+</svg>
