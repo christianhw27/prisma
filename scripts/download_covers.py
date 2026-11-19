@@ -23,7 +23,7 @@ curated_photos = {
     "2-3": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80", # Mengukur meja alat tulis
     "2-4": "https://images.unsplash.com/photo-1559253664-ca249d4608c6?auto=format&fit=crop&w=800&q=80", # Katak hijau sawah
     "2-5": "https://images.unsplash.com/photo-1707137361471-9329fdfd42e5?auto=format&fit=crop&w=800&q=80", # Kelereng kaca warna-warni
-    "2-6": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80", # Mainan geometri kayu tangram
+    "2-6": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTocri2MjGT9VRKZSLQMTtVyPSDqsPv0Qi4NjUPqK4CdQ&s=10", # Tangram kayu Kakek asli
     "2-7": "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=800&q=80", # Jam dinding analog
     "2-8": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80", # Belanja di warung sembako
 
