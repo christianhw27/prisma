@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 190" width="100%" height="100%">
-    <rect width="220" height="190" rx="28" fill="#FFF8F0"/>
+    <rect width="220" height="190" rx="28" fill="none"/>
     <!-- Sarang Jerami Lebih Besar -->
     <ellipse cx="110" cy="130" rx="86" ry="34" fill="#D7CCC8"/>
     <ellipse cx="110" cy="125" rx="78" ry="28" fill="#FFD54F"/>
@@ -20,7 +20,7 @@
     <ellipse cx="92" cy="88" rx="11" ry="15" fill="#FFF8E1" stroke="#FFA726" stroke-width="2"/>
     <ellipse cx="114" cy="88" rx="11" ry="15" fill="#FFF8E1" stroke="#FFA726" stroke-width="2"/>
     <!-- Badge Label -->
-    <rect x="50" y="18" width="120" height="34" rx="12" fill="#1E7A6F"/>
-    <text x="110" y="41" font-family="'Baloo 2', cursive, sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Kandang Kanan</text>
-    <text x="110" y="174" font-family="'Lexend', sans-serif" font-size="14" font-weight="bold" fill="#2E7D32" text-anchor="middle">Ada 12 Butir Telur (Lebih Banyak!)</text>
+    
+    
+    
   </svg>

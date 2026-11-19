@@ -92,7 +92,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Hitung terus dari 5: 6, 7, 8, 9."
+          "explanation": "Hitung terus dari 5: 6, 7, 8, 9.",
+          "image": "/quiz/k1-b1-tomat-hitung.svg"
         },
         {
           "id": "q-materi-k1-b1-2",
@@ -132,7 +133,7 @@ export const allStructuredMateri = [
           "targetCell": null,
           "initialCell": null,
           "explanation": "Tomat itu bulat dan merah.",
-          "image": "/quiz/k1-b1-tomat.svg"
+          "image": null
         }
       ]
     },
@@ -779,7 +780,7 @@ export const allStructuredMateri = [
           "targetCell": null,
           "initialCell": null,
           "explanation": "12 lebih banyak dari 9.",
-          "image": "/quiz/k1-b4-telur-kandang.svg"
+          "image": null
         },
         {
           "id": "q-materi-k1-b4-2",
@@ -2171,7 +2172,7 @@ export const allStructuredMateri = [
           "targetCell": null,
           "initialCell": null,
           "explanation": "Setengah: 2 bagian yang sama besar.",
-          "image": "/quiz/k2-b2-pecahan-kue.svg"
+          "image": null
         },
         {
           "id": "q-materi-k2-b2-2",
@@ -3194,7 +3195,7 @@ export const allStructuredMateri = [
           "targetCell": null,
           "initialCell": null,
           "explanation": "Jam tepat: jarum panjang di angka 12.",
-          "image": "/quiz/k2-b7-jam-dinding.svg"
+          "image": null
         },
         {
           "id": "q-materi-k2-b7-2",
@@ -4477,7 +4478,7 @@ export const allStructuredMateri = [
           "targetCell": null,
           "initialCell": null,
           "explanation": "Dibagi untuk lebih sedikit orang, potongannya lebih besar.",
-          "image": "/quiz/k3-b5-pecahan-roti.svg"
+          "image": null
         },
         {
           "id": "q-materi-k3-b5-2",
@@ -6580,7 +6581,7 @@ export const allStructuredMateri = [
           "targetCell": null,
           "initialCell": null,
           "explanation": "Sudut siku-siku seperti pojok buku.",
-          "image": "/quiz/k4-b7-jenis-sudut.svg"
+          "image": null
         }
       ]
     },

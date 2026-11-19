@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 180" width="100%" height="100%">
+  <!-- Transparent background to blend perfectly -->
+  <rect width="540" height="180" fill="none"/>
+  
+  <text x="270" y="28" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="16" font-weight="bold" fill="#2B3445">
+    Tomat Sari dan Tomat Nenek
+  </text>
+
+  <!-- Kelompok Sari: 5 Tomat -->
+  <g transform="translate(130, 95)">
+    <!-- Keranjang Sari -->
+    <ellipse cx="0" cy="30" rx="95" ry="24" fill="#EADBC8" opacity="0.6"/>
+    <path d="M -90 15 Q 0 45 90 15 L 75 42 Q 0 65 -75 42 Z" fill="#D7CCC8" stroke="#8D6E63" stroke-width="2"/>
+    <!-- 5 Tomat -->
+    <g transform="translate(-60, 0)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <g transform="translate(-30, 6)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <g transform="translate(0, -4)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <g transform="translate(30, 6)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <g transform="translate(60, 0)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <text x="0" y="60" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#1E7A6F">Tomat Sari: 5 buah</text>
+  </g>
+
+  <!-- Simbol Tambah -->
+  <g transform="translate(270, 95)">
+    <circle cx="0" cy="0" r="16" fill="#7FD4C4" opacity="0.3"/>
+    <text x="0" y="8" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="28" font-weight="bold" fill="#1E7A6F">+</text>
+  </g>
+
+  <!-- Kelompok Nenek: 4 Tomat -->
+  <g transform="translate(410, 95)">
+    <!-- Keranjang Nenek -->
+    <ellipse cx="0" cy="30" rx="80" ry="24" fill="#EADBC8" opacity="0.6"/>
+    <path d="M -75 15 Q 0 45 75 15 L 62 42 Q 0 65 -62 42 Z" fill="#D7CCC8" stroke="#8D6E63" stroke-width="2"/>
+    <!-- 4 Tomat -->
+    <g transform="translate(-45, 0)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <g transform="translate(-15, 6)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <g transform="translate(15, 6)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <g transform="translate(45, 0)">
+      <circle cx="0" cy="0" r="18" fill="#FF5252" stroke="#B71C1C" stroke-width="2"/>
+      <polygon points="0,-18 -4,-24 0,-21 4,-24" fill="#4CAF50"/>
+    </g>
+    <text x="0" y="60" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#1E7A6F">Tomat Nenek: 4 buah</text>
+  </g>
+</svg>

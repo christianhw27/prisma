@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="100%" height="100%">
-    <rect width="180" height="180" rx="24" fill="#FFF8F0"/>
+    <rect width="180" height="180" rx="24" fill="none"/>
     <ellipse cx="90" cy="150" rx="45" ry="10" fill="#EADBC8" opacity="0.6"/>
     <!-- Daun Hijau -->
     <path d="M 90 60 C 110 45, 125 55, 120 68 C 108 70, 96 64, 90 60 Z" fill="#43A047"/>
@@ -11,5 +11,5 @@
     <circle cx="105" cy="90" r="1.5" fill="#E65100" opacity="0.6"/>
     <circle cx="85" cy="115" r="1.5" fill="#E65100" opacity="0.6"/>
     <ellipse cx="78" cy="84" rx="10" ry="6" fill="#FFFFFF" opacity="0.4" transform="rotate(-25 78 84)"/>
-    <text x="90" y="165" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445" text-anchor="middle">Jeruk (Paling Banyak)</text>
+    
   </svg>

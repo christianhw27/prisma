@@ -1317,11 +1317,11 @@ onBeforeUnmount(() => {
 
             <!-- Optional Question Banner Image (if any) -->
             <div v-if="currentQuestion.image" class="w-full flex justify-center py-2">
-              <div class="max-w-md w-full aspect-video sm:aspect-16/10 rounded-2xl overflow-hidden shadow-sm border border-[#8F8575]/25 bg-white relative">
+              <div class="max-w-xl w-full flex items-center justify-center p-3 rounded-3xl bg-[#FFF8F0] border border-[#8F8575]/20 shadow-2xs">
                 <img
                   :src="currentQuestion.image"
                   :alt="currentQuestion.questionText"
-                  class="w-full h-full object-contain p-2"
+                  class="w-full max-h-60 object-contain"
                 />
               </div>
             </div>
@@ -1438,7 +1438,7 @@ onBeforeUnmount(() => {
                     </span>
 
                     <!-- Image Container -->
-                    <div class="w-full aspect-square max-h-48 rounded-2xl overflow-hidden bg-[#FFF8F0] flex items-center justify-center p-3 my-2">
+                    <div class="w-full aspect-square max-h-40 rounded-2xl flex items-center justify-center p-2 my-1 bg-transparent">
                       <img
                         :src="opt.image"
                         :alt="opt.label"
