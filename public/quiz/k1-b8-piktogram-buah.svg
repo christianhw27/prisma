@@ -43,7 +43,7 @@
 
   <!-- Title & Legend -->
   <text x="310" y="30" text-anchor="middle" font-family="'Baloo 2', cursive, sans-serif" font-size="18" font-weight="bold" fill="#2B3445">
-    Piktogram Buah Kesukaan Murid Kelas 1
+    Piktogram Buah Kesukaan Teman Sekelas
   </text>
   <rect x="180" y="44" width="260" height="26" rx="10" fill="#7FD4C4" fill-opacity="0.25" stroke="#1E7A6F" stroke-width="1.2"/>
   <text x="310" y="61" text-anchor="middle" font-family="'Lexend', sans-serif" font-size="11" font-weight="bold" fill="#1E7A6F">
@@ -52,50 +52,42 @@
 
   <!-- Baris 1: Pisang (5 Buah) -->
   <g transform="translate(30, 80)">
-    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFF8F0" fill-opacity="0.8" stroke="#8F8575" stroke-opacity="0.15"/>
-    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍌 Pisang</text>
-    <!-- 5 Gambar Pisang Asli -->
-    <use href="#icon-banana" x="150" y="5" width="32" height="32"/>
-    <use href="#icon-banana" x="188" y="5" width="32" height="32"/>
-    <use href="#icon-banana" x="226" y="5" width="32" height="32"/>
-    <use href="#icon-banana" x="264" y="5" width="32" height="32"/>
-    <use href="#icon-banana" x="302" y="5" width="32" height="32"/>
-    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#5B6474">5 anak</text>
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFF8F0" fill-opacity="0.9" stroke="#8F8575" stroke-opacity="0.2"/>
+    <text x="20" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍌 Pisang</text>
+    <use href="#icon-banana" x="140" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="180" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="220" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="260" y="5" width="32" height="32"/>
+    <use href="#icon-banana" x="300" y="5" width="32" height="32"/>
   </g>
 
   <!-- Baris 2: Jeruk (3 Buah) -->
   <g transform="translate(30, 130)">
-    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFFFFF" fill-opacity="0.9" stroke="#8F8575" stroke-opacity="0.15"/>
-    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍊 Jeruk</text>
-    <!-- 3 Gambar Jeruk Asli -->
-    <use href="#icon-orange" x="150" y="5" width="32" height="32"/>
-    <use href="#icon-orange" x="188" y="5" width="32" height="32"/>
-    <use href="#icon-orange" x="226" y="5" width="32" height="32"/>
-    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#5B6474">3 anak</text>
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFFFFF" fill-opacity="0.95" stroke="#8F8575" stroke-opacity="0.2"/>
+    <text x="20" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍊 Jeruk</text>
+    <use href="#icon-orange" x="140" y="5" width="32" height="32"/>
+    <use href="#icon-orange" x="180" y="5" width="32" height="32"/>
+    <use href="#icon-orange" x="220" y="5" width="32" height="32"/>
   </g>
 
-  <!-- Baris 3: Mangga (7 Buah - Terbanyak) -->
+  <!-- Baris 3: Mangga (7 Buah) - Neutral styling, no spoiler! -->
   <g transform="translate(30, 180)">
-    <rect x="0" y="0" width="560" height="42" rx="12" fill="#7FD4C4" fill-opacity="0.15" stroke="#1E7A6F" stroke-opacity="0.4" stroke-width="1.5"/>
-    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#1E7A6F">🥭 Mangga 🌟</text>
-    <!-- 7 Gambar Mangga Asli -->
-    <use href="#icon-mango" x="150" y="5" width="32" height="32"/>
-    <use href="#icon-mango" x="188" y="5" width="32" height="32"/>
-    <use href="#icon-mango" x="226" y="5" width="32" height="32"/>
-    <use href="#icon-mango" x="264" y="5" width="32" height="32"/>
-    <use href="#icon-mango" x="302" y="5" width="32" height="32"/>
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFF8F0" fill-opacity="0.9" stroke="#8F8575" stroke-opacity="0.2"/>
+    <text x="20" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🥭 Mangga</text>
+    <use href="#icon-mango" x="140" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="180" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="220" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="260" y="5" width="32" height="32"/>
+    <use href="#icon-mango" x="300" y="5" width="32" height="32"/>
     <use href="#icon-mango" x="340" y="5" width="32" height="32"/>
-    <use href="#icon-mango" x="378" y="5" width="32" height="32"/>
-    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#1E7A6F">7 anak ⭐</text>
+    <use href="#icon-mango" x="380" y="5" width="32" height="32"/>
   </g>
 
   <!-- Baris 4: Semangka (2 Buah) -->
   <g transform="translate(30, 230)">
-    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFFFFF" fill-opacity="0.9" stroke="#8F8575" stroke-opacity="0.15"/>
-    <text x="16" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍉 Semangka</text>
-    <!-- 2 Gambar Semangka Asli -->
-    <use href="#icon-watermelon" x="150" y="5" width="32" height="32"/>
-    <use href="#icon-watermelon" x="188" y="5" width="32" height="32"/>
-    <text x="500" y="26" font-family="'Lexend', sans-serif" font-size="13" font-weight="bold" fill="#5B6474">2 anak</text>
+    <rect x="0" y="0" width="560" height="42" rx="12" fill="#FFFFFF" fill-opacity="0.95" stroke="#8F8575" stroke-opacity="0.2"/>
+    <text x="20" y="26" font-family="'Baloo 2', cursive, sans-serif" font-size="15" font-weight="bold" fill="#2B3445">🍉 Semangka</text>
+    <use href="#icon-watermelon" x="140" y="5" width="32" height="32"/>
+    <use href="#icon-watermelon" x="180" y="5" width="32" height="32"/>
   </g>
 </svg>

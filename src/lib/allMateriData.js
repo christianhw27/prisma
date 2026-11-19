@@ -1,5 +1,3 @@
-// Database Komprehensif Seluruh Materi Resmi PRISMA (Kelas 1 - 6 SD, Bab 1 - 8 per Kelas)
-// Total 48 Modul Materi Terstruktur dengan Kurikulum Lengkap & Kuis Resmi dari Bacaan_dan_Kuis_PRISMA_untuk_Web.docx
 export const allStructuredMateri = [
   {
     "id": "materi-k1-b1",
@@ -312,7 +310,7 @@ export const allStructuredMateri = [
           "questionText": "Dimas memberi 5 kue kepada Bu Tini.",
           "instructionBadge": "Benar atau Salah",
           "type": "true_false",
-          "info": "Ibu berkata, “Ada 12 kue. Berikan 5 kue untuk Bu Tini.”",
+          "info": "",
           "points": 50,
           "options": [
             "Benar",
@@ -396,7 +394,7 @@ export const allStructuredMateri = [
           "questionText": "Dimas memberi 5 kue kepada Bu Tini.",
           "instructionBadge": "Benar atau Salah",
           "type": "true_false",
-          "info": "Ibu berkata, “Ada 12 kue. Berikan 5 kue untuk Bu Tini.”",
+          "info": "",
           "points": 50,
           "options": [
             "Benar",
@@ -562,7 +560,7 @@ export const allStructuredMateri = [
           "questionText": "Di mana sandal Rina?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Bantal ada di atas kasur. Sandal ada di bawah kasur.",
+          "info": "",
           "points": 50,
           "options": [
             "di atas kasur",
@@ -667,7 +665,7 @@ export const allStructuredMateri = [
           "questionText": "Di mana sandal Rina?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Bantal ada di atas kasur. Sandal ada di bawah kasur.",
+          "info": "",
           "points": 50,
           "options": [
             "di atas kasur",
@@ -1675,16 +1673,16 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k1-b8-1",
           "num": 1,
-          "questionText": "Lihat piktogram. Ketuk buah yang paling disukai.",
+          "questionText": "Berdasarkan piktogram di atas, buah apa yang paling banyak disukai murid?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
+          "info": "",
           "points": 50,
           "options": [
-            "Pisang",
-            "Jeruk",
-            "Mangga",
-            "Semangka"
+            "🍌 Pisang",
+            "🍊 Jeruk",
+            "🥭 Mangga",
+            "🍉 Semangka"
           ],
           "correctOptionIndex": 2,
           "imageOptions": null,
@@ -1697,34 +1695,35 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Baris mangga paling panjang dengan 7 tanda buah.",
+          "explanation": "Pada piktogram, buah Mangga memiliki baris paling panjang (ada 7 gambar buah), sehingga mangga adalah buah yang paling banyak disukai.",
           "image": "/quiz/k1-b8-piktogram-buah.svg"
         },
         {
           "id": "q-materi-k1-b8-2",
           "num": 2,
-          "questionText": "Berapa anak yang suka pisang?",
-          "instructionBadge": "Isi Angka",
-          "type": "fill_in_blank",
-          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
+          "questionText": "Berapa banyak murid yang menyukai buah pisang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
+          "info": "",
           "points": 50,
           "options": [
-            "5"
+            "3 murid",
+            "5 murid",
+            "7 murid",
+            "2 murid"
           ],
-          "correctOptionIndex": 0,
+          "correctOptionIndex": 1,
           "imageOptions": null,
           "pairs": null,
           "leftItems": null,
           "rightItems": null,
           "orderItems": null,
           "correctOrder": null,
-          "expectedAnswers": [
-            "5"
-          ],
+          "expectedAnswers": null,
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Hitung gambar di baris pisang.",
+          "explanation": "Hitung gambar buah pisang pada piktogram: ada 1, 2, 3, 4, 5. Jadi ada 5 murid yang menyukai buah pisang.",
           "image": "/quiz/k1-b8-piktogram-buah.svg"
         }
       ]
@@ -1763,16 +1762,16 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k1-b8-1",
           "num": 1,
-          "questionText": "Lihat piktogram. Ketuk buah yang paling disukai.",
+          "questionText": "Berdasarkan piktogram di atas, buah apa yang paling banyak disukai murid?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
+          "info": "",
           "points": 50,
           "options": [
-            "Pisang (5 anak)",
-            "Jeruk (3 anak)",
-            "Mangga (7 anak - Terbanyak)",
-            "Semangka (2 anak)"
+            "🍌 Pisang",
+            "🍊 Jeruk",
+            "🥭 Mangga",
+            "🍉 Semangka"
           ],
           "correctOptionIndex": 2,
           "imageOptions": null,
@@ -1785,34 +1784,36 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Baris mangga paling panjang dengan 7 tanda buah.",
+          "explanation": "Pada piktogram, buah Mangga memiliki baris paling panjang (ada 7 gambar buah), sehingga mangga adalah buah yang paling banyak disukai.",
           "image": "/quiz/k1-b8-piktogram-buah.svg"
         },
         {
           "id": "q-materi-k1-b8-2",
           "num": 2,
-          "questionText": "Berapa anak yang suka pisang?",
-          "instructionBadge": "Isi Angka",
-          "type": "fill_in_blank",
-          "info": "Piktogram buah kesukaan: Pisang (🍌×5) · Jeruk (🍊×3) · Mangga (🥭×7) · Semangka (🍉×2)",
+          "questionText": "Berapa banyak murid yang menyukai buah pisang?",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
+          "info": "",
           "points": 50,
           "options": [
-            "5"
+            "3 murid",
+            "5 murid",
+            "7 murid",
+            "2 murid"
           ],
-          "correctOptionIndex": 0,
+          "correctOptionIndex": 1,
           "imageOptions": null,
           "pairs": null,
           "leftItems": null,
           "rightItems": null,
           "orderItems": null,
           "correctOrder": null,
-          "expectedAnswers": [
-            "5"
-          ],
+          "expectedAnswers": null,
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Hitung gambar di baris pisang."
+          "explanation": "Hitung gambar buah pisang pada piktogram: ada 1, 2, 3, 4, 5. Jadi ada 5 murid yang menyukai buah pisang.",
+          "image": "/quiz/k1-b8-piktogram-buah.svg"
         }
       ]
     },
@@ -1917,7 +1918,7 @@ export const allStructuredMateri = [
           "questionText": "Lengkapilah nilai tempat bilangan 45 berikut:\n45 = ___ puluhan dan ___ satuan",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Pilih pasangan nilai tempat yang benar",
+          "info": "",
           "points": 50,
           "options": [
             "4 puluhan dan 5 satuan",
@@ -4241,7 +4242,7 @@ export const allStructuredMateri = [
           "questionText": "Pot kerajinan kelas 3 dibuat dari botol plastik.",
           "instructionBadge": "Benar atau Salah",
           "type": "true_false",
-          "info": "Kelas 3 membuat tas dari bungkus kopi dan pot dari botol plastik.",
+          "info": "",
           "points": 50,
           "options": [
             "Benar",
@@ -4320,7 +4321,7 @@ export const allStructuredMateri = [
           "questionText": "Pot kerajinan kelas 3 dibuat dari botol plastik.",
           "instructionBadge": "Benar atau Salah",
           "type": "true_false",
-          "info": "Kelas 3 membuat tas dari bungkus kopi dan pot dari botol plastik.",
+          "info": "",
           "points": 50,
           "options": [
             "Benar",
@@ -4447,7 +4448,7 @@ export const allStructuredMateri = [
           "questionText": "Pasangkan pertanyaan dengan jawabannya.",
           "instructionBadge": "Pasangkan",
           "type": "matching",
-          "info": "Pada hari Sabtu, Ayah membuat roti bakar di dapur.",
+          "info": "",
           "points": 50,
           "options": [
             "Kapan Ayah membuat roti? = hari Sabtu",
@@ -4554,7 +4555,7 @@ export const allStructuredMateri = [
           "questionText": "Pasangkan pertanyaan dengan jawabannya.",
           "instructionBadge": "Pasangkan",
           "type": "matching",
-          "info": "Pada hari Sabtu, Ayah membuat roti bakar di dapur.",
+          "info": "",
           "points": 50,
           "options": [
             "Kapan Ayah membuat roti? = hari Sabtu",
@@ -5090,14 +5091,14 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k3-b8-2",
           "num": 2,
-          "questionText": "Kesimpulan yang sesuai data adalah …",
+          "questionText": "Berdasarkan piktogram sampah di atas, kesimpulan manakah yang paling tepat?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Piktogram (■ = 2 kantong): Kelas 1 ■■■ · Kelas 2 ■■■■ · Kelas 3 ■■■■■■ · Kelas 4 ■■■■■",
+          "info": "",
           "points": 50,
           "options": [
-            "Kelas 3 mengumpulkan paling banyak.",
-            "Semua kelas sama banyak."
+            "Kelas 3 mengumpulkan sampah paling banyak",
+            "Semua kelas mengumpulkan sampah sama banyak"
           ],
           "correctOptionIndex": 0,
           "imageOptions": null,
@@ -5110,7 +5111,7 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Gambar kelas 3 paling banyak.",
+          "explanation": "Pada piktogram, Kelas 3 memiliki 6 gambar tempat sampah (6 × 2 = 12 kantong), yaitu jumlah terbanyak dibandingkan kelas lainnya.",
           "image": "/quiz/k3-b8-piktogram-kebersihan.svg"
         }
       ]
@@ -5175,14 +5176,14 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k3-b8-2",
           "num": 2,
-          "questionText": "Kesimpulan yang sesuai data adalah …",
+          "questionText": "Berdasarkan piktogram sampah di atas, kesimpulan manakah yang paling tepat?",
           "instructionBadge": "Pilihan Ganda",
           "type": "multiple_choice",
-          "info": "Piktogram (■ = 2 kantong): Kelas 1 ■■■ · Kelas 2 ■■■■ · Kelas 3 ■■■■■■ · Kelas 4 ■■■■■",
+          "info": "",
           "points": 50,
           "options": [
-            "Kelas 3 mengumpulkan paling banyak.",
-            "Semua kelas sama banyak."
+            "Kelas 3 mengumpulkan sampah paling banyak",
+            "Semua kelas mengumpulkan sampah sama banyak"
           ],
           "correctOptionIndex": 0,
           "imageOptions": null,
@@ -5195,7 +5196,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Gambar kelas 3 paling banyak."
+          "explanation": "Pada piktogram, Kelas 3 memiliki 6 gambar tempat sampah (6 × 2 = 12 kantong), yaitu jumlah terbanyak dibandingkan kelas lainnya.",
+          "image": "/quiz/k3-b8-piktogram-kebersihan.svg"
         }
       ]
     },
@@ -8236,7 +8238,7 @@ export const allStructuredMateri = [
           "questionText": "Pasangkan pertanyaan dengan jawaban dari berita.",
           "instructionBadge": "Pasangkan",
           "type": "matching",
-          "info": "Berita: Kelompok tani Desa Sukamaju yang dipimpin Pak Joko memanen padi.",
+          "info": "",
           "points": 50,
           "options": [
             "Siapa? = Pak Joko dan kelompok tani",
@@ -8330,7 +8332,7 @@ export const allStructuredMateri = [
           "questionText": "Pasangkan pertanyaan dengan jawaban dari berita.",
           "instructionBadge": "Pasangkan",
           "type": "matching",
-          "info": "Berita: Kelompok tani Desa Sukamaju yang dipimpin Pak Joko memanen padi.",
+          "info": "",
           "points": 50,
           "options": [
             "Siapa? = Pak Joko dan kelompok tani",
@@ -8857,7 +8859,7 @@ export const allStructuredMateri = [
           "questionText": "Mulai dari D4. Jalan 1 petak ke kanan, lalu 1 petak ke bawah. Ketuk petaknya.",
           "instructionBadge": "Pilih Petak di Peta",
           "type": "grid_map",
-          "info": "Peta berpetak: kolom A–F dari kiri ke kanan, baris 1–6 dari atas ke bawah.",
+          "info": "",
           "points": 50,
           "options": [
             "Petak E5"
@@ -8941,7 +8943,7 @@ export const allStructuredMateri = [
           "questionText": "Mulai dari D4. Jalan 1 petak ke kanan, lalu 1 petak ke bawah. Ketuk petaknya.",
           "instructionBadge": "Pilih Petak di Peta",
           "type": "grid_map",
-          "info": "Peta berpetak: kolom A–F dari kiri ke kanan, baris 1–6 dari atas ke bawah.",
+          "info": "",
           "points": 50,
           "options": [
             "Petak E5"
@@ -8957,7 +8959,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": "E5",
           "initialCell": "D4",
-          "explanation": "Ke kanan: D → E. Ke bawah: 4 → 5."
+          "explanation": "Ke kanan: D → E. Ke bawah: 4 → 5.",
+          "image": "/quiz/k6-b2-peta-perkemahan.svg"
         },
         {
           "id": "q-materi-k6-b2-2",
