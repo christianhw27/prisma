@@ -28,3 +28,11 @@ dist-ssr
 
 # Draft files
 _draft
+
+# Python & Chatbot
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+prisma-chatbot/.venv/
+prisma-chatbot/.env

@@ -53,6 +53,7 @@ import AuthModal from './components/AuthModal.vue'
 import SettingsModal from './components/SettingsModal.vue'
 import SettingsView from './components/SettingsView.vue'
 import DoodleOrnament from './components/DoodleOrnament.vue'
+import ChatbotWidget from './components/ChatbotWidget.vue'
 import {
   getAllDisplayReviews,
   fetchSiteReviewsFromSupabase
@@ -1520,6 +1521,11 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
     <SettingsModal
       :is-open="isSettingsModalOpen"
       @close="isSettingsModalOpen = false"
+    />
+
+    <!-- Chatbot Defi Floating Widget (Selalu ada di pojok kanan bawah layar) -->
+    <ChatbotWidget
+      :current-kelas="selectedKelasTab !== 'Semua' ? selectedKelasTab : (selectedMateri?.kelas || 'Semua')"
     />
   </div>
 </template>
