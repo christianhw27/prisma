@@ -796,11 +796,35 @@ const selectAnswer = (optionIdx) => {
   evaluateCurrentQuestion()
 }
 
+// ==================== 8. PLACE VALUE (NILAI TEMPAT INTERAKTIF) ====================
+const getPlaceValueAns = () => {
+  const ans = selectedAnswers.value[currentQuestionIndex.value]
+  if (ans && typeof ans === 'object' && !Array.isArray(ans)) return ans
+  return { tens: null, ones: null }
+}
+
+const setPlaceValueTens = (val) => {
+  playButtonPop()
+  const curr = { ...getPlaceValueAns() }
+  curr.tens = val
+  selectedAnswers.value[currentQuestionIndex.value] = curr
+}
+
+const setPlaceValueOnes = (val) => {
+  playButtonPop()
+  const curr = { ...getPlaceValueAns() }
+  curr.ones = val
+  selectedAnswers.value[currentQuestionIndex.value] = curr
+}
+
 const isQuestionAnswered = (idx) => {
   const q = questions.value[idx]
   if (!q) return false
   const ans = selectedAnswers.value[idx]
   if (ans === undefined || ans === null) return false
+  if (q.type === 'place_value') {
+    return Boolean(ans && typeof ans === 'object' && !Array.isArray(ans) && ans.tens && ans.ones)
+  }
   if (q.type === 'matching') {
     return typeof ans === 'object' && !Array.isArray(ans) && Object.keys(ans).length > 0
   }
@@ -850,6 +874,12 @@ const checkAnswerCorrectness = (q, ans) => {
   if (q.type === 'grid_map') {
     const target = String(q.correctCell || 'E5').trim().toUpperCase()
     return String(ans).trim().toUpperCase() === target
+  }
+  if (q.type === 'place_value') {
+    if (!ans || typeof ans !== 'object' || Array.isArray(ans)) return false
+    const tensOk = String(ans.tens || '').trim() === String(q.correctTens || '4').trim()
+    const onesOk = String(ans.ones || '').trim() === String(q.correctOnes || '5').trim()
+    return tensOk && onesOk
   }
   return ans === q.correctOptionIndex
 }
@@ -2384,7 +2414,139 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <!-- ==================== MODE 9: MULTIPLE CHOICE DEFAULT (BESAR & VISUAL UNTUK ANAK SD) ==================== -->
+            <!-- ==================== MODE 9: PLACE VALUE (SLOT NILAI TEMPAT INTERAKTIF) ==================== -->
+            <div v-else-if="currentQuestion.type === 'place_value'" class="space-y-6 pt-2">
+              
+              <!-- Papan Persamaan Nilai Tempat Interaktif -->
+              <div class="bg-gradient-to-b from-[#FFF8F0] to-white p-5 sm:p-7 rounded-3xl border-2 border-[#8F8575]/25 shadow-sm space-y-4">
+                <div class="flex items-center justify-center gap-2">
+                  <span class="text-xs font-bold uppercase tracking-wider text-[#5B6474]">Lengkapi Persamaan Nilai Tempat:</span>
+                </div>
+
+                <!-- Equation Row -->
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-5">
+                  <!-- Bilangan Target -->
+                  <div class="px-5 py-2.5 rounded-2xl bg-[#2B3445] text-white font-['Baloo_2'] text-3xl sm:text-4xl font-extrabold shadow-sm">
+                    {{ currentQuestion.numberTarget || 45 }}
+                  </div>
+
+                  <span class="font-['Baloo_2'] text-3xl sm:text-4xl font-extrabold text-[#2B3445]">=</span>
+
+                  <!-- Kotak Slot Puluhan -->
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="min-w-16 h-16 sm:min-w-20 sm:h-20 px-4 rounded-2xl border-2 flex items-center justify-center font-['Baloo_2'] text-3xl sm:text-4xl font-extrabold transition-all duration-200"
+                      :class="[
+                        isCurrentQuestionChecked
+                          ? isCurrentQuestionCorrect
+                            ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/40 scale-105'
+                            : 'bg-[#D97706] text-white border-[#D97706] shadow-md ring-4 ring-[#FFDE7A]/50'
+                          : getPlaceValueAns().tens
+                          ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-md scale-105'
+                          : 'bg-white border-dashed border-[#1E7A6F]/60 text-[#8F8575]/40 animate-pulse'
+                      ]"
+                    >
+                      {{ getPlaceValueAns().tens || '___' }}
+                    </div>
+                    <span class="font-['Baloo_2'] text-lg sm:text-2xl font-bold text-[#1E7A6F]">
+                      {{ currentQuestion.tensLabel || 'puluhan' }}
+                    </span>
+                  </div>
+
+                  <!-- Plus Sign -->
+                  <span class="font-['Baloo_2'] text-2xl sm:text-3xl font-extrabold text-[#8F8575] mx-0.5">
+                    +
+                  </span>
+
+                  <!-- Kotak Slot Satuan -->
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="min-w-16 h-16 sm:min-w-20 sm:h-20 px-4 rounded-2xl border-2 flex items-center justify-center font-['Baloo_2'] text-3xl sm:text-4xl font-extrabold transition-all duration-200"
+                      :class="[
+                        isCurrentQuestionChecked
+                          ? isCurrentQuestionCorrect
+                            ? 'bg-[#D97706] text-white border-[#D97706] shadow-md ring-4 ring-[#FFDE7A]/50 scale-105'
+                            : 'bg-[#D97706] text-white border-[#D97706] shadow-md ring-4 ring-[#FFDE7A]/50'
+                          : getPlaceValueAns().ones
+                          ? 'bg-[#D97706] text-white border-[#D97706] shadow-md scale-105'
+                          : 'bg-white border-dashed border-[#D97706]/60 text-[#8F8575]/40 animate-pulse'
+                      ]"
+                    >
+                      {{ getPlaceValueAns().ones || '___' }}
+                    </div>
+                    <span class="font-['Baloo_2'] text-lg sm:text-2xl font-bold text-[#D97706]">
+                      {{ currentQuestion.onesLabel || 'satuan' }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pilihan Kartu Angka Interaktif -->
+              <div v-if="!isCurrentQuestionChecked" class="space-y-4 pt-1">
+                <!-- Baris 1: Pilih Angka Puluhan -->
+                <div class="p-4 sm:p-5 rounded-3xl bg-white border-2 border-[#1E7A6F]/30 shadow-xs space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="font-['Baloo_2'] text-sm sm:text-base font-bold text-[#1E7A6F] flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-full bg-[#1E7A6F] text-white text-xs flex items-center justify-center font-bold">1</span>
+                      <span>Ketuk Angka untuk <strong>PULUHAN</strong>:</span>
+                    </span>
+                    <span v-if="getPlaceValueAns().tens" class="text-xs text-[#1E7A6F] font-bold bg-[#7FD4C4]/20 px-3 py-1 rounded-full">
+                      ✓ Terpasang: {{ getPlaceValueAns().tens }}
+                    </span>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-3 sm:gap-4">
+                    <button
+                      v-for="opt in currentQuestion.tensOptions || ['4', '5', '40']"
+                      :key="opt"
+                      type="button"
+                      @click="setPlaceValueTens(opt)"
+                      class="py-3.5 sm:py-5 rounded-2xl border-2 font-['Baloo_2'] text-2xl sm:text-3xl font-extrabold transition-all duration-200 cursor-pointer select-none active:scale-95 shadow-xs"
+                      :class="[
+                        getPlaceValueAns().tens === opt
+                          ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/50 scale-105'
+                          : 'bg-[#FFF8F0] text-[#2B3445] border-[#8F8575]/25 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:scale-[1.02]'
+                      ]"
+                    >
+                      {{ opt }}
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Baris 2: Pilih Angka Satuan -->
+                <div class="p-4 sm:p-5 rounded-3xl bg-white border-2 border-[#D97706]/30 shadow-xs space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="font-['Baloo_2'] text-sm sm:text-base font-bold text-[#D97706] flex items-center gap-2">
+                      <span class="w-6 h-6 rounded-full bg-[#D97706] text-white text-xs flex items-center justify-center font-bold">2</span>
+                      <span>Ketuk Angka untuk <strong>SATUAN</strong>:</span>
+                    </span>
+                    <span v-if="getPlaceValueAns().ones" class="text-xs text-[#D97706] font-bold bg-[#FFDE7A]/35 px-3 py-1 rounded-full">
+                      ✓ Terpasang: {{ getPlaceValueAns().ones }}
+                    </span>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-3 sm:gap-4">
+                    <button
+                      v-for="opt in currentQuestion.onesOptions || ['4', '5', '45']"
+                      :key="opt"
+                      type="button"
+                      @click="setPlaceValueOnes(opt)"
+                      class="py-3.5 sm:py-5 rounded-2xl border-2 font-['Baloo_2'] text-2xl sm:text-3xl font-extrabold transition-all duration-200 cursor-pointer select-none active:scale-95 shadow-xs"
+                      :class="[
+                        getPlaceValueAns().ones === opt
+                          ? 'bg-[#D97706] text-white border-[#D97706] shadow-md ring-4 ring-[#FFDE7A]/50 scale-105'
+                          : 'bg-[#FFF8F0] text-[#2B3445] border-[#8F8575]/25 hover:border-[#D97706] hover:bg-[#FFDE7A]/15 hover:scale-[1.02]'
+                      ]"
+                    >
+                      {{ opt }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ==================== MODE 10: MULTIPLE CHOICE DEFAULT (BESAR & VISUAL UNTUK ANAK SD) ==================== -->
             <div v-else class="grid grid-cols-1 gap-3.5 pt-1">
               <button
                 v-for="(opt, optIdx) in currentQuestion.options"
@@ -2780,6 +2942,11 @@ onBeforeUnmount(() => {
                       Petak {{ selectedAnswers[idx] || 'Tidak dijawab' }}
                     </span>
 
+                    <!-- Place Value Review -->
+                    <span v-else-if="q.type === 'place_value'" class="text-[#2B3445] font-bold text-sm">
+                      {{ selectedAnswers[idx]?.tens ? `${selectedAnswers[idx].tens} puluhan dan ${selectedAnswers[idx].ones || '?'} satuan` : 'Belum dijawab' }}
+                    </span>
+
                     <!-- Multiple Choice Review -->
                     <span v-else class="text-[#2B3445] font-bold text-sm">
                       {{ selectedAnswers[idx] !== undefined ? `${String.fromCharCode(65 + selectedAnswers[idx])}. ${q.options[selectedAnswers[idx]]}` : 'Tidak dijawab' }}
@@ -2859,6 +3026,11 @@ onBeforeUnmount(() => {
                     <!-- Grid Map Correct -->
                     <span v-else-if="q.type === 'grid_map'" class="text-[#1E7A6F] font-bold text-sm">
                       Petak {{ q.correctCell || 'E5' }}
+                    </span>
+
+                    <!-- Place Value Correct -->
+                    <span v-else-if="q.type === 'place_value'" class="text-[#1E7A6F] font-bold text-sm">
+                      {{ q.correctTens || '4' }} puluhan dan {{ q.correctOnes || '5' }} satuan
                     </span>
 
                     <!-- Multiple Choice Correct -->

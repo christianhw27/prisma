@@ -1917,9 +1917,9 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k2-b1-2",
           "num": 2,
-          "questionText": "Lengkapilah nilai tempat bilangan 45 berikut:\n45 = ___ puluhan dan ___ satuan",
-          "instructionBadge": "Pilihan Ganda",
-          "type": "multiple_choice",
+          "questionText": "Lengkapilah nilai tempat bilangan 45 berikut:",
+          "instructionBadge": "Nilai Tempat Interaktif",
+          "type": "place_value",
           "info": "",
           "points": 50,
           "options": [
@@ -1938,7 +1938,23 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Pada bilangan 45, angka kiri (4) menempati nilai puluhan dan angka kanan (5) menempati nilai satuan. Jadi 45 = 4 puluhan dan 5 satuan."
+          "explanation": "Bilangan 45 tersusun dari angka 4 pada tempat puluhan (nilainya 40) dan angka 5 pada tempat satuan (nilainya 5). Jadi, 45 = 4 puluhan dan 5 satuan.",
+          "numberTarget": 45,
+          "tensLabel": "puluhan",
+          "onesLabel": "satuan",
+          "tensOptions": [
+            "4",
+            "5",
+            "40"
+          ],
+          "onesOptions": [
+            "4",
+            "5",
+            "45"
+          ],
+          "correctTens": "4",
+          "correctOnes": "5",
+          "image": "/quiz/k2-b1-blok-nilai-tempat.svg"
         }
       ]
     },
@@ -2006,14 +2022,15 @@ export const allStructuredMateri = [
         {
           "id": "q-materi-k2-b1-2",
           "num": 2,
-          "questionText": "45 = ___ puluhan dan ___ satuan",
-          "instructionBadge": "Isi Angka",
-          "type": "fill_in_blank",
+          "questionText": "Lengkapilah nilai tempat bilangan 45 berikut:",
+          "instructionBadge": "Nilai Tempat Interaktif",
+          "type": "place_value",
           "info": "",
           "points": 50,
           "options": [
-            "4",
-            "5"
+            "4 puluhan dan 5 satuan",
+            "5 puluhan dan 4 satuan",
+            "40 puluhan dan 5 satuan"
           ],
           "correctOptionIndex": 0,
           "imageOptions": null,
@@ -2029,7 +2046,23 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Angka kiri puluhan, angka kanan satuan."
+          "explanation": "Bilangan 45 tersusun dari angka 4 pada tempat puluhan (nilainya 40) dan angka 5 pada tempat satuan (nilainya 5). Jadi, 45 = 4 puluhan dan 5 satuan.",
+          "numberTarget": 45,
+          "tensLabel": "puluhan",
+          "onesLabel": "satuan",
+          "tensOptions": [
+            "4",
+            "5",
+            "40"
+          ],
+          "onesOptions": [
+            "4",
+            "5",
+            "45"
+          ],
+          "correctTens": "4",
+          "correctOnes": "5",
+          "image": "/quiz/k2-b1-blok-nilai-tempat.svg"
         }
       ]
     },
