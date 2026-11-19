@@ -17,9 +17,15 @@ Selalu akhiri dengan satu kalimat penyemangat positif.
 `
 
 const DEFI_VISION_PROMPT = `
-Kamu adalah Defi, kakak pendamping belajar yang ramah, sabar, dan ceria di platform PRISMA untuk siswa SD (termasuk siswa berkebutuhan khusus/ABK).
-Tugasmu adalah membantu siswa memahami gambar atau foto soal/catatan yang mereka unggah.
-Jawablah dalam satu paragraf cerita pendek yang mengalir, gunakan urutan angka 1., 2., 3. untuk langkah-langkah namun jangan memisahkan baris dengan enter berlebihan. Semua kalimat harus terhubung secara natural, gunakan bahasa Indonesia yang hangat, sederhana, dan kalimat pendek (maksimal 10-12 kata per kalimat). Selalu akhiri dengan kalimat penyemangat.
+Kamu adalah Kak Defi, kakak pendamping belajar yang ramah, sabar, dan ceria di platform media belajar PRISMA untuk siswa SD (termasuk siswa berkebutuhan khusus/ABK).
+Tugas utamamu adalah MEMBACA dan MENJELASKAN foto atau jepretan kamera yang diunggah siswa (bisa berupa foto tulisan tangan di buku tulis, lembar soal matematika/literasi, teks bacaan, atau gambar diagram).
+
+Panduan penting:
+1. Bacalah tulisan tangan atau teks cetak pada foto dengan sangat teliti (OCR). Kenali angka, simbol matematika, dan kata-kata tulisan tangan siswa.
+2. Tuliskan kembali apa soal atau tulisan yang kamu lihat di foto tersebut secara singkat dan jelas (misalnya: "Dari fotomu, Kak Defi membaca soal berikut: ...").
+3. Berikan cara penyelesaian atau penjelasannya langkah demi langkah (1., 2., 3.) dengan bahasa Indonesia yang hangat, sederhana, ramah anak, dan mudah dipahami anak SD.
+4. Jangan gunakan kata-kata yang rumit. Jika ada perhitungan, jabarkan langkahnya dengan jelas dan runtut.
+5. Selalu akhiri dengan satu kalimat penyemangat positif yang menyenangkan!
 `
 
 // ── 3. Kamus Lemma & Sinonim Bahasa Indonesia (dari main.py) ───────────────
@@ -590,23 +596,26 @@ export async function searchDefiDataset(query, filterKelas = null, filterKategor
 // ── 9. Integrasi Gemini Vision & AI Langsung dari Browser ──────────────────
 export async function askGeminiWeb(prompt, base64Photo = null, mimeType = 'image/jpeg', kelas = '') {
   const apiKey = DEFAULT_GEMINI_KEY
-  if (!apiKey) return null
+  if (!apiKey) {
+    console.warn('[Gemini Web] API Key belum disetel di VITE_GEMINI_API_KEY')
+    return null
+  }
 
   try {
     const parts = []
 
     // Tambahkan persona sistem
     const systemPrompt = base64Photo ? DEFI_VISION_PROMPT : DEFI_SYSTEM_PROMPT
-    const contextualPrompt = `Konteks siswa: ${kelas || 'Siswa SD umum'}.\n${prompt || 'Tolong jelaskan soal ini ya Kak Defi!'}`
+    const contextualPrompt = `Konteks siswa: ${kelas || 'Siswa SD umum'}.\n${prompt || 'Tolong baca dan jelaskan soal pada foto ini ya Kak Defi!'}`
 
     parts.push({ text: `${systemPrompt}\n\nPertanyaan siswa: ${contextualPrompt}` })
 
-    // Jika ada foto yang diunggah
+    // Jika ada foto yang diunggah (OCR / Pembacaan Gambar)
     if (base64Photo) {
-      const cleanBase64 = base64Photo.replace(/^data:image\/[a-zA-Z]+;base64,/, '')
+      const cleanBase64 = base64Photo.replace(/^data:image\/[a-zA-Z0-9+.-]+;base64,/, '')
       parts.push({
-        inline_data: {
-          mime_type: mimeType || 'image/jpeg',
+        inlineData: {
+          mimeType: mimeType || 'image/jpeg',
           data: cleanBase64
         }
       })
@@ -615,29 +624,40 @@ export async function askGeminiWeb(prompt, base64Photo = null, mimeType = 'image
     const payload = {
       contents: [{ parts }],
       generationConfig: {
-        temperature: 0.4,
-        maxOutputTokens: 350
+        temperature: base64Photo ? 0.2 : 0.4,
+        maxOutputTokens: 800
       }
     }
 
-    const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
+    // Coba model multimodal utama Google: gemini-flash-lite-latest (lalu fallback ke gemini-3.8-flash / gemini-flash-latest)
+    const candidateModels = [
+      'gemini-flash-lite-latest',
+      'gemini-3.8-flash',
+      'gemini-flash-latest'
+    ]
 
-    if (!resp.ok) {
-      const errData = await resp.json().catch(() => ({}))
-      console.warn('[Gemini Web] API call status:', resp.status, errData)
-      return null
-    }
+    for (const modelName of candidateModels) {
+      try {
+        const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
 
-    const data = await resp.json()
-    const textOut = data?.candidates?.[0]?.content?.parts?.[0]?.text
-    if (textOut) {
-      return cleanJawaban(textOut)
+        if (resp.ok) {
+          const data = await resp.json()
+          const textOut = data?.candidates?.[0]?.content?.parts?.[0]?.text
+          if (textOut && textOut.trim()) {
+            return cleanJawaban(textOut)
+          }
+        } else {
+          console.warn(`[Gemini Web] Model ${modelName} returned status ${resp.status}, trying fallback...`)
+        }
+      } catch (e) {
+        console.warn(`[Gemini Web] Model ${modelName} fetch failed, trying next...`, e)
+      }
     }
   } catch (err) {
     console.error('[Gemini Web] Error calling Gemini API directly:', err)

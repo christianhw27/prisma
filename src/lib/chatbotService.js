@@ -26,11 +26,12 @@ export async function checkChatbotStatus() {
 
 /**
  * Kirim pesan teks ke Chatbot Defi (Hybrid Web Engine)
- * Alur prioritas:
- * 1. Kalkulator Matematika Dinamis (0 ms, akurat 100%)
- * 2. Pencarian 421 Materi PRISMA Dataset (Lemmatizer + Sinonim)
- * 3. Gemini AI Cloud (Pertanyaan bebas dengan persona Defi)
- * 4. Fallback edukatif ramah anak
+ * Alur prioritas hemat kuota (Gemini API TIDAK dipakai untuk pertanyaan kacang-kacang):
+ * 1. Sapaan Ramah, Basa-basi & Terima Kasih (Lokal - 0 ms, 0 API call)
+ * 2. Kalkulator Matematika Dinamis (Lokal - 0 ms, akurat 100%, 0 API call)
+ * 3. Pencarian 421 Materi PRISMA Dataset (Lokal Lemmatizer + Sinonim, 0 API call)
+ * 4. Filter Pertanyaan Kacang-kacang / Terlalu Pendek (Lokal guide)
+ * 5. Gemini AI Cloud (Hanya untuk pertanyaan materi unik/kompleks di luar dataset)
  */
 export async function sendChatText({ pertanyaan, kelas = '', kategori = '' }) {
   if (!pertanyaan || !pertanyaan.trim()) {
@@ -42,49 +43,69 @@ export async function sendChatText({ pertanyaan, kelas = '', kategori = '' }) {
     }
   }
 
-  // ── Jalur 1: Kalkulator Matematika Dinamis ───────────────────────────────
-  const mathResult = solveDynamicMath(pertanyaan, kelas)
+  const clean = pertanyaan.trim()
+  const lower = clean.toLowerCase()
+
+  // ── Jalur 1: Sapaan Ramah & Basa-basi Ringan (Hemat Kuota - 100% Lokal) ───
+  if (/^(halo|hai|pagi|siang|sore|malam|assalamualaikum|tes|test|hai kak|halo kak|siapa kamu|terima kasih|makasih|makasi|thanks|ok|oke|sip|dadah|bye)\b/.test(lower)) {
+    let sapaan = 'Halo sahabat pintar PRISMA! 👋 Aku Defi, teman belajar ceria kamu. Mau tanya soal berhitung matematika, materi membaca cerita, atau kirim foto soal tulisan tanganmu hari ini? Kak Defi siap bantu!'
+    if (/terima kasih|makasih|makasi|thanks/.test(lower)) {
+      sapaan = 'Sama-sama sahabat pintar! Kak Defi senang sekali bisa membantumu belajar. Tetap semangat dan jangan ragu bertanya lagi ya! ✨'
+    } else if (/siapa kamu/.test(lower)) {
+      sapaan = 'Aku Defi, robot teman belajar inklusif di PRISMA! Aku bisa membantumu memahami materi literasi, numerasi, berhitung langkah matematika, dan membaca jepretan foto soal tulisan tanganmu! 🤖✨'
+    }
+    return {
+      sumber: 'system_greeting',
+      status: 'success',
+      jawaban: sapaan
+    }
+  }
+
+  // ── Jalur 2: Kalkulator Matematika Dinamis (Hemat Kuota - 100% Lokal) ──────
+  const mathResult = solveDynamicMath(clean, kelas)
   if (mathResult) {
     return mathResult
   }
 
-  // ── Jalur 2: Pencarian 421 Materi PRISMA Dataset ─────────────────────────
-  const datasetResult = await searchDefiDataset(pertanyaan, kelas, kategori)
+  // ── Jalur 3: Pencarian 421 Materi PRISMA Dataset (Hemat Kuota - 100% Lokal) ─
+  const datasetResult = await searchDefiDataset(clean, kelas, kategori)
   if (datasetResult) {
     return datasetResult
   }
 
-  // ── Jalur 3: Gemini Cloud AI (Pertanyaan Terbuka / Kreatif) ───────────────
-  const geminiAnswer = await askGeminiWeb(pertanyaan, null, null, kelas)
+  // ── Jalur 4: Filter Pertanyaan Kacang-kacang (Hemat Kuota) ────────────────
+  // Jangan buang kuota Gemini untuk kata 1-2 kata acak seperti "apa", "kenapa", "gimana"
+  const words = lower.split(/\s+/).filter(w => w.length > 1)
+  if (words.length <= 2 && !lower.includes('?') && !lower.includes('hitung') && !lower.includes('cara') && !lower.includes('arti')) {
+    return {
+      sumber: 'client_fallback',
+      status: 'success',
+      jawaban: `Halo! Kak Defi siap membantumu belajar. Kamu bisa tanyakan materi pelajaran seperti "apa itu ide pokok?", "pecahan 1/2", minta hitung angka seperti "45 x 6", atau jepret foto soal tulisan tanganmu ya! ✨`
+    }
+  }
+
+  // ── Jalur 5: Gemini AI Cloud (Hanya untuk pertanyaan materi kompleks di luar 421 dataset) ───
+  const geminiAnswer = await askGeminiWeb(clean, null, null, kelas)
   if (geminiAnswer) {
     return {
       sumber: 'gemini_vision',
       status: 'success',
       confidence: 1.0,
       jawaban: geminiAnswer,
-      metadata: { model: 'gemini-1.5-flash', kelas: kelas || 'Semua Kelas' }
+      metadata: { model: 'gemini-flash-lite', kelas: kelas || 'Semua Kelas' }
     }
   }
 
-  // ── Jalur 4: Sapaan Ramah & Fallback Edukatif ─────────────────────────────
-  const lower = pertanyaan.toLowerCase().trim()
-  if (/^(halo|hai|pagi|siang|sore|malam|assalamualaikum|tes|test|hai kak|halo kak)/.test(lower)) {
-    return {
-      sumber: 'system_greeting',
-      status: 'success',
-      jawaban: 'Halo sahabat pintar PRISMA! 👋 Aku Defi, teman belajar ceria kamu. Mau tanya soal berhitung matematika, materi membaca cerita, atau latihan soal hari ini? Kak Defi siap bantu!'
-    }
-  }
-
+  // ── Jalur 6: Fallback Ramah Edukatif ─────────────────────────────────────
   return {
     sumber: 'client_fallback',
     status: 'success',
-    jawaban: `Halo! Kak Defi senang sekali kamu bertanya tentang "${pertanyaan}". Kak Defi siap membantu materi ${kelas || 'semua kelas SD'} seputar ide pokok, huruf vokal/konsonan, pecahan, bangun datar, atau menghitung angka (seperti "25 x 4"). Coba tanyakan materi yang ingin kamu pelajari ya! ✨`
+    jawaban: `Halo! Kak Defi senang kamu bertanya. Kamu bisa tanyakan konsep materi SD seputar ide pokok, huruf vokal/konsonan, pecahan, bangun datar, atau menghitung angka (seperti "25 x 4"). Kamu juga bisa jepret foto soalmu ya! ✨`
   }
 }
 
 /**
- * Kirim foto soal ke Chatbot Defi (Menggunakan Gemini Vision langsung dari Web)
+ * Kirim foto soal ke Chatbot Defi (Menggunakan Gemini Vision untuk membaca jepretan foto tulisan tangan / buku)
  * @param {Object} params
  * @param {File|Blob} params.foto
  * @param {string} [params.pertanyaan]
@@ -110,8 +131,9 @@ export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }) {
     })
 
     const mimeType = foto.type || 'image/jpeg'
-    const promptText = pertanyaan || 'Tolong jelaskan materi atau soal yang ada di foto ini untuk siswa SD ya Kak Defi!'
+    const promptText = pertanyaan || 'Tolong baca tulisan tangan atau teks soal pada foto ini dengan teliti (OCR), lalu jelaskan cara penyelesaiannya langkah demi langkah dengan ramah untuk anak SD ya Kak Defi!'
 
+    // Panggil Gemini Vision dengan model gemini-flash-lite-latest
     const visionResult = await askGeminiWeb(promptText, base64Data, mimeType, kelas)
     if (visionResult) {
       return {
@@ -119,13 +141,13 @@ export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }) {
         jawaban: visionResult,
         sumber: 'gemini_vision',
         status: 'success',
-        metadata: { model: 'gemini-vision-web' }
+        metadata: { model: 'gemini-vision-ocr' }
       }
     }
 
     return {
       success: false,
-      jawaban: 'Wah, Kak Defi sedikit kesulitan membaca tulisan pada fotomu. Pastikan fotonya cukup terang dan jelas, atau kamu bisa mengetikkan teks soalnya langsung ke Kak Defi ya! ✨',
+      jawaban: 'Kak Defi sudah memeriksa fotomu tapi belum berhasil membaca tulisannya dengan jelas. Pastikan foto tulisan tangan cukup terang, tidak buram, dan coba ambil foto dari jarak yang lebih dekat ya! ✨',
       sumber: 'client_fallback',
       status: 'warning'
     }
@@ -133,7 +155,7 @@ export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }) {
     console.error('[Defi Chatbot] Photo processing failed:', err)
     return {
       success: false,
-      jawaban: 'Terjadi sedikit kendala saat membaca foto. Kamu bisa ketikkan teks soalnya langsung ke Kak Defi, Kak Defi siap bantu! ✨',
+      jawaban: 'Terjadi sedikit kendala saat memproses foto. Pastikan koneksi internet stabil dan coba unggah kembali fotomu ya sahabat! ✨',
       sumber: 'client_fallback',
       status: 'error'
     }
