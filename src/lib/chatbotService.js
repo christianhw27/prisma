@@ -2,7 +2,38 @@
  * PRISMA Chatbot Defi - Client Service
  * Menghubungkan antarmuka frontend dengan server FastAPI Defi (prisma-chatbot/main.py)
  * Mendukung mode Hybrid Offline-First: Kalkulator Dinamis, TF-IDF CSV, Ollama Lokal, dan Gemini Vision.
+ * Dilengkapi Client-Side Intelligent Engine (421 materi langsung di browser tanpa perlu hosting backend).
  */
+
+let clientDatasetCache = null
+let isDatasetLoading = false
+
+/**
+ * Memuat dataset 421 materi ke dalam memori browser (sangat ringan, ~65 KB gzipped)
+ */
+export async function loadClientDataset() {
+  if (clientDatasetCache && clientDatasetCache.length) return clientDatasetCache
+  if (isDatasetLoading) {
+    while (isDatasetLoading) {
+      await new Promise(r => setTimeout(r, 60))
+    }
+    return clientDatasetCache
+  }
+
+  isDatasetLoading = true
+  try {
+    const resp = await fetch('/chatbot-dataset.json')
+    if (resp.ok) {
+      clientDatasetCache = await resp.json()
+      // Dataset berhasil dimuat
+    }
+  } catch (e) {
+    console.warn('[Defi Client Engine] Gagal memuat dataset statis:', e)
+  } finally {
+    isDatasetLoading = false
+  }
+  return clientDatasetCache
+}
 
 /**
  * Menentukan URL API yang valid dan aman dari pemblokiran Mixed-Content di HTTPS
@@ -35,13 +66,16 @@ export function getResolvedApiUrl(customUrl) {
  * @returns {Promise<{ isOnline: boolean, isHostedWithoutBackend?: boolean, data?: any, error?: string }>}
  */
 export async function checkChatbotStatus(baseUrl) {
+  // Pastikan dataset browser juga mulai dimuat di background
+  loadClientDataset().catch(() => {})
+
   const resolved = getResolvedApiUrl(baseUrl)
 
   if (!resolved) {
     return {
       isOnline: false,
       isHostedWithoutBackend: true,
-      error: 'Web berjalan di HTTPS publik, backend cloud belum disambungkan di Vercel'
+      error: 'Web berjalan di mode mandiri browser (421 materi aktif langsung)'
     }
   }
 
@@ -78,15 +112,15 @@ export async function sendChatText({ pertanyaan, kelas = '', kategori = '' }, ba
 
   // Jika web di-hosting di HTTPS dan backend belum dihubungkan ke server cloud publik
   if (!resolved) {
-    const clientFallback = generateClientFallback(pertanyaan, kelas)
+    const clientResult = await generateClientResponse(pertanyaan, kelas)
     return {
       success: true,
       isClientFallback: true,
       isHostedWithoutBackend: true,
-      jawaban: clientFallback.jawaban,
-      sumber: clientFallback.sumber,
-      status: 'fallback',
-      metadata: { serverOffline: true }
+      jawaban: clientResult.jawaban,
+      sumber: clientResult.sumber,
+      status: 'success',
+      metadata: clientResult.metadata || {}
     }
   }
 
@@ -124,14 +158,14 @@ export async function sendChatText({ pertanyaan, kelas = '', kategori = '' }, ba
   } catch (err) {
     console.warn('[Defi Chatbot] Server request failed, activating client fallback:', err)
 
-    const clientFallback = generateClientFallback(pertanyaan, kelas)
+    const clientResult = await generateClientResponse(pertanyaan, kelas)
     return {
-      success: false,
+      success: true,
       isClientFallback: true,
-      jawaban: clientFallback.jawaban,
-      sumber: clientFallback.sumber,
+      jawaban: clientResult.jawaban,
+      sumber: clientResult.sumber,
       status: 'fallback',
-      metadata: { serverOffline: true }
+      metadata: clientResult.metadata || { serverOffline: true }
     }
   }
 }
@@ -152,7 +186,7 @@ export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }, baseU
       success: false,
       isClientFallback: true,
       isHostedWithoutBackend: true,
-      jawaban: 'Fitur analisis foto membutuhkan server backend Python (Gemini Vision) aktif di cloud. Silakan hubungkan URL backend di pengaturan Vercel (VITE_CHATBOT_API_URL). Namun kamu tetap bisa mengetikkan soal langsung ke Kak Defi ya! ✨',
+      jawaban: 'Fitur analisis foto membutuhkan server cloud aktif dengan Gemini Vision. Di web hosting saat ini, seluruh fitur tanya-jawab materi SD (421 topik) dan kalkulator langkah matematika aktif 100% langsung di browser! Kamu bisa ketikkan teks soalnya ke Kak Defi ya! ✨',
       sumber: 'client_fallback',
       status: 'notice'
     }
@@ -196,7 +230,7 @@ export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }, baseU
     return {
       success: false,
       isClientFallback: true,
-      jawaban: `Wah, Kak Defi belum bisa memproses fotomu saat ini (${err.message}). Pastikan server chatbot Defi di cloud sudah aktif ya! Kamu juga bisa ketikkan teks soalnya langsung ke Kak Defi. ✨`,
+      jawaban: `Wah, Kak Defi belum bisa memproses fotomu saat ini (${err.message}). Kamu bisa ketikkan teks soalnya langsung ke Kak Defi, Kak Defi siap bantu jawab! ✨`,
       sumber: 'client_fallback',
       status: 'error'
     }
@@ -204,98 +238,123 @@ export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }, baseU
 }
 
 /**
- * Knowledge Base Mandiri di sisi Browser (Client-side)
- * Memastikan web yang di-hosting tetap responsif & pintar untuk siswa SD
+ * Pencarian Cerdas Client-Side dari 421 baris materi PRISMA
  */
-const CLIENT_KNOWLEDGE_BASE = [
-  {
-    keywords: ['ide pokok', 'gagasan utama', 'pikiran pokok'],
-    jawaban: 'Ide pokok adalah gagasan atau pikiran utama yang menjadi inti pembahasan dalam suatu paragraf. Dalam satu paragraf biasanya ada satu ide pokok yang terletak pada kalimat utama (bisa di awal, di akhir, atau campuran). Memahami ide pokok membuat kita cepat paham isi cerita!'
-  },
-  {
-    keywords: ['huruf vokal', 'huruf konsonan', 'a i u e o'],
-    jawaban: 'Huruf vokal adalah huruf hidup yang memberi bunyi jelas, yaitu: a, i, u, e, dan o. Sedangkan huruf konsonan adalah semua huruf abjad selain huruf vokal (seperti b, c, d, k, m, p). Contohnya pada kata "buku", huruf vokalnya adalah u, dan konsonannya adalah b dan k!'
-  },
-  {
-    keywords: ['pecahan 1/2', 'setengah', 'satu per dua'],
-    jawaban: 'Pecahan 1/2 (setengah) artinya satu benda utuh dipotong menjadi 2 bagian yang SAMA BESAR. Jika ukurannya tidak sama besar, maka potongannya belum bisa disebut pecahan 1/2 ya!'
-  },
-  {
-    keywords: ['nilai tempat', 'puluhan', 'satuan'],
-    jawaban: 'Nilai tempat menentukan nilai suatu angka berdasarkan letaknya. Pada bilangan dua angka seperti 45: angka kiri (4) menempati tempat puluhan bernilai 40, sedangkan angka kanan (5) menempati tempat satuan bernilai 5. Jadi 45 = 4 puluhan + 5 satuan!'
-  },
-  {
-    keywords: ['1 meter', 'meter ke cm', 'sentimeter', 'panjang'],
-    jawaban: '1 meter (m) sama dengan 100 sentimeter (cm). Satuan meter biasanya dipakai untuk mengukur benda yang panjang seperti pita lomba, panjang meja, atau tinggi badan, sedangkan sentimeter dipakai untuk benda kecil seperti pensil dan penghapus!'
-  },
-  {
-    keywords: ['tanda baca', 'tanda titik', 'tanda tanya', 'tanda seru'],
-    jawaban: 'Tanda titik (.) dipakai di akhir kalimat berita. Tanda tanya (?) dipakai saat menanyakan sesuatu. Tanda seru (!) dipakai untuk kalimat ajakan, perintah, atau kagum. Gunakan tanda baca agar tulisanmu mudah dipahami ya!'
+async function searchClientDataset(query, filterKelas) {
+  const dataset = await loadClientDataset()
+  if (!dataset || !dataset.length) return null
+
+  const cleanQuery = query.toLowerCase().replace(/[^a-z0-9\s]/g, ' ')
+  const words = cleanQuery.split(/\s+/).filter(w => w.length > 2)
+  if (!words.length) return null
+
+  let best = null
+  let bestScore = 0
+
+  for (const item of dataset) {
+    if (filterKelas && filterKelas !== 'Semua' && item.kelas && item.kelas !== filterKelas) {
+      continue
+    }
+
+    let score = 0
+    const topic = (item.pertanyaan_atau_topik || '').toLowerCase()
+    const keywords = (item.kata_kunci || '').toLowerCase()
+    const ans = (item.jawaban || '').toLowerCase()
+
+    // Kecocokan frasa utuh
+    if (cleanQuery.length > 4 && topic.includes(cleanQuery)) {
+      score += 25
+    }
+
+    for (const w of words) {
+      if (topic.includes(w)) score += 3.5
+      if (keywords.includes(w)) score += 2.5
+      if (ans.includes(w)) score += 0.5
+    }
+
+    if (score > bestScore) {
+      bestScore = score
+      best = item
+    }
   }
-]
+
+  // Ambang batas kecocokan minimum
+  if (best && bestScore >= 4.5) {
+    return {
+      sumber: 'lokal_csv',
+      jawaban: best.jawaban,
+      metadata: {
+        id_data: best.id_data,
+        kelas: best.kelas,
+        kategori: best.kategori,
+        topik: best.pertanyaan_atau_topik,
+        capaian_pembelajaran: best.capaian_pembelajaran,
+        score: bestScore
+      }
+    }
+  }
+
+  return null
+}
 
 /**
- * Fallback kalkulator dinamis & materi di sisi browser
+ * Mesin Penjawab Mandiri di Browser (Client-side)
  */
-function generateClientFallback(text, kelas) {
+async function generateClientResponse(text, kelas) {
   const lower = text.toLowerCase().trim()
 
-  // 1. Hitung matematika dinamis (tambah, kurang, kali, bagi)
+  // 1. Sapaan ramah
+  if (/^(halo|hai|pagi|siang|sore|malam|assalamualaikum|tes|test|hai kak|halo kak)/.test(lower)) {
+    return {
+      sumber: 'system_greeting',
+      jawaban: 'Halo sahabat pintar PRISMA! 👋 Aku Defi, teman belajar ceria kamu. Mau tanya soal berhitung matematika, materi membaca cerita, atau latihan soal hari ini? Kak Defi siap bantu!'
+    }
+  }
+
+  // 2. Kalkulator Matematika Dinamis dengan Penjelasan Langkah-demi-Langkah
   const mathMatch = lower.match(/(\d+)\s*([\+\-\*\/xX]|kali|bagi|tambah|kurang)\s*(\d+)/)
   if (mathMatch) {
     const a = parseInt(mathMatch[1], 10)
     const op = mathMatch[2]
     const b = parseInt(mathMatch[3], 10)
     let res = 0
-    let symbol = '+'
-    let opName = 'penjumlahan'
+    let stepExplanation = ''
 
     if (op === '+' || op === 'tambah') {
       res = a + b
-      symbol = '+'
-      opName = 'penjumlahan'
+      stepExplanation = `Yuk selesaikan penjumlahan ${a} + ${b} bersama Kak Defi! 1. Kita jumlahkan bilangan ${a} dengan ${b}. 2. Hasil akhir yang diperoleh adalah ${res}. Hebat sekali, kamu teliti berhitung!`
     } else if (op === '-' || op === 'kurang') {
       res = a - b
-      symbol = '-'
-      opName = 'pengurangan'
+      stepExplanation = `Yuk selesaikan pengurangan ${a} - ${b} bersama Kak Defi! 1. Bilangan mula-mula ${a} dikurangi sebanyak ${b}. 2. Sisa yang diperoleh adalah ${res}. Kerja bagus, terus berlatih ya!`
     } else if (op === '*' || op === 'x' || op === 'X' || op === 'kali') {
       res = a * b
-      symbol = '×'
-      opName = 'perkalian'
+      stepExplanation = `Yuk selesaikan perkalian ${a} × ${b} bersama Kak Defi! Perkalian adalah penjumlahan berulang: artinya ${a} dijumlahkan sebanyak ${b} kali. Hasil akhirnya adalah ${res}. Luar biasa, perkalianmu tepat sekali!`
     } else if (op === '/' || op === 'bagi') {
-      res = b !== 0 ? Math.round((a / b) * 100) / 100 : 'tidak terdefinisi'
-      symbol = '÷'
-      opName = 'pembagian'
+      if (b === 0) {
+        stepExplanation = `Dalam matematika, bilangan tidak bisa dibagi dengan angka 0 ya sahabat pintar. Coba dengan pembagi yang lain!`
+      } else {
+        res = Math.round((a / b) * 100) / 100
+        stepExplanation = `Yuk selesaikan pembagian ${a} ÷ ${b} bersama Kak Defi! Pembagian adalah pengurangan berulang hingga habis. Hasil dari ${a} dibagi ${b} adalah ${res}. Kamu pintar sekali!`
+      }
     }
 
     return {
       sumber: 'kalkulator_matematika',
-      jawaban: `Halo! Hasil ${opName} dari ${a} ${symbol} ${b} adalah ${res}. Kamu hebat sekali suka berlatih berhitung bersama PRISMA! Tetap semangat ya! ✨`
+      jawaban: stepExplanation,
+      metadata: { topik: `Perhitungan ${a} dan ${b}` }
     }
   }
 
-  // 2. Cocokkan dengan materi esensial SD
-  for (const item of CLIENT_KNOWLEDGE_BASE) {
-    if (item.keywords.some(k => lower.includes(k))) {
-      return {
-        sumber: 'lokal_csv',
-        jawaban: item.jawaban
-      }
-    }
+  // 3. Pencarian 421 Materi PRISMA
+  const datasetMatch = await searchClientDataset(text, kelas)
+  if (datasetMatch) {
+    return datasetMatch
   }
 
-  // 3. Sapaan ramah
-  if (/^(halo|hai|pagi|siang|sore|malam|assalamualaikum|tes|test)/.test(lower)) {
-    return {
-      sumber: 'client_greeting',
-      jawaban: 'Halo sahabat pintar PRISMA! 👋 Aku Defi, teman belajar ceria kamu. Mau tanya soal matematika, membaca cerita, atau latihan soal hari ini? Kak Defi siap bantu!'
-    }
-  }
-
-  // 4. Default ramah
+  // 4. Fallback edukatif jika tidak cocok
   return {
     sumber: 'client_fallback',
-    jawaban: `Halo! Kak Defi senang sekali kamu bertanya tentang "${text}". Kak Defi siap menemani belajar ${kelas || 'semua kelas SD'}. (Tips: tanyakan materi seperti "apa itu ide pokok", "pecahan 1/2", atau hitung angka seperti "25 x 4" ya!) ✨`
+    jawaban: `Halo! Kak Defi senang kamu bertanya. Kak Defi siap membantu materi ${kelas || 'semua kelas SD'} seputar ide pokok, huruf vokal/konsonan, pecahan, bangun datar, atau menghitung angka (seperti "25 x 4"). Coba tanyakan materi yang ingin kamu pelajari ya! ✨`
   }
 }
 
