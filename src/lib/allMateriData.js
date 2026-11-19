@@ -236,7 +236,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Tomat itu bulat dan merah."
+          "explanation": "Tomat itu bulat dan merah.",
+          "image": null
         }
       ]
     },
@@ -979,8 +980,8 @@ export const allStructuredMateri = [
           "id": "q-materi-k1-b5-1",
           "num": 1,
           "questionText": "Merah, kuning, kuning, merah, kuning, kuning, … Manik apa berikutnya?",
-          "instructionBadge": "Pilih Gambar",
-          "type": "image_choice",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "info": "",
           "points": 50,
           "options": [
@@ -989,20 +990,7 @@ export const allStructuredMateri = [
             "Manik Hijau"
           ],
           "correctOptionIndex": 0,
-          "imageOptions": [
-            {
-              "label": "Manik Merah",
-              "image": "/quiz/items/manik-merah.svg"
-            },
-            {
-              "label": "Manik Kuning",
-              "image": "/quiz/items/manik-kuning.svg"
-            },
-            {
-              "label": "Manik Hijau",
-              "image": "/quiz/items/manik-hijau.svg"
-            }
-          ],
+          "imageOptions": null,
           "pairs": null,
           "leftItems": null,
           "rightItems": null,
@@ -1012,7 +1000,7 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Polanya diulang lagi dari merah.",
+          "explanation": "Pola berulang: Merah, Kuning, Kuning. Setelah dua manik kuning, giliran manik Merah berikutnya.",
           "image": "/quiz/k1-b5-pola-gelang.svg"
         },
         {
@@ -1078,8 +1066,8 @@ export const allStructuredMateri = [
           "id": "q-materi-k1-b5-1",
           "num": 1,
           "questionText": "Merah, kuning, kuning, merah, kuning, kuning, … Manik apa berikutnya?",
-          "instructionBadge": "Pilih Gambar",
-          "type": "image_choice",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "info": "",
           "points": 50,
           "options": [
@@ -1088,20 +1076,7 @@ export const allStructuredMateri = [
             "Manik Hijau"
           ],
           "correctOptionIndex": 0,
-          "imageOptions": [
-            {
-              "label": "Manik Merah",
-              "image": "/quiz/items/manik-merah.svg"
-            },
-            {
-              "label": "Manik Kuning",
-              "image": "/quiz/items/manik-kuning.svg"
-            },
-            {
-              "label": "Manik Hijau",
-              "image": "/quiz/items/manik-hijau.svg"
-            }
-          ],
+          "imageOptions": null,
           "pairs": null,
           "leftItems": null,
           "rightItems": null,
@@ -1111,7 +1086,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Polanya diulang lagi dari merah."
+          "explanation": "Pola berulang: Merah, Kuning, Kuning. Setelah dua manik kuning, giliran manik Merah berikutnya.",
+          "image": "/quiz/k1-b5-pola-gelang.svg"
         },
         {
           "id": "q-materi-k1-b5-2",
@@ -1680,35 +1656,18 @@ export const allStructuredMateri = [
           "id": "q-materi-k1-b8-1",
           "num": 1,
           "questionText": "Lihat piktogram. Ketuk buah yang paling disukai.",
-          "instructionBadge": "Pilih Gambar",
-          "type": "image_choice",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "info": "Piktogram buah kesukaan: pisang ●●●●● · jeruk ●●● · mangga ●●●●●●● · semangka ●●",
           "points": 50,
           "options": [
-            "Pisang",
-            "Jeruk (Terbanyak)",
-            "Mangga",
-            "Semangka"
+            "Pisang (5 anak)",
+            "Jeruk (3 anak)",
+            "Mangga (7 anak - Terbanyak)",
+            "Semangka (2 anak)"
           ],
           "correctOptionIndex": 2,
-          "imageOptions": [
-            {
-              "label": "Pisang",
-              "image": "/quiz/items/pisang.svg"
-            },
-            {
-              "label": "Jeruk (Terbanyak)",
-              "image": "/quiz/items/jeruk.svg"
-            },
-            {
-              "label": "Mangga",
-              "image": "/quiz/items/mangga.svg"
-            },
-            {
-              "label": "Semangka",
-              "image": "/quiz/items/semangka.svg"
-            }
-          ],
+          "imageOptions": null,
           "pairs": null,
           "leftItems": null,
           "rightItems": null,
@@ -1718,7 +1677,7 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Baris mangga paling panjang, ada 7.",
+          "explanation": "Baris mangga paling panjang dengan 7 tanda buah.",
           "image": "/quiz/k1-b8-piktogram-buah.svg"
         },
         {
@@ -1785,35 +1744,18 @@ export const allStructuredMateri = [
           "id": "q-materi-k1-b8-1",
           "num": 1,
           "questionText": "Lihat piktogram. Ketuk buah yang paling disukai.",
-          "instructionBadge": "Pilih Gambar",
-          "type": "image_choice",
+          "instructionBadge": "Pilihan Ganda",
+          "type": "multiple_choice",
           "info": "Piktogram buah kesukaan: pisang ●●●●● · jeruk ●●● · mangga ●●●●●●● · semangka ●●",
           "points": 50,
           "options": [
-            "Pisang",
-            "Jeruk (Terbanyak)",
-            "Mangga",
-            "Semangka"
+            "Pisang (5 anak)",
+            "Jeruk (3 anak)",
+            "Mangga (7 anak - Terbanyak)",
+            "Semangka (2 anak)"
           ],
           "correctOptionIndex": 2,
-          "imageOptions": [
-            {
-              "label": "Pisang",
-              "image": "/quiz/items/pisang.svg"
-            },
-            {
-              "label": "Jeruk (Terbanyak)",
-              "image": "/quiz/items/jeruk.svg"
-            },
-            {
-              "label": "Mangga",
-              "image": "/quiz/items/mangga.svg"
-            },
-            {
-              "label": "Semangka",
-              "image": "/quiz/items/semangka.svg"
-            }
-          ],
+          "imageOptions": null,
           "pairs": null,
           "leftItems": null,
           "rightItems": null,
@@ -1823,7 +1765,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Baris mangga paling panjang, ada 7."
+          "explanation": "Baris mangga paling panjang dengan 7 tanda buah.",
+          "image": "/quiz/k1-b8-piktogram-buah.svg"
         },
         {
           "id": "q-materi-k1-b8-2",

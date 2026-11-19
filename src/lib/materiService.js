@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { supabase, isSupabaseConfigured } from './supabaseClient.js'
 import { allStructuredMateri } from './allMateriData.js'
 
-const STORAGE_KEY = 'prisma_materi_list_v15'
+const STORAGE_KEY = 'prisma_materi_list_v16'
 
 export const KELAS_SD_OPTIONS = ['Kelas 1', 'Kelas 2', 'Kelas 3', 'Kelas 4', 'Kelas 5', 'Kelas 6']
 
@@ -166,17 +166,20 @@ export function sanitizeMateriItem(item) {
       ]
     }
   } else if (clean.quiz.questions) {
-    clean.quiz.questions = clean.quiz.questions.map((q, idx) => ({
-      ...q,
-      id: q.id || `q-${idx + 1}`,
-      type: q.type || 'multiple_choice',
-      questionText: q.questionText || '',
-      image: q.image || '',
-      points: Number(q.points) || 25,
-      options: Array.isArray(q.options) && q.options.length ? q.options : ['Opsi A', 'Opsi B', 'Opsi C', 'Opsi D'],
-      correctOptionIndex: typeof q.correctOptionIndex === 'number' ? q.correctOptionIndex : 0,
-      explanation: q.explanation || ''
-    }))
+    clean.quiz.questions = clean.quiz.questions.map((q, idx) => {
+      const isImgChoice = q.type === 'image_choice' || (Array.isArray(q.imageOptions) && q.imageOptions.length > 0)
+      return {
+        ...q,
+        id: q.id || `q-${idx + 1}`,
+        type: q.type || 'multiple_choice',
+        questionText: q.questionText || '',
+        image: isImgChoice ? '' : (q.image || ''),
+        points: Number(q.points) || 25,
+        options: Array.isArray(q.options) && q.options.length ? q.options : ['Opsi A', 'Opsi B', 'Opsi C', 'Opsi D'],
+        correctOptionIndex: typeof q.correctOptionIndex === 'number' ? q.correctOptionIndex : 0,
+        explanation: q.explanation || ''
+      }
+    })
   }
 
   // Tetap sinkronkan backward compatibility fields
@@ -527,9 +530,9 @@ const legacyInitialMateri = [
 
 export const initialMateri = allStructuredMateri
 
-// Reactive state
-export const materiList = ref([])
-export const selectedMateri = ref(null)
+// Reactive state - Langsung diisi dari initialMateri agar materi tidak pernah kosong saat startup / refresh
+export const materiList = ref(sortMateriNaturally(initialMateri.map(sanitizeMateriItem)))
+export const selectedMateri = ref(materiList.value[0] || null)
 export const selectedMode = ref('standard') // 'standard' | 'focus'
 export const isLoadingMateri = ref(false)
 

@@ -144,10 +144,21 @@ const ALL_KNOWN_ROUTES = [
   'settings'
 ]
 
+const normalizeRoute = (raw) => {
+  if (!raw) return ''
+  try {
+    const clean = decodeURIComponent(raw).replace(/^#\/?/, '').trim().toLowerCase().replace(/[\s_]+/g, '-')
+    return ALL_KNOWN_ROUTES.includes(clean) ? clean : ''
+  } catch {
+    const fallback = raw.replace(/^#\/?/, '').trim().toLowerCase().replace(/[\s_]+/g, '-')
+    return ALL_KNOWN_ROUTES.includes(fallback) ? fallback : ''
+  }
+}
+
 const getInitialRoute = () => {
-  const rawHash = (window.location.hash || '').replace(/^#\/?/, '').trim()
-  if (rawHash && ALL_KNOWN_ROUTES.includes(rawHash)) {
-    return rawHash
+  const normalized = normalizeRoute(window.location.hash)
+  if (normalized) {
+    return normalized
   }
   const storedNav = sessionStorage.getItem('prisma_current_nav')
   if (storedNav && ALL_KNOWN_ROUTES.includes(storedNav)) {
@@ -171,7 +182,15 @@ const handleToggleSound = () => {
 
 
 // Active item tracking
-const activeMateriItem = ref(null)
+const getStoredOrInitialActiveMateri = () => {
+  const storedId = sessionStorage.getItem('prisma_active_materi_id')
+  if (storedId && materiList.value.length) {
+    const found = materiList.value.find((m) => String(m.id) === String(storedId))
+    if (found) return found
+  }
+  return materiList.value.length ? materiList.value[0] : null
+}
+const activeMateriItem = ref(getStoredOrInitialActiveMateri())
 
 // Settings state
 const previousNav = ref('beranda')
@@ -326,11 +345,11 @@ const handleWindowScroll = () => {
 }
 
 const handleHashChange = () => {
-  const rawHash = (window.location.hash || '').replace(/^#\/?/, '').trim() || 'beranda'
-  if (ALL_KNOWN_ROUTES.includes(rawHash) && rawHash !== currentNav.value) {
-    const guard = canAccessRoute(rawHash)
+  const route = normalizeRoute(window.location.hash) || 'beranda'
+  if (ALL_KNOWN_ROUTES.includes(route) && route !== currentNav.value) {
+    const guard = canAccessRoute(route)
     if (guard.allowed) {
-      currentNav.value = rawHash
+      currentNav.value = route
     } else {
       navigateToAuth(guard.tab || 'login', guard.reason)
     }

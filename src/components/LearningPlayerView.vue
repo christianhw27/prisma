@@ -1393,8 +1393,11 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <!-- Optional Question Banner Image (if any) -->
-            <div v-if="currentQuestion.image" class="w-full flex justify-center py-2">
+            <!-- Optional Question Banner Image (Hanya tampil jika bukan image_choice dan tidak memiliki imageOptions agar tidak dobel) -->
+            <div
+              v-if="currentQuestion.image && currentQuestion.type !== 'image_choice' && !(currentQuestion.imageOptions && currentQuestion.imageOptions.length)"
+              class="w-full flex justify-center py-2"
+            >
               <div class="max-w-xl w-full flex items-center justify-center p-3 rounded-3xl bg-[#FFF8F0] border border-[#8F8575]/20 shadow-2xs">
                 <img
                   :src="currentQuestion.image"
