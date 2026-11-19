@@ -5,7 +5,7 @@
  */
 
 // ── 1. API Key Gemini dari Konfigurasi Lingkungan (Environment Variables) ───
-const DEFAULT_GEMINI_KEY = import.meta.env.VITE_GEMINI_API_KEY || ''
+const DEFAULT_GEMINI_KEY = (typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env.VITE_GEMINI_API_KEY : '') || ''
 const GEMINI_MODEL = 'gemini-1.5-flash'
 
 // ── 2. Persona Kak Defi untuk Gemini ──────────────────────────────────────
@@ -202,10 +202,11 @@ export const INDO_STOPWORDS = new Set([
 export function cleanJawaban(text) {
   if (!text) return ''
   let cleaned = text
-    .replace(/\r\n/g, ' ')
-    .replace(/\n+/g, ' ')
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n')
     .replace(/[""]/g, "'")
-    .replace(/\s{2,}/g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
     .trim()
   return cleaned
 }
@@ -239,7 +240,7 @@ function extractBenda(query) {
   return null
 }
 
-// ── 6. Mesin Penjelas Matematika Dinamis 100% Sesuai main.py ──────────────
+// ── 6. Mesin Penjelas Matematika Dinamis Super Ramah Anak ─────────────────
 function explainAddition(a, b, benda = null) {
   const res = a + b
   const namaBenda = benda || "buah apel"
@@ -248,52 +249,59 @@ function explainAddition(a, b, benda = null) {
   if (Number.isInteger(a) && Number.isInteger(b) && a >= 0 && b >= 0 && a <= 10 && b <= 10) {
     const ia = Math.round(a), ib = Math.round(b), ir = Math.round(res)
     return cleanJawaban(
-      `Halo! Yuk, kita selesaikan penjumlahan ${ia} + ${ib}${satuanLabel} bersama Defi dengan langkah mudah: ` +
-      `1. Bayangkan kamu memiliki ${ia} ${namaBenda}. ` +
-      `2. Lalu kamu menambahkan lagi ${ib} ${namaBenda}. ` +
-      `3. Sekarang kita hitung maju sebanyak ${ib} langkah dari ${ia}: hasilnya adalah ${ir} ${namaBenda}. ` +
-      `Kesimpulan: Jadi, hasil dari ${ia} + ${ib}${satuanLabel} adalah ${ir}${satuanLabel}. ` +
-      `Pintar sekali! Belajar berhitung bersama Defi itu seru dan mudah. Semangat terus ya!`
+      `Halo sahabat pintar! Yuk, kita selesaikan penjumlahan **${ia} + ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+      `1. Bayangkan kamu memiliki **${ia} ${namaBenda}** di keranjangmu.\n` +
+      `2. Lalu temanmu menambahkan lagi **${ib} ${namaBenda}** ke dalam keranjang.\n` +
+      `3. Sekarang kita hitung maju sebanyak **${ib}** langkah dari **${ia}**: hasilnya adalah **${ir} ${namaBenda}**!\n\n` +
+      `🎉 **Kesimpulan:**\n` +
+      `Jadi, **${ia}${satuanLabel} + ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+      `Pintar sekali! Menghitung bersama Kak Defi itu seru dan mudah kan? Semangat terus ya! 🚀`
     )
   }
 
-  if (Number.isInteger(a) && Number.isInteger(b)) {
+  if (Number.isInteger(a) && Number.isInteger(b) && a >= 0 && b >= 0) {
     const ia = Math.round(a), ib = Math.round(b), ir = Math.round(res)
     const satuanA = ia % 10, satuanB = ib % 10
-    const puluhanA = Math.floor(ia / 10) % 10, puluhanB = Math.floor(ib / 10) % 10
+    const puluhanA = Math.floor(ia / 10), puluhanB = Math.floor(ib / 10)
     const sumSatuan = satuanA + satuanB
     const sumPuluhan = puluhanA + puluhanB
 
     let steps = [
-      `1. Uraikan bilangan berdasarkan nilai tempatnya: ${ia} = ${ia - satuanA} (${puluhanA} puluhan) + ${satuanA} satuan, dan ${ib} = ${ib - satuanB} (${puluhanB} puluhan) + ${satuanB} satuan.`,
-      `2. Jumlahkan angka satuan terlebih dahulu: ${satuanA} satuan + ${satuanB} satuan = ${sumSatuan} satuan.`
+      `1. Uraikan kedua bilangan sesuai nilai tempatnya:\n` +
+      `   • **${ia}** = **${puluhanA} puluhan** + **${satuanA} satuan**.\n` +
+      `   • **${ib}** = **${puluhanB} puluhan** + **${satuanB} satuan**.\n`,
+      `2. Jumlahkan angka satuannya terlebih dahulu:\n` +
+      `   • **${satuanA} + ${satuanB} = ${sumSatuan}**.`
     ]
 
     if (sumSatuan >= 10) {
       const simpan = Math.floor(sumSatuan / 10)
       const sisaSatuan = sumSatuan % 10
       steps.push(
-        `3. Karena hasil satuan adalah ${sumSatuan} (lebih dari 9), simpan ${simpan} ke puluhan dan tulis satuannya ${sisaSatuan}. ` +
-        `4. Jumlahkan angka puluhan beserta angka simpanan: ${puluhanA} puluhan + ${puluhanB} puluhan + ${simpan} simpanan = ${sumPuluhan + simpan} puluhan. ` +
-        `5. Gabungkan hasil puluhan dan satuan untuk mendapatkan jawaban akhir: ${ir}${satuanLabel}.`
+        `3. Karena hasil satuan adalah **${sumSatuan}** (lebih dari 9), kita tulis satuannya **${sisaSatuan}** dan simpan **${simpan} puluhan** ke depan.\n` +
+        `4. Jumlahkan angka puluhannya beserta angka simpanan:\n` +
+        `   • **${puluhanA} + ${puluhanB} + ${simpan} (simpanan) = ${sumPuluhan + simpan} puluhan**.\n` +
+        `5. Gabungkan hasil puluhan dan satuannya sehingga diperoleh: **${ir}${satuanLabel}**.`
       )
     } else {
       steps.push(
-        `3. Jumlahkan angka puluhannya: ${puluhanA} puluhan + ${puluhanB} puluhan = ${sumPuluhan} puluhan (nilainya ${sumPuluhan * 10}). ` +
-        `4. Gabungkan hasil puluhan dan satuannya: ${sumPuluhan * 10} + ${sumSatuan} = ${ir}${satuanLabel}.`
+        `3. Jumlahkan angka puluhannya:\n` +
+        `   • **${puluhanA} + ${puluhanB} = ${sumPuluhan} puluhan**.\n` +
+        `4. Gabungkan hasil puluhan dan satuannya sehingga diperoleh: **${ir}${satuanLabel}**.`
       )
     }
 
     return cleanJawaban(
-      `Halo! Yuk, kita selesaikan penjumlahan ${ia} + ${ib}${satuanLabel} dengan cara bersusun bersama Defi: ` +
-      steps.join(' ') +
-      ` Kesimpulan: Jadi, ${ia}${satuanLabel} + ${ib}${satuanLabel} = ${ir}${satuanLabel}. ` +
-      `Hebat sekali! Kamu sudah menyelesaikan penjumlahan langkah demi langkah dengan sangat teliti. Tetap semangat belajar ya!`
+      `Halo sahabat pintar! Yuk, kita selesaikan penjumlahan **${ia} + ${ib}${satuanLabel}** dengan cara bersusun bersama Kak Defi! 🌟\n\n` +
+      steps.join('\n\n') + '\n\n' +
+      `🎉 **Kesimpulan:**\n` +
+      `Jadi, **${ia}${satuanLabel} + ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+      `Hebat sekali! Penjumlahan langkah demi langkah membuat perhitunganmu selalu teliti dan benar! Tetap semangat ya! 🚀`
     )
   }
 
   return cleanJawaban(
-    `Halo! Hasil penjumlahan dari ${formatNum(a)} + ${formatNum(b)}${satuanLabel} adalah ${formatNum(res)}${satuanLabel}. Luar biasa, kamu sangat teliti dalam berhitung!`
+    `Halo sahabat pintar! Hasil penjumlahan dari **${formatNum(a)} + ${formatNum(b)}${satuanLabel}** adalah **${formatNum(res)}${satuanLabel}**.\n\nLuar biasa, kamu sangat teliti dalam berhitung! Teruslah rajin belajar ya! 🚀`
   )
 }
 
@@ -302,52 +310,126 @@ function explainSubtraction(a, b, benda = null) {
   const namaBenda = benda || "kelereng"
   const satuanLabel = benda ? ` ${benda}` : ""
 
-  if (Number.isInteger(a) && Number.isInteger(b) && a >= 0 && b >= 0 && a <= 10 && b <= 10 && a >= b) {
-    const ia = Math.round(a), ib = Math.round(b), ir = Math.round(res)
+  if (a < b) {
     return cleanJawaban(
-      `Halo! Yuk, kita selesaikan pengurangan ${ia} - ${ib}${satuanLabel} bersama Defi dengan langkah mudah: ` +
-      `1. Bayangkan kamu memiliki ${ia} ${namaBenda}. ` +
-      `2. Lalu sebanyak ${ib} ${namaBenda} diambil atau diberikan kepada temanmu. ` +
-      `3. Sekarang kita hitung mundur sebanyak ${ib} langkah dari ${ia}: hasilnya tersisa ${ir} ${namaBenda}. ` +
-      `Kesimpulan: Jadi, ${ia}${satuanLabel} - ${ib}${satuanLabel} = ${ir}${satuanLabel}. ` +
-      `Pintar sekali! Pengurangan dengan benda nyata membuat berhitung jadi sangat mudah. Semangat terus ya!`
+      `Halo sahabat pintar! Yuk, kita lihat pengurangan **${formatNum(a)} - ${formatNum(b)}${satuanLabel}** bersama Kak Defi: 🌟\n\n` +
+      `💡 Karena angka **${formatNum(a)}** lebih kecil daripada **${formatNum(b)}**, jika dikurangkan hasilnya adalah bilangan negatif yaitu **${formatNum(res)}${satuanLabel}**.\n\n` +
+      `📌 Di sekolah dasar, kita biasanya mengurangkan bilangan yang lebih besar dengan yang lebih kecil ya: **${formatNum(b)} - ${formatNum(a)} = ${formatNum(b - a)}${satuanLabel}**.\n\n` +
+      `Tetap semangat belajar ya, kamu pasti bisa! 🚀`
     )
   }
 
-  if (Number.isInteger(a) && Number.isInteger(b)) {
+  // 1. Bilangan kecil sederhana (a <= 10 dan b <= 10)
+  if (Number.isInteger(a) && Number.isInteger(b) && a <= 10 && b <= 10) {
+    const ia = Math.round(a), ib = Math.round(b), ir = Math.round(res)
+    return cleanJawaban(
+      `Halo sahabat pintar! Yuk, kita selesaikan pengurangan **${ia} - ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+      `1. Bayangkan kamu memiliki **${ia} ${namaBenda}** yang manis.\n` +
+      `2. Lalu sebanyak **${ib} ${namaBenda}** kamu berikan kepada temanmu.\n` +
+      `3. Sekarang kita hitung mundur sebanyak **${ib}** langkah dari **${ia}**: sisanya adalah **${ir} ${namaBenda}**!\n\n` +
+      `🎉 **Kesimpulan:**\n` +
+      `Jadi, **${ia}${satuanLabel} - ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+      `Pintar sekali! Menghitung dengan membayangkan benda nyata membuat belajar jadi seru dan mudah! Semangat terus ya! 🚀`
+    )
+  }
+
+  // 2. Bilangan khusus: Kelipatan 100 (misal 100 - 5, 100 - 25, 200 - 45)
+  if (Number.isInteger(a) && Number.isInteger(b) && a >= 100 && a % 100 === 0 && b < 100) {
+    const ia = Math.round(a), ib = Math.round(b), ir = Math.round(res)
+    const sisaRatusan = ia - 100
+    if (sisaRatusan === 0) {
+      // Kasus 100 - b (seperti soal 100 - 5)
+      return cleanJawaban(
+        `Halo sahabat pintar! Yuk, kita selesaikan pengurangan **100 - ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Cara Cepat & Mudah Memahami:**\n\n` +
+        `1. Uraikan angka **100** menjadi **90 + 10**.\n` +
+        `2. Kurangkan bagian satuannya terlebih dahulu: **10 - ${ib} = ${10 - ib}**.\n` +
+        `3. Gabungkan kembali dengan sisa puluhannya: **90 + ${10 - ib} = ${ir}${satuanLabel}**.\n\n` +
+        `✨ **Trik Hitung Mundur:**\n` +
+        `Jika kamu hitung mundur ${ib} langkah dari 100, kamu akan tepat sampai di angka **${ir}**!\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **100 - ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+        `Hebat sekali! Pengurangan bilangan ratusan ternyata sangat mudah kan? Tetap semangat belajar ya! 🚀`
+      )
+    } else {
+      return cleanJawaban(
+        `Halo sahabat pintar! Yuk, kita selesaikan pengurangan **${ia} - ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `1. Uraikan bilangan **${ia}** menjadi **${sisaRatusan} + 100**.\n` +
+        `2. Kurangkan bagian 100 dengan **${ib}**: **100 - ${ib} = ${100 - ib}**.\n` +
+        `3. Jumlahkan kembali dengan bagian ratusannya: **${sisaRatusan} + ${100 - ib} = ${ir}${satuanLabel}**.\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **${ia}${satuanLabel} - ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+        `Luar biasa! Kamu sangat teliti dalam berhitung! Teruslah rajin berlatih ya! 🚀`
+      )
+    }
+  }
+
+  // 3. Bilangan 2-digit (11 s.d. 99) menggunakan nilai tempat bersusun
+  if (Number.isInteger(a) && Number.isInteger(b) && a < 100 && b < 100) {
     const ia = Math.round(a), ib = Math.round(b), ir = Math.round(res)
     const satuanA = ia % 10, satuanB = ib % 10
-    const puluhanA = Math.floor(ia / 10) % 10, puluhanB = Math.floor(ib / 10) % 10
+    const puluhanA = Math.floor(ia / 10), puluhanB = Math.floor(ib / 10)
 
     let steps = [
-      `1. Uraikan bilangan berdasarkan nilai tempatnya: ${ia} = ${puluhanA} puluhan + ${satuanA} satuan, dan ${ib} = ${puluhanB} puluhan + ${satuanB} satuan.`
+      `1. Uraikan bilangan berdasarkan nilai tempatnya:\n` +
+      `   • **${ia}** = **${puluhanA} puluhan** (nilainya ${puluhanA * 10}) + **${satuanA} satuan**.\n` +
+      `   • **${ib}** = **${puluhanB} puluhan** (nilainya ${puluhanB * 10}) + **${satuanB} satuan**.`
     ]
 
     if (satuanA >= satuanB) {
       steps.push(
-        `2. Kurangkan angka satuannya: ${satuanA} satuan - ${satuanB} satuan = ${satuanA - satuanB} satuan. ` +
-        `3. Kurangkan angka puluhannya: ${puluhanA} puluhan - ${puluhanB} puluhan = ${puluhanA - puluhanB} puluhan. ` +
-        `4. Gabungkan hasil puluhan dan satuannya: ${(puluhanA - puluhanB) * 10} + ${satuanA - satuanB} = ${ir}${satuanLabel}.`
+        `2. Kurangkan angka satuannya:\n` +
+        `   • **${satuanA} satuan - ${satuanB} satuan = ${satuanA - satuanB} satuan**.`
+      )
+      if (puluhanA > 0 || puluhanB > 0) {
+        steps.push(
+          `3. Kurangkan angka puluhannya:\n` +
+          `   • **${puluhanA} puluhan - ${puluhanB} puluhan = ${puluhanA - puluhanB} puluhan** (nilainya ${(puluhanA - puluhanB) * 10}).`
+        )
+      }
+      steps.push(
+        `4. Gabungkan hasil puluhan dan satuannya:\n` +
+        `   • **${(puluhanA - puluhanB) * 10} + ${satuanA - satuanB} = ${ir}${satuanLabel}**.`
       )
     } else {
       steps.push(
-        `2. Karena satuan ${satuanA} lebih kecil dari ${satuanB}, pinjam 1 puluhan (10) dari angka depan: satuan menjadi ${satuanA + 10}, puluhan tersisa ${puluhanA - 1}. ` +
-        `3. Kurangkan angka satuannya: ${satuanA + 10} satuan - ${satuanB} satuan = ${satuanA + 10 - satuanB} satuan. ` +
-        `4. Kurangkan angka puluhannya: ${puluhanA - 1} puluhan - ${puluhanB} puluhan = ${puluhanA - 1 - puluhanB} puluhan. ` +
-        `5. Gabungkan hasil akhir sehingga diperoleh: ${ir}${satuanLabel}.`
+        `2. Karena satuan **${satuanA}** lebih kecil dari **${satuanB}**, kita pinjam **1 puluhan** (nilainya 10) dari angka depan:\n` +
+        `   • Satuan menjadi: **${satuanA} + 10 = ${satuanA + 10}**.\n` +
+        `   • Puluhan tersisa: **${puluhanA} - 1 = ${puluhanA - 1} puluhan**.`
+      )
+      steps.push(
+        `3. Kurangkan angka satuannya:\n` +
+        `   • **${satuanA + 10} satuan - ${satuanB} satuan = ${satuanA + 10 - satuanB} satuan**.`
+      )
+      if (puluhanA - 1 > 0 || puluhanB > 0) {
+        steps.push(
+          `4. Kurangkan angka puluhannya:\n` +
+          `   • **${puluhanA - 1} puluhan - ${puluhanB} puluhan = ${puluhanA - 1 - puluhanB} puluhan** (nilainya ${(puluhanA - 1 - puluhanB) * 10}).`
+        )
+      }
+      steps.push(
+        `5. Gabungkan hasil akhir:\n` +
+        `   • Diperoleh hasil: **${ir}${satuanLabel}**.`
       )
     }
 
     return cleanJawaban(
-      `Halo! Yuk, kita selesaikan pengurangan ${ia} - ${ib}${satuanLabel} bersama Defi: ` +
-      steps.join(' ') +
-      ` Kesimpulan: Jadi, ${ia}${satuanLabel} - ${ib}${satuanLabel} = ${ir}${satuanLabel}. ` +
-      `Hebat sekali! Pengurangan dengan cara bersusun membuat hitunganmu rapi dan tepat. Semangat terus ya!`
+      `Halo sahabat pintar! Yuk, kita selesaikan pengurangan **${ia} - ${ib}${satuanLabel}** dengan cara bersusun bersama Kak Defi! 🌟\n\n` +
+      steps.join('\n\n') + '\n\n' +
+      `🎉 **Kesimpulan:**\n` +
+      `Jadi, **${ia}${satuanLabel} - ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+      `Hebat sekali! Pengurangan dengan cara bersusun membuat hitunganmu rapi dan tepat! Semangat terus ya! 🚀`
     )
   }
 
+  // 4. Umum untuk bilangan lainnya
   return cleanJawaban(
-    `Halo! Hasil pengurangan dari ${formatNum(a)} - ${formatNum(b)}${satuanLabel} adalah ${formatNum(res)}${satuanLabel}. Luar biasa, teruslah rajin berlatih berhitung!`
+    `Halo sahabat pintar! Yuk, kita selesaikan pengurangan **${formatNum(a)} - ${formatNum(b)}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+    `1. Kurangkan kedua bilangan secara bertahap dari nilai tempat satuan, puluhan, hingga ratusan.\n` +
+    `2. Hasil pengurangan yang didapat adalah **${formatNum(res)}${satuanLabel}**.\n\n` +
+    `🎉 **Kesimpulan:**\n` +
+    `Jadi, **${formatNum(a)}${satuanLabel} - ${formatNum(b)}${satuanLabel} = ${formatNum(res)}${satuanLabel}**.\n\n` +
+    `Luar biasa! Teruslah rajin berlatih berhitung matematika ya! 🚀`
   )
 }
 
@@ -359,45 +441,112 @@ function explainMultiplication(a, b, benda = null) {
   if (Number.isInteger(a) && Number.isInteger(b) && a >= 0 && b >= 0) {
     const ia = Math.round(a), ib = Math.round(b), ir = Math.round(res)
 
-    if (ia <= 10 && ib <= 10) {
-      const addTerms = Array(ia).fill(`${ib}${satuanLabel}`).join(' + ') || '0'
+    // Kasus perkalian dengan angka 0
+    if (ia === 0 || ib === 0) {
       return cleanJawaban(
-        `Halo! Yuk, kita selesaikan perkalian ${ia} x ${ib}${satuanLabel} bersama Defi! ` +
-        `Konsep dasar perkalian adalah penjumlahan berulang: ${ia} x ${ib} artinya angka ${ib}${satuanLabel} dijumlahkan sebanyak ${ia} kali (${addTerms}). ` +
-        `Langkah-langkah pengerjaannya: 1. Tulis bentuk penjumlahan berulang: ${addTerms}. ` +
-        `2. Hitung hasil penjumlahan tersebut sehingga diperoleh: ${ir}${satuanLabel}. ` +
-        `Kesimpulan: Jadi, hasil dari ${ia} x ${ib}${satuanLabel} adalah ${ir}${satuanLabel}. ` +
-        `Keren banget! Kamu sudah paham konsep perkalian dengan sangat baik. Tetap semangat belajar ya!`
-      )
-    } else {
-      const bawah = Math.min(ia, ib), atas = Math.max(ia, ib)
-      const satuanAtas = atas % 10
-      const puluhanAtas = Math.floor(atas / 10) % 10
-      const k1 = bawah * satuanAtas
-      const tulisK1 = k1 % 10
-      const simpanK1 = Math.floor(k1 / 10)
-
-      return cleanJawaban(
-        `Halo! Yuk, kita selesaikan perkalian ${ia} x ${ib}${satuanLabel} bersama Defi! ` +
-        `Konsep dasar perkalian adalah penjumlahan berulang: ${ia} x ${ib} artinya menjumlahkan ${atas}${satuanLabel} sebanyak ${bawah} kali. ` +
-        `Kita selesaikan dengan cara perkalian bersusun: 1. Kalikan pengali (${bawah}) dengan satuan (${satuanAtas}): ${bawah} x ${satuanAtas} = ${k1}. Tulis angka ${tulisK1} di tempat satuan, dan simpan ${simpanK1}. ` +
-        `2. Kalikan pengali (${bawah}) dengan puluhan (${puluhanAtas}): ${bawah} x ${puluhanAtas} = ${bawah * puluhanAtas}. Tambahkan simpanan (${simpanK1}): ${bawah * puluhanAtas} + ${simpanK1} = ${bawah * puluhanAtas + simpanK1}. ` +
-        `3. Gabungkan seluruh angka sehingga diperoleh hasil akhir ${ir}${satuanLabel}. ` +
-        `Kesimpulan: Jadi, hasil dari ${ia} x ${ib}${satuanLabel} adalah ${ir}${satuanLabel}. ` +
-        `Luar biasa! Kamu hebat bisa mengikuti perkalian langkah demi langkah dengan teliti. Semangat terus belajarnya ya!`
+        `Halo sahabat pintar! Yuk, kita pelajari sifat perkalian **${ia} x ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Aturan Emas Angka 0:**\n` +
+        `Setiap bilangan jika dikalikan dengan angka **0**, hasilnya akan selalu **0**!\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **${ia} x ${ib}${satuanLabel} = 0**.\n\n` +
+        `Keren banget! Kamu sudah tahu salah satu rahasia matematika paling seru! Semangat terus ya! 🚀`
       )
     }
+
+    // Kasus perkalian dengan angka 1
+    if (ia === 1 || ib === 1) {
+      const nonOne = ia === 1 ? ib : ia
+      return cleanJawaban(
+        `Halo sahabat pintar! Yuk, kita selesaikan perkalian **${ia} x ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Aturan Bilangan 1:**\n` +
+        `Setiap bilangan jika dikalikan dengan angka **1**, hasilnya adalah bilangan itu sendiri!\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **${ia} x ${ib}${satuanLabel} = ${nonOne}${satuanLabel}**.\n\n` +
+        `Pintar sekali! Sangat cepat dan tepat! Semangat belajarnya ya! 🚀`
+      )
+    }
+
+    // Kasus perkalian bilangan 10 (seperti 10 x 10, 5 x 10, dll)
+    if (ia === 10 || ib === 10) {
+      return cleanJawaban(
+        `Halo sahabat pintar! Yuk, kita selesaikan perkalian **${ia} x ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Trik Ajaib Perkalian 10:**\n` +
+        `Perkalian dengan angka 10 itu sangat mudah dan seru! Cukup ambil angka pasangannya, lalu tambahkan angka **0** di belakangnya!\n\n` +
+        `1. Konsep dasar: **${ia} x ${ib}** artinya menjumlahkan puluhan sebanyak **${ia} kali**.\n` +
+        `2. Jika kita hitung melompat kelipatan 10: ` +
+        (ia <= 10 ? Array.from({length: ia}, (_, i) => (i + 1) * ib).join(', ') : `${ib}, ${ib*2}, ... , ${ir}`) + `.\n` +
+        `3. Hasil akhirnya adalah **${ir}${satuanLabel}**!\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **${ia} x ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+        `Hebat sekali! Trik perkalian 10 membuat hitunganmu super kilat dan tepat! Tetap semangat ya! 🚀`
+      )
+    }
+
+    // Kasus perkalian kecil (ia <= 6) -> cocok untuk penjumlahan berulang
+    if (ia <= 6) {
+      const addTerms = Array(ia).fill(`${ib}${satuanLabel}`).join(' + ')
+      return cleanJawaban(
+        `Halo sahabat pintar! Yuk, kita selesaikan perkalian **${ia} x ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Konsep Perkalian (Penjumlahan Berulang):**\n` +
+        `Perkalian **${ia} x ${ib}** artinya angka **${ib}${satuanLabel}** dijumlahkan sebanyak **${ia} kali**.\n\n` +
+        `1. Bentuk penjumlahan berulang:\n` +
+        `   • **${addTerms}**\n` +
+        `2. Hitung hasil penjumlahannya:\n` +
+        `   • Diperoleh hasil: **${ir}${satuanLabel}**\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **${ia} x ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+        `Keren banget! Kamu sudah paham konsep perkalian dengan sangat baik! Tetap semangat belajar ya! 🚀`
+      )
+    }
+
+    // Kasus perkalian tabel 7, 8, 9, atau bilangan 2-digit bersusun
+    if (ia <= 10 && ib <= 10) {
+      return cleanJawaban(
+        `Halo sahabat pintar! Yuk, kita selesaikan perkalian **${ia} x ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Cara Mudah Mengingat Perkalian:**\n` +
+        `1. Kita bisa pecah menjadi penjumlahan yang lebih mudah:\n` +
+        `   • **5 x ${ib} = ${5 * ib}**\n` +
+        `   • Sisanya: **${ia - 5} x ${ib} = ${(ia - 5) * ib}**\n` +
+        `2. Sekarang kita jumlahkan keduanya:\n` +
+        `   • **${5 * ib} + ${(ia - 5) * ib} = ${ir}${satuanLabel}**!\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, hasil dari **${ia} x ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+        `Luar biasa! Strategi memecah perkalian membuat ingatanmu makin kuat! Semangat terus ya! 🚀`
+      )
+    }
+
+    // Kasus perkalian bersusun untuk angka lebih besar (> 10)
+    const bawah = Math.min(ia, ib), atas = Math.max(ia, ib)
+    const satuanAtas = atas % 10
+    const puluhanAtas = Math.floor(atas / 10) % 10
+    const k1 = bawah * satuanAtas
+    const tulisK1 = k1 % 10
+    const simpanK1 = Math.floor(k1 / 10)
+
+    return cleanJawaban(
+      `Halo sahabat pintar! Yuk, kita selesaikan perkalian **${ia} x ${ib}${satuanLabel}** dengan cara bersusun bersama Kak Defi! 🌟\n\n` +
+      `Kita susun dengan angka yang lebih besar di atas (**${atas}**) dan pengali di bawah (**${bawah}**):\n\n` +
+      `1. Kalikan pengali (**${bawah}**) dengan satuan (**${satuanAtas}**):\n` +
+      `   • **${bawah} x ${satuanAtas} = ${k1}** (Tulis **${tulisK1}**, simpan **${simpanK1}**).\n` +
+      `2. Kalikan pengali (**${bawah}**) dengan puluhan (**${puluhanAtas}**):\n` +
+      `   • **${bawah} x ${puluhanAtas} = ${bawah * puluhanAtas}**.\n` +
+      `   • Tambahkan simpanan (${simpanK1}): **${bawah * puluhanAtas} + ${simpanK1} = ${bawah * puluhanAtas + simpanK1}**.\n` +
+      `3. Gabungkan seluruh angka sehingga diperoleh hasil akhir: **${ir}${satuanLabel}**.\n\n` +
+      `🎉 **Kesimpulan:**\n` +
+      `Jadi, hasil dari **${ia} x ${ib}${satuanLabel} = ${ir}${satuanLabel}**.\n\n` +
+      `Luar biasa! Kamu hebat bisa mengikuti perkalian bersusun dengan sangat teliti! Semangat terus ya! 🚀`
+    )
   }
 
   return cleanJawaban(
-    `Halo! Hasil perkalian dari ${formatNum(a)} x ${formatNum(b)}${satuanLabel} adalah ${formatNum(res)}${satuanLabel}. Hebat sekali, teruslah rajin berlatih berhitung ya!`
+    `Halo sahabat pintar! Hasil perkalian dari **${formatNum(a)} x ${formatNum(b)}${satuanLabel}** adalah **${formatNum(res)}${satuanLabel}**.\n\nHebat sekali, teruslah rajin berlatih matematika bersama Kak Defi ya! 🚀`
   )
 }
 
 function explainDivision(a, b, benda = null) {
   if (b === 0) {
     return cleanJawaban(
-      "Wah, dalam matematika kita tidak bisa membagi sebuah bilangan dengan angka 0 ya sahabat pintar! Coba ganti angka pembaginya dengan angka lain selain 0 ya, semangat!"
+      `Wah, dalam matematika kita tidak bisa membagi sebuah bilangan dengan angka **0** ya sahabat pintar! 🛑\n\nCoba ganti angka pembaginya dengan angka lain selain 0 ya, Kak Defi siap bantu hitung! Tetap semangat! ✨`
     )
   }
 
@@ -412,31 +561,34 @@ function explainDivision(a, b, benda = null) {
 
     if (remainder === 0) {
       return cleanJawaban(
-        `Halo! Yuk, kita selesaikan pembagian ${ia} : ${ib}${satuanLabel} bersama Defi! ` +
-        `Konsep pembagian adalah membagi sama rata (adil) tanpa ada sisa. ` +
-        `Bayangkan kamu punya ${ia} ${namaBenda} yang ingin dibagikan secara adil kepada ${ib} teman. ` +
-        `Langkah-langkah pengerjaannya: 1. Kita bagi ${ia} ${namaBenda} ke dalam ${ib} kelompok secara sama rata. ` +
-        `2. Setiap kelompok mendapatkan tepat ${quotient} ${namaBenda}. ` +
-        `3. Karena ${ib} x ${quotient} = ${ia}, maka semua ${namaBenda} terbagi habis tanpa sisa (sisa 0). ` +
-        `Kesimpulan: Jadi, hasil dari ${ia} : ${ib}${satuanLabel} adalah ${quotient}${satuanLabel}. ` +
-        `Pintar sekali! Langkah-langkahmu sangat tepat dan rapi. Tetap semangat belajar ya!`
+        `Halo sahabat pintar! Yuk, kita selesaikan pembagian **${ia} : ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Konsep Pembagian (Membagi Sama Rata):**\n` +
+        `Bayangkan kamu memiliki **${ia} ${namaBenda}** yang ingin dibagikan secara adil kepada **${ib} teman**.\n\n` +
+        `1. Kita bagi **${ia} ${namaBenda}** ke dalam **${ib} kelompok** secara sama rata.\n` +
+        `2. Setiap kelompok mendapatkan tepat **${quotient} ${namaBenda}**.\n` +
+        `3. Karena **${ib} x ${quotient} = ${ia}**, maka semua ${namaBenda} terbagi habis tanpa sisa (sisa 0).\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **${ia} : ${ib}${satuanLabel} = ${quotient}${satuanLabel}**.\n\n` +
+        `Pintar sekali! Langkah-langkahmu sangat tepat dan rapi! Tetap semangat belajar ya! 🚀`
       )
     } else {
       const desimalStr = formatNum(res)
       return cleanJawaban(
-        `Halo! Yuk, kita selesaikan pembagian ${ia} : ${ib} bersama Defi! ` +
-        `Konsep pembagian adalah membagi secara adil (sama rata) kepada beberapa kelompok. ` +
-        `Langkah-langkah pengerjaannya: 1. Setiap teman mendapatkan ${quotient} ${namaBenda} secara utuh (${ib} x ${quotient} = ${ib * quotient} ${namaBenda}). ` +
-        `2. Sisa ${namaBenda} yang belum terbagikan adalah ${ia} - ${ib * quotient} = ${remainder} ${namaBenda}. ` +
-        `3. Bentuk pembagian bersisa: ${ia} : ${ib} = ${quotient} sisa ${remainder}${satuanLabel} (atau dalam desimal = ${desimalStr}${satuanLabel}). ` +
-        `Kesimpulan: Jadi, ${ia} dibagi ${ib} hasilnya adalah ${quotient} sisa ${remainder}${satuanLabel}. ` +
-        `Hebat sekali! Kamu sudah mengerti pembagian bersisa dengan sangat baik. Tetap semangat ya!`
+        `Halo sahabat pintar! Yuk, kita selesaikan pembagian **${ia} : ${ib}${satuanLabel}** bersama Kak Defi! 🌟\n\n` +
+        `💡 **Konsep Pembagian Bersisa:**\n` +
+        `Bayangkan kita membagikan **${ia} ${namaBenda}** secara adil kepada **${ib} teman**.\n\n` +
+        `1. Setiap teman mendapatkan **${quotient} ${namaBenda}** secara utuh (**${ib} x ${quotient} = ${ib * quotient}**).\n` +
+        `2. Sisa ${namaBenda} yang belum terbagikan adalah: **${ia} - ${ib * quotient} = ${remainder} ${namaBenda}**.\n` +
+        `3. Hasil pembagian: **${quotient} sisa ${remainder}${satuanLabel}** (atau bentuk desimal = **${desimalStr}${satuanLabel}**).\n\n` +
+        `🎉 **Kesimpulan:**\n` +
+        `Jadi, **${ia} dibagi ${ib}** hasilnya adalah **${quotient} sisa ${remainder}${satuanLabel}**.\n\n` +
+        `Hebat sekali! Kamu sudah mengerti pembagian bersisa dengan sangat baik! Tetap semangat ya! 🚀`
       )
     }
   }
 
   return cleanJawaban(
-    `Halo! Hasil pembagian dari ${formatNum(a)} : ${formatNum(b)}${satuanLabel} adalah ${formatNum(res)}${satuanLabel}. Pintar sekali, belajar matematika bersama Defi selalu menyenangkan!`
+    `Halo sahabat pintar! Hasil pembagian dari **${formatNum(a)} : ${formatNum(b)}${satuanLabel}** adalah **${formatNum(res)}${satuanLabel}**.\n\nPintar sekali, belajar berhitung bersama Kak Defi selalu menyenangkan! 🚀`
   )
 }
 

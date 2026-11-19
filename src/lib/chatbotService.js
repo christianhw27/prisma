@@ -48,11 +48,11 @@ export async function sendChatText({ pertanyaan, kelas = '', kategori = '' }) {
 
   // ── Jalur 1: Sapaan Ramah & Basa-basi Ringan (Hemat Kuota - 100% Lokal) ───
   if (/^(halo|hai|pagi|siang|sore|malam|assalamualaikum|tes|test|hai kak|halo kak|siapa kamu|terima kasih|makasih|makasi|thanks|ok|oke|sip|dadah|bye)\b/.test(lower)) {
-    let sapaan = 'Halo sahabat pintar PRISMA! 👋 Aku Defi, teman belajar ceria kamu. Mau tanya soal berhitung matematika, materi membaca cerita, atau kirim foto soal tulisan tanganmu hari ini? Kak Defi siap bantu!'
+    let sapaan = 'Halo sahabat pintar PRISMA! 👋 Aku **Kak Defi**, teman belajar ceria kamu.\n\nKamu bisa tanya soal matematika (misal: **"100 - 5"** atau **"10 x 10"**), materi cerita/bacaan SD, atau kirim foto soal tulisan tanganmu hari ini! Kak Defi siap bantu! ✨'
     if (/terima kasih|makasih|makasi|thanks/.test(lower)) {
-      sapaan = 'Sama-sama sahabat pintar! Kak Defi senang sekali bisa membantumu belajar. Tetap semangat dan jangan ragu bertanya lagi ya! ✨'
+      sapaan = 'Sama-sama sahabat pintar! 🌟\n\nKak Defi senang sekali bisa membantumu belajar. Tetap semangat dan jangan ragu bertanya lagi ya! 🚀'
     } else if (/siapa kamu/.test(lower)) {
-      sapaan = 'Aku Defi, robot teman belajar inklusif di PRISMA! Aku bisa membantumu memahami materi literasi, numerasi, berhitung langkah matematika, dan membaca jepretan foto soal tulisan tanganmu! 🤖✨'
+      sapaan = 'Aku **Kak Defi**, robot teman belajar inklusif di PRISMA! 🤖✨\n\nAku siap membantumu memahami materi literasi, numerasi, langkah berhitung matematika yang seru, dan membaca foto tulisan tanganmu! Yuk belajar bersama! 🌟'
     }
     return {
       sumber: 'system_greeting',

@@ -296,14 +296,116 @@ const getSourceBadge = (sumber) => {
   }
 }
 
-// Format markdown sederhana (bold, list)
+// Parser Markdown Ceria, Terstruktur & Super Ramah Anak SD
 const formatMarkdown = (txt) => {
   if (!txt) return ''
-  // Ubah **teks** menjadi <strong>teks</strong>
-  let formatted = txt.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-  // Ubah *teks* menjadi <em>teks</em>
-  formatted = formatted.replace(/\*(.*?)\*/g, '<em>$1</em>')
-  return formatted
+
+  // Pecah teks menjadi blok-blok terpisah berdasarkan 2 enter
+  const paragraphs = txt.split(/\n\s*\n/)
+
+  const htmlBlocks = paragraphs.map(para => {
+    let p = para.trim()
+    if (!p) return ''
+
+    // Helper format inline teks
+    const formatInline = (str) => {
+      return str
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#1E7A6F]">$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em class="italic text-[#5B6474]">$1</em>')
+        .replace(/`([^`]+)`/g, '<code class="px-2 py-0.5 rounded-lg bg-[#1E7A6F]/10 text-[#1E7A6F] font-bold font-mono text-sm sm:text-base border border-[#1E7A6F]/20">$1</code>')
+    }
+
+    // A. Kotak Kesimpulan Emas / Cerah (🎉 Kesimpulan: ...)
+    if (/^(🎉\s*)?\*?\*?kesimpulan:?\*?\*?/i.test(p)) {
+      const cleanBody = p.replace(/^(🎉\s*)?\*?\*?kesimpulan:?\*?\*?\s*:?/i, '').trim()
+      return `
+        <div class="my-3.5 p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#FFF8E6] via-[#FFF3D1] to-[#FFF8E6] border-2 border-[#FFDE7A] text-[#2B3445] shadow-xs">
+          <div class="flex items-center gap-2 font-['Baloo_2'] font-extrabold text-sm sm:text-base text-[#D97706] mb-1.5">
+            <span class="text-xl">🎉</span>
+            <span class="uppercase tracking-wider">Kesimpulan Jawaban</span>
+          </div>
+          <div class="font-['Baloo_2'] text-base sm:text-xl font-extrabold text-[#1E7A6F] tracking-wide leading-relaxed">
+            ${formatInline(cleanBody)}
+          </div>
+        </div>
+      `
+    }
+
+    // B. Kotak Tips & Cara Mudah (💡 atau ✨ atau 📌)
+    if (/^[💡✨📌]/.test(p)) {
+      return `
+        <div class="my-2.5 p-3.5 sm:p-4 rounded-2xl bg-[#E8F6F3] border-2 border-[#7FD4C4]/60 text-[#165B53] shadow-2xs">
+          <div class="text-sm sm:text-base font-semibold leading-relaxed">
+            ${formatInline(p)}
+          </div>
+        </div>
+      `
+    }
+
+    // C. Langkah-langkah Bernomor (1. ..., 2. ...)
+    if (/^\d+\.\s+/.test(p) || p.includes('\n1. ') || p.includes('\n2. ')) {
+      const lines = p.split('\n')
+      const renderedLines = lines.map(line => {
+        const stepMatch = line.trim().match(/^(\d+)\.\s+(.*)$/)
+        if (stepMatch) {
+          const stepNum = stepMatch[1]
+          const stepContent = stepMatch[2]
+          return `
+            <div class="my-2 p-3 sm:p-3.5 rounded-2xl bg-white border border-[#1E7A6F]/25 shadow-2xs flex items-start gap-3 hover:border-[#1E7A6F] transition-colors">
+              <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center font-['Baloo_2'] font-extrabold text-sm sm:text-base shrink-0 shadow-xs">
+                ${stepNum}
+              </span>
+              <div class="flex-1 font-medium text-sm sm:text-base text-[#2B3445] leading-relaxed pt-0.5">
+                ${formatInline(stepContent)}
+              </div>
+            </div>
+          `
+        }
+
+        const bulletMatch = line.trim().match(/^[•\-*]\s+(.*)$/)
+        if (bulletMatch) {
+          return `
+            <div class="flex items-start gap-2.5 pl-3 sm:pl-4 my-1 text-sm sm:text-base text-[#2B3445] font-medium leading-relaxed">
+              <span class="text-[#1E7A6F] font-bold text-base leading-none mt-1">•</span>
+              <div class="flex-1">${formatInline(bulletMatch[1])}</div>
+            </div>
+          `
+        }
+
+        if (line.trim()) {
+          return `<p class="text-sm sm:text-base font-medium text-[#2B3445] leading-relaxed my-1">${formatInline(line)}</p>`
+        }
+        return ''
+      }).join('')
+
+      return `<div class="space-y-1 my-2">${renderedLines}</div>`
+    }
+
+    // D. Bullet list biasa (• ...)
+    if (/^[•\-*]\s+/.test(p)) {
+      const lines = p.split('\n')
+      const renderedList = lines.map(line => {
+        const item = line.trim().replace(/^[•\-*]\s+/, '')
+        return `
+          <div class="flex items-start gap-2.5 pl-2 my-1 text-sm sm:text-base text-[#2B3445] font-medium leading-relaxed">
+            <span class="text-[#1E7A6F] font-bold text-base leading-none mt-1">•</span>
+            <div class="flex-1">${formatInline(item)}</div>
+          </div>
+        `
+      }).join('')
+      return `<div class="my-2">${renderedList}</div>`
+    }
+
+    // E. Paragraf Biasa
+    const isEnthusiastic = /[🚀✨👏💪🎉]/.test(p) || /semangat|hebat|luar biasa|pintar sekali|keren/i.test(p)
+    return `
+      <p class="text-sm sm:text-base ${isEnthusiastic ? 'font-semibold text-[#1E7A6F]' : 'font-medium text-[#2B3445]'} leading-relaxed my-1.5">
+        ${formatInline(p)}
+      </p>
+    `
+  })
+
+  return htmlBlocks.join('')
 }
 </script>
 
@@ -499,7 +601,7 @@ const formatMarkdown = (txt) => {
             <div v-if="msg.photoUrl" class="rounded-2xl overflow-hidden border-2 border-white/30 max-h-56 bg-black/10">
               <img :src="msg.photoUrl" alt="Foto soal siswa" class="w-full h-auto object-cover" />
             </div>
-            <p class="text-sm sm:text-base font-normal leading-relaxed whitespace-pre-wrap">
+            <p class="text-base sm:text-lg font-medium leading-relaxed whitespace-pre-wrap">
               {{ msg.text }}
             </p>
           </div>
@@ -507,23 +609,23 @@ const formatMarkdown = (txt) => {
           <!-- Bubble Pesan Kak Defi -->
           <div
             v-else
-            class="max-w-[92%] flex items-start gap-3"
+            class="max-w-[95%] sm:max-w-[92%] flex items-start gap-3"
           >
             <!-- Defi Avatar Bubble -->
-            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border border-white mt-1">
-              <Bot class="w-5 h-5" />
+            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border-2 border-white mt-1">
+              <Bot class="w-5.5 h-5.5" />
             </div>
 
-            <!-- Kartu Jawaban -->
-            <div class="bg-white p-4 sm:p-5.5 rounded-3xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-xs text-[#2B3445] space-y-3">
+            <!-- Kartu Jawaban Super Ramah Anak -->
+            <div class="bg-white p-4 sm:p-5.5 rounded-3xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-sm text-[#2B3445] space-y-3 flex-1">
               
               <!-- Badge Kategori Jawaban -->
-              <div class="flex items-center justify-between gap-2 border-b border-[#8F8575]/15 pb-2">
+              <div class="flex items-center justify-between gap-2 border-b border-[#8F8575]/15 pb-2.5">
                 <span
-                  class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold border"
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs sm:text-sm font-bold border shadow-2xs"
                   :class="getSourceBadge(msg.sumber).color"
                 >
-                  <component :is="getSourceBadge(msg.sumber).icon" class="w-3.5 h-3.5" />
+                  <component :is="getSourceBadge(msg.sumber).icon" class="w-4 h-4" />
                   <span>{{ getSourceBadge(msg.sumber).label }}</span>
                 </span>
 
@@ -531,17 +633,17 @@ const formatMarkdown = (txt) => {
                 <button
                   type="button"
                   @click="speakMessage(msg.id, msg.text)"
-                  class="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E7A6F] hover:text-[#165B53] transition cursor-pointer px-2.5 py-1 rounded-lg hover:bg-[#7FD4C4]/15"
+                  class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#1E7A6F] hover:text-[#165B53] transition cursor-pointer px-3 py-1.5 rounded-xl hover:bg-[#7FD4C4]/15 active:scale-95"
                   :title="currentlySpeakingId === msg.id ? 'Hentikan suara' : 'Dengarkan suara Kak Defi'"
                 >
-                  <Volume2 class="w-4 h-4" :class="currentlySpeakingId === msg.id ? 'animate-pulse text-[#D97706]' : ''" />
+                  <Volume2 class="w-4.5 h-4.5" :class="currentlySpeakingId === msg.id ? 'animate-pulse text-[#D97706]' : ''" />
                   <span>{{ currentlySpeakingId === msg.id ? 'Membaca...' : 'Dengarkan' }}</span>
                 </button>
               </div>
 
-              <!-- Teks Jawaban Ramah Anak -->
+              <!-- Teks Jawaban Ramah Anak (Besar, Jelas, & Menarik) -->
               <div
-                class="text-sm sm:text-base leading-relaxed font-normal text-[#2B3445] whitespace-pre-wrap space-y-2"
+                class="text-base sm:text-lg leading-relaxed font-normal text-[#2B3445]"
                 v-html="formatMarkdown(msg.text)"
               ></div>
             </div>
