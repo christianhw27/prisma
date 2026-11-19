@@ -550,7 +550,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Hitung sisinya. Lingkaran tidak punya sudut."
+          "explanation": "Hitung sisinya. Lingkaran tidak punya sudut.",
+          "image": "/quiz/k1-b3-kamar-bentuk.svg"
         },
         {
           "id": "q-materi-k1-b3-2",
@@ -1713,7 +1714,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Baris mangga paling panjang, ada 7."
+          "explanation": "Baris mangga paling panjang, ada 7.",
+          "image": "/quiz/k1-b8-piktogram-buah.svg"
         },
         {
           "id": "q-materi-k1-b8-2",
@@ -5140,7 +5142,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "Gambar kelas 3 paling banyak."
+          "explanation": "Gambar kelas 3 paling banyak.",
+          "image": "/quiz/k3-b8-piktogram-kebersihan.svg"
         }
       ]
     },
@@ -5753,7 +5756,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "3 × 4 = 12."
+          "explanation": "3 × 4 = 12.",
+          "image": "/quiz/k4-b3-petak-kangkung.svg"
         },
         {
           "id": "q-materi-k4-b3-2",
@@ -7808,7 +7812,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "3 × 30° = 90°, sudut siku-siku."
+          "explanation": "3 × 30° = 90°, sudut siku-siku.",
+          "image": "/quiz/k5-b5-jam-3.svg"
         },
         {
           "id": "q-materi-k5-b5-2",
@@ -10139,7 +10144,8 @@ export const allStructuredMateri = [
           "multiCorrectIndices": null,
           "targetCell": null,
           "initialCell": null,
-          "explanation": "5 × 10.000 = 50.000 cm = 500 m."
+          "explanation": "5 × 10.000 = 50.000 cm = 500 m.",
+          "image": "/quiz/k6-b8-peta-desa.svg"
         },
         {
           "id": "q-materi-k6-b8-2",

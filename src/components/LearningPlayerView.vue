@@ -636,6 +636,15 @@ onMounted(() => {
 
         <!-- CARD INFO MATERI DI SIDEBAR -->
         <div class="bg-white rounded-3xl border border-[#8F8575]/25 p-5 shadow-xs space-y-3.5 text-left hidden sm:block">
+          <!-- Thumbnail Cover Materi -->
+          <div v-if="materi.image" class="w-full aspect-video rounded-2xl overflow-hidden border border-[#8F8575]/25 bg-[#FFF8F0] shadow-2xs group relative">
+            <img
+              :src="materi.image"
+              :alt="materi.title"
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+
           <div class="flex items-center gap-2">
             <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
             <h4 class="text-xs font-bold font-['Baloo_2'] text-[#2B3445] uppercase tracking-wider">
@@ -890,14 +899,28 @@ onMounted(() => {
           </p>
         </div>
 
-        <!-- Konten Teks Bacaan -->
+        <!-- Konten Teks Bacaan & Ilustrasi Cerita -->
         <div
           v-show="isBacaanExpanded"
-          class="bg-[#FFF8F0]/80 p-5 sm:p-6 rounded-2xl border border-[#8F8575]/20 max-h-72 sm:max-h-80 overflow-y-auto space-y-3"
+          class="bg-[#FFF8F0]/80 p-5 sm:p-6 rounded-2xl border border-[#8F8575]/20 max-h-80 sm:max-h-96 overflow-y-auto space-y-4"
         >
-          <p class="text-[#2B3445] font-['Lexend'] text-sm sm:text-base leading-relaxed sm:leading-loose whitespace-pre-line select-text">
-            {{ readingText }}
-          </p>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
+            <!-- Ilustrasi Cerita Cover (Kiri / Atas) -->
+            <div v-if="materi.image" class="md:col-span-5 rounded-2xl overflow-hidden border border-[#8F8575]/25 bg-white shadow-xs">
+              <img
+                :src="materi.image"
+                :alt="materi.title"
+                class="w-full h-44 sm:h-52 md:h-full max-h-64 object-cover"
+              />
+            </div>
+
+            <!-- Paragraf Cerita (Kanan / Bawah) -->
+            <div :class="materi.image ? 'md:col-span-7' : 'col-span-12'" class="space-y-3">
+              <p class="text-[#2B3445] font-['Lexend'] text-sm sm:text-base leading-relaxed sm:leading-loose whitespace-pre-line select-text">
+                {{ readingText }}
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- Ringkasan jika sedang disembunyikan -->

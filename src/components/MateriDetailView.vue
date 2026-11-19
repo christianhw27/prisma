@@ -46,7 +46,7 @@ onMounted(() => {
         <div class="lg:col-span-5 flex justify-center">
           <div
             @click="emit('start')"
-            class="relative w-full max-w-md aspect-4/3 rounded-2xl overflow-hidden shadow-sm border border-[#8F8575]/25 group cursor-pointer"
+            class="relative w-full max-w-md aspect-video sm:aspect-16/10 rounded-3xl overflow-hidden shadow-sm border-2 border-[#8F8575]/25 group cursor-pointer"
           >
             <img
               :src="materi.image || '/es_batu_card.jpg'"

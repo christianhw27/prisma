@@ -276,10 +276,11 @@ const resetFilters = () => {
             class="bg-white rounded-2xl border border-[#8F8575]/25 overflow-hidden p-5 sm:p-6 shadow-sm hover:border-[#1E7A6F] transition-all duration-200 flex flex-col md:flex-row items-stretch gap-6 group"
           >
             <!-- Left Thumbnail Image -->
-            <div class="w-full md:w-64 lg:w-72 h-48 md:h-auto min-h-[200px] rounded-xl overflow-hidden shrink-0 bg-[#FFF8F0] relative border border-[#8F8575]/20">
+            <div class="w-full md:w-64 lg:w-72 h-48 md:h-auto min-h-[200px] rounded-2xl overflow-hidden shrink-0 bg-[#FFF8F0] relative border-2 border-[#8F8575]/20">
               <img
                 :src="item.image || '/es_batu_card.jpg'"
                 :alt="item.title"
+                loading="lazy"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <!-- Badge Jenjang & Mapel -->
