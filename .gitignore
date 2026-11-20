@@ -28,6 +28,8 @@ dist-ssr
 
 # Draft files
 _draft
+public/record/
+public/record
 
 # Python & Chatbot
 __pycache__/

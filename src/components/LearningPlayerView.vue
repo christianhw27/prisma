@@ -274,7 +274,10 @@ const toggleAudioNarration = () => {
 
   const customAudioUrl = props.materi?.materiContent?.audioUrl || props.materi?.audioUrl
   if (customAudioUrl) {
-    if (!currentAudioElement) {
+    if (!currentAudioElement || currentAudioElement.src !== customAudioUrl) {
+      if (currentAudioElement) {
+        currentAudioElement.pause()
+      }
       currentAudioElement = new Audio(customAudioUrl)
       currentAudioElement.onended = () => { isPlayingAudio.value = false }
       currentAudioElement.onerror = () => { isPlayingAudio.value = false }
@@ -1009,6 +1012,11 @@ const resetQuiz = () => {
 
 // Reset tab & state saat materi berganti
 watch(() => props.materi?.id, () => {
+  stopAudioNarration()
+  if (currentAudioElement) {
+    currentAudioElement.pause()
+    currentAudioElement = null
+  }
   activeTab.value = 'video'
   selectedVideoIndex.value = 1
   resetQuiz()

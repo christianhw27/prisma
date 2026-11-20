@@ -1,3 +1,6 @@
+// Dataset Lengkap 48 Materi PRISMA (Kelas 1 - Kelas 6 SD)
+// Digenerate dan disinkronkan otomatis dengan Kurikulum Merdeka & Audio Cloudinary CDN
+
 export const allStructuredMateri = [
   {
     "id": "materi-k1-b1",
@@ -19,7 +22,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Sari pergi ke kebun Nenek. Di kebun ada tomat merah. Sari memetik 5 tomat dan Nenek memetik 4 tomat. Semua tomat ditaruh di keranjang.",
       "image": "/covers/cover-k1-b1.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149316/prisma_audio_k1_b1.m4a",
       "points": [
         {
           "id": "lp-k1b1-1",
@@ -240,7 +243,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Sari pergi ke kebun Nenek. Di kebun ada tomat merah. Sari memetik 5 tomat dan Nenek memetik 4 tomat. Semua tomat ditaruh di keranjang.",
-    "tujuan": "Tujuan literasi: membaca kata dan kalimat sederhana, lalu menjawab pertanyaan isi cerita.Tujuan numerasi: membilang benda sampai 20 dan menjumlahkan dengan benda konkret."
+    "tujuan": "Tujuan literasi: membaca kata dan kalimat sederhana, lalu menjawab pertanyaan isi cerita.Tujuan numerasi: membilang benda sampai 20 dan menjumlahkan dengan benda konkret.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149316/prisma_audio_k1_b1.m4a"
   },
   {
     "id": "materi-k1-b2",
@@ -262,7 +266,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Ibu meminta tolong kepada Dimas, “Dimas, tolong ambil kue di meja, ya.” Dimas menjawab, “Baik, Bu.” Di meja ada 12 kue. Ibu meminta Dimas memberikan 5 kue untuk Bu Tini. Setelah kue diberikan, kue di meja tinggal sedikit. Ibu berterima kasih karena Dimas sudah membantu.",
       "image": "/covers/cover-k1-b2.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149317/prisma_audio_k1_b2.m4a",
       "points": [
         {
           "id": "lp-k1b2-1",
@@ -444,7 +448,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Ibu meminta tolong kepada Dimas, “Dimas, tolong ambil kue di meja, ya.” Dimas menjawab, “Baik, Bu.” Di meja ada 12 kue. Ibu meminta Dimas memberikan 5 kue untuk Bu Tini. Setelah kue diberikan, kue di meja tinggal sedikit. Ibu berterima kasih karena Dimas sudah membantu.",
-    "tujuan": "Tujuan literasi: menyimak percakapan dan menjawab pertanyaan tentang isinya.Tujuan numerasi: mengurangi bilangan sampai 20 dengan benda konkret."
+    "tujuan": "Tujuan literasi: menyimak percakapan dan menjawab pertanyaan tentang isinya.Tujuan numerasi: mengurangi bilangan sampai 20 dengan benda konkret.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149317/prisma_audio_k1_b2.m4a"
   },
   {
     "id": "materi-k1-b3",
@@ -466,7 +471,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kamar Rina rapi. Jendela kamarnya berbentuk persegi dan jam dindingnya berbentuk lingkaran. Jam itu ada di atas pintu. Bantal ada di atas kasur, sedangkan sandal ada di bawah kasur. Meja belajar ada di sebelah kiri kasur, dan lemari ada di sebelah kanan kasur.",
       "image": "/covers/cover-k1-b3.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149317/prisma_audio_k1_b3.m4a",
       "points": [
         {
           "id": "lp-k1b3-1",
@@ -689,7 +694,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kamar Rina rapi. Jendela kamarnya berbentuk persegi dan jam dindingnya berbentuk lingkaran. Jam itu ada di atas pintu. Bantal ada di atas kasur, sedangkan sandal ada di bawah kasur. Meja belajar ada di sebelah kiri kasur, dan lemari ada di sebelah kanan kasur.",
-    "tujuan": "Tujuan literasi: menceritakan isi gambar dengan kalimat sederhana.Tujuan numerasi: mengenal bangun datar (segitiga, segi empat, lingkaran) dan posisi benda (atas, bawah, kiri, kanan)."
+    "tujuan": "Tujuan literasi: menceritakan isi gambar dengan kalimat sederhana.Tujuan numerasi: mengenal bangun datar (segitiga, segi empat, lingkaran) dan posisi benda (atas, bawah, kiri, kanan).",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149317/prisma_audio_k1_b3.m4a"
   },
   {
     "id": "materi-k1-b4",
@@ -711,7 +717,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pagi ini Edo membantu Kakek mengambil telur di kandang ayam. Di kandang kiri ada 9 telur, dan di kandang kanan ada 12 telur. Kakek ingin tahu kandang mana yang telurnya lebih banyak, jadi Edo menghitung telur dengan teliti.",
       "image": "/covers/cover-k1-b4.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149317/prisma_audio_k1_b4.m4a",
       "points": [
         {
           "id": "lp-k1b4-1",
@@ -912,7 +918,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pagi ini Edo membantu Kakek mengambil telur di kandang ayam. Di kandang kiri ada 9 telur, dan di kandang kanan ada 12 telur. Kakek ingin tahu kandang mana yang telurnya lebih banyak, jadi Edo menghitung telur dengan teliti.",
-    "tujuan": "Tujuan literasi: mengenal huruf vokal dan membaca suku kata.Tujuan numerasi: membandingkan banyak benda (lebih banyak, lebih sedikit, sama banyak) dan mengurutkan bilangan sampai 20."
+    "tujuan": "Tujuan literasi: mengenal huruf vokal dan membaca suku kata.Tujuan numerasi: membandingkan banyak benda (lebih banyak, lebih sedikit, sama banyak) dan mengurutkan bilangan sampai 20.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149317/prisma_audio_k1_b4.m4a"
   },
   {
     "id": "materi-k1-b5",
@@ -934,7 +941,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Dina membuat gelang untuk Ibu dari manik merah dan manik kuning. Ia memasang satu manik merah, lalu dua manik kuning, kemudian mengulanginya lagi dari awal. Susunan gelangnya menjadi merah, kuning, kuning, merah, kuning, kuning, dan seterusnya.",
       "image": "/covers/cover-k1-b5.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b5.m4a",
       "points": [
         {
           "id": "lp-k1b5-1",
@@ -1138,7 +1145,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Dina membuat gelang untuk Ibu dari manik merah dan manik kuning. Ia memasang satu manik merah, lalu dua manik kuning, kemudian mengulanginya lagi dari awal. Susunan gelangnya menjadi merah, kuning, kuning, merah, kuning, kuning, dan seterusnya.",
-    "tujuan": "Tujuan literasi: mengikuti petunjuk tertulis sederhana.Tujuan numerasi: mengenali, meniru, dan melanjutkan pola berulang (warna, bentuk, dan bilangan)."
+    "tujuan": "Tujuan literasi: mengikuti petunjuk tertulis sederhana.Tujuan numerasi: mengenali, meniru, dan melanjutkan pola berulang (warna, bentuk, dan bilangan).",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b5.m4a"
   },
   {
     "id": "materi-k1-b6",
@@ -1160,7 +1168,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Besok ada lomba di sekolah. Bu Guru membawa pita merah yang panjang dan pita biru yang pendek. Bu Guru juga membawa dua kotak hadiah. Kotak besar ternyata ringan karena isinya balon, sedangkan kotak kecil ternyata berat karena isinya kelereng. Lala tinggi dan Upik rendah, jadi Lala yang membantu menggantung pita di atas pintu.",
       "image": "/covers/cover-k1-b6.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b6.m4a",
       "points": [
         {
           "id": "lp-k1b6-1",
@@ -1382,7 +1390,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Besok ada lomba di sekolah. Bu Guru membawa pita merah yang panjang dan pita biru yang pendek. Bu Guru juga membawa dua kotak hadiah. Kotak besar ternyata ringan karena isinya balon, sedangkan kotak kecil ternyata berat karena isinya kelereng. Lala tinggi dan Upik rendah, jadi Lala yang membantu menggantung pita di atas pintu.",
-    "tujuan": "Tujuan literasi: mengenal kata yang berlawanan arti (antonim).Tujuan numerasi: membandingkan panjang–pendek, tinggi–rendah, dan berat–ringan secara langsung."
+    "tujuan": "Tujuan literasi: mengenal kata yang berlawanan arti (antonim).Tujuan numerasi: membandingkan panjang–pendek, tinggi–rendah, dan berat–ringan secara langsung.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b6.m4a"
   },
   {
     "id": "materi-k1-b7",
@@ -1404,7 +1413,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Bima bersekolah setiap hari Senin sampai Sabtu. Pada pagi hari, Bima mandi lalu sarapan, kemudian berangkat ke sekolah. Siang hari, ia pulang dan makan siang. Sore hari, Bima bermain bola bersama teman. Malam hari, ia belajar lalu tidur. Hari Minggu Bima libur dan membantu Ibu di kebun.",
       "image": "/covers/cover-k1-b7.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b7.m4a",
       "points": [
         {
           "id": "lp-k1b7-1",
@@ -1608,7 +1617,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Bima bersekolah setiap hari Senin sampai Sabtu. Pada pagi hari, Bima mandi lalu sarapan, kemudian berangkat ke sekolah. Siang hari, ia pulang dan makan siang. Sore hari, Bima bermain bola bersama teman. Malam hari, ia belajar lalu tidur. Hari Minggu Bima libur dan membantu Ibu di kebun.",
-    "tujuan": "Tujuan literasi: menceritakan pengalaman secara berurutan dengan kata pertama, lalu, kemudian, dan terakhir.Tujuan numerasi: mengenal nama dan urutan hari, bagian hari, serta membandingkan lama kegiatan."
+    "tujuan": "Tujuan literasi: menceritakan pengalaman secara berurutan dengan kata pertama, lalu, kemudian, dan terakhir.Tujuan numerasi: mengenal nama dan urutan hari, bagian hari, serta membandingkan lama kegiatan.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b7.m4a"
   },
   {
     "id": "materi-k1-b8",
@@ -1630,7 +1640,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Bu Guru menanyakan buah kesukaan murid-murid. Setiap anak lalu menempel gambar buah kesukaannya di papan. Ada 5 gambar pisang, 3 gambar jeruk, 7 gambar mangga, dan 2 gambar semangka. Hasilnya disusun menjadi piktogram berikut.\n\nBuah | Piktogram (1 Gambar = 1 Suara) | Banyak\n\nPisang | 🍌 🍌 🍌 🍌 🍌 | 5 anak\n\nJeruk | 🍊 🍊 🍊 | 3 anak\n\nMangga | 🥭 🥭 🥭 🥭 🥭 🥭 🥭 | 7 anak (Terbanyak)\n\nSemangka | 🍉 🍉 | 2 anak",
       "image": "/covers/cover-k1-b8.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b8.m4a",
       "points": [
         {
           "id": "lp-k1b8-1",
@@ -1820,7 +1830,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Bu Guru menanyakan buah kesukaan murid-murid. Setiap anak lalu menempel gambar buah kesukaannya di papan. Ada 5 gambar pisang, 3 gambar jeruk, 7 gambar mangga, dan 2 gambar semangka. Hasilnya disusun menjadi piktogram berikut.\n\nBuah | Piktogram (1 Gambar = 1 Suara) | Banyak\n\nPisang | 🍌 🍌 🍌 🍌 🍌 | 5 anak\n\nJeruk | 🍊 🍊 🍊 | 3 anak\n\nMangga | 🥭 🥭 🥭 🥭 🥭 🥭 🥭 | 7 anak (Terbanyak)\n\nSemangka | 🍉 🍉 | 2 anak",
-    "tujuan": "Tujuan literasi: menyimak pertanyaan dan menjawab dengan kalimat lengkap.Tujuan numerasi: mengelompokkan, membilang, dan menyajikan data dengan turus dan piktogram."
+    "tujuan": "Tujuan literasi: menyimak pertanyaan dan menjawab dengan kalimat lengkap.Tujuan numerasi: mengelompokkan, membilang, dan menyajikan data dengan turus dan piktogram.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149318/prisma_audio_k1_b8.m4a"
   },
   {
     "id": "materi-k2-b1",
@@ -1842,7 +1853,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Setiap pagi, Bayu sarapan sebelum berangkat sekolah. Ibu memasak nasi, telur, dan sayur bayam. Sarapan membuat badan kuat dan pikiran segar.\n\nHari Senin, kelas 2 mengadakan kegiatan makan buah bersama. Bu Guru membawa 45 jeruk dan 32 pisang. Sebelum makan, semua murid mencuci tangan dengan sabun.",
       "image": "/covers/cover-k2-b1.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b1.m4a",
       "points": [
         {
           "id": "lp-k2b1-1",
@@ -2067,7 +2078,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Setiap pagi, Bayu sarapan sebelum berangkat sekolah. Ibu memasak nasi, telur, dan sayur bayam. Sarapan membuat badan kuat dan pikiran segar.\n\nHari Senin, kelas 2 mengadakan kegiatan makan buah bersama. Bu Guru membawa 45 jeruk dan 32 pisang. Sebelum makan, semua murid mencuci tangan dengan sabun.",
-    "tujuan": "Tujuan literasi: memahami isi bacaan tentang kesehatan.Tujuan numerasi: membaca bilangan sampai 100, menentukan nilai tempat (puluhan dan satuan), serta membandingkan dan mengurutkan bilangan."
+    "tujuan": "Tujuan literasi: memahami isi bacaan tentang kesehatan.Tujuan numerasi: membaca bilangan sampai 100, menentukan nilai tempat (puluhan dan satuan), serta membandingkan dan mengurutkan bilangan.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b1.m4a"
   },
   {
     "id": "materi-k2-b2",
@@ -2089,7 +2101,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Ibu membuat satu kue bolu bundar. Nisa dan adiknya, Raka, ingin makan kue. Ibu memotong kue menjadi 2 bagian sama besar. Nisa mendapat satu bagian, Raka juga mendapat satu bagian.\n\nSore harinya, Ibu membuat satu kue bolu lagi. Kue itu dipotong menjadi 4 bagian sama besar untuk Ayah, Kakek, Nisa, dan Raka. Semua senang karena bisa berbagi.",
       "image": "/covers/cover-k2-b2.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b2.m4a",
       "points": [
         {
           "id": "lp-k2b2-1",
@@ -2296,7 +2308,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Ibu membuat satu kue bolu bundar. Nisa dan adiknya, Raka, ingin makan kue. Ibu memotong kue menjadi 2 bagian sama besar. Nisa mendapat satu bagian, Raka juga mendapat satu bagian.\n\nSore harinya, Ibu membuat satu kue bolu lagi. Kue itu dipotong menjadi 4 bagian sama besar untuk Ayah, Kakek, Nisa, dan Raka. Semua senang karena bisa berbagi.",
-    "tujuan": "Tujuan literasi: menulis kalimat sederhana dengan huruf kapital dan tanda titik.Tujuan numerasi: memahami pecahan setengah (1/2) dan seperempat (1/4) sebagai bagian dari satu benda atau kumpulan benda."
+    "tujuan": "Tujuan literasi: menulis kalimat sederhana dengan huruf kapital dan tanda titik.Tujuan numerasi: memahami pecahan setengah (1/2) dan seperempat (1/4) sebagai bagian dari satu benda atau kumpulan benda.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b2.m4a"
   },
   {
     "id": "materi-k2-b3",
@@ -2318,7 +2331,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Bu Ani bertanya, “Anak-anak, berapa panjang meja ini?” Dodi mengangkat tangan. “Boleh saya mengukur, Bu?” tanyanya. Dodi mengukur meja dengan jengkal tangannya. Panjang meja 6 jengkal Dodi.\n\nLalu Lala mengukur meja yang sama. Hasilnya 7 jengkal Lala. “Maaf, Bu, kenapa hasilnya berbeda?” tanya Lala dengan sopan. Bu Ani tersenyum. “Karena panjang jengkal tangan kalian tidak sama.”",
       "image": "/covers/cover-k2-b3.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149319/prisma_audio_k2_b3.m4a",
       "points": [
         {
           "id": "lp-k2b3-1",
@@ -2498,7 +2511,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Bu Ani bertanya, “Anak-anak, berapa panjang meja ini?” Dodi mengangkat tangan. “Boleh saya mengukur, Bu?” tanyanya. Dodi mengukur meja dengan jengkal tangannya. Panjang meja 6 jengkal Dodi.\n\nLalu Lala mengukur meja yang sama. Hasilnya 7 jengkal Lala. “Maaf, Bu, kenapa hasilnya berbeda?” tanya Lala dengan sopan. Bu Ani tersenyum. “Karena panjang jengkal tangan kalian tidak sama.”",
-    "tujuan": "Tujuan literasi: merespons dan mengajukan pertanyaan dengan santun dalam percakapan.Tujuan numerasi: membandingkan panjang dan berat benda, serta mengukur dengan satuan tidak baku (jengkal, langkah, klip)."
+    "tujuan": "Tujuan literasi: merespons dan mengajukan pertanyaan dengan santun dalam percakapan.Tujuan numerasi: membandingkan panjang dan berat benda, serta mengukur dengan satuan tidak baku (jengkal, langkah, klip).",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149319/prisma_audio_k2_b3.m4a"
   },
   {
     "id": "materi-k2-b4",
@@ -2520,7 +2534,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Sore itu, Tegar dan Sinta bermain di pematang sawah. “Lihat, ada katak!” seru Sinta. Katak hijau melompat dari batu ke batu. Batu-batu itu sudah diberi nomor oleh Tegar.\n\nKatak mulai dari batu nomor 0, lalu melompat ke batu 2, 4, 6, dan 8. “Wah, katak itu selalu melewati satu batu!” kata Tegar sambil tertawa. Sinta pun ingin tahu ke batu nomor berapa katak itu akan melompat berikutnya.",
       "image": "/covers/cover-k2-b4.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b4.m4a",
       "points": [
         {
           "id": "lp-k2b4-1",
@@ -2693,7 +2707,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Sore itu, Tegar dan Sinta bermain di pematang sawah. “Lihat, ada katak!” seru Sinta. Katak hijau melompat dari batu ke batu. Batu-batu itu sudah diberi nomor oleh Tegar.\n\nKatak mulai dari batu nomor 0, lalu melompat ke batu 2, 4, 6, dan 8. “Wah, katak itu selalu melewati satu batu!” kata Tegar sambil tertawa. Sinta pun ingin tahu ke batu nomor berapa katak itu akan melompat berikutnya.",
-    "tujuan": "Tujuan literasi: membaca nyaring teks pendek dengan lafal dan intonasi yang tepat.Tujuan numerasi: mengenali dan melanjutkan pola bilangan dengan lompatan 2, 5, dan 10 sampai 100."
+    "tujuan": "Tujuan literasi: membaca nyaring teks pendek dengan lafal dan intonasi yang tepat.Tujuan numerasi: mengenali dan melanjutkan pola bilangan dengan lompatan 2, 5, dan 10 sampai 100.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b4.m4a"
   },
   {
     "id": "materi-k2-b5",
@@ -2715,7 +2730,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kak Rani membuat permainan timbangan. Semua kelereng sama beratnya. Dalam permainan ini, kelereng ditaruh di piring kiri dan piring kanan, dan timbangan harus seimbang. Jika timbangan miring, kelereng ditambahkan di piring yang lebih ringan.\n\nDi piring kiri ada 8 kelereng merah dan 5 kelereng biru. Di piring kanan ada 10 kelereng hijau. Timbangan miring ke kiri, jadi piring kanan perlu ditambah kelereng supaya seimbang.",
       "image": "/covers/cover-k2-b5.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b5.m4a",
       "points": [
         {
           "id": "lp-k2b5-1",
@@ -2887,7 +2902,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kak Rani membuat permainan timbangan. Semua kelereng sama beratnya. Dalam permainan ini, kelereng ditaruh di piring kiri dan piring kanan, dan timbangan harus seimbang. Jika timbangan miring, kelereng ditambahkan di piring yang lebih ringan.\n\nDi piring kiri ada 8 kelereng merah dan 5 kelereng biru. Di piring kanan ada 10 kelereng hijau. Timbangan miring ke kiri, jadi piring kanan perlu ditambah kelereng supaya seimbang.",
-    "tujuan": "Tujuan literasi: memahami dan mengikuti instruksi tertulis dalam permainan.Tujuan numerasi: memahami makna tanda “=” sebagai “sama nilainya” dan mencari bilangan yang belum diketahui dalam kalimat matematika sampai 20."
+    "tujuan": "Tujuan literasi: memahami dan mengikuti instruksi tertulis dalam permainan.Tujuan numerasi: memahami makna tanda “=” sebagai “sama nilainya” dan mencari bilangan yang belum diketahui dalam kalimat matematika sampai 20.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149320/prisma_audio_k2_b5.m4a"
   },
   {
     "id": "materi-k2-b6",
@@ -2909,7 +2925,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kakek membuat mainan dari kayu untuk Sari. Mainan itu bernama tangram. Tangram terdiri dari tujuh keping: lima segitiga, satu persegi, dan satu jajargenjang (segi empat yang miring).\n\nSari menyusun keping-keping itu menjadi bentuk rumah, perahu, dan kucing. “Hebat! Dari keping yang sama bisa jadi banyak bentuk,” kata Kakek. Malam harinya, Sari menulis tentang mainan barunya di buku harian.",
       "image": "/covers/cover-k2-b6.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149321/prisma_audio_k2_b6.m4a",
       "points": [
         {
           "id": "lp-k2b6-1",
@@ -3091,7 +3107,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kakek membuat mainan dari kayu untuk Sari. Mainan itu bernama tangram. Tangram terdiri dari tujuh keping: lima segitiga, satu persegi, dan satu jajargenjang (segi empat yang miring).\n\nSari menyusun keping-keping itu menjadi bentuk rumah, perahu, dan kucing. “Hebat! Dari keping yang sama bisa jadi banyak bentuk,” kata Kakek. Malam harinya, Sari menulis tentang mainan barunya di buku harian.",
-    "tujuan": "Tujuan literasi: menulis deskripsi singkat tentang bentuk benda.Tujuan numerasi: mengenali ciri bangun datar serta menyusun dan mengurai bangun datar menjadi bangun lain."
+    "tujuan": "Tujuan literasi: menulis deskripsi singkat tentang bentuk benda.Tujuan numerasi: mengenali ciri bangun datar serta menyusun dan mengurai bangun datar menjadi bangun lain.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149321/prisma_audio_k2_b6.m4a"
   },
   {
     "id": "materi-k2-b7",
@@ -3113,7 +3130,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Raka menempel jadwal hari Minggu di dinding kamarnya.\n\nJam | Kegiatan\n\n06.00 | Bangun tidur dan mandi\n\n07.00 | Sarapan bersama keluarga\n\n08.30 | Kerja bakti di lingkungan RT\n\n10.00 | Bermain di rumah Doni\n\n12.00 | Makan siang\n\nRaka melihat jam dinding. Jarum pendek ada di antara angka 8 dan 9, sedangkan jarum panjang menunjuk angka 6. “Ayo, waktunya kerja bakti!” ajak Ayah.",
       "image": "/covers/cover-k2-b7.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149321/prisma_audio_k2_b7.m4a",
       "points": [
         {
           "id": "lp-k2b7-1",
@@ -3332,7 +3349,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Raka menempel jadwal hari Minggu di dinding kamarnya.\n\nJam | Kegiatan\n\n06.00 | Bangun tidur dan mandi\n\n07.00 | Sarapan bersama keluarga\n\n08.30 | Kerja bakti di lingkungan RT\n\n10.00 | Bermain di rumah Doni\n\n12.00 | Makan siang\n\nRaka melihat jam dinding. Jarum pendek ada di antara angka 8 dan 9, sedangkan jarum panjang menunjuk angka 6. “Ayo, waktunya kerja bakti!” ajak Ayah.",
-    "tujuan": "Tujuan literasi: membaca informasi dari jadwal kegiatan.Tujuan numerasi: membaca jam tepat dan setengah jam, serta membandingkan lama kegiatan."
+    "tujuan": "Tujuan literasi: membaca informasi dari jadwal kegiatan.Tujuan numerasi: membaca jam tepat dan setengah jam, serta membandingkan lama kegiatan.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149321/prisma_audio_k2_b7.m4a"
   },
   {
     "id": "materi-k2-b8",
@@ -3354,7 +3372,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Nisa disuruh Ibu membeli telur dan gula di warung Bu Siti. Sesampainya di warung, Nisa menyapa dengan sopan, “Selamat pagi, Bu Siti. Saya mau membeli telur dan gula.” Bu Siti membalas sapaan Nisa dan menyebutkan harganya: telur Rp8.000 dan gula Rp7.000. Nisa membayar dengan selembar uang Rp20.000. Bu Siti memberikan belanjaan dan kembaliannya, lalu Nisa berterima kasih, “Terima kasih, Bu.”",
       "image": "/covers/cover-k2-b8.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149321/prisma_audio_k2_b8.m4a",
       "points": [
         {
           "id": "lp-k2b8-1",
@@ -3540,7 +3558,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Nisa disuruh Ibu membeli telur dan gula di warung Bu Siti. Sesampainya di warung, Nisa menyapa dengan sopan, “Selamat pagi, Bu Siti. Saya mau membeli telur dan gula.” Bu Siti membalas sapaan Nisa dan menyebutkan harganya: telur Rp8.000 dan gula Rp7.000. Nisa membayar dengan selembar uang Rp20.000. Bu Siti memberikan belanjaan dan kembaliannya, lalu Nisa berterima kasih, “Terima kasih, Bu.”",
-    "tujuan": "Tujuan literasi: melakukan percakapan jual beli dengan santun.Tujuan numerasi: mengenal nilai uang rupiah serta menjumlahkan dan mengurangkan uang dalam ribuan sampai Rp20.000."
+    "tujuan": "Tujuan literasi: melakukan percakapan jual beli dengan santun.Tujuan numerasi: mengenal nilai uang rupiah serta menjumlahkan dan mengurangkan uang dalam ribuan sampai Rp20.000.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149321/prisma_audio_k2_b8.m4a"
   },
   {
     "id": "materi-k3-b1",
@@ -3562,7 +3581,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Desa Pak Hasan dekat dengan pantai. Banyak warga bekerja di tambak. Tambak adalah kolam besar untuk memelihara ikan bandeng dan udang.\n\nBulan ini, Pak Hasan panen bandeng. Ia mendapat 2.345 ekor bandeng. Tetangganya, Pak Karim, mendapat 3.150 ekor. Ikan-ikan itu dijual ke pasar dan ke tempat pengolahan ikan.\n\nPanen yang baik membutuhkan air tambak yang bersih. Karena itu, para petambak rajin membersihkan tambak. Mereka juga memberi pakan ikan setiap hari.",
       "image": "/covers/cover-k3-b1.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b1.m4a",
       "points": [
         {
           "id": "lp-k3b1-1",
@@ -3732,7 +3751,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Desa Pak Hasan dekat dengan pantai. Banyak warga bekerja di tambak. Tambak adalah kolam besar untuk memelihara ikan bandeng dan udang.\n\nBulan ini, Pak Hasan panen bandeng. Ia mendapat 2.345 ekor bandeng. Tetangganya, Pak Karim, mendapat 3.150 ekor. Ikan-ikan itu dijual ke pasar dan ke tempat pengolahan ikan.\n\nPanen yang baik membutuhkan air tambak yang bersih. Karena itu, para petambak rajin membersihkan tambak. Mereka juga memberi pakan ikan setiap hari.",
-    "tujuan": "Tujuan literasi: menemukan ide pokok setiap paragraf.Tujuan numerasi: membaca, menulis, menentukan nilai tempat, dan membandingkan bilangan sampai 10.000."
+    "tujuan": "Tujuan literasi: menemukan ide pokok setiap paragraf.Tujuan numerasi: membaca, menulis, menentukan nilai tempat, dan membandingkan bilangan sampai 10.000.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b1.m4a"
   },
   {
     "id": "materi-k3-b2",
@@ -3754,7 +3774,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Besok kelas 3 mengadakan syukuran karena semua murid naik kelas. Wali kelas, Bu Rahma, meminta setiap kelompok membawa kue. Di kelas ada 6 kelompok. Setiap kelompok membawa 1 kotak kue lapis berisi 8 potong.\n\nPada hari acara, semua kue dikumpulkan di meja guru. Ada 24 murid di kelas 3. Bu Rahma membagikan kue sama banyak kepada semua murid. Sebelum makan, mereka berdoa bersama.\n\nDalam cerita ini ada beberapa kata baru. Syukuran adalah acara untuk berterima kasih kepada Tuhan. Kelompok adalah beberapa orang yang bekerja bersama. Wali kelas adalah guru yang bertanggung jawab atas satu kelas.",
       "image": "/covers/cover-k3-b2.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b2.m4a",
       "points": [
         {
           "id": "lp-k3b2-1",
@@ -3964,7 +3984,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Besok kelas 3 mengadakan syukuran karena semua murid naik kelas. Wali kelas, Bu Rahma, meminta setiap kelompok membawa kue. Di kelas ada 6 kelompok. Setiap kelompok membawa 1 kotak kue lapis berisi 8 potong.\n\nPada hari acara, semua kue dikumpulkan di meja guru. Ada 24 murid di kelas 3. Bu Rahma membagikan kue sama banyak kepada semua murid. Sebelum makan, mereka berdoa bersama.\n\nDalam cerita ini ada beberapa kata baru. Syukuran adalah acara untuk berterima kasih kepada Tuhan. Kelompok adalah beberapa orang yang bekerja bersama. Wali kelas adalah guru yang bertanggung jawab atas satu kelas.",
-    "tujuan": "Tujuan literasi: membaca kata-kata baru dengan fasih dan memahami artinya.Tujuan numerasi: melakukan perkalian dan pembagian bilangan sampai 100 dalam soal cerita."
+    "tujuan": "Tujuan literasi: membaca kata-kata baru dengan fasih dan memahami artinya.Tujuan numerasi: melakukan perkalian dan pembagian bilangan sampai 100 dalam soal cerita.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b2.m4a"
   },
   {
     "id": "materi-k3-b3",
@@ -3986,7 +4007,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Hari Kamis, petugas puskesmas datang ke sekolah. Mereka memeriksa kesehatan murid di ruang UKS. Satu per satu murid ditimbang dan diukur tingginya.\n\nBerat badan diukur dengan timbangan dalam satuan kilogram (kg). Tinggi badan diukur dengan alat pengukur tinggi dalam satuan sentimeter (cm).\n\nTinggi badan Wulan 128 cm dan beratnya 26 kg. Tinggi badan Fajar 1 meter 32 sentimeter dan beratnya 29 kg. Petugas berpesan agar murid makan makanan bergizi dan rajin berolahraga.",
       "image": "/covers/cover-k3-b3.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b3.m4a",
       "points": [
         {
           "id": "lp-k3b3-1",
@@ -4196,7 +4217,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Hari Kamis, petugas puskesmas datang ke sekolah. Mereka memeriksa kesehatan murid di ruang UKS. Satu per satu murid ditimbang dan diukur tingginya.\n\nBerat badan diukur dengan timbangan dalam satuan kilogram (kg). Tinggi badan diukur dengan alat pengukur tinggi dalam satuan sentimeter (cm).\n\nTinggi badan Wulan 128 cm dan beratnya 26 kg. Tinggi badan Fajar 1 meter 32 sentimeter dan beratnya 29 kg. Petugas berpesan agar murid makan makanan bergizi dan rajin berolahraga.",
-    "tujuan": "Tujuan literasi: menulis teks laporan sederhana dari hasil pengukuran.Tujuan numerasi: mengukur panjang dan berat dengan satuan baku, serta mengubah satuan m ke cm dan kg ke g."
+    "tujuan": "Tujuan literasi: menulis teks laporan sederhana dari hasil pengukuran.Tujuan numerasi: mengukur panjang dan berat dengan satuan baku, serta mengubah satuan m ke cm dan kg ke g.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b3.m4a"
   },
   {
     "id": "materi-k3-b4",
@@ -4218,7 +4240,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Sekolah mengadakan pameran kerajinan dari bahan bekas. Kelas 3 membuat tas dari bungkus kopi dan pot dari botol plastik. Pameran berlangsung selama dua hari di aula sekolah.\n\nPada hari pertama, pengunjung yang datang sebanyak 368 orang. Pada hari kedua, pengunjung bertambah menjadi 457 orang. Hasil penjualan kerajinan dipakai untuk membeli buku perpustakaan.",
       "image": "/covers/cover-k3-b4.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b4.m4a",
       "points": [
         {
           "id": "lp-k3b4-1",
@@ -4388,7 +4410,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Sekolah mengadakan pameran kerajinan dari bahan bekas. Kelas 3 membuat tas dari bungkus kopi dan pot dari botol plastik. Pameran berlangsung selama dua hari di aula sekolah.\n\nPada hari pertama, pengunjung yang datang sebanyak 368 orang. Pada hari kedua, pengunjung bertambah menjadi 457 orang. Hasil penjualan kerajinan dipakai untuk membeli buku perpustakaan.",
-    "tujuan": "Tujuan literasi: menemukan informasi penting dalam teks informasi.Tujuan numerasi: menjumlahkan dan mengurangkan bilangan sampai 1.000 dengan cara menyimpan dan meminjam."
+    "tujuan": "Tujuan literasi: menemukan informasi penting dalam teks informasi.Tujuan numerasi: menjumlahkan dan mengurangkan bilangan sampai 1.000 dengan cara menyimpan dan meminjam.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149323/prisma_audio_k3_b4.m4a"
   },
   {
     "id": "materi-k3-b5",
@@ -4410,7 +4433,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pada hari Sabtu, Ayah membuat roti bakar di dapur. Roti pertama dipotong menjadi 3 bagian sama besar untuk Ibu, Kak Dimas, dan Lia. Roti kedua, yang ukurannya sama, dipotong menjadi 6 bagian sama besar untuk teman-teman Kak Dimas yang datang bermain.\n\nLia memperhatikan potongan roti itu. “Ayah, mengapa potongan roti teman Kak Dimas lebih kecil?” tanyanya. Ayah tersenyum, “Karena rotinya dibagi untuk lebih banyak orang.”",
       "image": "/covers/cover-k3-b5.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149326/prisma_audio_k3_b5.m4a",
       "points": [
         {
           "id": "lp-k3b5-1",
@@ -4637,7 +4660,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pada hari Sabtu, Ayah membuat roti bakar di dapur. Roti pertama dipotong menjadi 3 bagian sama besar untuk Ibu, Kak Dimas, dan Lia. Roti kedua, yang ukurannya sama, dipotong menjadi 6 bagian sama besar untuk teman-teman Kak Dimas yang datang bermain.\n\nLia memperhatikan potongan roti itu. “Ayah, mengapa potongan roti teman Kak Dimas lebih kecil?” tanyanya. Ayah tersenyum, “Karena rotinya dibagi untuk lebih banyak orang.”",
-    "tujuan": "Tujuan literasi: membuat dan menjawab pertanyaan tentang isi bacaan (apa, siapa, di mana, kapan, mengapa, bagaimana).Tujuan numerasi: mengenal pecahan berpenyebut sampai 12 serta membandingkan dan mengurutkan pecahan."
+    "tujuan": "Tujuan literasi: membuat dan menjawab pertanyaan tentang isi bacaan (apa, siapa, di mana, kapan, mengapa, bagaimana).Tujuan numerasi: mengenal pecahan berpenyebut sampai 12 serta membandingkan dan mengurutkan pecahan.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149326/prisma_audio_k3_b5.m4a"
   },
   {
     "id": "materi-k3-b6",
@@ -4659,7 +4683,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kelas 3 akan berwisata ke kebun binatang. Bu Rahma membagikan jadwal berikut.\n\nKegiatan | Mulai | Selesai\n\nPerjalanan berangkat | 07.15 | 08.45\n\nBerkeliling kebun binatang | 09.00 | 11.30\n\nMakan siang | 11.30 | 12.15\n\nPerjalanan pulang | 12.30 | 14.00\n\nBu Rahma berpesan, “Datanglah ke sekolah 15 menit sebelum bus berangkat, ya.”",
       "image": "/covers/cover-k3-b6.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149324/prisma_audio_k3_b6.m4a",
       "points": [
         {
           "id": "lp-k3b6-1",
@@ -4841,7 +4865,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kelas 3 akan berwisata ke kebun binatang. Bu Rahma membagikan jadwal berikut.\n\nKegiatan | Mulai | Selesai\n\nPerjalanan berangkat | 07.15 | 08.45\n\nBerkeliling kebun binatang | 09.00 | 11.30\n\nMakan siang | 11.30 | 12.15\n\nPerjalanan pulang | 12.30 | 14.00\n\nBu Rahma berpesan, “Datanglah ke sekolah 15 menit sebelum bus berangkat, ya.”",
-    "tujuan": "Tujuan literasi: membaca informasi dari tabel jadwal.Tujuan numerasi: membaca waktu dalam jam dan menit serta menghitung lama suatu kegiatan."
+    "tujuan": "Tujuan literasi: membaca informasi dari tabel jadwal.Tujuan numerasi: membaca waktu dalam jam dan menit serta menghitung lama suatu kegiatan.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149324/prisma_audio_k3_b6.m4a"
   },
   {
     "id": "materi-k3-b7",
@@ -4863,7 +4888,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Musim angin telah tiba. Arif membuat layang-layang dari bambu dan kertas minyak berwarna merah. Kerangkanya terdiri dari dua bilah bambu yang bersilangan tegak lurus. Tepi layang-layang diberi tali: dua sisi atas masing-masing 30 cm, dan dua sisi bawah masing-masing 45 cm.\n\nArif juga membuat bingkai foto berbentuk persegi panjang untuk adiknya. Panjang bingkai 20 cm dan lebarnya 15 cm.",
       "image": "/covers/cover-k3-b7.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149324/prisma_audio_k3_b7.m4a",
       "points": [
         {
           "id": "lp-k3b7-1",
@@ -5043,7 +5068,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Musim angin telah tiba. Arif membuat layang-layang dari bambu dan kertas minyak berwarna merah. Kerangkanya terdiri dari dua bilah bambu yang bersilangan tegak lurus. Tepi layang-layang diberi tali: dua sisi atas masing-masing 30 cm, dan dua sisi bawah masing-masing 45 cm.\n\nArif juga membuat bingkai foto berbentuk persegi panjang untuk adiknya. Panjang bingkai 20 cm dan lebarnya 15 cm.",
-    "tujuan": "Tujuan literasi: menulis teks deskripsi benda.Tujuan numerasi: mengenali ciri bangun datar (sisi, sudut, sudut siku-siku) dan menghitung keliling dengan menjumlahkan panjang sisi."
+    "tujuan": "Tujuan literasi: menulis teks deskripsi benda.Tujuan numerasi: mengenali ciri bangun datar (sisi, sudut, sudut siku-siku) dan menghitung keliling dengan menjumlahkan panjang sisi.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149324/prisma_audio_k3_b7.m4a"
   },
   {
     "id": "materi-k3-b8",
@@ -5065,7 +5091,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Sekolah mengadakan lomba kebersihan. Setiap kelas mengumpulkan sampah plastik selama satu minggu, lalu menyetorkannya ke bank sampah desa. Hasilnya disajikan dalam piktogram berikut.\n\nKelas | Piktogram (🗑️ = 2 kantong)\n\nKelas 1 | 🗑️ 🗑️ 🗑️\n\nKelas 2 | 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 3 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 4 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️",
       "image": "/covers/cover-k3-b8.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149325/prisma_audio_k3_b8.m4a",
       "points": [
         {
           "id": "lp-k3b8-1",
@@ -5249,7 +5275,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Sekolah mengadakan lomba kebersihan. Setiap kelas mengumpulkan sampah plastik selama satu minggu, lalu menyetorkannya ke bank sampah desa. Hasilnya disajikan dalam piktogram berikut.\n\nKelas | Piktogram (🗑️ = 2 kantong)\n\nKelas 1 | 🗑️ 🗑️ 🗑️\n\nKelas 2 | 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 3 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️ 🗑️\n\nKelas 4 | 🗑️ 🗑️ 🗑️ 🗑️ 🗑️",
-    "tujuan": "Tujuan literasi: menulis kesimpulan berdasarkan data.Tujuan numerasi: membaca dan menyajikan data dalam piktogram (satu gambar mewakili lebih dari satu) dan diagram batang."
+    "tujuan": "Tujuan literasi: menulis kesimpulan berdasarkan data.Tujuan numerasi: membaca dan menyajikan data dalam piktogram (satu gambar mewakili lebih dari satu) dan diagram batang.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149325/prisma_audio_k3_b8.m4a"
   },
   {
     "id": "materi-k4-b1",
@@ -5271,7 +5298,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Malam itu ada rapat warga di rumah Pak RT. Pak RT memesan dua martabak manis yang sama besar di warung Bu Siti.\n\nMartabak pertama dipotong menjadi 4 bagian sama besar. Martabak kedua dipotong menjadi 8 bagian sama besar. Andi mengambil 2 potong dari martabak pertama. Dewi mengambil 4 potong dari martabak kedua.\n\n“Wah, Dewi mengambil lebih banyak!” seru Andi. Dewi menggeleng. “Coba lihat, bagian kita sama besar, kok.” Pak RT tertawa, lalu menjelaskan bahwa 2/4 dan 4/8 sama-sama setengah martabak.",
       "image": "/covers/cover-k4-b1.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149331/prisma_audio_k4_b1.m4a",
       "points": [
         {
           "id": "lp-k4b1-1",
@@ -5441,7 +5468,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Malam itu ada rapat warga di rumah Pak RT. Pak RT memesan dua martabak manis yang sama besar di warung Bu Siti.\n\nMartabak pertama dipotong menjadi 4 bagian sama besar. Martabak kedua dipotong menjadi 8 bagian sama besar. Andi mengambil 2 potong dari martabak pertama. Dewi mengambil 4 potong dari martabak kedua.\n\n“Wah, Dewi mengambil lebih banyak!” seru Andi. Dewi menggeleng. “Coba lihat, bagian kita sama besar, kok.” Pak RT tertawa, lalu menjelaskan bahwa 2/4 dan 4/8 sama-sama setengah martabak.",
-    "tujuan": "Tujuan literasi: menceritakan kembali isi cerita dengan urutan yang benar.Tujuan numerasi: mengenal dan menerapkan pecahan senilai."
+    "tujuan": "Tujuan literasi: menceritakan kembali isi cerita dengan urutan yang benar.Tujuan numerasi: mengenal dan menerapkan pecahan senilai.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149331/prisma_audio_k4_b1.m4a"
   },
   {
     "id": "materi-k4-b2",
@@ -5463,7 +5491,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Koperasi sekolah menempelkan pengumuman baru: “DISKON AKHIR BULAN! Semua buku tulis diskon 10%. Pensil diskon 25%.” Harga sebuah buku tulis Rp5.000, sedangkan sebuah pensil Rp2.000.\n\nTia dan Gilang membaca pengumuman itu. “Menurutku, kita beli pensil sekarang karena diskonnya paling besar,” kata Tia. Gilang menatap Tia dan menjawab dengan tenang, “Aku setuju, tetapi kita juga perlu buku tulis untuk ujian minggu depan.”",
       "image": "/covers/cover-k4-b2.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149328/prisma_audio_k4_b2.m4a",
       "points": [
         {
           "id": "lp-k4b2-1",
@@ -5685,7 +5713,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Koperasi sekolah menempelkan pengumuman baru: “DISKON AKHIR BULAN! Semua buku tulis diskon 10%. Pensil diskon 25%.” Harga sebuah buku tulis Rp5.000, sedangkan sebuah pensil Rp2.000.\n\nTia dan Gilang membaca pengumuman itu. “Menurutku, kita beli pensil sekarang karena diskonnya paling besar,” kata Tia. Gilang menatap Tia dan menjawab dengan tenang, “Aku setuju, tetapi kita juga perlu buku tulis untuk ujian minggu depan.”",
-    "tujuan": "Tujuan literasi: menyajikan pendapat dengan pilihan kata, sikap tubuh, dan intonasi yang tepat.Tujuan numerasi: mengenal hubungan pecahan, desimal, dan persen."
+    "tujuan": "Tujuan literasi: menyajikan pendapat dengan pilihan kata, sikap tubuh, dan intonasi yang tepat.Tujuan numerasi: mengenal hubungan pecahan, desimal, dan persen.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149328/prisma_audio_k4_b2.m4a"
   },
   {
     "id": "materi-k4-b3",
@@ -5707,7 +5736,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kelas 4 punya kebun sayur di belakang sekolah. Kebun dibagi menjadi petak-petak persegi yang sama besar. Lahan kangkung terdiri dari 3 baris, setiap baris 4 petak. Lahan bayam terdiri dari 2 baris, setiap baris 5 petak.\n\nSetiap minggu, murid mencatat hasil panen kangkung dalam ikat. Mereka juga membuat bak kompos dari kotak-kotak kayu kecil berbentuk kubus. Bak itu panjangnya 3 kotak, lebarnya 2 kotak, dan tingginya 2 kotak.\n\nMinggu | Hasil panen kangkung (ikat)\n\n1 | 6\n\n2 | 8\n\n3 | 5\n\n4 | 9",
       "image": "/covers/cover-k4-b3.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149328/prisma_audio_k4_b3.m4a",
       "points": [
         {
           "id": "lp-k4b3-1",
@@ -5890,7 +5919,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kelas 4 punya kebun sayur di belakang sekolah. Kebun dibagi menjadi petak-petak persegi yang sama besar. Lahan kangkung terdiri dari 3 baris, setiap baris 4 petak. Lahan bayam terdiri dari 2 baris, setiap baris 5 petak.\n\nSetiap minggu, murid mencatat hasil panen kangkung dalam ikat. Mereka juga membuat bak kompos dari kotak-kotak kayu kecil berbentuk kubus. Bak itu panjangnya 3 kotak, lebarnya 2 kotak, dan tingginya 2 kotak.\n\nMinggu | Hasil panen kangkung (ikat)\n\n1 | 6\n\n2 | 8\n\n3 | 5\n\n4 | 9",
-    "tujuan": "Tujuan literasi: menulis rangkaian kalimat yang beragam untuk menjelaskan data.Tujuan numerasi: mengukur luas dan volume dengan satuan persegi dan kubus, serta membaca piktogram dan diagram batang."
+    "tujuan": "Tujuan literasi: menulis rangkaian kalimat yang beragam untuk menjelaskan data.Tujuan numerasi: mengukur luas dan volume dengan satuan persegi dan kubus, serta membaca piktogram dan diagram batang.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149328/prisma_audio_k4_b3.m4a"
   },
   {
     "id": "materi-k4-b4",
@@ -5912,7 +5942,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Menjelang ulang tahun sekolah, murid kelas 4 mengecat pagar. Pagar dibagi menjadi 8 bagian yang sama panjang. Hari Senin, kelompok Adi mengecat 3/8 bagian. Hari Selasa, kelompok Mira mengecat 2/8 bagian lagi.\n\nMereka ingin selesai pada hari Rabu, tetapi cat tinggal sedikit. Karena itu, Pak Kebun membeli cat baru, lalu semua murid bekerja sama menyelesaikan pagar.",
       "image": "/covers/cover-k4-b4.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149328/prisma_audio_k4_b4.m4a",
       "points": [
         {
           "id": "lp-k4b4-1",
@@ -6084,7 +6114,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Menjelang ulang tahun sekolah, murid kelas 4 mengecat pagar. Pagar dibagi menjadi 8 bagian yang sama panjang. Hari Senin, kelompok Adi mengecat 3/8 bagian. Hari Selasa, kelompok Mira mengecat 2/8 bagian lagi.\n\nMereka ingin selesai pada hari Rabu, tetapi cat tinggal sedikit. Karena itu, Pak Kebun membeli cat baru, lalu semua murid bekerja sama menyelesaikan pagar.",
-    "tujuan": "Tujuan literasi: memahami fungsi kata hubung (dan, lalu, tetapi, karena) dalam teks.Tujuan numerasi: menjumlahkan dan mengurangkan pecahan berpenyebut sama."
+    "tujuan": "Tujuan literasi: memahami fungsi kata hubung (dan, lalu, tetapi, karena) dalam teks.Tujuan numerasi: menjumlahkan dan mengurangkan pecahan berpenyebut sama.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149328/prisma_audio_k4_b4.m4a"
   },
   {
     "id": "materi-k4-b5",
@@ -6106,7 +6137,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pak Bowo punya peternakan ayam petelur di ujung desa. Setiap hari, ayam-ayamnya menghasilkan 245 butir telur. Telur-telur itu disusun di rak; satu rak berisi 30 butir.\n\nPak Bowo menjual telur ke warung-warung di desa. Hari ini ada 6 warung yang memesan, dan setiap warung memesan 2 rak telur.",
       "image": "/covers/cover-k4-b5.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149336/prisma_audio_k4_b5.m4a",
       "points": [
         {
           "id": "lp-k4b5-1",
@@ -6276,7 +6307,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pak Bowo punya peternakan ayam petelur di ujung desa. Setiap hari, ayam-ayamnya menghasilkan 245 butir telur. Telur-telur itu disusun di rak; satu rak berisi 30 butir.\n\nPak Bowo menjual telur ke warung-warung di desa. Hari ini ada 6 warung yang memesan, dan setiap warung memesan 2 rak telur.",
-    "tujuan": "Tujuan literasi: menuliskan jawaban soal cerita dalam kalimat lengkap.Tujuan numerasi: melakukan perkalian dan pembagian bersusun, termasuk pembagian dengan sisa."
+    "tujuan": "Tujuan literasi: menuliskan jawaban soal cerita dalam kalimat lengkap.Tujuan numerasi: melakukan perkalian dan pembagian bersusun, termasuk pembagian dengan sisa.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149336/prisma_audio_k4_b5.m4a"
   },
   {
     "id": "materi-k4-b6",
@@ -6298,7 +6330,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Untuk pentas seni, panitia menyusun kursi penonton di aula. Baris pertama berisi 6 kursi, baris kedua 8 kursi, baris ketiga 10 kursi, dan seterusnya. Pada acara itu, Rara membacakan puisi karyanya sendiri.\n\nKebun SekolahkuTunas kecil tumbuh perlahan,disiram hujan, disapa mentari.Seperti aku yang terus belajar,setiap hari, tak kenal henti.",
       "image": "/covers/cover-k4-b6.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149332/prisma_audio_k4_b6.m4a",
       "points": [
         {
           "id": "lp-k4b6-1",
@@ -6468,7 +6500,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Untuk pentas seni, panitia menyusun kursi penonton di aula. Baris pertama berisi 6 kursi, baris kedua 8 kursi, baris ketiga 10 kursi, dan seterusnya. Pada acara itu, Rara membacakan puisi karyanya sendiri.\n\nKebun SekolahkuTunas kecil tumbuh perlahan,disiram hujan, disapa mentari.Seperti aku yang terus belajar,setiap hari, tak kenal henti.",
-    "tujuan": "Tujuan literasi: membaca puisi dengan lafal, intonasi, dan ekspresi yang tepat.Tujuan numerasi: mengenali dan mengembangkan pola bilangan yang membesar dan mengecil."
+    "tujuan": "Tujuan literasi: membaca puisi dengan lafal, intonasi, dan ekspresi yang tepat.Tujuan numerasi: mengenali dan mengembangkan pola bilangan yang membesar dan mengecil.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149332/prisma_audio_k4_b6.m4a"
   },
   {
     "id": "materi-k4-b7",
@@ -6490,7 +6523,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pak Karto ingin membuat kandang kambing berbentuk persegi panjang di belakang rumahnya. Panjang kandang 6 m dan lebarnya 4 m. Seluruh tepi kandang akan dipagari bambu, kecuali pintu selebar 1 m.\n\nAgar kandang kokoh, setiap pojoknya harus membentuk sudut siku-siku. Rina, anak Pak Karto, membantu memeriksa setiap pojok dengan penggaris segitiga.",
       "image": "/covers/cover-k4-b7.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149332/prisma_audio_k4_b7.m4a",
       "points": [
         {
           "id": "lp-k4b7-1",
@@ -6689,7 +6722,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pak Karto ingin membuat kandang kambing berbentuk persegi panjang di belakang rumahnya. Panjang kandang 6 m dan lebarnya 4 m. Seluruh tepi kandang akan dipagari bambu, kecuali pintu selebar 1 m.\n\nAgar kandang kokoh, setiap pojoknya harus membentuk sudut siku-siku. Rina, anak Pak Karto, membantu memeriksa setiap pojok dengan penggaris segitiga.",
-    "tujuan": "Tujuan literasi: menulis teks petunjuk yang runtut.Tujuan numerasi: menghitung keliling persegi dan persegi panjang serta mengenal jenis sudut (siku-siku, lancip, tumpul)."
+    "tujuan": "Tujuan literasi: menulis teks petunjuk yang runtut.Tujuan numerasi: menghitung keliling persegi dan persegi panjang serta mengenal jenis sudut (siku-siku, lancip, tumpul).",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149332/prisma_audio_k4_b7.m4a"
   },
   {
     "id": "materi-k4-b8",
@@ -6711,7 +6745,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "KUE BASAH BU RATNATersedia kemasan isi 4, 6, dan 12 buah!Cocok untuk arisan, syukuran, dan ulang tahun.Pesan sekarang, dijamin segar setiap hari!\n\nBu Ratna menerima pesanan 24 kue lumpur. Ia ingin semua kue masuk ke dalam kotak tanpa ada yang tersisa, jadi ia perlu memilih kemasan yang tepat.",
       "image": "/covers/cover-k4-b8.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149332/prisma_audio_k4_b8.m4a",
       "points": [
         {
           "id": "lp-k4b8-1",
@@ -6893,7 +6927,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "KUE BASAH BU RATNATersedia kemasan isi 4, 6, dan 12 buah!Cocok untuk arisan, syukuran, dan ulang tahun.Pesan sekarang, dijamin segar setiap hari!\n\nBu Ratna menerima pesanan 24 kue lumpur. Ia ingin semua kue masuk ke dalam kotak tanpa ada yang tersisa, jadi ia perlu memilih kemasan yang tepat.",
-    "tujuan": "Tujuan literasi: menganalisis teks iklan sederhana (informasi, ajakan, dan klaim).Tujuan numerasi: menentukan faktor dan kelipatan bilangan dalam masalah sehari-hari."
+    "tujuan": "Tujuan literasi: menganalisis teks iklan sederhana (informasi, ajakan, dan klaim).Tujuan numerasi: menentukan faktor dan kelipatan bilangan dalam masalah sehari-hari.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149332/prisma_audio_k4_b8.m4a"
   },
   {
     "id": "materi-k5-b1",
@@ -6915,7 +6950,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "TOKO SEPEDA MAJU JAYASepeda Gunung Anak — Rp850.000GRATIS helm untuk pembelian bulan Desember!Buka setiap hari pukul 08.00–17.00\n\nLaras melihat poster itu di papan pengumuman balai desa. Ia ingin sekali punya sepeda untuk berangkat sekolah. Tabungannya sekarang Rp475.000. Setiap minggu, Laras menabung Rp25.000 dari uang saku dan upah membantu ibunya berjualan di pasar.\n\n“Helmnya gratis, berarti aku harus beli bulan ini!” kata Laras. Ibu tersenyum, “Hitung dulu, Nak. Cukup atau belum uangmu?”",
       "image": "/covers/cover-k5-b1.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149343/prisma_audio_k5_b1.m4a",
       "points": [
         {
           "id": "lp-k5b1-1",
@@ -7099,7 +7134,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "TOKO SEPEDA MAJU JAYASepeda Gunung Anak — Rp850.000GRATIS helm untuk pembelian bulan Desember!Buka setiap hari pukul 08.00–17.00\n\nLaras melihat poster itu di papan pengumuman balai desa. Ia ingin sekali punya sepeda untuk berangkat sekolah. Tabungannya sekarang Rp475.000. Setiap minggu, Laras menabung Rp25.000 dari uang saku dan upah membantu ibunya berjualan di pasar.\n\n“Helmnya gratis, berarti aku harus beli bulan ini!” kata Laras. Ibu tersenyum, “Hitung dulu, Nak. Cukup atau belum uangmu?”",
-    "tujuan": "Tujuan literasi: menganalisis informasi dari teks visual (poster iklan) dan membedakan informasi dengan bujukan.Tujuan numerasi: membaca nilai tempat bilangan sampai 1.000.000 dan menyelesaikan masalah uang."
+    "tujuan": "Tujuan literasi: menganalisis informasi dari teks visual (poster iklan) dan membedakan informasi dengan bujukan.Tujuan numerasi: membaca nilai tempat bilangan sampai 1.000.000 dan menyelesaikan masalah uang.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149343/prisma_audio_k5_b1.m4a"
   },
   {
     "id": "materi-k5-b2",
@@ -7121,7 +7157,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Es Buah Segar (untuk 4 gelas)\n\nBahan: 1 1/2 gelas potongan semangka, 3/4 gelas potongan melon, 1/2 gelas nata de coco, 2 sendok makan sirup, air dingin, dan es batu secukupnya.\n\nLangkah-langkah:\n\nCuci tangan dan cuci buah sampai bersih.\n\nPotong semangka dan melon berbentuk dadu kecil.\n\nMasukkan semua buah dan nata de coco ke mangkuk besar.\n\nTuang air dingin dan sirup, lalu aduk perlahan.\n\nTambahkan es batu.\n\nSajikan dalam 4 gelas.",
       "image": "/covers/cover-k5-b2.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149340/prisma_audio_k5_b2.m4a",
       "points": [
         {
           "id": "lp-k5b2-1",
@@ -7319,7 +7355,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Es Buah Segar (untuk 4 gelas)\n\nBahan: 1 1/2 gelas potongan semangka, 3/4 gelas potongan melon, 1/2 gelas nata de coco, 2 sendok makan sirup, air dingin, dan es batu secukupnya.\n\nLangkah-langkah:\n\nCuci tangan dan cuci buah sampai bersih.\n\nPotong semangka dan melon berbentuk dadu kecil.\n\nMasukkan semua buah dan nata de coco ke mangkuk besar.\n\nTuang air dingin dan sirup, lalu aduk perlahan.\n\nTambahkan es batu.\n\nSajikan dalam 4 gelas.",
-    "tujuan": "Tujuan literasi: memahami struktur teks prosedur dan mempresentasikan langkah-langkahnya secara runtut.Tujuan numerasi: menjumlahkan pecahan, mengubah pecahan campuran, mengalikan pecahan dengan bilangan asli, dan mengenal desimal."
+    "tujuan": "Tujuan literasi: memahami struktur teks prosedur dan mempresentasikan langkah-langkahnya secara runtut.Tujuan numerasi: menjumlahkan pecahan, mengubah pecahan campuran, mengalikan pecahan dengan bilangan asli, dan mengenal desimal.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149340/prisma_audio_k5_b2.m4a"
   },
   {
     "id": "materi-k5-b3",
@@ -7341,7 +7378,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pemerintah desa membangun taman bermain di samping balai desa. Bentuk taman seperti huruf L. Bagian pertama berbentuk persegi panjang dengan panjang 12 m dan lebar 8 m. Bagian kedua berbentuk persegi dengan sisi 6 m. Persegi itu menempel di atas ujung kiri persegi panjang, sehingga satu sisinya berimpit sepanjang 6 m.\n\nTaman akan ditanami rumput, dan seluruh tepinya akan dipagari bambu. Kepala desa mengajak warga bergotong royong pada hari Minggu.",
       "image": "/covers/cover-k5-b3.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149340/prisma_audio_k5_b3.m4a",
       "points": [
         {
           "id": "lp-k5b3-1",
@@ -7522,7 +7559,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pemerintah desa membangun taman bermain di samping balai desa. Bentuk taman seperti huruf L. Bagian pertama berbentuk persegi panjang dengan panjang 12 m dan lebar 8 m. Bagian kedua berbentuk persegi dengan sisi 6 m. Persegi itu menempel di atas ujung kiri persegi panjang, sehingga satu sisinya berimpit sepanjang 6 m.\n\nTaman akan ditanami rumput, dan seluruh tepinya akan dipagari bambu. Kepala desa mengajak warga bergotong royong pada hari Minggu.",
-    "tujuan": "Tujuan literasi: menulis paragraf deskripsi berdasarkan hasil pengamatan, dengan membedakan fakta dan perasaan.Tujuan numerasi: menentukan keliling dan luas bangun datar gabungan."
+    "tujuan": "Tujuan literasi: menulis paragraf deskripsi berdasarkan hasil pengamatan, dengan membedakan fakta dan perasaan.Tujuan numerasi: menentukan keliling dan luas bangun datar gabungan.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149340/prisma_audio_k5_b3.m4a"
   },
   {
     "id": "materi-k5-b4",
@@ -7544,7 +7582,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Di desa ada dua kegiatan rutin. Anggota karang taruna membersihkan saluran air setiap 4 hari sekali. Ibu-ibu PKK merawat taman desa setiap 6 hari sekali. Hari ini, 1 Desember, kedua kelompok bekerja pada hari yang sama.\n\nSetelah bekerja, pengurus desa menyiapkan 24 kotak susu dan 36 bungkus roti untuk anak-anak yang ikut membantu. Semua makanan akan dimasukkan ke dalam bingkisan. Setiap bingkisan harus berisi susu dan roti dalam jumlah yang sama, tanpa ada sisa.",
       "image": "/covers/cover-k5-b4.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149346/prisma_audio_k5_b4.m4a",
       "points": [
         {
           "id": "lp-k5b4-1",
@@ -7744,7 +7782,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Di desa ada dua kegiatan rutin. Anggota karang taruna membersihkan saluran air setiap 4 hari sekali. Ibu-ibu PKK merawat taman desa setiap 6 hari sekali. Hari ini, 1 Desember, kedua kelompok bekerja pada hari yang sama.\n\nSetelah bekerja, pengurus desa menyiapkan 24 kotak susu dan 36 bungkus roti untuk anak-anak yang ikut membantu. Semua makanan akan dimasukkan ke dalam bingkisan. Setiap bingkisan harus berisi susu dan roti dalam jumlah yang sama, tanpa ada sisa.",
-    "tujuan": "Tujuan literasi: menganalisis kata kunci dalam soal cerita untuk memilih cara penyelesaian.Tujuan numerasi: menyelesaikan masalah yang berkaitan dengan KPK dan FPB."
+    "tujuan": "Tujuan literasi: menganalisis kata kunci dalam soal cerita untuk memilih cara penyelesaian.Tujuan numerasi: menyelesaikan masalah yang berkaitan dengan KPK dan FPB.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149346/prisma_audio_k5_b4.m4a"
   },
   {
     "id": "materi-k5-b5",
@@ -7766,7 +7805,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Di depan balai desa berdiri menara jam yang tinggi. Setiap satu jam, jarum panjangnya berputar satu putaran penuh, yaitu 360 derajat.\n\nMuka jam dibagi menjadi 12 angka yang jaraknya sama. Karena itu, sudut antara dua angka yang berdekatan adalah 360° : 12 = 30°. Pada pukul 3.00, kedua jarum membentuk sudut siku-siku, yaitu 90°. Pada pukul 6.00, kedua jarum membentuk garis lurus, yaitu 180°. Itulah sebabnya jam dapat dipakai untuk belajar tentang sudut.",
       "image": "/covers/cover-k5-b5.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149354/prisma_audio_k5_b5.m4a",
       "points": [
         {
           "id": "lp-k5b5-1",
@@ -7991,7 +8030,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Di depan balai desa berdiri menara jam yang tinggi. Setiap satu jam, jarum panjangnya berputar satu putaran penuh, yaitu 360 derajat.\n\nMuka jam dibagi menjadi 12 angka yang jaraknya sama. Karena itu, sudut antara dua angka yang berdekatan adalah 360° : 12 = 30°. Pada pukul 3.00, kedua jarum membentuk sudut siku-siku, yaitu 90°. Pada pukul 6.00, kedua jarum membentuk garis lurus, yaitu 180°. Itulah sebabnya jam dapat dipakai untuk belajar tentang sudut.",
-    "tujuan": "Tujuan literasi: memahami struktur dan kata sebab-akibat dalam teks eksplanasi.Tujuan numerasi: mengukur besar sudut dalam derajat, memakai busur, dan mengenal jenis sudut."
+    "tujuan": "Tujuan literasi: memahami struktur dan kata sebab-akibat dalam teks eksplanasi.Tujuan numerasi: mengukur besar sudut dalam derajat, memakai busur, dan mengenal jenis sudut.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149354/prisma_audio_k5_b5.m4a"
   },
   {
     "id": "materi-k5-b6",
@@ -8013,7 +8053,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kelas 5 ingin memelihara ikan di akuarium. Sebelumnya, mereka membaca infografik yang ditempel di dinding kelas.\n\nMERAWAT IKAN HIAS DI AKUARIUM1. Isi air sampai 6 cm di bawah bibir akuarium.2. Ganti 1/4 air setiap minggu.3. Beri makan 2 kali sehari, sedikit saja.4. Ingat: 1 liter = 1.000 cm³.\n\nAkuarium kelas berbentuk balok dengan panjang 40 cm, lebar 25 cm, dan tinggi 30 cm.",
       "image": "/covers/cover-k5-b6.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149350/prisma_audio_k5_b6.m4a",
       "points": [
         {
           "id": "lp-k5b6-1",
@@ -8196,7 +8236,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kelas 5 ingin memelihara ikan di akuarium. Sebelumnya, mereka membaca infografik yang ditempel di dinding kelas.\n\nMERAWAT IKAN HIAS DI AKUARIUM1. Isi air sampai 6 cm di bawah bibir akuarium.2. Ganti 1/4 air setiap minggu.3. Beri makan 2 kali sehari, sedikit saja.4. Ingat: 1 liter = 1.000 cm³.\n\nAkuarium kelas berbentuk balok dengan panjang 40 cm, lebar 25 cm, dan tinggi 30 cm.",
-    "tujuan": "Tujuan literasi: membaca dan menafsirkan petunjuk dalam infografik.Tujuan numerasi: menghitung volume kubus dan balok serta mengubah satuan cm³ ke liter."
+    "tujuan": "Tujuan literasi: membaca dan menafsirkan petunjuk dalam infografik.Tujuan numerasi: menghitung volume kubus dan balok serta mengubah satuan cm³ ke liter.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149350/prisma_audio_k5_b6.m4a"
   },
   {
     "id": "materi-k5-b7",
@@ -8218,7 +8259,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Panen Padi Desa Sukamaju Naik 20 Persen\n\nSukamaju, Senin — Kelompok tani Desa Sukamaju memanen padi di lahan seluas 50 hektare. Tahun lalu, hasil panen mereka sebanyak 200 ton. Tahun ini, hasilnya naik 20 persen.\n\nKetua kelompok tani, Pak Joko, mengatakan kenaikan itu terjadi karena petani memakai bibit unggul dan mengatur pengairan sawah dengan baik. Sebanyak 25 persen hasil panen tahun ini akan disimpan di lumbung desa sebagai persediaan.",
       "image": "/covers/cover-k5-b7.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149347/prisma_audio_k5_b7.m4a",
       "points": [
         {
           "id": "lp-k5b7-1",
@@ -8418,7 +8459,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Panen Padi Desa Sukamaju Naik 20 Persen\n\nSukamaju, Senin — Kelompok tani Desa Sukamaju memanen padi di lahan seluas 50 hektare. Tahun lalu, hasil panen mereka sebanyak 200 ton. Tahun ini, hasilnya naik 20 persen.\n\nKetua kelompok tani, Pak Joko, mengatakan kenaikan itu terjadi karena petani memakai bibit unggul dan mengatur pengairan sawah dengan baik. Sebanyak 25 persen hasil panen tahun ini akan disimpan di lumbung desa sebagai persediaan.",
-    "tujuan": "Tujuan literasi: membaca berita dan menemukan unsur 5W1H (apa, siapa, di mana, kapan, mengapa, bagaimana).Tujuan numerasi: menghitung persen dari suatu jumlah dan menentukan hasil setelah kenaikan persen."
+    "tujuan": "Tujuan literasi: membaca berita dan menemukan unsur 5W1H (apa, siapa, di mana, kapan, mengapa, bagaimana).Tujuan numerasi: menghitung persen dari suatu jumlah dan menentukan hasil setelah kenaikan persen.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149347/prisma_audio_k5_b7.m4a"
   },
   {
     "id": "materi-k5-b8",
@@ -8440,7 +8482,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pada Pekan Olahraga Sekolah, kelas 5 mengikuti lomba lompat jauh di lapangan. Setiap peserta melompat satu kali, lalu hasilnya dicatat dalam meter.\n\nPeserta | Hasil lompatan (m)\n\nAndi | 2,45\n\nBunga | 2,8\n\nCitra | 2,54\n\nDeni | 2,08\n\nPanitia akan memberi medali kepada tiga peserta dengan lompatan terjauh.",
       "image": "/covers/cover-k5-b8.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149354/prisma_audio_k5_b8.m4a",
       "points": [
         {
           "id": "lp-k5b8-1",
@@ -8636,7 +8678,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pada Pekan Olahraga Sekolah, kelas 5 mengikuti lomba lompat jauh di lapangan. Setiap peserta melompat satu kali, lalu hasilnya dicatat dalam meter.\n\nPeserta | Hasil lompatan (m)\n\nAndi | 2,45\n\nBunga | 2,8\n\nCitra | 2,54\n\nDeni | 2,08\n\nPanitia akan memberi medali kepada tiga peserta dengan lompatan terjauh.",
-    "tujuan": "Tujuan literasi: menulis teks laporan kegiatan sederhana.Tujuan numerasi: membaca, membandingkan, mengurutkan, menjumlahkan, dan mengurangkan bilangan desimal."
+    "tujuan": "Tujuan literasi: menulis teks laporan kegiatan sederhana.Tujuan numerasi: membaca, membandingkan, mengurutkan, menjumlahkan, dan mengurangkan bilangan desimal.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149354/prisma_audio_k5_b8.m4a"
   },
   {
     "id": "materi-k6-b1",
@@ -8658,7 +8701,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pak Darto adalah petani padi di desa kami. Ia membuat pupuk cair sendiri. Petugas penyuluh pertanian mengajarinya mencampur 1 liter cairan pupuk dengan 4 liter air. Jika campurannya terlalu pekat, daun padi bisa layu. Jika terlalu encer, pupuk kurang bermanfaat.\n\nPak Darto juga perlu membeli kompos. Toko Subur menjual 5 kg kompos seharga Rp60.000. Toko Makmur menjual 3 kg kompos seharga Rp39.000. Tetangganya berkata, “Toko Makmur pasti lebih murah karena harganya di bawah Rp40.000.” Pak Darto memilih menghitung dulu sebelum membeli.",
       "image": "/covers/cover-k6-b1.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149358/prisma_audio_k6_b1.m4a",
       "points": [
         {
           "id": "lp-k6b1-1",
@@ -8838,7 +8881,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pak Darto adalah petani padi di desa kami. Ia membuat pupuk cair sendiri. Petugas penyuluh pertanian mengajarinya mencampur 1 liter cairan pupuk dengan 4 liter air. Jika campurannya terlalu pekat, daun padi bisa layu. Jika terlalu encer, pupuk kurang bermanfaat.\n\nPak Darto juga perlu membeli kompos. Toko Subur menjual 5 kg kompos seharga Rp60.000. Toko Makmur menjual 3 kg kompos seharga Rp39.000. Tetangganya berkata, “Toko Makmur pasti lebih murah karena harganya di bawah Rp40.000.” Pak Darto memilih menghitung dulu sebelum membeli.",
-    "tujuan": "Tujuan literasi: menganalisis informasi teks secara kritis dan membedakan fakta dengan opini.Tujuan numerasi: bernalar proporsional dengan rasio dan rasio satuan (harga per kg)."
+    "tujuan": "Tujuan literasi: menganalisis informasi teks secara kritis dan membedakan fakta dengan opini.Tujuan numerasi: bernalar proporsional dengan rasio dan rasio satuan (harga per kg).",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149358/prisma_audio_k6_b1.m4a"
   },
   {
     "id": "materi-k6-b2",
@@ -8860,7 +8904,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pramuka kelas 6 berkemah di lapangan desa. Kak Pembina membuat permainan mencari harta karun. Setiap regu mendapat peta berpetak. Kolom diberi huruf A sampai F dari kiri ke kanan. Baris diberi angka 1 sampai 6 dari atas ke bawah.\n\nTenda regu Elang ada di petak B2. Tiang bendera ada di petak D4. Petunjuknya berbunyi: “Dari tiang bendera, berjalanlah 1 petak ke kanan, lalu 1 petak ke bawah. Di sana ada kotak kayu berisi harta karun.”\n\nKotak kayu itu berbentuk balok. Kotak itu disusun dari kubus-kubus kecil: panjangnya 4 kubus, lebarnya 2 kubus, dan tingginya 3 kubus.",
       "image": "/covers/cover-k6-b2.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149361/prisma_audio_k6_b2.m4a",
       "points": [
         {
           "id": "lp-k6b2-1",
@@ -9042,7 +9086,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pramuka kelas 6 berkemah di lapangan desa. Kak Pembina membuat permainan mencari harta karun. Setiap regu mendapat peta berpetak. Kolom diberi huruf A sampai F dari kiri ke kanan. Baris diberi angka 1 sampai 6 dari atas ke bawah.\n\nTenda regu Elang ada di petak B2. Tiang bendera ada di petak D4. Petunjuknya berbunyi: “Dari tiang bendera, berjalanlah 1 petak ke kanan, lalu 1 petak ke bawah. Di sana ada kotak kayu berisi harta karun.”\n\nKotak kayu itu berbentuk balok. Kotak itu disusun dari kubus-kubus kecil: panjangnya 4 kubus, lebarnya 2 kubus, dan tingginya 3 kubus.",
-    "tujuan": "Tujuan literasi: menulis teks petunjuk arah yang runtut dan jelas.Tujuan numerasi: menentukan lokasi pada peta berpetak, mengenal ciri kubus dan balok, menyusun bangun ruang dari kubus satuan, serta mengenali tampak depan, atas, dan samping."
+    "tujuan": "Tujuan literasi: menulis teks petunjuk arah yang runtut dan jelas.Tujuan numerasi: menentukan lokasi pada peta berpetak, mengenal ciri kubus dan balok, menyusun bangun ruang dari kubus satuan, serta mengenali tampak depan, atas, dan samping.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149361/prisma_audio_k6_b2.m4a"
   },
   {
     "id": "materi-k6-b3",
@@ -9064,7 +9109,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kelas 6 sedang belajar tentang sampah plastik. Mereka melakukan survei kepada 30 murid kelas 6 tentang wadah minum yang dibawa ke sekolah. Setiap jawaban dicatat dengan turus, lalu dihitung menjadi tabel frekuensi.\n\nWadah minum | Turus | Frekuensi (murid)\n\nBotol isi ulang | 卌 卌 ││ | 12\n\nBotol plastik sekali pakai | 卌 ││││ | 9\n\nGelas plastik sekali pakai | 卌 │ | 6\n\nTidak membawa minum | │││ | 3\n\nKeesokan harinya, sebuah tulisan di majalah dinding berbunyi: “Sebagian besar murid kelas 6 sudah membawa botol isi ulang!”",
       "image": "/covers/cover-k6-b3.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149357/prisma_audio_k6_b3.m4a",
       "points": [
         {
           "id": "lp-k6b3-1",
@@ -9234,7 +9279,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kelas 6 sedang belajar tentang sampah plastik. Mereka melakukan survei kepada 30 murid kelas 6 tentang wadah minum yang dibawa ke sekolah. Setiap jawaban dicatat dengan turus, lalu dihitung menjadi tabel frekuensi.\n\nWadah minum | Turus | Frekuensi (murid)\n\nBotol isi ulang | 卌 卌 ││ | 12\n\nBotol plastik sekali pakai | 卌 ││││ | 9\n\nGelas plastik sekali pakai | 卌 │ | 6\n\nTidak membawa minum | │││ | 3\n\nKeesokan harinya, sebuah tulisan di majalah dinding berbunyi: “Sebagian besar murid kelas 6 sudah membawa botol isi ulang!”",
-    "tujuan": "Tujuan literasi: menganalisis informasi teks dan visual secara kritis, termasuk menguji sebuah klaim dengan data.Tujuan numerasi: menyajikan dan menganalisis data dalam tabel frekuensi dan diagram batang."
+    "tujuan": "Tujuan literasi: menganalisis informasi teks dan visual secara kritis, termasuk menguji sebuah klaim dengan data.Tujuan numerasi: menyajikan dan menganalisis data dalam tabel frekuensi dan diagram batang.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149357/prisma_audio_k6_b3.m4a"
   },
   {
     "id": "materi-k6-b4",
@@ -9256,7 +9302,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Pada acara jalan sehat desa, panitia menyiapkan undian doorprize. Di dalam kotak undian ada 50 kupon: 30 kupon bertuliskan “payung”, 15 kupon “kipas angin”, dan 5 kupon “sepeda”. Semua kupon sama bentuk dan ukurannya, lalu diaduk sampai tercampur.\n\nBima bersemangat. “Aku yakin pasti dapat sepeda!” katanya. Ayahnya tersenyum. “Mungkin saja, Nak. Tapi coba lihat dulu berapa banyak kupon sepeda di kotak itu.”",
       "image": "/covers/cover-k6-b4.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149360/prisma_audio_k6_b4.m4a",
       "points": [
         {
           "id": "lp-k6b4-1",
@@ -9480,7 +9526,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Pada acara jalan sehat desa, panitia menyiapkan undian doorprize. Di dalam kotak undian ada 50 kupon: 30 kupon bertuliskan “payung”, 15 kupon “kipas angin”, dan 5 kupon “sepeda”. Semua kupon sama bentuk dan ukurannya, lalu diaduk sampai tercampur.\n\nBima bersemangat. “Aku yakin pasti dapat sepeda!” katanya. Ayahnya tersenyum. “Mungkin saja, Nak. Tapi coba lihat dulu berapa banyak kupon sepeda di kotak itu.”",
-    "tujuan": "Tujuan literasi: menyampaikan gagasan berdasarkan fakta dan imajinasi dalam tulisan.Tujuan numerasi: menentukan kejadian yang kemungkinannya lebih besar atau lebih kecil dalam percobaan acak."
+    "tujuan": "Tujuan literasi: menyampaikan gagasan berdasarkan fakta dan imajinasi dalam tulisan.Tujuan numerasi: menentukan kejadian yang kemungkinannya lebih besar atau lebih kecil dalam percobaan acak.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149360/prisma_audio_k6_b4.m4a"
   },
   {
     "id": "materi-k6-b5",
@@ -9502,7 +9549,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Regu Elang mendapat tugas dari Kak Pembina: “Belilah perlengkapan kemah dengan uang kas Rp150.000. Syaratnya, beli 4 botol air mineral besar, 2 bungkus roti, dan 1 senter. Simpan sisa uang di kotak kas, lalu catat semua pengeluaran di buku regu.”\n\nDi toko, harga air mineral besar Rp6.000 per botol, roti Rp12.500 per bungkus, dan senter Rp45.000.",
       "image": "/covers/cover-k6-b5.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149365/prisma_audio_k6_b5.m4a",
       "points": [
         {
           "id": "lp-k6b5-1",
@@ -9674,7 +9721,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Regu Elang mendapat tugas dari Kak Pembina: “Belilah perlengkapan kemah dengan uang kas Rp150.000. Syaratnya, beli 4 botol air mineral besar, 2 bungkus roti, dan 1 senter. Simpan sisa uang di kotak kas, lalu catat semua pengeluaran di buku regu.”\n\nDi toko, harga air mineral besar Rp6.000 per botol, roti Rp12.500 per bungkus, dan senter Rp45.000.",
-    "tujuan": "Tujuan literasi: memahami teks instruksi yang memuat beberapa syarat.Tujuan numerasi: menyelesaikan operasi hitung campuran dengan urutan pengerjaan yang benar."
+    "tujuan": "Tujuan literasi: memahami teks instruksi yang memuat beberapa syarat.Tujuan numerasi: menyelesaikan operasi hitung campuran dengan urutan pengerjaan yang benar.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149365/prisma_audio_k6_b5.m4a"
   },
   {
     "id": "materi-k6-b6",
@@ -9696,7 +9744,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Di belakang rumah Nenek ada sumur tua berbentuk lingkaran. Diameter bibir sumur itu 70 cm. Nenek juga punya tampah, yaitu wadah bundar dari anyaman bambu untuk menampi beras. Jari-jari tampah itu 28 cm.\n\nBanyak benda dibuat bundar karena bentuk lingkaran tidak punya sudut, sehingga tekanan dari segala arah tersebar merata dan benda menjadi lebih kuat. Bentuk bundar juga mudah diputar. Itulah sebabnya roda, sumur, dan tampah dibuat berbentuk lingkaran.",
       "image": "/covers/cover-k6-b6.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149368/prisma_audio_k6_b6.m4a",
       "points": [
         {
           "id": "lp-k6b6-1",
@@ -9882,7 +9930,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Di belakang rumah Nenek ada sumur tua berbentuk lingkaran. Diameter bibir sumur itu 70 cm. Nenek juga punya tampah, yaitu wadah bundar dari anyaman bambu untuk menampi beras. Jari-jari tampah itu 28 cm.\n\nBanyak benda dibuat bundar karena bentuk lingkaran tidak punya sudut, sehingga tekanan dari segala arah tersebar merata dan benda menjadi lebih kuat. Bentuk bundar juga mudah diputar. Itulah sebabnya roda, sumur, dan tampah dibuat berbentuk lingkaran.",
-    "tujuan": "Tujuan literasi: memahami teks eksplanasi tentang benda di sekitar.Tujuan numerasi: mengenal unsur lingkaran serta menghitung keliling dan luas lingkaran."
+    "tujuan": "Tujuan literasi: memahami teks eksplanasi tentang benda di sekitar.Tujuan numerasi: mengenal unsur lingkaran serta menghitung keliling dan luas lingkaran.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149368/prisma_audio_k6_b6.m4a"
   },
   {
     "id": "materi-k6-b7",
@@ -9904,7 +9953,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Kelas 6 melakukan percobaan menanam kacang hijau di 8 gelas plastik. Setiap gelas diberi kapas basah dan disiram setiap pagi. Gelas-gelas itu diletakkan di tempat yang berbeda di dalam kelas.\n\nSetelah 7 hari, tinggi tanaman diukur dalam sentimeter: 8, 10, 7, 10, 12, 9, 10, 6. Tanaman tertinggi (12 cm) berada di dekat jendela yang terkena cahaya matahari. Tanaman terpendek (6 cm) berada di pojok kelas yang gelap.",
       "image": "/covers/cover-k6-b7.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149365/prisma_audio_k6_b7.m4a",
       "points": [
         {
           "id": "lp-k6b7-1",
@@ -10084,7 +10133,8 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Kelas 6 melakukan percobaan menanam kacang hijau di 8 gelas plastik. Setiap gelas diberi kapas basah dan disiram setiap pagi. Gelas-gelas itu diletakkan di tempat yang berbeda di dalam kelas.\n\nSetelah 7 hari, tinggi tanaman diukur dalam sentimeter: 8, 10, 7, 10, 12, 9, 10, 6. Tanaman tertinggi (12 cm) berada di dekat jendela yang terkena cahaya matahari. Tanaman terpendek (6 cm) berada di pojok kelas yang gelap.",
-    "tujuan": "Tujuan literasi: menulis kesimpulan laporan percobaan berdasarkan data.Tujuan numerasi: menentukan rata-rata, median, dan modus dari sekumpulan data."
+    "tujuan": "Tujuan literasi: menulis kesimpulan laporan percobaan berdasarkan data.Tujuan numerasi: menentukan rata-rata, median, dan modus dari sekumpulan data.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149365/prisma_audio_k6_b7.m4a"
   },
   {
     "id": "materi-k6-b8",
@@ -10106,7 +10156,7 @@ export const allStructuredMateri = [
     "materiContent": {
       "text": "Karang taruna membuat peta Desa Sukamaju dengan skala 1 : 10.000. Pada peta, jarak dari balai desa ke sekolah 5 cm, dari sekolah ke puskesmas 8 cm, dan dari balai desa ke pantai 15 cm.\n\nPeta itu akan dipasang di depan balai desa agar tamu mudah menemukan tempat-tempat penting. Rani diminta menulis keterangan singkat di bawah peta.",
       "image": "/covers/cover-k6-b8.jpg",
-      "audioUrl": "",
+      "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149367/prisma_audio_k6_b8.m4a",
       "points": [
         {
           "id": "lp-k6b8-1",
@@ -10287,6 +10337,7 @@ export const allStructuredMateri = [
       ]
     },
     "bacaan": "Karang taruna membuat peta Desa Sukamaju dengan skala 1 : 10.000. Pada peta, jarak dari balai desa ke sekolah 5 cm, dari sekolah ke puskesmas 8 cm, dan dari balai desa ke pantai 15 cm.\n\nPeta itu akan dipasang di depan balai desa agar tamu mudah menemukan tempat-tempat penting. Rani diminta menulis keterangan singkat di bawah peta.",
-    "tujuan": "Tujuan literasi: menyampaikan gagasan tentang suatu tempat berdasarkan informasi pada peta.Tujuan numerasi: menggunakan skala untuk menghitung jarak sebenarnya dan jarak pada peta."
+    "tujuan": "Tujuan literasi: menyampaikan gagasan tentang suatu tempat berdasarkan informasi pada peta.Tujuan numerasi: menggunakan skala untuk menghitung jarak sebenarnya dan jarak pada peta.",
+    "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149367/prisma_audio_k6_b8.m4a"
   }
 ];

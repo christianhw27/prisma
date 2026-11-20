@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { supabase, isSupabaseConfigured } from './supabaseClient.js'
 import { allStructuredMateri } from './allMateriData.js'
 
-const STORAGE_KEY = 'prisma_materi_list_v29'
+const STORAGE_KEY = 'prisma_materi_list_v30'
 
 export const KELAS_SD_OPTIONS = ['Kelas 1', 'Kelas 2', 'Kelas 3', 'Kelas 4', 'Kelas 5', 'Kelas 6']
 
