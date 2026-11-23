@@ -37,7 +37,7 @@ import {
   GripVertical
 } from '@lucide/vue'
 import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel, sortMateriNaturally, materiList } from '../lib/materiService'
-import { playMascotChime, playButtonPop, playCorrectChime, playEncouragingSound } from '../lib/soundEffects'
+import { playButtonPop, playCorrectChime, playEncouragingSound, playFanfare } from '../lib/soundEffects'
 import { saveQuizAttempt, submitToMateriLeaderboard } from '../lib/quizService'
 import { currentUser } from '../lib/authService'
 
@@ -105,7 +105,7 @@ const goToNextChapter = () => {
     return
   }
   if (!nextMateri.value) return
-  playMascotChime()
+  playButtonPop()
   emit('change-materi', nextMateri.value)
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -484,7 +484,8 @@ const startDragLine = (leftItem, e) => {
 }
 
 const connectMatchingPair = (leftItem, rightItem) => {
-  playMascotChime()
+  if (isCurrentQuestionChecked.value) return
+  playButtonPop()
   const currentMap = { ...getMatchingAnswersForCurrent() }
   for (const [k, v] of Object.entries(currentMap)) {
     if (v === rightItem) delete currentMap[k]
@@ -502,6 +503,7 @@ const connectMatchingPair = (leftItem, rightItem) => {
 }
 
 const selectMatchingLeft = (leftItem) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   if (activeMatchingLeft.value === leftItem) {
     activeMatchingLeft.value = null
@@ -511,11 +513,13 @@ const selectMatchingLeft = (leftItem) => {
 }
 
 const selectMatchingRight = (rightItem) => {
+  if (isCurrentQuestionChecked.value) return
   if (!activeMatchingLeft.value) return
   connectMatchingPair(activeMatchingLeft.value, rightItem)
 }
 
 const removeMatchingPair = (leftItem) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   delete checkedQuestions.value[currentQuestionIndex.value]
   const currentMap = { ...getMatchingAnswersForCurrent() }
@@ -627,6 +631,7 @@ const onCirclingPointerDown = (e) => {
 }
 
 const selectImageOptionDirectly = (optIdx) => {
+  if (isCurrentQuestionChecked.value) return
   selectedAnswers.value[currentQuestionIndex.value] = optIdx
   delete customCircledSvg.value[currentQuestionIndex.value]
   evaluateCurrentQuestion()
@@ -644,6 +649,7 @@ const draggedOrderItem = ref(null)
 const dragOverSlotIdx = ref(null)
 
 const onCardDragStart = (item, e) => {
+  if (isCurrentQuestionChecked.value) return
   draggedOrderItem.value = item
   if (e.dataTransfer) {
     e.dataTransfer.setData('text/plain', item)
@@ -680,10 +686,11 @@ const getOrderingAnswersForCurrent = () => {
 const onSlotDrop = (slotIdx, e) => {
   e.preventDefault()
   dragOverSlotIdx.value = null
+  if (isCurrentQuestionChecked.value) return
   const item = draggedOrderItem.value || (e.dataTransfer ? e.dataTransfer.getData('text/plain') : null)
   if (!item) return
 
-  playMascotChime()
+  playButtonPop()
   const cur = [...getOrderingAnswersForCurrent()]
   
   // Lepas jika item sudah berada di slot lain
@@ -713,6 +720,7 @@ const onDropToCardPool = (e) => {
 }
 
 const addToOrdering = (item) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   const cur = [...getOrderingAnswersForCurrent()]
   if (!cur.includes(item)) {
@@ -729,6 +737,7 @@ const addToOrdering = (item) => {
 }
 
 const removeFromOrdering = (item) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   delete checkedQuestions.value[currentQuestionIndex.value]
   const cur = [...getOrderingAnswersForCurrent()]
@@ -740,6 +749,7 @@ const removeFromOrdering = (item) => {
 }
 
 const resetOrdering = () => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   delete checkedQuestions.value[currentQuestionIndex.value]
   const total = currentQuestion.value?.orderItems?.length || 0
@@ -748,11 +758,13 @@ const resetOrdering = () => {
 
 // State khusus untuk Isi Angka (Fill in the Blank)
 const onFillInBlankInput = (val) => {
+  if (isCurrentQuestionChecked.value) return
   delete checkedQuestions.value[currentQuestionIndex.value]
   selectedAnswers.value[currentQuestionIndex.value] = val
 }
 
 const appendDigit = (digit) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   delete checkedQuestions.value[currentQuestionIndex.value]
   const cur = String(selectedAnswers.value[currentQuestionIndex.value] || '')
@@ -760,6 +772,7 @@ const appendDigit = (digit) => {
 }
 
 const backspaceDigit = () => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   delete checkedQuestions.value[currentQuestionIndex.value]
   const cur = String(selectedAnswers.value[currentQuestionIndex.value] || '')
@@ -767,6 +780,7 @@ const backspaceDigit = () => {
 }
 
 const clearDigit = () => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   delete checkedQuestions.value[currentQuestionIndex.value]
   selectedAnswers.value[currentQuestionIndex.value] = ''
@@ -780,6 +794,7 @@ const getMultiSelectAnswersForCurrent = () => {
 }
 
 const toggleMultiSelect = (optIdx) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   delete checkedQuestions.value[currentQuestionIndex.value]
   const cur = [...getMultiSelectAnswersForCurrent()]
@@ -794,6 +809,7 @@ const toggleMultiSelect = (optIdx) => {
 
 // State khusus untuk Peta Koordinat (Grid Map)
 const selectGridCell = (cell) => {
+  if (isCurrentQuestionChecked.value) return
   selectedAnswers.value[currentQuestionIndex.value] = cell
   evaluateCurrentQuestion()
 }
@@ -807,6 +823,7 @@ const totalPossibleScore = computed(() => {
 })
 
 const selectAnswer = (optionIdx) => {
+  if (isCurrentQuestionChecked.value) return
   selectedAnswers.value[currentQuestionIndex.value] = optionIdx
   evaluateCurrentQuestion()
 }
@@ -819,6 +836,7 @@ const getPlaceValueAns = () => {
 }
 
 const setPlaceValueTens = (val) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   const curr = { ...getPlaceValueAns() }
   curr.tens = val
@@ -826,6 +844,7 @@ const setPlaceValueTens = (val) => {
 }
 
 const setPlaceValueOnes = (val) => {
+  if (isCurrentQuestionChecked.value) return
   playButtonPop()
   const curr = { ...getPlaceValueAns() }
   curr.ones = val
@@ -909,6 +928,9 @@ const isCurrentQuestionCorrect = computed(() => {
   return checkAnswerCorrectness(currentQuestion.value, selectedAnswers.value[currentQuestionIndex.value])
 })
 
+// State Popup Pembahasan Instan
+const isExplanationPopupOpen = ref(false)
+
 const evaluateCurrentQuestion = () => {
   const q = currentQuestion.value
   const ans = selectedAnswers.value[currentQuestionIndex.value]
@@ -919,6 +941,85 @@ const evaluateCurrentQuestion = () => {
   } else {
     playEncouragingSound()
   }
+  isExplanationPopupOpen.value = true
+}
+
+const handlePopupNext = () => {
+  isExplanationPopupOpen.value = false
+  if (currentQuestionIndex.value < questions.value.length - 1) {
+    nextQuestion()
+  } else {
+    submitQuiz()
+  }
+}
+
+const formatUserAnswerText = (q, ans) => {
+  if (ans === undefined || ans === null) return 'Belum dijawab'
+  if (q.type === 'multiple_choice') {
+    return q.options?.[ans] !== undefined ? `${String.fromCharCode(65 + ans)}. ${q.options[ans]}` : 'Belum dijawab'
+  }
+  if (q.type === 'image_choice') {
+    return q.imageOptions?.[ans]?.label || (ans !== undefined ? `Pilihan ${String.fromCharCode(65 + ans)}` : 'Belum dijawab')
+  }
+  if (q.type === 'true_false') {
+    return ans === 0 ? 'Benar (B)' : ans === 1 ? 'Salah (S)' : 'Belum dijawab'
+  }
+  if (q.type === 'fill_in_blank') {
+    return String(ans) || 'Belum dijawab'
+  }
+  if (q.type === 'matching') {
+    if (!ans || typeof ans !== 'object' || Array.isArray(ans) || Object.keys(ans).length === 0) return 'Belum dipasangkan'
+    return Object.entries(ans).map(([l, r]) => `${l} ➔ ${r}`).join(', ')
+  }
+  if (q.type === 'ordering') {
+    if (!Array.isArray(ans) || ans.filter(Boolean).length === 0) return 'Belum diurutkan'
+    return ans.filter(Boolean).join(' ➔ ')
+  }
+  if (q.type === 'color_choice') {
+    return q.colorOptions?.[ans]?.name || 'Belum dijawab'
+  }
+  if (q.type === 'place_value') {
+    if (!ans || typeof ans !== 'object' || Array.isArray(ans)) return 'Belum dijawab'
+    return `${ans.tens || '?'} puluhan dan ${ans.ones || '?'} satuan`
+  }
+  if (q.type === 'grid_map') {
+    return `Petak ${ans || '?'}`
+  }
+  return String(ans)
+}
+
+const formatCorrectAnswerText = (q) => {
+  if (!q) return '-'
+  if (q.type === 'multiple_choice') {
+    const idx = q.correctOptionIndex
+    return q.options?.[idx] !== undefined ? `${String.fromCharCode(65 + idx)}. ${q.options[idx]}` : '-'
+  }
+  if (q.type === 'image_choice') {
+    const idx = q.correctOptionIndex
+    return q.imageOptions?.[idx]?.label || `Pilihan ${String.fromCharCode(65 + idx)}`
+  }
+  if (q.type === 'true_false') {
+    return q.correctOptionIndex === 0 ? 'Benar (B)' : 'Salah (S)'
+  }
+  if (q.type === 'fill_in_blank') {
+    return (q.expectedAnswers && q.expectedAnswers[0]) || q.options?.[q.correctOptionIndex] || '-'
+  }
+  if (q.type === 'matching') {
+    return (q.pairs || []).map(p => `${p.left} ➔ ${p.right}`).join(', ')
+  }
+  if (q.type === 'ordering') {
+    return (q.correctOrder || []).join(' ➔ ')
+  }
+  if (q.type === 'color_choice') {
+    return q.colorOptions?.[q.correctOptionIndex]?.name || '-'
+  }
+  if (q.type === 'place_value') {
+    return `${q.correctTens || '4'} puluhan dan ${q.correctOnes || '5'} satuan`
+  }
+  if (q.type === 'grid_map') {
+    return `Petak ${q.correctCell || 'E5'}`
+  }
+  return q.options?.[q.correctOptionIndex] || '-'
 }
 
 const retryCurrentQuestion = () => {
@@ -952,6 +1053,7 @@ const isSlotCorrect = (slotIdx) => {
 }
 
 const nextQuestion = () => {
+  isExplanationPopupOpen.value = false
   playButtonPop()
   activeMatchingLeft.value = null
   if (currentQuestionIndex.value < questions.value.length - 1) {
@@ -960,6 +1062,7 @@ const nextQuestion = () => {
 }
 
 const prevQuestion = () => {
+  isExplanationPopupOpen.value = false
   playButtonPop()
   activeMatchingLeft.value = null
   if (currentQuestionIndex.value > 0) {
@@ -993,7 +1096,8 @@ const isPerfectScore = computed(() => {
 })
 
 const submitQuiz = () => {
-  playMascotChime()
+  isExplanationPopupOpen.value = false
+  playFanfare()
   isQuizSubmitted.value = true
 
   // Simpan riwayat kuis
@@ -1020,10 +1124,12 @@ const resetQuiz = () => {
   activeMatchingLeft.value = null
   linePairs.value = []
   isQuizSubmitted.value = false
+  isExplanationPopupOpen.value = false
 }
 
 // Reset tab & state saat materi berganti
 watch(() => props.materi?.id, () => {
+  isExplanationPopupOpen.value = false
   stopAudioNarration()
   if (currentAudioElement) {
     currentAudioElement.pause()
@@ -1615,6 +1721,7 @@ onBeforeUnmount(() => {
                     @click="selectImageOptionDirectly(optIdx)"
                     :class="[
                       'relative rounded-3xl p-5 transition-all duration-200 cursor-pointer flex flex-col items-center text-center bg-white border-2 select-none group',
+                      isCurrentQuestionChecked ? 'pointer-events-none' : '',
                       isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx
                         ? isCurrentQuestionCorrect
                           ? 'border-[#1E7A6F] shadow-md ring-4 ring-[#7FD4C4]/40 bg-[#7FD4C4]/15 scale-[1.02]'
@@ -1626,26 +1733,6 @@ onBeforeUnmount(() => {
                         : 'border-[#8F8575]/25 hover:border-[#1E7A6F]/60 hover:shadow-sm'
                     ]"
                   >
-                    <!-- Fallback SVG Hand-Drawn Ring if selected via tap without manual freehand -->
-                    <svg
-                      v-if="selectedAnswers[currentQuestionIndex] === optIdx && !customCircledSvg[currentQuestionIndex]"
-                      class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
-                      viewBox="0 0 100 100"
-                      preserveAspectRatio="none"
-                    >
-                      <ellipse
-                        cx="50"
-                        cy="50"
-                        rx="47"
-                        ry="45"
-                        fill="none"
-                        :stroke="isCurrentQuestionChecked && !isCurrentQuestionCorrect ? '#D97706' : '#1E7A6F'"
-                        stroke-width="4.5"
-                        stroke-linecap="round"
-                        class="animate-draw-circle"
-                      />
-                    </svg>
-
                     <!-- Evaluation Badges -->
                     <div
                       v-if="isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx"
@@ -1904,7 +1991,7 @@ onBeforeUnmount(() => {
             <!-- ==================== MODE 3: ORDERING ("DRAG AND DROP MENGURUTKAN KARTU") ==================== -->
             <div v-else-if="currentQuestion.type === 'ordering'" class="space-y-6 pt-1">
               <!-- Reset Urutan Button (Hanya jika ada kartu yang sudah ditaruh) -->
-              <div v-if="getOrderingAnswersForCurrent().length > 0" class="flex justify-end -mb-2">
+              <div v-if="getOrderingAnswersForCurrent().length > 0 && !isCurrentQuestionChecked" class="flex justify-end -mb-2">
                 <button
                   @click="resetOrdering"
                   class="text-xs font-bold text-[#B45309] hover:text-[#92400E] flex items-center gap-1.5 cursor-pointer bg-white px-3.5 py-1.5 rounded-xl border border-[#D97706]/30 shadow-2xs transition active:scale-95"
@@ -1963,9 +2050,10 @@ onBeforeUnmount(() => {
                   <!-- Isi Kartu di dalam Kotak -->
                   <div
                     v-if="getOrderingAnswersForCurrent()[slotIdx]"
-                    draggable="true"
+                    :draggable="!isCurrentQuestionChecked"
                     @dragstart="onCardDragStart(getOrderingAnswersForCurrent()[slotIdx], $event)"
-                    class="font-['Baloo_2'] font-bold text-base sm:text-lg text-[#2B3445] mt-2 leading-snug cursor-grab active:cursor-grabbing text-center py-1"
+                    class="font-['Baloo_2'] font-bold text-base sm:text-lg text-[#2B3445] mt-2 leading-snug text-center py-1 select-none"
+                    :class="!isCurrentQuestionChecked ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'"
                   >
                     <span>{{ getOrderingAnswersForCurrent()[slotIdx] }}</span>
                   </div>
@@ -1987,12 +2075,14 @@ onBeforeUnmount(() => {
                   <div
                     v-for="(item, idx) in currentQuestion.orderItems || []"
                     :key="idx"
-                    :draggable="!getOrderingAnswersForCurrent().includes(item)"
+                    :draggable="!isCurrentQuestionChecked && !getOrderingAnswersForCurrent().includes(item)"
                     @dragstart="onCardDragStart(item, $event)"
                     @click="addToOrdering(item)"
                     class="px-5 py-3.5 rounded-2xl font-['Baloo_2'] font-bold text-base sm:text-lg transition-all border-2 flex items-center select-none"
                     :class="[
-                      getOrderingAnswersForCurrent().includes(item)
+                      isCurrentQuestionChecked
+                        ? 'opacity-60 cursor-default bg-white border-[#8F8575]/20 text-[#8F8575]'
+                        : getOrderingAnswersForCurrent().includes(item)
                         ? 'opacity-30 bg-[#E0E0E0] border-transparent text-[#8F8575] cursor-not-allowed line-through scale-95'
                         : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:shadow-md cursor-pointer active:scale-105 text-[#2B3445] shadow-xs'
                     ]"
@@ -2010,6 +2100,7 @@ onBeforeUnmount(() => {
                 <!-- Opsi B (Benar) -->
                 <button
                   @click="selectAnswer(0)"
+                  :disabled="isCurrentQuestionChecked"
                   :class="[
                     'relative p-6 rounded-3xl border-2 transition-all flex items-center gap-5 cursor-pointer text-left select-none',
                     isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === 0
@@ -2023,26 +2114,6 @@ onBeforeUnmount(() => {
                       : 'bg-white border-[#8F8575]/30 hover:border-[#1E7A6F]'
                   ]"
                 >
-                  <!-- Animated Marker Ring SVG -->
-                  <svg
-                    v-if="selectedAnswers[currentQuestionIndex] === 0"
-                    class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="none"
-                  >
-                    <ellipse
-                      cx="50"
-                      cy="50"
-                      rx="47"
-                      ry="45"
-                      fill="none"
-                      :stroke="isCurrentQuestionChecked && !isCurrentQuestionCorrect ? '#D97706' : '#1E7A6F'"
-                      stroke-width="4.5"
-                      stroke-linecap="round"
-                      class="animate-draw-circle"
-                    />
-                  </svg>
-
                   <div
                     :class="[
                       'w-14 h-14 rounded-2xl font-bold font-[\'Baloo_2\'] text-2xl flex items-center justify-center shrink-0 transition-colors',
@@ -2087,6 +2158,7 @@ onBeforeUnmount(() => {
                 <!-- Opsi S (Salah) -->
                 <button
                   @click="selectAnswer(1)"
+                  :disabled="isCurrentQuestionChecked"
                   :class="[
                     'relative p-6 rounded-3xl border-2 transition-all flex items-center gap-5 cursor-pointer text-left select-none',
                     isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === 1
@@ -2100,26 +2172,6 @@ onBeforeUnmount(() => {
                       : 'bg-white border-[#8F8575]/30 hover:border-[#D97706]'
                   ]"
                 >
-                  <!-- Animated Marker Ring SVG -->
-                  <svg
-                    v-if="selectedAnswers[currentQuestionIndex] === 1"
-                    class="absolute inset-0 w-full h-full pointer-events-none z-20 p-1"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="none"
-                  >
-                    <ellipse
-                      cx="50"
-                      cy="50"
-                      rx="47"
-                      ry="45"
-                      fill="none"
-                      :stroke="isCurrentQuestionChecked && !isCurrentQuestionCorrect ? '#D97706' : '#1E7A6F'"
-                      stroke-width="4.5"
-                      stroke-linecap="round"
-                      class="animate-draw-circle"
-                    />
-                  </svg>
-
                   <div
                     :class="[
                       'w-14 h-14 rounded-2xl font-bold font-[\'Baloo_2\'] text-2xl flex items-center justify-center shrink-0 transition-colors',
@@ -2176,7 +2228,8 @@ onBeforeUnmount(() => {
                     type="text"
                     :value="selectedAnswers[currentQuestionIndex] || ''"
                     @input="onFillInBlankInput($event.target.value)"
-                    @keydown.enter="evaluateCurrentQuestion"
+                    @keydown.enter="!isCurrentQuestionChecked && evaluateCurrentQuestion()"
+                    :disabled="isCurrentQuestionChecked"
                     placeholder="Ketik jawabanmu di sini..."
                     :class="[
                       'w-full px-6 py-4 rounded-2xl border-2 outline-none text-2xl font-bold text-center transition shadow-xs font-[\'Baloo_2\']',
@@ -2203,8 +2256,9 @@ onBeforeUnmount(() => {
                       v-for="digit in ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']"
                       :key="digit"
                       type="button"
+                      :disabled="isCurrentQuestionChecked"
                       @click="appendDigit(digit)"
-                      class="h-11 rounded-xl bg-white border border-[#8F8575]/25 font-['Baloo_2'] text-xl font-bold text-[#2B3445] hover:bg-[#7FD4C4]/25 hover:border-[#1E7A6F] active:scale-95 transition cursor-pointer shadow-2xs"
+                      class="h-11 rounded-xl bg-white border border-[#8F8575]/25 font-['Baloo_2'] text-xl font-bold text-[#2B3445] hover:bg-[#7FD4C4]/25 hover:border-[#1E7A6F] active:scale-95 transition cursor-pointer shadow-2xs disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {{ digit }}
                     </button>
@@ -2212,15 +2266,17 @@ onBeforeUnmount(() => {
                   <div class="flex justify-center gap-2 pt-1">
                     <button
                       type="button"
+                      :disabled="isCurrentQuestionChecked"
                       @click="backspaceDigit"
-                      class="px-4 py-2 rounded-xl bg-white border border-[#8F8575]/25 text-xs font-semibold text-[#5B6474] hover:text-[#2B3445] hover:bg-black/5 active:scale-95 transition cursor-pointer"
+                      class="px-4 py-2 rounded-xl bg-white border border-[#8F8575]/25 text-xs font-semibold text-[#5B6474] hover:text-[#2B3445] hover:bg-black/5 active:scale-95 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       ⌫ Hapus Satu
                     </button>
                     <button
                       type="button"
+                      :disabled="isCurrentQuestionChecked"
                       @click="clearDigit"
-                      class="px-4 py-2 rounded-xl bg-white border border-[#8F8575]/25 text-xs font-semibold text-[#5B6474] hover:text-[#2B3445] hover:bg-black/5 active:scale-95 transition cursor-pointer"
+                      class="px-4 py-2 rounded-xl bg-white border border-[#8F8575]/25 text-xs font-semibold text-[#5B6474] hover:text-[#2B3445] hover:bg-black/5 active:scale-95 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Kosongkan
                     </button>
@@ -2241,6 +2297,7 @@ onBeforeUnmount(() => {
                   v-for="(opt, optIdx) in currentQuestion.options || []"
                   :key="optIdx"
                   type="button"
+                  :disabled="isCurrentQuestionChecked"
                   @click="toggleMultiSelect(optIdx)"
                   :class="[
                     'p-4 rounded-2xl font-medium text-base flex items-center justify-between gap-3 transition-all cursor-pointer border-2 select-none',
@@ -2344,6 +2401,7 @@ onBeforeUnmount(() => {
                         v-for="col in (currentQuestion.gridColumns || ['A','B','C','D','E','F'])"
                         :key="`${col}${row}`"
                         type="button"
+                        :disabled="isCurrentQuestionChecked"
                         @click="selectGridCell(`${col}${row}`)"
                         :class="[
                           'h-11 sm:h-12 rounded-xl text-xs sm:text-sm font-bold flex flex-col items-center justify-center transition-all cursor-pointer border select-none relative',
@@ -2391,6 +2449,7 @@ onBeforeUnmount(() => {
                   v-for="(opt, optIdx) in currentQuestion.colorOptions || []"
                   :key="optIdx"
                   type="button"
+                  :disabled="isCurrentQuestionChecked"
                   @click="selectAnswer(optIdx)"
                   :class="[
                     'relative p-4 sm:p-6 rounded-3xl transition-all duration-200 cursor-pointer flex flex-col items-center justify-center text-center bg-white border-2 select-none group',
@@ -2591,6 +2650,7 @@ onBeforeUnmount(() => {
                 v-for="(opt, optIdx) in currentQuestion.options"
                 :key="optIdx"
                 @click="selectAnswer(optIdx)"
+                :disabled="isCurrentQuestionChecked"
                 :class="[
                   'w-full p-4 sm:p-5 rounded-3xl font-medium flex items-center gap-4 sm:gap-5 transition-all duration-200 cursor-pointer text-left border-2 select-none group',
                   isCurrentQuestionChecked && selectedAnswers[currentQuestionIndex] === optIdx
@@ -2693,13 +2753,12 @@ onBeforeUnmount(() => {
                     <span>+{{ currentQuestion.points || 50 }} Poin</span>
                   </span>
                   <button
-                    v-else
                     type="button"
-                    @click="retryCurrentQuestion"
-                    class="px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#B45309] border border-[#D97706]/40 hover:bg-[#FFDE7A] transition flex items-center gap-1.5 cursor-pointer shadow-2xs active:scale-95"
+                    @click="isExplanationPopupOpen = true; playButtonPop()"
+                    class="px-4 py-2 rounded-xl text-xs font-bold bg-white text-[#1E7A6F] border border-[#1E7A6F]/30 hover:bg-[#FFF8F0] transition flex items-center gap-1.5 cursor-pointer shadow-2xs active:scale-95"
                   >
-                    <RotateCcw class="w-3.5 h-3.5" />
-                    <span>Coba Lagi Soal Ini</span>
+                    <Sparkles class="w-3.5 h-3.5" />
+                    <span>Lihat Pembahasan</span>
                   </button>
                 </div>
               </div>
@@ -2766,7 +2825,7 @@ onBeforeUnmount(() => {
               :class="[
                 'px-6 py-3.5 rounded-2xl font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer shadow-sm',
                 isQuestionAnswered(currentQuestionIndex)
-                  ? 'btn-prisma-mint animate-pulse'
+                  ? 'btn-prisma-mint'
                   : 'bg-white border border-[#8F8575]/25 text-[#5B6474] opacity-50 cursor-not-allowed'
               ]"
             >
@@ -2806,7 +2865,7 @@ onBeforeUnmount(() => {
 
             <div class="space-y-1">
               <h3 class="font-['Baloo_2'] text-2xl sm:text-3xl font-bold text-[#2B3445]">
-                {{ isPerfectScore ? 'Luar Biasa! Nilai Sempurna! 🌟' : 'Hebat Sekali! Kamu Telah Menyelesaikan Kuis! 🎉' }}
+                Hebat Sekali! Kamu Telah Menyelesaikan Kuis! 🎉
               </h3>
               <p class="text-sm text-[#5B6474] font-normal">
                 Kamu menjawab <strong class="text-[#1E7A6F] font-bold">{{ correctCount }} dari {{ questions.length }}</strong> soal dengan tepat.
@@ -3216,6 +3275,120 @@ onBeforeUnmount(() => {
     </div>
 
     </div>
+
+    <!-- ==================== POPUP PEMBAHASAN INSTAN SOAL (POPUP MODAL) ==================== -->
+    <Teleport to="body">
+      <div
+        v-if="isExplanationPopupOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-xs animate-fade-in"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+          class="relative w-full max-w-lg bg-white rounded-3xl border-2 shadow-2xl p-6 sm:p-8 space-y-5 animate-scale-up text-left max-h-[90vh] overflow-y-auto"
+          :class="isCurrentQuestionCorrect ? 'border-[#1E7A6F]' : 'border-[#D97706]'"
+        >
+          <!-- Header Banner Status -->
+          <div class="flex items-center justify-between gap-3 pb-3 border-b border-[#8F8575]/15">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow-sm shrink-0"
+                :class="isCurrentQuestionCorrect ? 'bg-[#1E7A6F] text-white' : 'bg-[#D97706] text-white'"
+              >
+                {{ isCurrentQuestionCorrect ? '🎉' : '💡' }}
+              </div>
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#5B6474] block">
+                  Hasil Soal {{ currentQuestionIndex + 1 }} dari {{ questions.length }}
+                </span>
+                <h3
+                  class="font-['Baloo_2'] text-xl sm:text-2xl font-bold leading-tight"
+                  :class="isCurrentQuestionCorrect ? 'text-[#1E7A6F]' : 'text-[#B45309]'"
+                >
+                  {{ isCurrentQuestionCorrect ? 'Hebat Sekali! Jawabanmu Benar! 🌟' : 'Jawaban Belum Tepat, Yuk Cek Pembahasannya! 💡' }}
+                </h3>
+              </div>
+            </div>
+
+            <div
+              v-if="isCurrentQuestionCorrect"
+              class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1E7A6F] text-white shadow-2xs shrink-0 flex items-center gap-1"
+            >
+              <Sparkles class="w-3.5 h-3.5" />
+              <span>+{{ currentQuestion.points || 50 }} Poin</span>
+            </div>
+          </div>
+
+          <!-- Pertanyaan Singkat -->
+          <div class="p-3.5 rounded-2xl bg-[#FFF8F0] border border-[#8F8575]/20 space-y-1">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-[#8F8575]">Pertanyaan:</span>
+            <p class="font-['Baloo_2'] font-bold text-[#2B3445] text-base leading-snug">
+              {{ currentQuestion.questionText }}
+            </p>
+          </div>
+
+          <!-- Perbandingan: Jawabanmu vs Kunci Jawaban -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <!-- Pilihan Kamu -->
+            <div
+              class="p-3.5 rounded-2xl border space-y-1"
+              :class="isCurrentQuestionCorrect ? 'bg-[#7FD4C4]/15 border-[#7FD4C4]' : 'bg-[#FFDE7A]/25 border-[#D97706]/40'"
+            >
+              <span class="text-[#5B6474] font-semibold block">Jawaban Kamu:</span>
+              <p
+                class="font-['Baloo_2'] font-bold text-base leading-snug"
+                :class="isCurrentQuestionCorrect ? 'text-[#1E7A6F]' : 'text-[#B45309]'"
+              >
+                {{ formatUserAnswerText(currentQuestion, selectedAnswers[currentQuestionIndex]) }}
+              </p>
+              <span
+                class="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold text-white mt-1"
+                :class="isCurrentQuestionCorrect ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'"
+              >
+                {{ isCurrentQuestionCorrect ? '✓ Benar' : '💡 Belum Tepat' }}
+              </span>
+            </div>
+
+            <!-- Kunci Jawaban -->
+            <div class="p-3.5 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4] space-y-1">
+              <span class="text-[#1E7A6F] font-semibold block">Kunci Jawaban:</span>
+              <p class="font-['Baloo_2'] font-bold text-base text-[#1E7A6F] leading-snug">
+                {{ formatCorrectAnswerText(currentQuestion) }}
+              </p>
+              <span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#1E7A6F] text-white mt-1">
+                ⭐ Tepat
+              </span>
+            </div>
+          </div>
+
+          <!-- Penjelasan / Pembahasan Lengkap -->
+          <div
+            v-if="currentQuestion.explanation"
+            class="p-4 rounded-2xl bg-white border-2 border-[#8F8575]/20 shadow-2xs space-y-1.5"
+          >
+            <h4 class="font-['Baloo_2'] text-sm font-bold text-[#1E7A6F] flex items-center gap-1.5">
+              <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
+              <span>Pembahasan Detail:</span>
+            </h4>
+            <p class="text-xs sm:text-sm text-[#2B3445] leading-relaxed">
+              {{ currentQuestion.explanation }}
+            </p>
+          </div>
+
+          <!-- Tombol Aksi: Next ke Soal Berikutnya atau Selesai Kuis -->
+          <div class="pt-2">
+            <button
+              type="button"
+              @click="handlePopupNext"
+              class="w-full py-4 rounded-2xl font-['Baloo_2'] font-bold text-base sm:text-lg flex items-center justify-center gap-2 text-[#2B3445] bg-[#7FD4C4] hover:bg-[#6ec2b3] border-2 border-[#1E7A6F]/20 shadow-md transition active:scale-98 cursor-pointer"
+            >
+              <span>{{ currentQuestionIndex < questions.length - 1 ? 'Lanjut ke Soal Berikutnya' : 'Selesai & Lihat Hasil Kuis 🎉' }}</span>
+              <ArrowRight class="w-5 h-5 text-[#2B3445]" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </Teleport>
 
   </div>
 </template>

@@ -27,7 +27,6 @@ import {
   stopSpeech,
   isSpeaking
 } from '../lib/chatbotService'
-import { playButtonPop, playMascotChime } from '../lib/soundEffects'
 
 // State widget
 const isOpen = ref(false)
@@ -42,7 +41,6 @@ const isAutoSpeechEnabled = ref(false)
 const currentlySpeakingId = ref(null)
 
 const toggleMaximize = () => {
-  playButtonPop()
   isMaximized.value = !isMaximized.value
   scrollToBottom()
 }
@@ -100,11 +98,9 @@ const checkHealth = async () => {
 
 // Toggle widget open/close
 const toggleChat = () => {
-  playButtonPop()
   isOpen.value = !isOpen.value
   showTooltip.value = false
   if (isOpen.value) {
-    playMascotChime()
     scrollToBottom()
   } else {
     stopSpeech()
@@ -121,7 +117,6 @@ const scrollToBottom = async () => {
 
 // Reset Chat
 const resetChat = () => {
-  playButtonPop()
   stopSpeech()
   currentlySpeakingId.value = null
   selectedPhoto.value = null
@@ -139,7 +134,6 @@ const resetChat = () => {
 
 // Photo Upload Handler
 const triggerFileInput = () => {
-  playButtonPop()
   if (fileInputRef.value) {
     fileInputRef.value.click()
   }
@@ -160,7 +154,6 @@ const onFileChange = (e) => {
 }
 
 const removeSelectedPhoto = () => {
-  playButtonPop()
   selectedPhoto.value = null
   if (photoPreviewUrl.value) {
     URL.revokeObjectURL(photoPreviewUrl.value)
@@ -178,8 +171,6 @@ const handleSend = async () => {
 
   if (!text && !photo) return
   if (isLoading.value) return
-
-  playButtonPop()
 
   const currentPhotoPreview = photoPreviewUrl.value
 
@@ -255,7 +246,6 @@ const sendChip = (chipText) => {
 
 // Speech Audio Readout
 const speakMessage = (msgId, text) => {
-  playButtonPop()
   if (currentlySpeakingId.value === msgId) {
     stopSpeech()
     currentlySpeakingId.value = null
@@ -270,7 +260,6 @@ const speakMessage = (msgId, text) => {
 }
 
 const toggleAutoSpeech = () => {
-  playButtonPop()
   isAutoSpeechEnabled.value = !isAutoSpeechEnabled.value
   if (!isAutoSpeechEnabled.value) {
     stopSpeech()
