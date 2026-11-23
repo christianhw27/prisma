@@ -99,6 +99,40 @@ const prevMateri = computed(() => {
   return null
 })
 
+const scrollToPageTop = () => {
+  try {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  } catch (e) {
+    window.scrollTo(0, 0)
+  }
+  if (typeof document !== 'undefined') {
+    if (document.documentElement) document.documentElement.scrollTop = 0
+    if (document.body) document.body.scrollTop = 0
+  }
+  nextTick(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    } catch (e) {
+      window.scrollTo(0, 0)
+    }
+    if (typeof document !== 'undefined') {
+      if (document.documentElement) document.documentElement.scrollTop = 0
+      if (document.body) document.body.scrollTop = 0
+    }
+  })
+  setTimeout(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    } catch (e) {
+      window.scrollTo(0, 0)
+    }
+    if (typeof document !== 'undefined') {
+      if (document.documentElement) document.documentElement.scrollTop = 0
+      if (document.body) document.body.scrollTop = 0
+    }
+  }, 60)
+}
+
 const goToNextChapter = () => {
   if (isLastChapterInClass.value) {
     playButtonPop()
@@ -108,14 +142,14 @@ const goToNextChapter = () => {
   if (!nextMateri.value) return
   playButtonPop()
   emit('change-materi', nextMateri.value)
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  scrollToPageTop()
 }
 
 const goToPrevChapter = () => {
   if (!prevMateri.value) return
   playButtonPop()
   emit('change-materi', prevMateri.value)
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  scrollToPageTop()
 }
 
 // 2 Tahap Pembelajaran: 'video' | 'quiz'
@@ -280,13 +314,7 @@ const goToBacaan = () => {
   playButtonPop()
   activeTab.value = 'quiz'
   isBacaanExpanded.value = true
-  nextTick(() => {
-    if (bacaanSectionRef.value) {
-      bacaanSectionRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-  })
+  scrollToPageTop()
 }
 
 const scrollToQuiz = () => {
@@ -1160,10 +1188,12 @@ watch(() => props.materi?.id, () => {
   activeTab.value = 'video'
   selectedVideoIndex.value = 1
   resetQuiz()
+  scrollToPageTop()
 })
 
 watch(activeTab, () => {
   stopAudioNarration()
+  scrollToPageTop()
   nextTick(() => {
     updateMatchingLines()
   })
