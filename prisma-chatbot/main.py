@@ -831,28 +831,41 @@ class DefiLocalEngine:
         kelas_words = {'satu': 1, 'dua': 2, 'tiga': 3, 'empat': 4, 'lima': 5, 'enam': 6, 'i': 1, 'ii': 2, 'iii': 3, 'iv': 4, 'v': 5, 'vi': 6}
         bab_words = {'satu': 1, 'dua': 2, 'tiga': 3, 'empat': 4, 'lima': 5, 'enam': 6, 'tujuh': 7, 'delapan': 8, 'i': 1, 'ii': 2, 'iii': 3, 'iv': 4, 'v': 5, 'vi': 6, 'vii': 7, 'viii': 8}
 
-        m1 = re.search(r'\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b.*?\bbab\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b', lower)
+        m1 = re.search(r'\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b.*?\b(?:bab|materi)\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b', lower)
         if m1:
             k_val, b_val = m1.group(1), m1.group(2)
             k_num = int(k_val) if k_val.isdigit() else kelas_words.get(k_val)
             b_num = int(b_val) if b_val.isdigit() else bab_words.get(b_val)
 
         if not k_num or not b_num:
-            m2 = re.search(r'\bbab\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b.*?\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b', lower)
+            m2 = re.search(r'\b(?:bab|materi)\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b.*?\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b', lower)
             if m2:
                 b_val, k_val = m2.group(1), m2.group(2)
                 b_num = int(b_val) if b_val.isdigit() else bab_words.get(b_val)
                 k_num = int(k_val) if k_val.isdigit() else kelas_words.get(k_val)
 
         if not k_num or not b_num:
-            m3 = re.search(r'\bk(\d)\b.*?\bb(?:ab)?\s*(\d)\b', lower)
+            m3 = re.search(r'\bk(\d)\b.*?\b(?:b|m)(?:ab|ateri)?\s*(\d)\b', lower)
             if m3:
                 k_num = int(m3.group(1))
                 b_num = int(m3.group(2))
 
-        # Query whole class (e.g. "daftar materi kelas 2", "kelas 1 belajar apa")
-        if (not k_num or not b_num) and "bab" not in lower:
-            is_asking_list = bool(re.match(r'^(?:materi\s+)?kelas\s*\w+$', lower.strip()) or re.search(r'daftar|apa saja|apa aja|ada apa|sebutkan|kurikulum|semua bab|pelajaran apa|belajar apa', lower))
+        # Helper untuk ekstraksi judul bab dari capaian_pembelajaran / topik
+        def extract_chapter_title(k: int, b: int) -> str:
+            rows = self.df[self.df["id_data"].isin([f"K{k}-KUIS-M{b}-S1", f"K{k}-GAB-B{b}-SOAL1", f"K{k}-GAB-B{b}-KONSEP-NUM"])]
+            if not rows.empty:
+                cp = rows.iloc[0].get("capaian_pembelajaran", "")
+                m = re.search(r'\((.*?)\)', str(cp))
+                if m:
+                    return m.group(1).strip()
+                topik = rows.iloc[0].get("pertanyaan_atau_topik", "")
+                return re.sub(r'^(?:Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*|Bagaimana cara |Apa itu )', '', str(topik)).rstrip('?')
+            return f"Materi {b}"
+
+        # Query seluruh bab dalam kelas (contoh: "daftar materi kelas 2", "kelas 1 belajar apa", "daftar bab di kelas 3")
+        has_bab_num = bool(re.search(r'\b(?:bab|materi)\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b', lower))
+        if (not k_num or not b_num) and not has_bab_num:
+            is_asking_list = bool(re.match(r'^(?:materi\s+)?kelas\s*\w+$', lower.strip()) or re.search(r'daftar|apa saja|apa aja|ada apa|sebutkan|kurikulum|semua bab|pelajaran apa|belajar apa|bab', lower))
             if is_asking_list:
                 m_k_only = re.search(r'\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b', lower)
                 if m_k_only:
@@ -861,10 +874,8 @@ class DefiLocalEngine:
                     if k_single and 1 <= k_single <= 6:
                         out = f"📚 **Daftar Materi PRISMA Kelas {k_single} (8 Bab)** 🌟\n\n"
                         for b in range(1, 9):
-                            rows = self.df[self.df["id_data"] == f"K{k_single}-GAB-B{b}-KONSEP-NUM"]
-                            topic = rows.iloc[0]["pertanyaan_atau_topik"] if not rows.empty else "Materi Pembelajaran"
-                            topic_clean = re.sub(r'^(?:Bagaimana cara |Apa itu )', '', topic).rstrip('?')
-                            out += f"• **Bab {b}**: {topic_clean}\n"
+                            title = extract_chapter_title(k_single, b)
+                            out += f"• **Bab {b}**: *{title}*\n"
                         out += f"\nKamu mau pelajari bab berapa? Tanya misalnya: *'Materi kelas {k_single} bab 1'* ya! ✨"
                         return {
                             "sumber": "lokal_csv",
@@ -877,80 +888,63 @@ class DefiLocalEngine:
         if not k_num or not b_num or not (1 <= k_num <= 6 and 1 <= b_num <= 8):
             return None
 
-        prefix = f"K{k_num}-GAB-B{b_num}"
-        sub = self.df[self.df["id_data"].str.startswith(prefix)]
-        if sub.empty:
-            return None
+        # Ambil data Soal 1 dan Soal 2
+        s1 = self.df[self.df["id_data"].isin([f"K{k_num}-KUIS-M{b_num}-S1", f"K{k_num}-GAB-B{b_num}-SOAL1"])]
+        s2 = self.df[self.df["id_data"].isin([f"K{k_num}-KUIS-M{b_num}-S2", f"K{k_num}-GAB-B{b_num}-SOAL2"])]
+        ch_title = extract_chapter_title(k_num, b_num)
 
-        # Check sub-intent
+        # Helper membersihkan awalan template pertanyaan kuis
+        def clean_q(text: str) -> str:
+            return re.sub(r'^Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*', '', str(text), flags=re.I).strip()
+
+        # Check sub-intent: Soal 1
         if re.search(r'soal\s*1|pertanyaan\s*1|kuis\s*1', lower):
-            s1 = sub[sub["id_data"] == f"{prefix}-SOAL1"]
             if not s1.empty:
                 row = s1.iloc[0]
-                ans = f"📝 **Soal 1 (Kelas {k_num} Bab {b_num})**:\n{row['pertanyaan_atau_topik']}\n\n💡 **Kunci Jawaban & Pembahasan:**\n{row['jawaban']}"
+                q_text = clean_q(row['pertanyaan_atau_topik'])
+                ans = f"📝 **Soal 1 (Kelas {k_num} Bab {b_num}: {ch_title})**:\n\n{q_text}\n\n💡 **Kunci Jawaban & Pembahasan:**\n{row['jawaban']}"
                 return {"sumber": "lokal_csv", "status": "success", "confidence": 1.0, "jawaban": ans, "metadata": {"id_data": row["id_data"], "topik": row["pertanyaan_atau_topik"]}}
 
+        # Check sub-intent: Soal 2
         if re.search(r'soal\s*2|pertanyaan\s*2|kuis\s*2', lower):
-            s2 = sub[sub["id_data"] == f"{prefix}-SOAL2"]
             if not s2.empty:
                 row = s2.iloc[0]
-                ans = f"📝 **Soal 2 (Kelas {k_num} Bab {b_num})**:\n{row['pertanyaan_atau_topik']}\n\n💡 **Kunci Jawaban & Pembahasan:**\n{row['jawaban']}"
+                q_text = clean_q(row['pertanyaan_atau_topik'])
+                ans = f"📝 **Soal 2 (Kelas {k_num} Bab {b_num}: {ch_title})**:\n\n{q_text}\n\n💡 **Kunci Jawaban & Pembahasan:**\n{row['jawaban']}"
                 return {"sumber": "lokal_csv", "status": "success", "confidence": 1.0, "jawaban": ans, "metadata": {"id_data": row["id_data"], "topik": row["pertanyaan_atau_topik"]}}
 
-        if re.search(r'kunci\s*jawaban|pembahasan|jawaban\s*soal', lower):
-            s1 = sub[sub["id_data"] == f"{prefix}-SOAL1"]
-            s2 = sub[sub["id_data"] == f"{prefix}-SOAL2"]
-            out = f"💡 **Kunci Jawaban & Pembahasan Soal Kelas {k_num} Bab {b_num}**:\n\n"
+        # Check sub-intent: Kunci Jawaban / Pembahasan
+        if re.search(r'kunci\s*jawaban|pembahasan|jawaban\s*soal|kunci\s*soal', lower):
+            out = f"💡 **Kunci Jawaban & Pembahasan Lengkap Kelas {k_num} Bab {b_num} ({ch_title})**:\n\n"
             if not s1.empty:
-                out += f"1️⃣ **{s1.iloc[0]['pertanyaan_atau_topik']}**\n👉 {s1.iloc[0]['jawaban']}\n\n"
+                q1 = clean_q(s1.iloc[0]['pertanyaan_atau_topik'])
+                out += f"1️⃣ **Soal 1:** {q1}\n👉 **Pembahasan:** {s1.iloc[0]['jawaban']}\n\n"
             if not s2.empty:
-                out += f"2️⃣ **{s2.iloc[0]['pertanyaan_atau_topik']}**\n👉 {s2.iloc[0]['jawaban']}"
+                q2 = clean_q(s2.iloc[0]['pertanyaan_atau_topik'])
+                out += f"2️⃣ **Soal 2:** {q2}\n👉 **Pembahasan:** {s2.iloc[0]['jawaban']}"
             return {"sumber": "lokal_csv", "status": "success", "confidence": 1.0, "jawaban": out.strip(), "metadata": {"topik": "Kunci Jawaban"}}
 
-        if re.search(r'literasi|membaca|menyimak|bacaan', lower) and not re.search(r'numerasi|matematika|hitung', lower):
-            lit = sub[sub["id_data"] == f"{prefix}-KONSEP-LIT"]
-            if not lit.empty:
-                row = lit.iloc[0]
-                ans = f"📖 **Materi Literasi Kelas {k_num} Bab {b_num}**:\n\n**{row['pertanyaan_atau_topik']}**\n\n{row['jawaban']}"
-                return {"sumber": "lokal_csv", "status": "success", "confidence": 1.0, "jawaban": ans, "metadata": {"id_data": row["id_data"], "topik": row["pertanyaan_atau_topik"]}}
-
-        if re.search(r'numerasi|matematika|hitung', lower) and not re.search(r'literasi|membaca', lower):
-            num = sub[sub["id_data"] == f"{prefix}-KONSEP-NUM"]
-            if not num.empty:
-                row = num.iloc[0]
-                ans = f"🔢 **Materi Numerasi (Matematika) Kelas {k_num} Bab {b_num}**:\n\n**{row['pertanyaan_atau_topik']}**\n\n{row['jawaban']}"
-                return {"sumber": "lokal_csv", "status": "success", "confidence": 1.0, "jawaban": ans, "metadata": {"id_data": row["id_data"], "topik": row["pertanyaan_atau_topik"]}}
-
-        if re.search(r'contoh\s*soal|soal\s*cerita|contoh', lower):
-            cth = sub[sub["id_data"] == f"{prefix}-CONTOH"]
-            if not cth.empty:
-                row = cth.iloc[0]
-                ans = f"📝 **Contoh Soal Cerita (Kelas {k_num} Bab {b_num})**:\n\n*{row['pertanyaan_atau_topik']}*\n\n💡 **Pembahasan:**\n{row['jawaban']}"
-                return {"sumber": "lokal_csv", "status": "success", "confidence": 1.0, "jawaban": ans, "metadata": {"id_data": row["id_data"], "topik": row["pertanyaan_atau_topik"]}}
-
         # General chapter overview
-        lit = sub[sub["id_data"] == f"{prefix}-KONSEP-LIT"]
-        num = sub[sub["id_data"] == f"{prefix}-KONSEP-NUM"]
-        cth = sub[sub["id_data"] == f"{prefix}-CONTOH"]
-        cp = sub.iloc[0]["capaian_pembelajaran"] if not sub.empty else ""
-
-        out = f"✨ **Materi PRISMA Kelas {k_num} Bab {b_num}** ✨\n\n"
-        if cp:
-            out += f"🎯 **Capaian Pembelajaran:**\n{cp}\n\n"
-        if not lit.empty:
-            out += f"📖 **Literasi (Membaca & Menyimak):**\n{lit.iloc[0]['pertanyaan_atau_topik']}\n👉 {lit.iloc[0]['jawaban'].split('.')[0]}.\n\n"
-        if not num.empty:
-            out += f"🔢 **Numerasi (Matematika & Berhitung):**\n{num.iloc[0]['pertanyaan_atau_topik']}\n👉 {num.iloc[0]['jawaban'].split('.')[0]}.\n\n"
-        if not cth.empty:
-            out += f"📝 **Contoh Soal Cerita:**\n*{cth.iloc[0]['pertanyaan_atau_topik']}*\n\n"
-        out += f"Kamu bisa tanya *'soal 1 kelas {k_num} bab {b_num}'*, *'kunci jawaban kelas {k_num} bab {b_num}'*, atau *'literasi kelas {k_num} bab {b_num}'* ke Kak Defi ya! 🚀"
+        out = f"✨ **Materi PRISMA Kelas {k_num} Bab {b_num}: {ch_title}** ✨\n\n"
+        out += f"📖 **Topik Cerita & Materi:**\n*{ch_title}*\n\n"
+        if not s1.empty:
+            q1 = clean_q(s1.iloc[0]['pertanyaan_atau_topik'])
+            out += f"1️⃣ **Latihan Soal 1:**\n{q1}\n\n"
+        if not s2.empty:
+            q2 = clean_q(s2.iloc[0]['pertanyaan_atau_topik'])
+            out += f"2️⃣ **Latihan Soal 2:**\n{q2}\n\n"
+        out += f"Kamu bisa tanya langsung ke Kak Defi:\n"
+        out += f"👉 *\"kunci jawaban kelas {k_num} bab {b_num}\"*\n"
+        out += f"👉 *\"soal 1 kelas {k_num} bab {b_num}\"*\n"
+        out += f"👉 *\"soal 2 kelas {k_num} bab {b_num}\"*\n\n"
+        out += f"Yuk coba kerjakan kuisnya di PRISMA! Semangat belajar ya! 🚀"
 
         return {
             "sumber": "lokal_csv",
             "status": "success",
             "confidence": 1.0,
             "jawaban": out,
-            "metadata": {"kelas": f"Kelas {k_num}", "bab": f"Bab {b_num}", "capaian_pembelajaran": cp}
+            "metadata": {"kelas": f"Kelas {k_num}", "bab": f"Bab {b_num}", "topik": ch_title}
         }
 
     def search_tfidf(self, query: str, kelas: Optional[str] = None, kategori: Optional[str] = None, threshold: float = 0.25):

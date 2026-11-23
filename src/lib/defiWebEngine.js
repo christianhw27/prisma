@@ -715,11 +715,8 @@ function getChapterIndex(dataset) {
       index[k][b] = {
         kelas: k,
         bab: b,
+        title: '',
         cp: '',
-        story: '',
-        konsepLit: null,
-        konsepNum: null,
-        contoh: null,
         soal1: null,
         soal2: null
       }
@@ -727,23 +724,20 @@ function getChapterIndex(dataset) {
   }
 
   for (const item of dataset) {
-    const m = (item.id_data || '').match(/^K(\d)-GAB-B(\d+)-(KONSEP-LIT|KONSEP-NUM|CONTOH|SOAL1|SOAL2)/i)
+    const m = (item.id_data || '').match(/^K(\d)-(?:KUIS-M|GAB-B)(\d+)-S([12])/i)
     if (m) {
       const k = parseInt(m[1])
       const b = parseInt(m[2])
-      const type = m[3].toUpperCase()
+      const s = m[3]
       if (index[k] && index[k][b]) {
         const ch = index[k][b]
-        if (!ch.cp && item.capaian_pembelajaran) ch.cp = item.capaian_pembelajaran.trim()
-        if (type === 'KONSEP-LIT') ch.konsepLit = item
-        if (type === 'KONSEP-NUM') ch.konsepNum = item
-        if (type === 'CONTOH') ch.contoh = item
-        if (type === 'SOAL1') ch.soal1 = item
-        if (type === 'SOAL2') ch.soal2 = item
+        if (s === '1') ch.soal1 = item
+        if (s === '2') ch.soal2 = item
 
-        if (!ch.story && item.kata_kunci) {
-          const mStory = item.kata_kunci.match(/(?:soal cerita|latihan|kuis)\s+([^,]+)/i)
-          if (mStory) ch.story = mStory[1].trim()
+        if (!ch.title && item.capaian_pembelajaran) {
+          const mTitle = item.capaian_pembelajaran.match(/\((.*?)\)/)
+          if (mTitle) ch.title = mTitle[1].trim()
+          ch.cp = item.capaian_pembelajaran.trim()
         }
       }
     }
@@ -757,25 +751,25 @@ function parseKelasBabIntent(query) {
   let kelas = null
   let bab = null
 
-  // Pattern 1: kelas X ... bab Y
-  let m = lower.match(/\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b[\s\S]*?\bbab\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b/i)
+  // Pattern 1: kelas X ... bab Y / materi Y
+  let m = lower.match(/\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b[\s\S]*?\b(?:bab|materi)\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b/i)
   if (m) {
     kelas = parseInt(m[1]) || KELAS_MAP[m[1]]
     bab = parseInt(m[2]) || BAB_MAP[m[2]]
   }
 
-  // Pattern 2: bab Y ... kelas X
+  // Pattern 2: bab Y / materi Y ... kelas X
   if (!kelas || !bab) {
-    m = lower.match(/\bbab\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b[\s\S]*?\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b/i)
+    m = lower.match(/\b(?:bab|materi)\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b[\s\S]*?\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b/i)
     if (m) {
       bab = parseInt(m[1]) || BAB_MAP[m[1]]
       kelas = parseInt(m[2]) || KELAS_MAP[m[2]]
     }
   }
 
-  // Pattern 3: kX bY, e.g. k1 b2, k2 bab 3
+  // Pattern 3: kX bY / kX mY
   if (!kelas || !bab) {
-    m = lower.match(/\bk(\d)\b[\s\S]*?\bb(?:ab)?\s*(\d)\b/i)
+    m = lower.match(/\bk(\d)\b[\s\S]*?\b(?:b|m)(?:ab|ateri)?\s*(\d)\b/i)
     if (m) {
       kelas = parseInt(m[1])
       bab = parseInt(m[2])
@@ -786,14 +780,15 @@ function parseKelasBabIntent(query) {
     return { kelas, bab }
   }
 
-  // Pattern 4: only kelas X (e.g. "materi kelas 2 apa aja?", "daftar bab di kelas 4", atau "kelas 1")
+  // Pattern 4: query whole class (e.g. "materi kelas 2 apa aja?", "daftar bab di kelas 4", "semua bab kelas 3", "kelas 1")
   const mKelasOnly = lower.match(/\bkelas\s*(\d+|satu|dua|tiga|empat|lima|enam|vi|iv|v|iii|ii|i)\b/i)
-  if (mKelasOnly && !lower.includes('bab')) {
-    const isAskingCurriculumList = /^(?:materi\s+)?kelas\s*\w+$/i.test(lower.trim()) ||
-      /daftar|apa saja|apa aja|ada apa|sebutkan|kurikulum|semua bab|pelajaran apa|belajar apa/i.test(lower)
-    if (isAskingCurriculumList) {
-      const kOnly = parseInt(mKelasOnly[1]) || KELAS_MAP[mKelasOnly[1]]
-      if (kOnly >= 1 && kOnly <= 6) {
+  if (mKelasOnly) {
+    const kOnly = parseInt(mKelasOnly[1]) || KELAS_MAP[mKelasOnly[1]]
+    const hasBabNumber = /\b(?:bab|materi)\s*(\d+|satu|dua|tiga|empat|lima|enam|tujuh|delapan|viii|vii|vi|iv|v|iii|ii|i)\b/i.test(lower)
+    if (!hasBabNumber && kOnly >= 1 && kOnly <= 6) {
+      const isAskingCurriculumList = /^(?:materi\s+)?kelas\s*\w+$/i.test(lower.trim()) ||
+        /daftar|apa saja|apa aja|ada apa|sebutkan|kurikulum|semua bab|pelajaran apa|belajar apa|bab/i.test(lower)
+      if (isAskingCurriculumList) {
         return { kelas: kOnly, bab: null }
       }
     }
@@ -806,14 +801,13 @@ function handleClassOrChapterQuery(query, intent, dataset) {
   const { kelas, bab } = intent
   const chapterIdx = getChapterIndex(dataset)
 
-  // Case A: Query whole class (e.g. "daftar bab kelas 2")
+  // Case A: Query whole class (e.g. "daftar bab kelas 2", "materi kelas 1 apa saja?")
   if (kelas && !bab) {
     let out = `📚 **Daftar Materi PRISMA Kelas ${kelas} (8 Bab)** 🌟\n\n`
     for (let b = 1; b <= 8; b++) {
       const ch = chapterIdx[kelas] && chapterIdx[kelas][b]
-      const storyName = ch && ch.story ? ` (Topik: *${ch.story}*)` : ''
-      const numTopic = ch && ch.konsepNum ? ch.konsepNum.pertanyaan_atau_topik.replace(/^Bagaimana cara |^Apa itu /i, '').replace(/\?$/, '') : ''
-      out += `• **Bab ${b}**: ${numTopic || 'Materi Pembelajaran'}${storyName}\n`
+      const title = ch && ch.title ? ch.title : `Materi ${b}`
+      out += `• **Bab ${b}**: *${title}*\n`
     }
     out += `\nKamu mau pelajari bab berapa? Tanya misalnya: *"Materi kelas ${kelas} bab 1"* ya! ✨`
     return {
@@ -834,11 +828,12 @@ function handleClassOrChapterQuery(query, intent, dataset) {
   if (/soal\s*1|pertanyaan\s*1|kuis\s*1/i.test(lower)) {
     const s1 = ch.soal1
     if (s1) {
+      const qText = s1.pertanyaan_atau_topik.replace(/^Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*/i, '')
       return {
         sumber: 'lokal_csv',
         status: 'success',
         confidence: 1.0,
-        jawaban: `📝 **Soal 1 (Kelas ${kelas} Bab ${bab})**:\n${s1.pertanyaan_atau_topik}\n\n💡 **Kunci Jawaban & Pembahasan:**\n${cleanJawaban(s1.jawaban)}`,
+        jawaban: `📝 **Soal 1 (Kelas ${kelas} Bab ${bab}: ${ch.title})**:\n\n${qText}\n\n💡 **Kunci Jawaban & Pembahasan:**\n${cleanJawaban(s1.jawaban)}`,
         metadata: { id_data: s1.id_data, kelas: s1.kelas, topik: s1.pertanyaan_atau_topik }
       }
     }
@@ -848,11 +843,12 @@ function handleClassOrChapterQuery(query, intent, dataset) {
   if (/soal\s*2|pertanyaan\s*2|kuis\s*2/i.test(lower)) {
     const s2 = ch.soal2
     if (s2) {
+      const qText = s2.pertanyaan_atau_topik.replace(/^Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*/i, '')
       return {
         sumber: 'lokal_csv',
         status: 'success',
         confidence: 1.0,
-        jawaban: `📝 **Soal 2 (Kelas ${kelas} Bab ${bab})**:\n${s2.pertanyaan_atau_topik}\n\n💡 **Kunci Jawaban & Pembahasan:**\n${cleanJawaban(s2.jawaban)}`,
+        jawaban: `📝 **Soal 2 (Kelas ${kelas} Bab ${bab}: ${ch.title})**:\n\n${qText}\n\n💡 **Kunci Jawaban & Pembahasan:**\n${cleanJawaban(s2.jawaban)}`,
         metadata: { id_data: s2.id_data, kelas: s2.kelas, topik: s2.pertanyaan_atau_topik }
       }
     }
@@ -862,9 +858,15 @@ function handleClassOrChapterQuery(query, intent, dataset) {
   if (/kunci\s*jawaban|pembahasan|jawaban\s*soal|kunci\s*soal/i.test(lower)) {
     const s1 = ch.soal1
     const s2 = ch.soal2
-    let out = `💡 **Kunci Jawaban & Pembahasan Soal Kelas ${kelas} Bab ${bab}**:\n\n`
-    if (s1) out += `1️⃣ **${s1.pertanyaan_atau_topik}**\n👉 ${cleanJawaban(s1.jawaban)}\n\n`
-    if (s2) out += `2️⃣ **${s2.pertanyaan_atau_topik}**\n👉 ${cleanJawaban(s2.jawaban)}`
+    let out = `💡 **Kunci Jawaban & Pembahasan Lengkap Kelas ${kelas} Bab ${bab} (${ch.title})**:\n\n`
+    if (s1) {
+      const q1 = s1.pertanyaan_atau_topik.replace(/^Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*/i, '')
+      out += `1️⃣ **Soal 1:** ${q1}\n👉 **Pembahasan:** ${cleanJawaban(s1.jawaban)}\n\n`
+    }
+    if (s2) {
+      const q2 = s2.pertanyaan_atau_topik.replace(/^Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*/i, '')
+      out += `2️⃣ **Soal 2:** ${q2}\n👉 **Pembahasan:** ${cleanJawaban(s2.jawaban)}`
+    }
     return {
       sumber: 'lokal_csv',
       status: 'success',
@@ -874,74 +876,29 @@ function handleClassOrChapterQuery(query, intent, dataset) {
     }
   }
 
-  // Case E: Literasi (Membaca/Menyimak)
-  if (/literasi|membaca|menyimak|bacaan|cerita|teks/i.test(lower) && !/numerasi|matematika|hitung/i.test(lower)) {
-    const lit = ch.konsepLit
-    if (lit) {
-      return {
-        sumber: 'lokal_csv',
-        status: 'success',
-        confidence: 1.0,
-        jawaban: `📖 **Materi Literasi Kelas ${kelas} Bab ${bab}**:\n\n**${lit.pertanyaan_atau_topik}**\n\n${cleanJawaban(lit.jawaban)}`,
-        metadata: { id_data: lit.id_data, kelas: lit.kelas, topik: lit.pertanyaan_atau_topik }
-      }
-    }
+  // Case E: General Chapter Overview (100% matched from dataset.csv)
+  let out = `✨ **Materi PRISMA Kelas ${kelas} Bab ${bab}: ${ch.title}** ✨\n\n`
+  out += `📖 **Topik Cerita & Materi:**\n*${ch.title}*\n\n`
+  if (ch.soal1) {
+    const q1 = ch.soal1.pertanyaan_atau_topik.replace(/^Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*/i, '')
+    out += `1️⃣ **Latihan Soal 1:**\n${q1}\n\n`
   }
-
-  // Case F: Numerasi (Matematika/Berhitung)
-  if (/numerasi|matematika|hitung|angka|pecahan|bangun|kurang|tambah|kali|bagi/i.test(lower) && !/literasi|membaca/i.test(lower)) {
-    const num = ch.konsepNum
-    if (num) {
-      return {
-        sumber: 'lokal_csv',
-        status: 'success',
-        confidence: 1.0,
-        jawaban: `🔢 **Materi Numerasi (Matematika) Kelas ${kelas} Bab ${bab}**:\n\n**${num.pertanyaan_atau_topik}**\n\n${cleanJawaban(num.jawaban)}`,
-        metadata: { id_data: num.id_data, kelas: num.kelas, topik: num.pertanyaan_atau_topik }
-      }
-    }
+  if (ch.soal2) {
+    const q2 = ch.soal2.pertanyaan_atau_topik.replace(/^Cara menyelesaikan Soal \d+ Materi \d+ \([^)]+\) Kelas \d+:\s*/i, '')
+    out += `2️⃣ **Latihan Soal 2:**\n${q2}\n\n`
   }
-
-  // Case G: Contoh Soal Cerita
-  if (/contoh\s*soal|soal\s*cerita|contoh/i.test(lower)) {
-    const contoh = ch.contoh
-    if (contoh) {
-      return {
-        sumber: 'lokal_csv',
-        status: 'success',
-        confidence: 1.0,
-        jawaban: `📝 **Contoh Soal Cerita (Kelas ${kelas} Bab ${bab})**:\n\n*${contoh.pertanyaan_atau_topik}*\n\n💡 **Pembahasan:**\n${cleanJawaban(contoh.jawaban)}`,
-        metadata: { id_data: contoh.id_data, kelas: contoh.kelas, topik: contoh.pertanyaan_atau_topik }
-      }
-    }
-  }
-
-  // Case H: General Chapter Overview (100% matched from dataset.csv)
-  const lit = ch.konsepLit
-  const num = ch.konsepNum
-  const contoh = ch.contoh
-
-  let out = `✨ **Materi PRISMA Kelas ${kelas} Bab ${bab}** ✨\n\n`
-  if (ch.cp) {
-    out += `🎯 **Capaian Pembelajaran:**\n${ch.cp}\n\n`
-  }
-  if (lit) {
-    out += `📖 **Literasi (Membaca & Menyimak):**\n${lit.pertanyaan_atau_topik}\n👉 ${cleanJawaban(lit.jawaban.split('.')[0])}.\n\n`
-  }
-  if (num) {
-    out += `🔢 **Numerasi (Matematika & Berhitung):**\n${num.pertanyaan_atau_topik}\n👉 ${cleanJawaban(num.jawaban.split('.')[0])}.\n\n`
-  }
-  if (contoh) {
-    out += `📝 **Contoh Soal Cerita:**\n*${contoh.pertanyaan_atau_topik}*\n\n`
-  }
-  out += `Kamu bisa tanya *"soal 1 kelas ${kelas} bab ${bab}"*, *"kunci jawaban kelas ${kelas} bab ${bab}"*, atau *"literasi kelas ${kelas} bab ${bab}"* ke Kak Defi ya! 🚀`
+  out += `Kamu bisa tanya langsung ke Kak Defi:\n`
+  out += `👉 *"kunci jawaban kelas ${kelas} bab ${bab}"*\n`
+  out += `👉 *"soal 1 kelas ${kelas} bab ${bab}"*\n`
+  out += `👉 *"soal 2 kelas ${kelas} bab ${bab}"*\n\n`
+  out += `Yuk coba kerjakan kuisnya di PRISMA! Semangat belajar ya! 🚀`
 
   return {
     sumber: 'lokal_csv',
     status: 'success',
     confidence: 1.0,
     jawaban: out,
-    metadata: { kelas: `Kelas ${kelas}`, bab: `Bab ${bab}`, capaian_pembelajaran: ch.cp }
+    metadata: { kelas: `Kelas ${kelas}`, bab: `Bab ${bab}`, topik: ch.title }
   }
 }
 
