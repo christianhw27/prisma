@@ -65,10 +65,10 @@ const chatContainerRef = ref(null)
 
 // Quick Chips
 const quickChips = [
+  { label: '📚 Materi Kelas 2 Bab 3', text: 'Materi Kelas 2 Bab 3' },
   { label: '🧮 24 × 5 berapa?', text: '24 x 5 berapa?' },
   { label: '📖 Apa itu ide pokok?', text: 'Apa itu ide pokok paragraf?' },
-  { label: '🍰 Mengapa pecahan 1/2 sama besar?', text: 'Jelaskan pecahan 1/2 pada kue' },
-  { label: '📏 1 meter berapa cm?', text: '1 meter itu ada berapa sentimeter?' }
+  { label: '📝 Kunci Jawaban Bab 2 Kelas 4', text: 'Kunci jawaban bab 2 kelas 4' }
 ]
 
 // Auto dismiss tooltip after 9 seconds
