@@ -495,10 +495,6 @@ const connectMatchingPair = (leftItem, rightItem) => {
   activeMatchingLeft.value = null
   nextTick(() => {
     updateMatchingLines()
-    const totalPairs = currentQuestion.value?.pairs?.length || 0
-    if (totalPairs > 0 && Object.keys(currentMap).length === totalPairs) {
-      evaluateCurrentQuestion()
-    }
   })
 }
 
@@ -1184,11 +1180,11 @@ onBeforeUnmount(() => {
       <div class="flex items-center gap-3 min-w-0">
         <button
           @click="emit('back')"
-          class="p-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shrink-0 active:scale-95"
+          class="p-2 sm:px-3.5 sm:py-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shrink-0 active:scale-95 shadow-2xs"
           title="Kembali ke Katalog Materi"
         >
           <ArrowLeft class="w-4 h-4 text-[#1E7A6F]" />
-          <span class="hidden sm:inline">Kembali</span>
+          <span>Kembali</span>
         </button>
 
         <div class="min-w-0 text-left">
@@ -1820,26 +1816,26 @@ onBeforeUnmount(() => {
                     <path
                       :d="getLinePath(line.x1, line.y1, line.x2, line.y2)"
                       fill="none"
-                      :stroke="isCurrentQuestionChecked ? (isPairCorrect(line.left, line.right) ? '#1E7A6F' : '#D97706') : line.color.stroke"
-                      :stroke-width="isCurrentQuestionChecked ? 6 : 5"
+                      stroke="#1E7A6F"
+                      stroke-width="4.5"
                       stroke-linecap="round"
                     />
                     <!-- End Dots -->
                     <circle
                       :cx="line.x1"
                       :cy="line.y1"
-                      r="7"
-                      :fill="isCurrentQuestionChecked ? (isPairCorrect(line.left, line.right) ? '#1E7A6F' : '#D97706') : line.color.stroke"
+                      r="6"
+                      fill="#1E7A6F"
                       stroke="#FFFFFF"
-                      stroke-width="2.5"
+                      stroke-width="2"
                     />
                     <circle
                       :cx="line.x2"
                       :cy="line.y2"
-                      r="7"
-                      :fill="isCurrentQuestionChecked ? (isPairCorrect(line.left, line.right) ? '#1E7A6F' : '#D97706') : line.color.stroke"
+                      r="6"
+                      fill="#1E7A6F"
                       stroke="#FFFFFF"
-                      stroke-width="2.5"
+                      stroke-width="2"
                     />
                   </g>
 
@@ -1872,13 +1868,9 @@ onBeforeUnmount(() => {
                       :class="[
                         'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none relative group',
                         activeMatchingLeft === item
-                          ? 'border-[#1E7A6F] bg-[#7FD4C4]/25 ring-2 ring-[#1E7A6F] scale-[1.02] shadow-sm text-[#1E7A6F]'
-                          : isCurrentQuestionChecked && getMatchingAnswersForCurrent()[item]
-                          ? isPairCorrect(item, getMatchingAnswersForCurrent()[item])
-                            ? 'border-[#1E7A6F] bg-[#7FD4C4]/20 text-[#1E7A6F]'
-                            : 'border-[#D97706] bg-[#FFDE7A]/30 text-[#B45309]'
+                          ? 'border-[#1E7A6F] bg-[#7FD4C4]/20 ring-2 ring-[#1E7A6F] scale-[1.01] shadow-xs text-[#1E7A6F]'
                           : getMatchingAnswersForCurrent()[item]
-                          ? `${getPairColor(item).border} ${getPairColor(item).bg} text-[#2B3445]`
+                          ? 'bg-white border-[#1E7A6F] text-[#2B3445] shadow-xs'
                           : 'bg-white border-[#8F8575]/25 hover:border-[#1E7A6F] text-[#2B3445]'
                       ]"
                     >
@@ -1890,21 +1882,10 @@ onBeforeUnmount(() => {
                       </div>
 
                       <div class="flex items-center gap-2">
-                        <span
-                          v-if="getMatchingAnswersForCurrent()[item]"
-                          :class="[
-                            'px-2.5 py-1 rounded-lg text-xs font-bold text-white',
-                            isCurrentQuestionChecked
-                              ? (isPairCorrect(item, getMatchingAnswersForCurrent()[item]) ? 'bg-[#1E7A6F]' : 'bg-[#D97706]')
-                              : getPairColor(item).badgeBg
-                          ]"
-                        >
-                          {{ isCurrentQuestionChecked ? (isPairCorrect(item, getMatchingAnswersForCurrent()[item]) ? '✓ Tepat' : '💡 Cek Lagi') : getPairColor(item).label }}
-                        </span>
                         <button
-                          v-if="getMatchingAnswersForCurrent()[item]"
+                          v-if="getMatchingAnswersForCurrent()[item] && !isCurrentQuestionChecked"
                           @click.stop="removeMatchingPair(item)"
-                          class="w-6 h-6 rounded-full hover:bg-black/10 flex items-center justify-center text-xs text-[#5B6474]"
+                          class="w-6 h-6 rounded-full hover:bg-black/10 flex items-center justify-center text-xs text-[#5B6474] transition active:scale-95 cursor-pointer"
                           title="Putus garis pasangan"
                         >
                           ✕
@@ -1914,10 +1895,13 @@ onBeforeUnmount(() => {
                         <div
                           :data-match-left-pin="item"
                           @pointerdown.stop="startDragLine(item, $event)"
-                          class="w-7 h-7 rounded-full bg-white border-2 border-[#1E7A6F] flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-125 transition-transform shadow-xs"
+                          class="w-7 h-7 rounded-full bg-white border-2 border-[#1E7A6F] flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-110 transition-transform shadow-xs"
                           title="Tarik garis dari sini"
                         >
-                          <span class="w-3 h-3 rounded-full bg-[#1E7A6F]"></span>
+                          <span
+                            class="w-3 h-3 rounded-full transition-colors"
+                            :class="getMatchingAnswersForCurrent()[item] ? 'bg-[#1E7A6F]' : 'bg-[#8F8575]/40'"
+                          ></span>
                         </div>
                       </div>
                     </div>
@@ -1938,14 +1922,10 @@ onBeforeUnmount(() => {
                       @click="selectMatchingRight(item)"
                       :class="[
                         'p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between gap-3 text-sm font-semibold select-none relative group',
-                        isCurrentQuestionChecked && getPairColorForRight(item)
-                          ? isPairCorrectForRight(item)
-                            ? 'border-[#1E7A6F] bg-[#7FD4C4]/20 text-[#1E7A6F]'
-                            : 'border-[#D97706] bg-[#FFDE7A]/30 text-[#B45309]'
-                          : getPairColorForRight(item)
-                          ? `${getPairColorForRight(item).border} ${getPairColorForRight(item).bg} text-[#2B3445]`
+                        getPairColorForRight(item)
+                          ? 'bg-white border-[#1E7A6F] text-[#2B3445] shadow-xs'
                           : activeMatchingLeft || dragLineState.isDragging
-                          ? 'bg-white border-dashed border-[#1E7A6F] hover:bg-[#7FD4C4]/20 hover:scale-[1.02] text-[#2B3445]'
+                          ? 'bg-white border-dashed border-[#1E7A6F] hover:bg-[#7FD4C4]/15 hover:scale-[1.01] text-[#2B3445]'
                           : 'bg-white border-[#8F8575]/25 text-[#2B3445]'
                       ]"
                     >
@@ -1957,11 +1937,7 @@ onBeforeUnmount(() => {
                         >
                           <span
                             class="w-3 h-3 rounded-full transition-colors"
-                            :class="
-                              isCurrentQuestionChecked && getPairColorForRight(item)
-                                ? isPairCorrectForRight(item) ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'
-                                : getPairColorForRight(item) ? 'bg-[#1E7A6F]' : 'bg-[#8F8575]/40'
-                            "
+                            :class="getPairColorForRight(item) ? 'bg-[#1E7A6F]' : 'bg-[#8F8575]/40'"
                           ></span>
                         </div>
 
@@ -1970,18 +1946,6 @@ onBeforeUnmount(() => {
                         </span>
                         <span>{{ item }}</span>
                       </div>
-
-                      <span
-                        v-if="getPairColorForRight(item)"
-                        :class="[
-                          'px-2.5 py-1 rounded-lg text-xs font-bold text-white',
-                          isCurrentQuestionChecked
-                            ? (isPairCorrectForRight(item) ? 'bg-[#1E7A6F]' : 'bg-[#D97706]')
-                            : getPairColorForRight(item).badgeBg
-                        ]"
-                      >
-                        {{ isCurrentQuestionChecked ? (isPairCorrectForRight(item) ? '✓ Tepat' : '💡 Cek Lagi') : getPairColorForRight(item).label }}
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -2776,29 +2740,40 @@ onBeforeUnmount(() => {
           </div>
 
           <!-- Bottom Quiz Navigation Bar -->
-          <div class="flex items-center justify-between gap-4 pt-4 border-t border-[#8F8575]/20">
-            <button
-              @click="prevQuestion"
-              :disabled="currentQuestionIndex === 0"
-              :class="[
-                'px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer border',
-                currentQuestionIndex === 0
-                  ? 'opacity-40 cursor-not-allowed bg-white border-[#8F8575]/20 text-[#5B6474]'
-                  : 'btn-prisma-white'
-              ]"
-            >
-              <ArrowLeft class="w-4 h-4" />
-              <span>Sebelumnya</span>
-            </button>
+          <div class="flex items-center justify-between gap-3 pt-4 border-t border-[#8F8575]/20 flex-wrap">
+            <div class="flex items-center gap-2 flex-wrap">
+              <button
+                @click="emit('back')"
+                class="px-3.5 py-3 rounded-2xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer border bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border-[#8F8575]/25 text-[#2B3445] active:scale-95 shadow-2xs"
+                title="Kembali ke Katalog Materi"
+              >
+                <ArrowLeft class="w-4 h-4 text-[#1E7A6F]" />
+                <span>Kembali ke Materi</span>
+              </button>
+
+              <button
+                @click="prevQuestion"
+                :disabled="currentQuestionIndex === 0"
+                :class="[
+                  'px-4 py-3 rounded-2xl font-semibold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer border active:scale-95 shadow-2xs',
+                  currentQuestionIndex === 0
+                    ? 'opacity-40 cursor-not-allowed bg-white border-[#8F8575]/20 text-[#5B6474]'
+                    : 'btn-prisma-white'
+                ]"
+              >
+                <ChevronLeft class="w-4 h-4" />
+                <span>Sebelumnya</span>
+              </button>
+            </div>
 
             <!-- Number Pills Quick Switcher with Live Right/Wrong Status -->
-            <div class="hidden sm:flex items-center gap-2">
+            <div class="flex items-center gap-1.5 overflow-x-auto py-1 max-w-[220px] sm:max-w-none">
               <button
                 v-for="(_, qIdx) in questions"
                 :key="qIdx"
                 @click="currentQuestionIndex = qIdx; playButtonPop()"
                 :class="[
-                  'w-9 h-9 rounded-xl text-xs font-bold transition cursor-pointer border flex items-center justify-center relative shadow-2xs',
+                  'w-9 h-9 rounded-xl text-xs font-bold transition cursor-pointer border flex items-center justify-center relative shadow-2xs shrink-0',
                   checkedQuestions[qIdx]
                     ? checkAnswerCorrectness(questions[qIdx], selectedAnswers[qIdx])
                       ? 'bg-[#7FD4C4] text-[#1E7A6F] border-[#1E7A6F]'
@@ -2817,39 +2792,46 @@ onBeforeUnmount(() => {
               </button>
             </div>
 
-            <!-- Action Button: Periksa Jawaban / Selanjutnya / Selesai -->
-            <button
-              v-if="!isCurrentQuestionChecked"
-              @click="evaluateCurrentQuestion"
-              :disabled="!isQuestionAnswered(currentQuestionIndex)"
-              :class="[
-                'px-6 py-3.5 rounded-2xl font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer shadow-sm',
-                isQuestionAnswered(currentQuestionIndex)
-                  ? 'btn-prisma-mint'
-                  : 'bg-white border border-[#8F8575]/25 text-[#5B6474] opacity-50 cursor-not-allowed'
-              ]"
-            >
-              <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
-              <span>Periksa Jawaban ✨</span>
-            </button>
+            <!-- Action Buttons: Periksa Jawaban / Selanjutnya / Selesai -->
+            <div class="flex items-center gap-2 flex-wrap">
+              <button
+                v-if="!isCurrentQuestionChecked"
+                @click="evaluateCurrentQuestion"
+                :disabled="!isQuestionAnswered(currentQuestionIndex)"
+                :class="[
+                  'px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer shadow-sm active:scale-95',
+                  isQuestionAnswered(currentQuestionIndex)
+                    ? 'btn-prisma-mint'
+                    : 'bg-white border border-[#8F8575]/25 text-[#5B6474] opacity-50 cursor-not-allowed'
+                ]"
+              >
+                <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
+                <span>Periksa Jawaban ✨</span>
+              </button>
 
-            <button
-              v-else-if="currentQuestionIndex < questions.length - 1"
-              @click="nextQuestion"
-              class="btn-prisma-mint px-6 py-3.5 text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer shadow-sm active:scale-95"
-            >
-              <span>Soal Selanjutnya</span>
-              <ArrowRight class="w-4 h-4" />
-            </button>
+              <button
+                v-if="currentQuestionIndex < questions.length - 1"
+                @click="nextQuestion"
+                :class="[
+                  'px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer shadow-sm active:scale-95',
+                  isCurrentQuestionChecked
+                    ? 'btn-prisma-mint'
+                    : 'btn-prisma-white hover:border-[#1E7A6F]'
+                ]"
+              >
+                <span>Soal Selanjutnya</span>
+                <ArrowRight class="w-4 h-4" />
+              </button>
 
-            <button
-              v-else
-              @click="submitQuiz"
-              class="btn-prisma-mint px-7 py-3.5 rounded-2xl font-semibold text-sm flex items-center gap-2 transition cursor-pointer shadow-md active:scale-95"
-            >
-              <Trophy class="w-4 h-4 text-[#1E7A6F]" />
-              <span>Lihat Rangkuman Hasil 🏆</span>
-            </button>
+              <button
+                v-else-if="isCurrentQuestionChecked"
+                @click="submitQuiz"
+                class="btn-prisma-mint px-7 py-3 rounded-2xl font-semibold text-sm flex items-center gap-2 transition cursor-pointer shadow-md active:scale-95"
+              >
+                <Trophy class="w-4 h-4 text-[#1E7A6F]" />
+                <span>Lihat Rangkuman Hasil 🏆</span>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -3310,12 +3292,22 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <div
-              v-if="isCurrentQuestionCorrect"
-              class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1E7A6F] text-white shadow-2xs shrink-0 flex items-center gap-1"
-            >
-              <Sparkles class="w-3.5 h-3.5" />
-              <span>+{{ currentQuestion.points || 50 }} Poin</span>
+            <div class="flex items-center gap-2">
+              <div
+                v-if="isCurrentQuestionCorrect"
+                class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1E7A6F] text-white shadow-2xs shrink-0 flex items-center gap-1"
+              >
+                <Sparkles class="w-3.5 h-3.5" />
+                <span>+{{ currentQuestion.points || 50 }} Poin</span>
+              </div>
+              <button
+                type="button"
+                @click="isExplanationPopupOpen = false; playButtonPop()"
+                class="w-8 h-8 rounded-xl bg-black/5 hover:bg-black/10 flex items-center justify-center text-sm font-bold text-[#5B6474] cursor-pointer transition active:scale-95"
+                title="Tutup Pembahasan"
+              >
+                ✕
+              </button>
             </div>
           </div>
 
@@ -3327,8 +3319,62 @@ onBeforeUnmount(() => {
             </p>
           </div>
 
-          <!-- Perbandingan: Jawabanmu vs Kunci Jawaban -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <!-- KHUSUS TIPE MATCHING (MENGHUBUNGKAN GARIS): Tampilan Rapi per Pasangan -->
+          <div v-if="currentQuestion.type === 'matching'" class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#5B6474]">
+              <span>Rincian Pasangan Garis:</span>
+              <span class="text-[11px] font-normal text-[#8F8575]">{{ (currentQuestion.pairs || []).length }} Pasangan</span>
+            </div>
+
+            <div class="space-y-2">
+              <div
+                v-for="(pair, pIdx) in (currentQuestion.pairs || [])"
+                :key="pIdx"
+                class="p-3.5 rounded-2xl border-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition shadow-2xs"
+                :class="isPairCorrect(pair.left, selectedAnswers[currentQuestionIndex]?.[pair.left])
+                  ? 'bg-[#7FD4C4]/15 border-[#1E7A6F]'
+                  : 'bg-[#FFDE7A]/20 border-[#D97706]/40'"
+              >
+                <!-- Pasangan yang dipilih siswa -->
+                <div class="flex items-center gap-2 flex-wrap min-w-0">
+                  <span class="px-3 py-1 rounded-xl bg-white border border-[#8F8575]/25 font-['Baloo_2'] font-bold text-sm sm:text-base text-[#2B3445] shadow-2xs">
+                    {{ pair.left }}
+                  </span>
+                  <span class="text-[#8F8575] font-bold text-sm">➔</span>
+                  <span
+                    class="px-3 py-1 rounded-xl border font-['Baloo_2'] font-bold text-sm sm:text-base shadow-2xs"
+                    :class="isPairCorrect(pair.left, selectedAnswers[currentQuestionIndex]?.[pair.left])
+                      ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]'
+                      : selectedAnswers[currentQuestionIndex]?.[pair.left]
+                      ? 'bg-white text-[#B45309] border-[#D97706]/50'
+                      : 'bg-white text-[#8F8575] border-dashed border-[#8F8575]/40 italic text-xs'"
+                  >
+                    {{ selectedAnswers[currentQuestionIndex]?.[pair.left] || 'Belum dihubungkan' }}
+                  </span>
+                </div>
+
+                <!-- Status Evaluasi & Kunci Jawaban Tepat -->
+                <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+                  <span
+                    v-if="isPairCorrect(pair.left, selectedAnswers[currentQuestionIndex]?.[pair.left])"
+                    class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#1E7A6F] text-white flex items-center gap-1 shadow-2xs"
+                  >
+                    <Check class="w-3.5 h-3.5" />
+                    <span>Tepat! 🎉</span>
+                  </span>
+                  <div v-else class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-[11px] font-semibold text-[#B45309]">Kunci:</span>
+                    <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#1E7A6F] text-white flex items-center gap-1 shadow-2xs font-['Baloo_2']">
+                      ⭐ {{ pair.right }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TIPE SOAL LAINNYA: Perbandingan Jawaban vs Kunci -->
+          <div v-else class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <!-- Pilihan Kamu -->
             <div
               class="p-3.5 rounded-2xl border space-y-1"
@@ -3375,15 +3421,22 @@ onBeforeUnmount(() => {
             </p>
           </div>
 
-          <!-- Tombol Aksi: Next ke Soal Berikutnya atau Selesai Kuis -->
-          <div class="pt-2">
+          <!-- Tombol Aksi: Kembali ke Soal & Next ke Soal Berikutnya -->
+          <div class="pt-2 flex items-center gap-3">
+            <button
+              type="button"
+              @click="isExplanationPopupOpen = false; playButtonPop()"
+              class="flex-1 py-3.5 px-4 rounded-2xl font-['Baloo_2'] font-bold text-sm sm:text-base text-[#5B6474] bg-[#FFF8F0] hover:bg-black/5 border border-[#8F8575]/25 transition cursor-pointer text-center active:scale-95 shadow-2xs"
+            >
+              Kembali ke Soal
+            </button>
             <button
               type="button"
               @click="handlePopupNext"
-              class="w-full py-4 rounded-2xl font-['Baloo_2'] font-bold text-base sm:text-lg flex items-center justify-center gap-2 text-[#2B3445] bg-[#7FD4C4] hover:bg-[#6ec2b3] border-2 border-[#1E7A6F]/20 shadow-md transition active:scale-98 cursor-pointer"
+              class="flex-2 py-3.5 px-5 rounded-2xl font-['Baloo_2'] font-bold text-sm sm:text-base flex items-center justify-center gap-2 text-[#2B3445] bg-[#7FD4C4] hover:bg-[#6ec2b3] border-2 border-[#1E7A6F]/20 shadow-md transition active:scale-98 cursor-pointer"
             >
               <span>{{ currentQuestionIndex < questions.length - 1 ? 'Lanjut ke Soal Berikutnya' : 'Selesai & Lihat Hasil Kuis 🎉' }}</span>
-              <ArrowRight class="w-5 h-5 text-[#2B3445]" />
+              <ArrowRight class="w-4 h-4 text-[#2B3445]" />
             </button>
           </div>
         </div>
