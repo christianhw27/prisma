@@ -55,7 +55,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATASET_PATH = os.path.join("data", "dataset.csv")
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+_candidate_paths = [
+    os.path.join(_script_dir, "data", "dataset.csv"),
+    os.path.join(os.path.dirname(_script_dir), "dataset.csv"),
+    os.path.join("data", "dataset.csv"),
+    "dataset.csv"
+]
+DATASET_PATH = next((p for p in _candidate_paths if os.path.exists(p)), os.path.join("data", "dataset.csv"))
 
 # Inisialisasi Gemini Client (aman meski API key belum diisi saat testing lokal)
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")

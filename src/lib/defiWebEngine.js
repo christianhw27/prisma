@@ -669,7 +669,7 @@ let datasetCache = null
 export async function getClientDataset() {
   if (datasetCache && datasetCache.length) return datasetCache
   try {
-    const res = await fetch('/chatbot-dataset.json')
+    const res = await fetch('/chatbot-dataset.json?v=20261123')
     if (res.ok) {
       datasetCache = await res.json()
     }
