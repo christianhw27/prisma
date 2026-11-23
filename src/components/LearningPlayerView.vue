@@ -36,7 +36,7 @@ import {
   Eraser,
   GripVertical
 } from '@lucide/vue'
-import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel, materiList } from '../lib/materiService'
+import { isYouTubeUrl, getYouTubeEmbedUrl, getKelasFromLevel, sortMateriNaturally, materiList } from '../lib/materiService'
 import { playMascotChime, playButtonPop, playCorrectChime, playEncouragingSound } from '../lib/soundEffects'
 import { saveQuizAttempt, submitToMateriLeaderboard } from '../lib/quizService'
 import { currentUser } from '../lib/authService'
@@ -51,21 +51,21 @@ const props = defineProps({
 const emit = defineEmits(['back', 'finish', 'open-settings', 'change-materi'])
 
 // ==================== NAVIGASI ANTAR-BAB (BAB SEBELUMNYA & BAB SELANJUTNYA) ====================
-const currentMateriIndex = computed(() => {
-  if (!props.materi?.id || !materiList.value?.length) return -1
-  return materiList.value.findIndex(m => String(m.id) === String(props.materi.id))
-})
-
 const currentKelasMateriList = computed(() => {
   if (!props.materi?.level || !materiList.value?.length) return materiList.value || []
   const curKelas = getKelasFromLevel(props.materi.level)
-  return materiList.value.filter(m => getKelasFromLevel(m.level) === curKelas)
+  const list = materiList.value.filter(m => getKelasFromLevel(m.level) === curKelas)
+  return sortMateriNaturally(list)
+})
+
+const currentChapterIndexInKelas = computed(() => {
+  const list = currentKelasMateriList.value
+  if (!list.length) return -1
+  return list.findIndex(m => String(m.id) === String(props.materi?.id))
 })
 
 const chapterNumberInKelas = computed(() => {
-  const list = currentKelasMateriList.value
-  if (!list.length) return 1
-  const idx = list.findIndex(m => String(m.id) === String(props.materi.id))
+  const idx = currentChapterIndexInKelas.value
   return idx >= 0 ? idx + 1 : 1
 })
 
@@ -73,9 +73,16 @@ const totalChaptersInKelas = computed(() => {
   return currentKelasMateriList.value.length || 8
 })
 
+const isLastChapterInClass = computed(() => {
+  const list = currentKelasMateriList.value
+  if (!list.length) return true
+  const idx = currentChapterIndexInKelas.value
+  return idx >= list.length - 1
+})
+
 const nextMateri = computed(() => {
-  const list = materiList.value || []
-  const idx = currentMateriIndex.value
+  const list = currentKelasMateriList.value
+  const idx = currentChapterIndexInKelas.value
   if (idx >= 0 && idx < list.length - 1) {
     return list[idx + 1]
   }
@@ -83,8 +90,8 @@ const nextMateri = computed(() => {
 })
 
 const prevMateri = computed(() => {
-  const list = materiList.value || []
-  const idx = currentMateriIndex.value
+  const list = currentKelasMateriList.value
+  const idx = currentChapterIndexInKelas.value
   if (idx > 0) {
     return list[idx - 1]
   }
@@ -92,6 +99,11 @@ const prevMateri = computed(() => {
 })
 
 const goToNextChapter = () => {
+  if (isLastChapterInClass.value) {
+    playButtonPop()
+    emit('finish')
+    return
+  }
   if (!nextMateri.value) return
   playMascotChime()
   emit('change-materi', nextMateri.value)
@@ -1098,13 +1110,23 @@ onBeforeUnmount(() => {
         </button>
 
         <button
-          v-if="nextMateri"
+          v-if="!isLastChapterInClass && nextMateri"
           @click="goToNextChapter"
           class="btn-prisma-mint px-4 py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition active:scale-95 shadow-xs"
           :title="`Bab Selanjutnya: ${nextMateri.title}`"
         >
           <span>Bab Selanjutnya</span>
           <ChevronRight class="w-4 h-4 text-[#1E7A6F]" />
+        </button>
+
+        <button
+          v-else-if="isLastChapterInClass"
+          @click="goToNextChapter"
+          class="btn-prisma-mint px-4 py-2.5 text-xs sm:text-sm font-semibold flex items-center gap-1.5 cursor-pointer transition active:scale-95 shadow-xs"
+          title="Selesai bab di kelas ini, kembali ke katalog materi"
+        >
+          <span>Katalog Materi</span>
+          <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
         </button>
       </div>
     </header>
@@ -1299,15 +1321,24 @@ onBeforeUnmount(() => {
               <span>Kembali ke Video 1 (Konsep)</span>
             </button>
 
-            <!-- Shortcut Langsung ke Bab Selanjutnya -->
+            <!-- Shortcut Langsung ke Bab Selanjutnya / Kembali ke Katalog -->
             <button
-              v-if="nextMateri"
+              v-if="!isLastChapterInClass && nextMateri"
               @click="goToNextChapter"
               class="px-4 py-2.5 rounded-2xl bg-white hover:bg-[#7FD4C4]/15 border border-[#8F8575]/25 text-[#1E7A6F] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
               :title="`Lanjut ke ${nextMateri.title}`"
             >
               <span>Lompat ke Bab Selanjutnya</span>
               <ChevronRight class="w-3.5 h-3.5" />
+            </button>
+            <button
+              v-else-if="isLastChapterInClass"
+              @click="goToNextChapter"
+              class="px-4 py-2.5 rounded-2xl bg-white hover:bg-[#7FD4C4]/15 border border-[#8F8575]/25 text-[#1E7A6F] text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
+              title="Ke Katalog Materi"
+            >
+              <span>Katalog Materi</span>
+              <ArrowRight class="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -2791,9 +2822,9 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
-          <!-- Next Chapter Celebration Banner (jika ada bab berikutnya) -->
+          <!-- Next Chapter Celebration Banner (jika ada bab berikutnya dalam kelas ini) -->
           <div
-            v-if="nextMateri"
+            v-if="!isLastChapterInClass && nextMateri"
             class="p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-[#1E7A6F] to-[#145C53] text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-5 text-left border-2 border-[#7FD4C4]/35 animate-soft-pop"
           >
             <div class="flex items-center gap-4 min-w-0">
@@ -2823,6 +2854,42 @@ onBeforeUnmount(() => {
               class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#FFDE7A] hover:bg-[#ffe699] text-[#2B3445] font-['Baloo_2'] font-bold text-base flex items-center justify-center gap-2.5 cursor-pointer shadow-md transition active:scale-95 shrink-0"
             >
               <span>Lanjut ke Bab Selanjutnya</span>
+              <ArrowRight class="w-5 h-5 text-[#2B3445]" />
+            </button>
+          </div>
+
+          <!-- Celebration Banner Bab Terakhir (Bab 8 selesai -> Tombol ke tab materi depan) -->
+          <div
+            v-else-if="isLastChapterInClass"
+            class="p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-[#1E7A6F] to-[#145C53] text-white shadow-md flex flex-col sm:flex-row items-center justify-between gap-5 text-left border-2 border-[#7FD4C4]/35 animate-soft-pop"
+          >
+            <div class="flex items-center gap-4 min-w-0">
+              <div class="w-14 h-14 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-3xl shrink-0 shadow-xs">
+                🏆
+              </div>
+              <div class="space-y-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-[11px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-[#FFDE7A] text-[#2B3445]">
+                    Kelas Tuntas
+                  </span>
+                  <span class="text-xs text-[#FFF8F0]/80 font-normal">
+                    {{ getKelasFromLevel(props.materi?.level) }}
+                  </span>
+                </div>
+                <h4 class="font-['Baloo_2'] text-xl sm:text-2xl font-bold leading-tight text-white">
+                  Hebat! Kamu telah menuntaskan seluruh materi di kelas ini!
+                </h4>
+                <p class="text-xs sm:text-sm text-[#FFF8F0]/85 font-normal">
+                  Semua bab telah selesai. Yuk jelajahi materi seru lainnya di katalog materi Prisma!
+                </p>
+              </div>
+            </div>
+
+            <button
+              @click="goToNextChapter"
+              class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#FFDE7A] hover:bg-[#ffe699] text-[#2B3445] font-['Baloo_2'] font-bold text-base flex items-center justify-center gap-2.5 cursor-pointer shadow-md transition active:scale-95 shrink-0"
+            >
+              <span>Ke Katalog Materi</span>
               <ArrowRight class="w-5 h-5 text-[#2B3445]" />
             </button>
           </div>
@@ -3073,13 +3140,22 @@ onBeforeUnmount(() => {
               <span>Tonton Ulang Video</span>
             </button>
 
-            <!-- Tombol Utama: Lanjut ke Bab Selanjutnya -->
+            <!-- Tombol Utama: Lanjut ke Bab Selanjutnya / Kembali ke Katalog Materi -->
             <button
-              v-if="nextMateri"
+              v-if="!isLastChapterInClass && nextMateri"
               @click="goToNextChapter"
               class="btn-prisma-mint w-full sm:w-auto px-7 py-3 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-95"
             >
               <span>Lanjut ke Bab Selanjutnya</span>
+              <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
+            </button>
+
+            <button
+              v-else-if="isLastChapterInClass"
+              @click="goToNextChapter"
+              class="btn-prisma-mint w-full sm:w-auto px-7 py-3 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-sm active:scale-95"
+            >
+              <span>Ke Katalog Materi</span>
               <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
             </button>
 

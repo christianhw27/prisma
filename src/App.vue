@@ -757,7 +757,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
               <!-- CTA Buttons -->
               <div class="flex flex-wrap items-center gap-3.5 pt-2">
                 <button
-                  @click="handleOpenDetail(materiList[0]); playButtonPop()"
+                  @click="navigateTo('materi'); playButtonPop()"
                   class="btn-prisma-mint px-8 py-3.5 font-semibold text-sm flex items-center gap-2.5 cursor-pointer shadow-sm transition active:scale-95"
                 >
                   <span>Mulai Belajar</span>
@@ -941,10 +941,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
               v-else
               v-for="(mod, index) in filteredLandingModules"
               :key="mod.id"
-              :class="[
-                'card-prisma bg-white flex flex-col justify-between overflow-hidden group relative reveal-on-scroll',
-                index === 0 ? 'delay-100' : index === 1 ? 'delay-200' : index === 2 ? 'delay-300' : 'delay-400'
-              ]"
+              class="card-prisma bg-white flex flex-col justify-between overflow-hidden group relative transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
             >
               <!-- Card Top Image Banner -->
               <div class="relative h-44 w-full overflow-hidden bg-[#FFF8F0] border-b border-[#8F8575]/20">
@@ -1001,205 +998,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
         </div>
       </section>
 
-      <!-- ==================== SECTION 5: TESTIMONI & CERITA MEREKA ==================== -->
-      <section class="w-full bg-white px-4 sm:px-6 lg:px-10 py-16 sm:py-20 border-b border-[#8F8575]/20 relative overflow-hidden">
-        <div class="w-full max-w-[1440px] mx-auto space-y-12 relative z-10 reveal-zoom">
-          
-          <!-- Section Header with Carousel Navigation -->
-          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="text-center md:text-left space-y-2">
-              <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFF8F0] text-[#1E7A6F] border border-[#8F8575]/30 text-xs font-semibold tracking-wide uppercase">
-                Cerita Mereka
-              </span>
-              <h2 class="font-['Baloo_2'] text-2xl sm:text-4xl font-bold text-[#2B3445] tracking-tight">
-                Dipercaya oleh Pengajar dan Keluarga di Seluruh Indonesia
-              </h2>
-            </div>
 
-            <!-- Carousel Header Controls -->
-            <div v-if="totalReviewPages > 1" class="flex items-center gap-3 shrink-0">
-              <span class="text-xs font-semibold text-[#5B6474] bg-[#FFF8F0] px-3 py-1.5 rounded-full border border-[#8F8575]/25">
-                Halaman {{ currentReviewPage + 1 }} dari {{ totalReviewPages }}
-              </span>
-
-              <div class="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  @click="prevReviewPage"
-                  title="Lihat ulasan sebelumnya"
-                  class="btn-prisma-white w-9 h-9 p-0 flex items-center justify-center cursor-pointer"
-                >
-                  <ChevronLeft class="w-4 h-4 text-[#1E7A6F]" />
-                </button>
-                <button
-                  type="button"
-                  @click="nextReviewPage"
-                  title="Lihat ulasan berikutnya"
-                  class="btn-prisma-white w-9 h-9 p-0 flex items-center justify-center cursor-pointer"
-                >
-                  <ChevronRight class="w-4 h-4 text-[#1E7A6F]" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Empty State -->
-          <div
-            v-if="displayReviews.length === 0"
-            class="card-prisma bg-white p-10 sm:p-14 text-center max-w-xl mx-auto space-y-4"
-          >
-            <div class="w-16 h-16 rounded-full bg-[#FFF8F0] text-[#1E7A6F] border border-[#8F8575]/25 flex items-center justify-center text-3xl mx-auto">
-              <MessageSquareHeart class="w-8 h-8 text-[#1E7A6F]" />
-            </div>
-            <div class="space-y-1.5">
-              <h3 class="font-['Baloo_2'] text-lg font-bold text-[#2B3445]">Belum Ada Ulasan Publik</h3>
-              <p class="text-xs sm:text-sm text-[#5B6474] leading-relaxed max-w-md mx-auto font-normal">
-                Jadilah orang pertama yang membagikan pengalaman belajar atau ulasan Anda tentang platform Prisma!
-              </p>
-            </div>
-            <div class="pt-2">
-              <button
-                type="button"
-                @click="openSettings('theme')"
-                class="btn-prisma-mint px-6 py-3 text-xs font-semibold cursor-pointer inline-flex items-center gap-2"
-              >
-                <Settings class="w-4 h-4 text-[#1E7A6F]" />
-                <span>Pengaturan Tampilan</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Sliding Carousel Container -->
-          <div
-            v-else
-            class="relative overflow-hidden w-full select-none"
-            @touchstart="handleReviewTouchStart"
-            @touchend="handleReviewTouchEnd"
-          >
-            <div
-              class="flex transition-transform duration-500 ease-out"
-              :style="{ transform: `translateX(-${currentReviewPage * 100}%)` }"
-            >
-              <div
-                v-for="(page, pIdx) in reviewPages"
-                :key="pIdx"
-                class="w-full shrink-0 px-0.5"
-              >
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div
-                    v-for="item in page"
-                    :key="item.id"
-                    class="card-prisma bg-white p-7 sm:p-8 flex flex-col justify-between space-y-6 relative hover:border-[#1E7A6F] transition-all duration-200 group"
-                  >
-                    <!-- Current User Review Badge -->
-                    <div
-                      v-if="currentUser && (item.userId === currentUser.id || item.userEmail === currentUser.email)"
-                      class="absolute top-5 right-5 flex items-center gap-1.5"
-                    >
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-[#FFF8F0] text-[#1E7A6F] border border-[#8F8575]/25">
-                        Ulasan Kamu
-                      </span>
-                      <button
-                        type="button"
-                        @click="openSettings('review')"
-                        title="Ubah ulasan Anda di profil"
-                        class="p-1 rounded-lg text-[#5B6474] hover:text-[#1E7A6F] transition cursor-pointer"
-                      >
-                        <Edit3 class="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-
-                    <div class="space-y-4 text-left">
-                      <div class="text-[#FFDE7A] text-base tracking-wider flex items-center gap-0.5">
-                        <span v-for="star in (item.rating || 5)" :key="star">⭐</span>
-                      </div>
-                      <p class="text-xs sm:text-sm text-[#2B3445] font-normal leading-relaxed italic">
-                        "{{ item.comment }}"
-                      </p>
-                    </div>
-
-                    <div class="pt-4 border-t border-[#8F8575]/20 flex items-center gap-3">
-                      <div class="w-10 h-10 rounded-full bg-[#FFF8F0] border border-[#8F8575]/25 text-lg flex items-center justify-center shrink-0">
-                        {{ item.userAvatar || '👧' }}
-                      </div>
-                      <div class="text-left min-w-0">
-                        <h4 class="font-['Baloo_2'] text-sm font-bold text-[#2B3445] truncate">{{ item.userName }}</h4>
-                        <p class="text-[11px] font-normal text-[#5B6474] truncate">{{ item.userRole }}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Desktop Nav Arrows -->
-            <button
-              v-if="totalReviewPages > 1"
-              type="button"
-              @click="prevReviewPage"
-              title="Lihat ulasan sebelumnya"
-              class="hidden lg:flex absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-[#8F8575]/25 text-[#1E7A6F] items-center justify-center hover:bg-[#FFF8F0] transition-all cursor-pointer z-20"
-            >
-              <ChevronLeft class="w-5 h-5" />
-            </button>
-            <button
-              v-if="totalReviewPages > 1"
-              type="button"
-              @click="nextReviewPage"
-              title="Lihat ulasan berikutnya"
-              class="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-[#8F8575]/25 text-[#1E7A6F] items-center justify-center hover:bg-[#FFF8F0] transition-all cursor-pointer z-20"
-            >
-              <ChevronRight class="w-5 h-5" />
-            </button>
-          </div>
-
-          <!-- Bottom Slide Dots -->
-          <div v-if="totalReviewPages > 1" class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <div class="flex items-center gap-2">
-              <button
-                v-for="pIdx in totalReviewPages"
-                :key="pIdx"
-                type="button"
-                @click="goToReviewPage(pIdx - 1)"
-                :class="[
-                  'h-2.5 rounded-full transition-all duration-300 cursor-pointer',
-                  currentReviewPage === (pIdx - 1)
-                    ? 'w-8 bg-[#1E7A6F]'
-                    : 'w-2.5 bg-[#8F8575]/30 hover:bg-[#8F8575]/50'
-                ]"
-                :title="`Buka slide ${pIdx}`"
-              ></button>
-            </div>
-          </div>
-
-          <!-- Bottom Action Box -->
-          <div class="card-prisma bg-[#FFF8F0] p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3.5 text-center sm:text-left">
-              <div class="w-12 h-12 rounded-2xl bg-white border border-[#8F8575]/25 text-[#1E7A6F] flex items-center justify-center text-xl shrink-0 mx-auto sm:mx-0">
-                <MessageSquareHeart class="w-6 h-6 text-[#1E7A6F]" />
-              </div>
-              <div>
-                <h4 class="font-['Baloo_2'] text-base font-bold text-[#2B3445]">Punya Pengalaman Belajar Seru di Prisma?</h4>
-                <p class="text-xs text-[#5B6474] mt-0.5 font-normal">
-                  Bagikan ulasan Anda sekarang. Ulasan dapat diedit kapan saja dan langsung tampil di halaman ini.
-                </p>
-              </div>
-            </div>
-
-            <div class="shrink-0 w-full sm:w-auto">
-              <button
-                type="button"
-                @click="navigateTo('materi')"
-                class="btn-prisma-mint w-full sm:w-auto px-5 py-2.5 text-xs font-semibold cursor-pointer flex items-center justify-center gap-2 shadow-sm"
-              >
-                <span>Jelajahi Semua Materi</span>
-                <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </section>
 
       <!-- ==================== SECTION 6: FINAL CALL-TO-ACTION BANNER ==================== -->
       <section class="w-full bg-white px-4 sm:px-6 lg:px-10 py-16 sm:py-20">

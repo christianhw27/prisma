@@ -2329,7 +2329,7 @@ export const allStructuredMateri = [
       "Kuis Bergambar"
     ],
     "materiContent": {
-      "text": "Bu Ani bertanya, “Anak-anak, berapa panjang meja ini?” Dodi mengangkat tangan. “Boleh saya mengukur, Bu?” tanyanya. Dodi mengukur meja dengan jengkal tangannya. Panjang meja 6 jengkal Dodi.\n\nLalu Lala mengukur meja yang sama. Hasilnya 7 jengkal Lala. “Maaf, Bu, kenapa hasilnya berbeda?” tanya Lala dengan sopan. Bu Ani tersenyum. “Karena panjang jengkal tangan kalian tidak sama.”",
+      "text": "Bu Ani bertanya, “Anak-anak, berapa panjang meja ini?” Dodi mengangkat tangan. “Boleh saya mengukur, Bu?” tanyanya. Dodi mengukur meja dengan jengkal tangannya. Panjang meja 6 jengkal Dodi.\n\nLalu Lala mengukur meja yang sama. Hasilnya 7 jengkal Lala. “Maaf, Bu, kenapa hasilnya berbeda?” tanya Lala dengan sopan. Bu Ani tersenyum. “Karena panjang jengkal tangan kalian tidak sama.”\n\nSetelah itu, Bu Ani membagikan klip kertas yang sama besar. Sinta mengukur pensilnya dengan klip, panjangnya 5 klip. Edo juga mengukur pensilnya, panjangnya 8 klip.",
       "image": "/covers/cover-k2-b3.jpg",
       "audioUrl": "https://res.cloudinary.com/vnq5qcdw/video/upload/v1795149319/prisma_audio_k2_b3.m4a",
       "points": [
