@@ -491,6 +491,7 @@ const updateMatchingLines = () => {
 }
 
 const startDragLine = (leftItem, e) => {
+  if (isCurrentQuestionChecked.value) return
   e.preventDefault()
   playButtonPop()
   if (!matchingContainerRef.value) return
@@ -549,6 +550,17 @@ const connectMatchingPair = (leftItem, rightItem) => {
   activeMatchingLeft.value = null
   nextTick(() => {
     updateMatchingLines()
+
+    // Otomatis picu pop up evaluasi ketika semua pasangan sudah terhubung
+    const q = currentQuestion.value
+    const totalRequired = (q?.leftItems || q?.pairs || []).length
+    if (totalRequired > 0 && Object.keys(currentMap).length === totalRequired) {
+      setTimeout(() => {
+        if (!isCurrentQuestionChecked.value && currentQuestion.value?.type === 'matching') {
+          evaluateCurrentQuestion()
+        }
+      }, 350)
+    }
   })
 }
 
@@ -2867,10 +2879,10 @@ onBeforeUnmount(() => {
               </button>
             </div>
 
-            <!-- Action Buttons: Periksa Jawaban / Selanjutnya / Selesai -->
+            <!-- Action Buttons: Periksa Jawaban / Buka Pembahasan / Selesai (Soal berikutnya diakses via Pop Up) -->
             <div class="flex items-center gap-2 flex-wrap">
               <button
-                v-if="!isCurrentQuestionChecked"
+                v-if="!isCurrentQuestionChecked && currentQuestion.type !== 'matching'"
                 @click="evaluateCurrentQuestion"
                 :disabled="!isQuestionAnswered(currentQuestionIndex)"
                 :class="[
@@ -2885,21 +2897,18 @@ onBeforeUnmount(() => {
               </button>
 
               <button
-                v-if="currentQuestionIndex < questions.length - 1"
-                @click="nextQuestion"
-                :class="[
-                  'px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer shadow-sm active:scale-95',
-                  isCurrentQuestionChecked
-                    ? 'btn-prisma-mint'
-                    : 'btn-prisma-white hover:border-[#1E7A6F]'
-                ]"
+                v-if="isCurrentQuestionChecked && currentQuestionIndex < questions.length - 1"
+                type="button"
+                @click="isExplanationPopupOpen = true; playButtonPop()"
+                class="btn-prisma-mint px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition cursor-pointer shadow-sm active:scale-95"
+                title="Buka pop up pembahasan untuk lanjut ke soal berikutnya"
               >
-                <span>Soal Selanjutnya</span>
-                <ArrowRight class="w-4 h-4" />
+                <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
+                <span>Buka Pembahasan</span>
               </button>
 
               <button
-                v-else-if="isCurrentQuestionChecked"
+                v-else-if="isCurrentQuestionChecked && currentQuestionIndex === questions.length - 1"
                 @click="submitQuiz"
                 class="btn-prisma-mint px-7 py-3 rounded-2xl font-semibold text-sm flex items-center gap-2 transition cursor-pointer shadow-md active:scale-95"
               >
@@ -3394,91 +3403,72 @@ onBeforeUnmount(() => {
             </p>
           </div>
 
-          <!-- KHUSUS TIPE MATCHING (MENGHUBUNGKAN GARIS): Tampilan Rapi per Pasangan -->
-          <div v-if="currentQuestion.type === 'matching'" class="space-y-3">
-            <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#5B6474]">
-              <span>Rincian Pasangan Garis:</span>
-              <span class="text-[11px] font-normal text-[#8F8575]">{{ (currentQuestion.pairs || []).length }} Pasangan</span>
-            </div>
-
-            <div class="space-y-2">
-              <div
-                v-for="(pair, pIdx) in (currentQuestion.pairs || [])"
-                :key="pIdx"
-                class="p-3.5 rounded-2xl border-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition shadow-2xs"
-                :class="isPairCorrect(pair.left, selectedAnswers[currentQuestionIndex]?.[pair.left])
-                  ? 'bg-[#7FD4C4]/15 border-[#1E7A6F]'
-                  : 'bg-[#FFDE7A]/20 border-[#D97706]/40'"
-              >
-                <!-- Pasangan yang dipilih siswa -->
-                <div class="flex items-center gap-2 flex-wrap min-w-0">
-                  <span class="px-3 py-1 rounded-xl bg-white border border-[#8F8575]/25 font-['Baloo_2'] font-bold text-sm sm:text-base text-[#2B3445] shadow-2xs">
-                    {{ pair.left }}
-                  </span>
-                  <span class="text-[#8F8575] font-bold text-sm">➔</span>
-                  <span
-                    class="px-3 py-1 rounded-xl border font-['Baloo_2'] font-bold text-sm sm:text-base shadow-2xs"
-                    :class="isPairCorrect(pair.left, selectedAnswers[currentQuestionIndex]?.[pair.left])
-                      ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]'
-                      : selectedAnswers[currentQuestionIndex]?.[pair.left]
-                      ? 'bg-white text-[#B45309] border-[#D97706]/50'
-                      : 'bg-white text-[#8F8575] border-dashed border-[#8F8575]/40 italic text-xs'"
-                  >
-                    {{ selectedAnswers[currentQuestionIndex]?.[pair.left] || 'Belum dihubungkan' }}
-                  </span>
-                </div>
-
-                <!-- Status Evaluasi & Kunci Jawaban Tepat -->
-                <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                  <span
-                    v-if="isPairCorrect(pair.left, selectedAnswers[currentQuestionIndex]?.[pair.left])"
-                    class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#1E7A6F] text-white flex items-center gap-1 shadow-2xs"
-                  >
-                    <Check class="w-3.5 h-3.5" />
-                    <span>Tepat! 🎉</span>
-                  </span>
-                  <div v-else class="flex items-center gap-1.5 flex-wrap">
-                    <span class="text-[11px] font-semibold text-[#B45309]">Kunci:</span>
-                    <span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#1E7A6F] text-white flex items-center gap-1 shadow-2xs font-['Baloo_2']">
-                      ⭐ {{ pair.right }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TIPE SOAL LAINNYA: Perbandingan Jawaban vs Kunci -->
-          <div v-else class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <!-- Perbandingan Jawaban vs Kunci (Tampilan 2 Kartu Berdampingan Sesuai Mockup) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <!-- Pilihan Kamu -->
             <div
-              class="p-3.5 rounded-2xl border space-y-1"
+              class="p-4 rounded-2xl border space-y-1.5 flex flex-col justify-between"
               :class="isCurrentQuestionCorrect ? 'bg-[#7FD4C4]/15 border-[#7FD4C4]' : 'bg-[#FFDE7A]/25 border-[#D97706]/40'"
             >
-              <span class="text-[#5B6474] font-semibold block">Jawaban Kamu:</span>
-              <p
-                class="font-['Baloo_2'] font-bold text-base leading-snug"
-                :class="isCurrentQuestionCorrect ? 'text-[#1E7A6F]' : 'text-[#B45309]'"
-              >
-                {{ formatUserAnswerText(currentQuestion, selectedAnswers[currentQuestionIndex]) }}
-              </p>
-              <span
-                class="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold text-white mt-1"
-                :class="isCurrentQuestionCorrect ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'"
-              >
-                {{ isCurrentQuestionCorrect ? '✓ Benar' : '💡 Belum Tepat' }}
-              </span>
+              <div class="space-y-1">
+                <span class="text-[#5B6474] font-semibold block text-xs">Jawaban Kamu:</span>
+                
+                <!-- Khusus Tipe Matching: Daftar Pasangan per Baris -->
+                <div v-if="currentQuestion.type === 'matching'" class="space-y-1 py-1 font-['Baloo_2'] font-bold text-sm sm:text-base leading-snug" :class="isCurrentQuestionCorrect ? 'text-[#1E7A6F]' : 'text-[#B45309]'">
+                  <div
+                    v-for="(val, key, kIdx) in (selectedAnswers[currentQuestionIndex] || {})"
+                    :key="key"
+                  >
+                    {{ key }} ➔ {{ val }}<span v-if="kIdx < Object.keys(selectedAnswers[currentQuestionIndex] || {}).length - 1">,</span>
+                  </div>
+                </div>
+
+                <!-- Tipe Soal Lainnya -->
+                <p
+                  v-else
+                  class="font-['Baloo_2'] font-bold text-base leading-snug"
+                  :class="isCurrentQuestionCorrect ? 'text-[#1E7A6F]' : 'text-[#B45309]'"
+                >
+                  {{ formatUserAnswerText(currentQuestion, selectedAnswers[currentQuestionIndex]) }}
+                </p>
+              </div>
+
+              <div>
+                <span
+                  class="inline-block px-2.5 py-0.5 rounded-lg text-xs font-bold text-white mt-2 shadow-2xs font-['Baloo_2']"
+                  :class="isCurrentQuestionCorrect ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'"
+                >
+                  {{ isCurrentQuestionCorrect ? '✓ Tepat' : '💡 Belum Tepat' }}
+                </span>
+              </div>
             </div>
 
             <!-- Kunci Jawaban -->
-            <div class="p-3.5 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4] space-y-1">
-              <span class="text-[#1E7A6F] font-semibold block">Kunci Jawaban:</span>
-              <p class="font-['Baloo_2'] font-bold text-base text-[#1E7A6F] leading-snug">
-                {{ formatCorrectAnswerText(currentQuestion) }}
-              </p>
-              <span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#1E7A6F] text-white mt-1">
-                ⭐ Tepat
-              </span>
+            <div class="p-4 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4] space-y-1.5 flex flex-col justify-between">
+              <div class="space-y-1">
+                <span class="text-[#1E7A6F] font-semibold block text-xs">Kunci Jawaban:</span>
+                
+                <!-- Khusus Tipe Matching: Daftar Kunci Pasangan per Baris -->
+                <div v-if="currentQuestion.type === 'matching'" class="space-y-1 py-1 font-['Baloo_2'] font-bold text-sm sm:text-base text-[#1E7A6F] leading-snug">
+                  <div
+                    v-for="(pair, pIdx) in (currentQuestion.pairs || [])"
+                    :key="pair.left"
+                  >
+                    {{ pair.left }} ➔ {{ pair.right }}<span v-if="pIdx < (currentQuestion.pairs || []).length - 1">,</span>
+                  </div>
+                </div>
+
+                <!-- Tipe Soal Lainnya -->
+                <p v-else class="font-['Baloo_2'] font-bold text-base text-[#1E7A6F] leading-snug">
+                  {{ formatCorrectAnswerText(currentQuestion) }}
+                </p>
+              </div>
+
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-lg text-xs font-bold bg-[#1E7A6F] text-white mt-2 shadow-2xs font-['Baloo_2']">
+                  ⭐ Tepat
+                </span>
+              </div>
             </div>
           </div>
 
@@ -3496,22 +3486,15 @@ onBeforeUnmount(() => {
             </p>
           </div>
 
-          <!-- Tombol Aksi: Kembali ke Soal & Next ke Soal Berikutnya -->
-          <div class="pt-2 flex items-center gap-3">
-            <button
-              type="button"
-              @click="isExplanationPopupOpen = false; playButtonPop()"
-              class="flex-1 py-3.5 px-4 rounded-2xl font-['Baloo_2'] font-bold text-sm sm:text-base text-[#5B6474] bg-[#FFF8F0] hover:bg-black/5 border border-[#8F8575]/25 transition cursor-pointer text-center active:scale-95 shadow-2xs"
-            >
-              Kembali ke Soal
-            </button>
+          <!-- Tombol Aksi: Next ke Soal Berikutnya (Full Width Sesuai Mockup) -->
+          <div class="pt-2">
             <button
               type="button"
               @click="handlePopupNext"
-              class="flex-2 py-3.5 px-5 rounded-2xl font-['Baloo_2'] font-bold text-sm sm:text-base flex items-center justify-center gap-2 text-[#2B3445] bg-[#7FD4C4] hover:bg-[#6ec2b3] border-2 border-[#1E7A6F]/20 shadow-md transition active:scale-98 cursor-pointer"
+              class="w-full py-4 px-6 rounded-2xl font-['Baloo_2'] font-bold text-base sm:text-lg flex items-center justify-center gap-2.5 text-[#2B3445] bg-[#7FD4C4] hover:bg-[#6ec2b3] border-2 border-[#1E7A6F]/20 shadow-md transition active:scale-98 cursor-pointer"
             >
               <span>{{ currentQuestionIndex < questions.length - 1 ? 'Lanjut ke Soal Berikutnya' : 'Selesai & Lihat Hasil Kuis 🎉' }}</span>
-              <ArrowRight class="w-4 h-4 text-[#2B3445]" />
+              <ArrowRight class="w-5 h-5 text-[#2B3445]" />
             </button>
           </div>
         </div>
