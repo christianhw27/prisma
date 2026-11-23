@@ -3,6 +3,7 @@ import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowDown,
   CheckCircle2,
   XCircle,
   Play,
@@ -271,6 +272,31 @@ const parsedReadingBlocks = computed(() => {
 const readingGoal = computed(() => {
   return props.materi?.tujuan || ''
 })
+
+const bacaanSectionRef = ref(null)
+const quizSectionRef = ref(null)
+
+const goToBacaan = () => {
+  playButtonPop()
+  activeTab.value = 'quiz'
+  isBacaanExpanded.value = true
+  nextTick(() => {
+    if (bacaanSectionRef.value) {
+      bacaanSectionRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  })
+}
+
+const scrollToQuiz = () => {
+  playButtonPop()
+  nextTick(() => {
+    if (quizSectionRef.value) {
+      quizSectionRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
+}
 
 const isBacaanExpanded = ref(true)
 const isLearningPointsOpen = ref(false)
@@ -1257,7 +1283,7 @@ onBeforeUnmount(() => {
       </button>
 
       <button
-        @click="activeTab = 'quiz'; playButtonPop()"
+        @click="goToBacaan"
         :class="[
           'flex-1 py-3 px-4 sm:px-6 rounded-2xl font-[\'Baloo_2\'] text-sm sm:text-base font-bold transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5 select-none',
           activeTab === 'quiz'
@@ -1266,7 +1292,7 @@ onBeforeUnmount(() => {
         ]"
       >
         <BookOpen class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-        <span>2. Cerita & Kuis</span>
+        <span>2. Bacaan Cerita & Kuis</span>
         <span
           :class="[
             'text-[10px] font-semibold px-2 py-0.5 rounded-full hidden sm:inline-block',
@@ -1445,11 +1471,12 @@ onBeforeUnmount(() => {
           </div>
 
           <button
-            @click="activeTab = 'quiz'; playButtonPop()"
+            @click="goToBacaan"
             class="btn-prisma-mint px-6 py-3.5 text-sm font-semibold flex items-center gap-2.5 cursor-pointer transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shadow-sm"
           >
-            <span>Lanjut ke Kuis Interaktif (Langkah 2)</span>
-            <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
+            <span>{{ readingText ? 'Lanjut ke Bacaan Cerita' : 'Lanjut ke Kuis Interaktif' }}</span>
+            <BookOpen v-if="readingText" class="w-4 h-4 text-[#1E7A6F]" />
+            <Sparkles v-else class="w-4 h-4 text-[#1E7A6F]" />
             <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
           </button>
         </div>
@@ -1462,8 +1489,9 @@ onBeforeUnmount(() => {
       
       <!-- ==================== KARTU BACAAN CERITA ==================== -->
       <section
+        ref="bacaanSectionRef"
         v-if="readingText"
-        class="bg-white rounded-3xl border border-[#8F8575]/25 p-5 sm:p-7 shadow-xs space-y-4 text-left transition-all duration-300"
+        class="bg-white rounded-3xl border border-[#8F8575]/25 p-5 sm:p-7 shadow-xs space-y-4 text-left transition-all duration-300 scroll-mt-24"
       >
         <!-- Header Kartu Bacaan -->
         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#8F8575]/15 pb-4">
@@ -1579,6 +1607,23 @@ onBeforeUnmount(() => {
               </template>
             </div>
           </div>
+
+          <!-- Tombol Aksi Menuju Kuis Interaktif (di bawah Bacaan Cerita) -->
+          <div class="pt-5 mt-2 border-t border-[#8F8575]/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2 text-xs sm:text-sm text-[#5B6474]">
+              <Sparkles class="w-4 h-4 text-[#1E7A6F] shrink-0" />
+              <span>Sudah selesai membaca? Yuk mulai kuis interaktifnya di bawah!</span>
+            </div>
+            <button
+              type="button"
+              @click="scrollToQuiz"
+              class="w-full sm:w-auto btn-prisma-mint px-6 py-3.5 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2.5 cursor-pointer transition active:scale-95 shadow-sm"
+            >
+              <span>Lanjut ke Kuis Interaktif</span>
+              <Sparkles class="w-4 h-4 text-[#1E7A6F]" />
+              <ArrowDown class="w-4 h-4 text-[#1E7A6F]" />
+            </button>
+          </div>
         </div>
 
         <!-- Ringkasan jika sedang disembunyikan -->
@@ -1593,7 +1638,7 @@ onBeforeUnmount(() => {
       </section>
 
       <!-- ==================== KARTU KUIS AKTIF (COMPACT & RAMAH ANAK SD) ==================== -->
-      <div class="card-prisma p-5 sm:p-7 lg:p-8 space-y-6 text-left">
+      <div ref="quizSectionRef" class="card-prisma p-5 sm:p-7 lg:p-8 space-y-6 text-left scroll-mt-24">
         
         <!-- ==================== QUIZ ACTIVE QUESTION VIEW ==================== -->
         <div v-if="!isQuizSubmitted && questions.length > 0" class="space-y-5">
