@@ -2103,13 +2103,13 @@ onBeforeUnmount(() => {
                     v-if="getOrderingAnswersForCurrent()[slotIdx]"
                     :draggable="!isCurrentQuestionChecked"
                     @dragstart="onCardDragStart(getOrderingAnswersForCurrent()[slotIdx], $event)"
-                    class="font-['Baloo_2'] font-bold text-base sm:text-lg text-[#2B3445] mt-2 leading-snug text-center py-1 select-none"
+                    class="font-['Baloo_2'] font-bold text-xl sm:text-2xl text-[#2B3445] mt-2 leading-snug text-center py-1 select-none"
                     :class="!isCurrentQuestionChecked ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'"
                   >
                     <span>{{ getOrderingAnswersForCurrent()[slotIdx] }}</span>
                   </div>
                   <div v-else class="py-3 text-center">
-                    <span class="text-xs font-semibold text-[#8F8575]/60 font-['Baloo_2']">
+                    <span class="text-sm font-semibold text-[#8F8575]/65 font-['Baloo_2']">
                       Urutan {{ slotIdx + 1 }}
                     </span>
                   </div>
@@ -2129,7 +2129,7 @@ onBeforeUnmount(() => {
                     :draggable="!isCurrentQuestionChecked && !getOrderingAnswersForCurrent().includes(item)"
                     @dragstart="onCardDragStart(item, $event)"
                     @click="addToOrdering(item)"
-                    class="px-5 py-3.5 rounded-2xl font-['Baloo_2'] font-bold text-base sm:text-lg transition-all border-2 flex items-center select-none"
+                    class="px-6 py-4 rounded-2xl font-['Baloo_2'] font-bold text-xl sm:text-2xl transition-all border-2 flex items-center select-none"
                     :class="[
                       isCurrentQuestionChecked
                         ? 'opacity-60 cursor-default bg-white border-[#8F8575]/20 text-[#8F8575]'
@@ -3376,7 +3376,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 shrink-0">
               <div
                 v-if="isCurrentQuestionCorrect"
                 class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#1E7A6F] text-white shadow-2xs shrink-0 flex items-center gap-1"
@@ -3387,7 +3387,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 @click="isExplanationPopupOpen = false; playButtonPop()"
-                class="w-8 h-8 rounded-xl bg-black/5 hover:bg-black/10 flex items-center justify-center text-sm font-bold text-[#5B6474] cursor-pointer transition active:scale-95"
+                class="w-8 h-8 rounded-xl bg-black/5 hover:bg-black/10 flex items-center justify-center text-sm font-bold text-[#5B6474] cursor-pointer transition active:scale-95 shrink-0"
                 title="Tutup Pembahasan"
               >
                 ✕
@@ -3403,8 +3403,11 @@ onBeforeUnmount(() => {
             </p>
           </div>
 
-          <!-- Perbandingan Jawaban vs Kunci (Tampilan 2 Kartu Berdampingan Sesuai Mockup) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <!-- Perbandingan Jawaban vs Kunci (Jika benar, sembunyikan Kunci Jawaban) -->
+          <div
+            class="grid gap-3 text-xs"
+            :class="isCurrentQuestionCorrect ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'"
+          >
             <!-- Pilihan Kamu -->
             <div
               class="p-4 rounded-2xl border space-y-1.5 flex flex-col justify-between"
@@ -3443,8 +3446,8 @@ onBeforeUnmount(() => {
               </div>
             </div>
 
-            <!-- Kunci Jawaban -->
-            <div class="p-4 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4] space-y-1.5 flex flex-col justify-between">
+            <!-- Kunci Jawaban (Hanya tampil jika jawaban belum tepat) -->
+            <div v-if="!isCurrentQuestionCorrect" class="p-4 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4] space-y-1.5 flex flex-col justify-between">
               <div class="space-y-1">
                 <span class="text-[#1E7A6F] font-semibold block text-xs">Kunci Jawaban:</span>
                 
