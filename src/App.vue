@@ -1158,27 +1158,27 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
         <div class="flex-1 bg-[#FFDE7A]"></div>
       </div>
 
-      <div class="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 py-12 lg:py-16">
+      <div class="relative z-10 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-14">
         
-        <!-- Top Row: Mascot Banner -->
-        <div class="mb-12 p-6 sm:p-8 rounded-2xl bg-[#1E7A6F] border border-[#7FD4C4]/30 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="flex items-center gap-4 text-center md:text-left">
-            <div class="w-14 h-14 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center text-3xl shrink-0">
-              🌟
+        <!-- Top Row: CTA Banner -->
+        <div class="mb-10 sm:mb-12 p-5 sm:p-8 rounded-3xl bg-gradient-to-r from-[#1E7A6F] to-[#165B53] border border-[#7FD4C4]/30 flex flex-col md:flex-row items-center justify-between gap-5 shadow-lg">
+          <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <div class="w-14 h-14 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center text-3xl shrink-0 shadow-xs">
+              🚀
             </div>
             <div>
-              <h4 class="font-['Baloo_2'] text-base sm:text-lg font-bold text-white">
-                Siap Menjelajah Bersama Prisma?
+              <h4 class="font-['Baloo_2'] text-lg sm:text-xl font-bold text-white leading-snug">
+                Siap Belajar Seru Bersama Prisma?
               </h4>
-              <p class="text-xs sm:text-sm text-[#FFF8F0]/90 font-normal mt-0.5">
-                Pilih gaya belajarmu hari ini. Ada Standar, Slow, Kontras Tinggi, dan Fokus Mandiri.
+              <p class="text-xs sm:text-sm text-[#FFF8F0]/90 font-normal mt-1 max-w-xl">
+                Tonton video edukasi, dengarkan cerita bersuara, dan taklukkan kuis interaktif dari Kelas 1 hingga Kelas 6!
               </p>
             </div>
           </div>
-          <div class="flex items-center gap-3 shrink-0">
+          <div class="flex items-center gap-3 shrink-0 w-full md:w-auto">
             <button
               @click="navigateTo('materi'); playButtonPop()"
-              class="btn-prisma-mint px-6 py-3 text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-sm flex items-center gap-2 cursor-pointer"
+              class="btn-prisma-mint w-full md:w-auto justify-center px-6 py-3.5 text-xs sm:text-sm font-bold transition-all hover:scale-105 active:scale-95 shadow-md flex items-center gap-2 cursor-pointer"
             >
               <span>Mulai Belajar Sekarang</span>
               <ArrowRight class="w-4 h-4 text-[#1E7A6F]" />
@@ -1186,40 +1186,40 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
           </div>
         </div>
 
-        <!-- Main Footer Links Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 text-left">
+        <!-- Main Footer Grid (4 Kolom Rapi Tanpa Email & Jam Buka) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 text-left">
           
-          <!-- Column 1: Brand Info & Values -->
-          <div class="lg:col-span-4 space-y-4">
+          <!-- Column 1: Brand Info & Deskripsi Baru -->
+          <div class="sm:col-span-2 lg:col-span-4 space-y-4">
             <div class="flex items-center gap-3">
               <div class="p-2 bg-white rounded-2xl shadow-xs">
                 <img src="/Logo.png" alt="Logo Prisma" class="h-8 w-auto" />
               </div>
               <div>
                 <span class="font-['Baloo_2'] text-2xl font-bold tracking-tight text-white block leading-none">Prisma</span>
-                <span class="text-[11px] font-semibold text-[#FFDE7A] tracking-wider uppercase mt-1 block">Media Belajar Adaptif</span>
+                <span class="text-[11px] font-semibold text-[#FFDE7A] tracking-wider uppercase mt-1 block">Media Belajar Literasi & Numerasi</span>
               </div>
             </div>
             
-            <p class="text-xs sm:text-sm text-[#FFF8F0]/80 leading-relaxed max-w-sm font-normal">
-              Platform media edukasi adaptif dan interaktif yang dibangun khusus untuk memberikan kesetaraan belajar bagi seluruh anak Indonesia, termasuk anak berkebutuhan khusus (ABK).
+            <p class="text-xs sm:text-sm text-[#FFF8F0]/80 leading-relaxed max-w-md font-normal">
+              Sahabat belajar interaktif untuk siswa SD Kelas 1–6. Dilengkapi video pembelajaran, bacaan cerita bersuara, kuis seru, serta asisten AI Kak Defi yang siap membantu memahami pelajaran langkah demi langkah.
             </p>
             
             <!-- Value Badges -->
             <div class="flex items-center gap-2 flex-wrap pt-1">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-[#7FD4C4] border border-[#7FD4C4]/30">
-                Adaptif
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-[#7FD4C4] border border-[#7FD4C4]/30">
+                Ramah Anak
               </span>
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-[#FFB899] border border-[#FFB899]/30">
-                Inklusif
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-[#FFB899] border border-[#FFB899]/30">
+                Audio & Visual
               </span>
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-[#94C6FF] border border-[#94C6FF]/30">
-                Ramah Sensorik
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-[#94C6FF] border border-[#94C6FF]/30">
+                Kuis Interaktif
               </span>
             </div>
           </div>
 
-          <!-- Column 2: Navigasi Cepat -->
+          <!-- Column 2: Navigasi -->
           <div class="lg:col-span-2 space-y-3.5">
             <h3 class="font-['Baloo_2'] text-xs font-bold text-[#FFDE7A] uppercase tracking-widest">Navigasi</h3>
             <ul class="space-y-2.5 text-xs sm:text-sm text-[#FFF8F0]/80 font-normal">
@@ -1235,65 +1235,64 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
               </li>
               <li>
                 <button @click="navigateTo('admin')" class="hover:text-[#7FD4C4] hover:translate-x-1 transition-all cursor-pointer inline-flex items-center gap-1.5">
-                  <ArrowRight class="w-3 h-3 text-[#7FD4C4]" /> CMS Admin
+                  <ArrowRight class="w-3 h-3 text-[#7FD4C4]" /> Panel Guru
                 </button>
               </li>
               <li>
                 <button @click="openSettings('theme')" class="hover:text-[#7FD4C4] hover:translate-x-1 transition-all cursor-pointer inline-flex items-center gap-1.5">
-                  <ArrowRight class="w-3 h-3 text-[#7FD4C4]" /> Tampilan
+                  <ArrowRight class="w-3 h-3 text-[#7FD4C4]" /> Pengaturan Tampilan
                 </button>
               </li>
             </ul>
           </div>
 
-          <!-- Column 3: Fitur Pembelajaran Prisma -->
+          <!-- Column 3: Fitur Utama -->
           <div class="lg:col-span-3 space-y-3.5">
             <h3 class="font-['Baloo_2'] text-xs font-bold text-[#FFDE7A] uppercase tracking-widest">Fitur Pembelajaran</h3>
             <div class="space-y-3">
               <div class="flex items-start gap-2.5">
                 <span class="w-2 h-2 rounded-full bg-[#7FD4C4] mt-1.5 shrink-0"></span>
                 <div class="min-w-0">
-                  <p class="text-xs font-semibold text-white">Video Pembelajaran</p>
-                  <p class="text-[11px] text-[#FFF8F0]/70 font-normal leading-tight">Visual konsep dan praktik dengan kendali kecepatan</p>
+                  <p class="text-xs font-semibold text-white">Video Edukasi</p>
+                  <p class="text-[11px] text-[#FFF8F0]/70 font-normal leading-snug">Penjelasan visual konsep & praktik untuk Kelas 1–6</p>
                 </div>
               </div>
               <div class="flex items-start gap-2.5">
                 <span class="w-2 h-2 rounded-full bg-[#FFB899] mt-1.5 shrink-0"></span>
                 <div class="min-w-0">
-                  <p class="text-xs font-semibold text-white">Asesmen Pemahaman</p>
-                  <p class="text-[11px] text-[#FFF8F0]/70 font-normal leading-tight">Kuis pilihan ganda dengan umpan balik ramah anak</p>
+                  <p class="text-xs font-semibold text-white">Kuis Interaktif</p>
+                  <p class="text-[11px] text-[#FFF8F0]/70 font-normal leading-snug">Pilihan ganda, tarik garis, urutkan kartu, & pembahasan instan</p>
                 </div>
               </div>
               <div class="flex items-start gap-2.5">
                 <span class="w-2 h-2 rounded-full bg-[#94C6FF] mt-1.5 shrink-0"></span>
                 <div class="min-w-0">
-                  <p class="text-xs font-semibold text-white">Suara Narasi</p>
-                  <p class="text-[11px] text-[#FFF8F0]/70 font-normal leading-tight">Mendengarkan materi lewat tombol audio</p>
+                  <p class="text-xs font-semibold text-white">Bacaan & Suara Narasi</p>
+                  <p class="text-[11px] text-[#FFF8F0]/70 font-normal leading-snug">Cerita edukatif lengkap dengan audio narasi</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Column 4: Dukungan & Kontak -->
-          <div class="lg:col-span-3 space-y-3.5">
-            <h3 class="font-['Baloo_2'] text-xs font-bold text-[#FFDE7A] uppercase tracking-widest">Dukungan & Kontak</h3>
+          <!-- Column 4: Bantuan Belajar (Tanpa Email & Jam Buka) -->
+          <div class="sm:col-span-2 lg:col-span-3 space-y-3.5">
+            <h3 class="font-['Baloo_2'] text-xs font-bold text-[#FFDE7A] uppercase tracking-widest">Pendamping Belajar</h3>
             <p class="text-xs text-[#FFF8F0]/80 leading-relaxed font-normal">
-              Punya pertanyaan seputar kurikulum inklusif atau butuh panduan untuk sekolah?
+              Butuh bantuan memahami materi atau soal? Tanya langsung lewat asisten pintar PRISMA!
             </p>
-            <div class="space-y-2.5 pt-1 text-xs">
-              <a href="mailto:halo@prisma.id" class="flex items-center gap-2.5 text-[#FFF8F0]/80 hover:text-white transition group">
-                <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#7FD4C4]/20 group-hover:text-[#7FD4C4] transition">
-                  <Mail class="w-3.5 h-3.5" />
+            <div class="space-y-2.5 pt-1">
+              <div class="p-3 rounded-2xl bg-white/10 border border-white/15 flex items-start gap-3">
+                <span class="text-xl leading-none shrink-0 mt-0.5">🤖</span>
+                <div class="min-w-0">
+                  <p class="text-xs font-bold text-white">Chatbot Kak Defi</p>
+                  <p class="text-[11px] text-[#FFF8F0]/75 leading-snug mt-0.5">Klik ikon robot di pojok kanan bawah kapan saja</p>
                 </div>
-                <span class="font-normal text-[#FFF8F0]/90">halo@prisma.id</span>
-              </a>
-              <div class="flex items-center gap-2.5 text-[#FFF8F0]/80">
-                <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center shrink-0 text-[#7FD4C4]">
-                  <Clock class="w-3.5 h-3.5" />
-                </div>
-                <div class="text-[11px] leading-tight">
-                  <span class="font-normal text-[#FFF8F0]/90">Senin - Jumat</span>
-                  <span class="text-[#FFF8F0]/60 ml-1.5">(08.00 - 17.00 WIB)</span>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/10 border border-white/15 flex items-start gap-3">
+                <span class="text-xl leading-none shrink-0 mt-0.5">📚</span>
+                <div class="min-w-0">
+                  <p class="text-xs font-bold text-white">Kurikulum SD Lengkap</p>
+                  <p class="text-[11px] text-[#FFF8F0]/75 leading-snug mt-0.5">Materi terstruktur dari Kelas 1 sampai Kelas 6</p>
                 </div>
               </div>
             </div>
@@ -1302,8 +1301,9 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
         </div>
 
         <!-- Copyright Row -->
-        <div class="mt-12 pt-6 border-t border-[#8F8575]/30 text-center text-xs text-[#FFF8F0]/70 font-normal">
-          <p>© 2026 PRISMA. Seluruh hak cipta dilindungi. Media Belajar Ramah Anak & Inklusif.</p>
+        <div class="mt-10 sm:mt-12 pt-6 border-t border-[#8F8575]/30 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left text-xs text-[#FFF8F0]/70 font-normal">
+          <p>© 2026 PRISMA. Platform Belajar Literasi & Numerasi SD.</p>
+          <p class="text-[11px] text-[#FFF8F0]/55">Belajar Jadi Mudah, Seru, & Menyenangkan ✨</p>
         </div>
 
       </div>
