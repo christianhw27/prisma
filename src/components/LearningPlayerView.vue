@@ -943,7 +943,12 @@ const checkAnswerCorrectness = (q, ans) => {
   if (ans === undefined || ans === null) return false
   if (q.type === 'matching' && q.pairs?.length) {
     if (typeof ans !== 'object' || Array.isArray(ans)) return false
-    return q.pairs.every(p => ans[p.left] === p.right)
+    return q.pairs.every(p => {
+      const expectedLeft = String(p.left || '').trim()
+      const expectedRight = String(p.right || '').trim()
+      const userRight = ans[p.left] ?? ans[expectedLeft]
+      return String(userRight || '').trim() === expectedRight
+    })
   }
   if (q.type === 'ordering' && q.correctOrder?.length) {
     if (Array.isArray(ans)) {
@@ -3403,21 +3408,21 @@ onBeforeUnmount(() => {
             </p>
           </div>
 
-          <!-- Perbandingan Jawaban vs Kunci (Jika benar, sembunyikan Kunci Jawaban) -->
+          <!-- Perbandingan Jawaban vs Kunci (Jika benar, sembunyikan Jawaban Kamu & langsung tampilkan Kunci Jawaban) -->
           <div
             class="grid gap-3 text-xs"
             :class="isCurrentQuestionCorrect ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'"
           >
-            <!-- Pilihan Kamu -->
+            <!-- Pilihan Kamu (Hanya tampil jika jawaban belum tepat) -->
             <div
-              class="p-4 rounded-2xl border space-y-1.5 flex flex-col justify-between"
-              :class="isCurrentQuestionCorrect ? 'bg-[#7FD4C4]/15 border-[#7FD4C4]' : 'bg-[#FFDE7A]/25 border-[#D97706]/40'"
+              v-if="!isCurrentQuestionCorrect"
+              class="p-4 rounded-2xl border space-y-1.5 flex flex-col justify-between bg-[#FFDE7A]/25 border-[#D97706]/40"
             >
               <div class="space-y-1">
                 <span class="text-[#5B6474] font-semibold block text-xs">Jawaban Kamu:</span>
                 
                 <!-- Khusus Tipe Matching: Daftar Pasangan per Baris -->
-                <div v-if="currentQuestion.type === 'matching'" class="space-y-1 py-1 font-['Baloo_2'] font-bold text-sm sm:text-base leading-snug" :class="isCurrentQuestionCorrect ? 'text-[#1E7A6F]' : 'text-[#B45309]'">
+                <div v-if="currentQuestion.type === 'matching'" class="space-y-1 py-1 font-['Baloo_2'] font-bold text-sm sm:text-base leading-snug text-[#B45309]">
                   <div
                     v-for="(val, key, kIdx) in (selectedAnswers[currentQuestionIndex] || {})"
                     :key="key"
@@ -3429,25 +3434,21 @@ onBeforeUnmount(() => {
                 <!-- Tipe Soal Lainnya -->
                 <p
                   v-else
-                  class="font-['Baloo_2'] font-bold text-base leading-snug"
-                  :class="isCurrentQuestionCorrect ? 'text-[#1E7A6F]' : 'text-[#B45309]'"
+                  class="font-['Baloo_2'] font-bold text-base leading-snug text-[#B45309]"
                 >
                   {{ formatUserAnswerText(currentQuestion, selectedAnswers[currentQuestionIndex]) }}
                 </p>
               </div>
 
               <div>
-                <span
-                  class="inline-block px-2.5 py-0.5 rounded-lg text-xs font-bold text-white mt-2 shadow-2xs font-['Baloo_2']"
-                  :class="isCurrentQuestionCorrect ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'"
-                >
-                  {{ isCurrentQuestionCorrect ? '✓ Tepat' : '💡 Belum Tepat' }}
+                <span class="inline-block px-2.5 py-0.5 rounded-lg text-xs font-bold text-white mt-2 shadow-2xs font-['Baloo_2'] bg-[#D97706]">
+                  💡 Belum Tepat
                 </span>
               </div>
             </div>
 
-            <!-- Kunci Jawaban (Hanya tampil jika jawaban belum tepat) -->
-            <div v-if="!isCurrentQuestionCorrect" class="p-4 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4] space-y-1.5 flex flex-col justify-between">
+            <!-- Kunci Jawaban (Selalu tampil untuk semua tipe kuis) -->
+            <div class="p-4 rounded-2xl bg-[#7FD4C4]/20 border border-[#7FD4C4] space-y-1.5 flex flex-col justify-between">
               <div class="space-y-1">
                 <span class="text-[#1E7A6F] font-semibold block text-xs">Kunci Jawaban:</span>
                 
