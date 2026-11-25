@@ -91,6 +91,9 @@ export function sanitizeVideoUrl(url, mode = 'standard') {
 export function sanitizeMateriItem(item) {
   if (!item) return item
   const clean = { ...item }
+  if (!clean.id || !String(clean.id).trim()) {
+    clean.id = `materi-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
+  }
   clean.jenjang = 'SD'
   if (clean.level && (clean.level.includes('Kelas VII') || clean.level.includes('Kelas 7'))) {
     clean.level = 'IPAS • Kelas VI • Fase C'
@@ -787,7 +790,8 @@ export async function addMateri(newItem) {
       }
     ],
     created_at: new Date().toISOString(),
-    ...newItem
+    ...newItem,
+    id: (newItem.id && String(newItem.id).trim()) ? newItem.id : `materi-${Date.now()}`
   }
   const cleanItem = sanitizeMateriItem(itemWithId)
 
