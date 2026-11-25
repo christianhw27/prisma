@@ -482,12 +482,12 @@ const formatMarkdown = (txt) => {
     >
       
       <!-- HEADER JENDELA CHAT -->
-      <header class="bg-gradient-to-r from-[#1E7A6F] to-[#165B53] text-white px-4 py-3.5 sm:px-6 sm:py-4.5 flex items-center justify-between shadow-md shrink-0">
+      <header class="bg-gradient-to-r from-[#1E7A6F] to-[#165B53] text-white px-3.5 py-3 sm:px-6 sm:py-4.5 flex items-center justify-between gap-2 shadow-md shrink-0">
         <!-- Profil Kak Defi -->
-        <div class="flex items-center gap-3.5">
-          <div class="relative w-12 h-12 sm:w-13 sm:h-13 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center border border-white/20 shadow-xs shrink-0">
+        <div class="flex items-center gap-2.5 sm:gap-3.5 flex-1 min-w-0">
+          <div class="relative w-10 h-10 sm:w-13 sm:h-13 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center border border-white/20 shadow-xs shrink-0">
             <!-- Smiling Mini Bot SVG -->
-            <svg class="w-8 h-8 drop-shadow-sm" viewBox="0 0 36 36" fill="none">
+            <svg class="w-7 h-7 sm:w-8 sm:h-8 drop-shadow-sm" viewBox="0 0 36 36" fill="none">
               <line x1="18" y1="4" x2="18" y2="8" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
               <circle cx="18" cy="3.5" r="2" fill="#FFDE7A"/>
               <rect x="5" y="8" width="26" height="22" rx="10" fill="white" />
@@ -501,28 +501,28 @@ const formatMarkdown = (txt) => {
               <circle cx="26.5" cy="21" r="1.2" fill="#FF8A8A" />
             </svg>
             <span
-              class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#1E7A6F] bg-emerald-400"
+              class="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 border-[#1E7A6F] bg-emerald-400"
             ></span>
           </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h2 class="font-['Baloo_2'] font-extrabold text-lg sm:text-xl leading-tight tracking-wide text-white">
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <h2 class="font-['Baloo_2'] font-extrabold text-base sm:text-xl leading-tight tracking-wide text-white truncate">
                 Kak Defi
               </h2>
-              <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-[#FFDE7A] text-[#2B3445] leading-none">
+              <span class="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full bg-[#FFDE7A] text-[#2B3445] leading-none shrink-0">
                 AI SD
               </span>
             </div>
-            <div class="flex items-center gap-1.5 text-xs sm:text-sm text-white/80 leading-tight mt-0.5">
-              <span>🟢 Siap Membantu</span>
-              <span class="text-white/50">•</span>
-              <span class="text-white/95 font-medium">Teman Belajar PRISMA</span>
+            <div class="flex items-center gap-1 text-[11px] sm:text-sm text-white/80 leading-tight mt-0.5 truncate">
+              <span class="shrink-0">🟢 Siap Membantu</span>
+              <span class="hidden sm:inline text-white/50">•</span>
+              <span class="hidden sm:inline text-white/95 font-medium truncate">Teman Belajar PRISMA</span>
             </div>
           </div>
         </div>
 
         <!-- Tombol Aksi Header -->
-        <div class="flex items-center gap-1.5">
+        <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
           <!-- Tombol Auto-Voice (Membaca Jawaban) -->
           <button
             type="button"
@@ -571,26 +571,26 @@ const formatMarkdown = (txt) => {
       <!-- AREA DAFTAR PESAN (CHAT BODY) -->
       <div
         ref="chatContainerRef"
-        class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-5 bg-gradient-to-b from-[#FFF8F0] via-white to-[#FFF8F0]/50"
+        class="flex-1 overflow-y-auto overflow-x-hidden p-3.5 sm:p-6 space-y-4 sm:space-y-5 bg-gradient-to-b from-[#FFF8F0] via-white to-[#FFF8F0]/50"
       >
         
         <!-- Render Tiap Pesan -->
         <div
           v-for="msg in messages"
           :key="msg.id"
-          class="flex flex-col"
+          class="flex flex-col w-full min-w-0"
           :class="msg.sender === 'user' ? 'items-end' : 'items-start'"
         >
           <!-- Bubble Pesan Siswa -->
           <div
             v-if="msg.sender === 'user'"
-            class="max-w-[85%] bg-gradient-to-br from-[#1E7A6F] to-[#165B53] text-white p-4 sm:p-5 rounded-3xl rounded-br-xs shadow-sm space-y-2.5"
+            class="max-w-[85%] bg-gradient-to-br from-[#1E7A6F] to-[#165B53] text-white p-3.5 sm:p-5 rounded-3xl rounded-br-xs shadow-sm space-y-2.5 break-words"
           >
             <!-- Lampiran Foto jika ada -->
             <div v-if="msg.photoUrl" class="rounded-2xl overflow-hidden border-2 border-white/30 max-h-56 bg-black/10">
               <img :src="msg.photoUrl" alt="Foto soal siswa" class="w-full h-auto object-cover" />
             </div>
-            <p class="text-base sm:text-lg font-medium leading-relaxed whitespace-pre-wrap">
+            <p class="text-sm sm:text-lg font-medium leading-relaxed whitespace-pre-wrap break-words">
               {{ msg.text }}
             </p>
           </div>
@@ -598,15 +598,15 @@ const formatMarkdown = (txt) => {
           <!-- Bubble Pesan Kak Defi -->
           <div
             v-else
-            class="max-w-[95%] sm:max-w-[92%] flex items-start gap-3"
+            class="w-full max-w-full sm:max-w-[92%] flex items-start gap-2.5 sm:gap-3 min-w-0"
           >
             <!-- Defi Avatar Bubble -->
-            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border-2 border-white mt-1">
-              <Bot class="w-5.5 h-5.5" />
+            <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-[#1E7A6F] to-[#7FD4C4] text-white flex items-center justify-center shrink-0 shadow-xs border-2 border-white mt-1">
+              <Bot class="w-5 h-5 sm:w-5.5 sm:h-5.5" />
             </div>
 
             <!-- Kartu Jawaban Super Ramah Anak -->
-            <div class="bg-white p-4 sm:p-5.5 rounded-3xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-sm text-[#2B3445] space-y-3 flex-1">
+            <div class="bg-white p-3.5 sm:p-5.5 rounded-3xl rounded-tl-xs border-2 border-[#8F8575]/20 shadow-sm text-[#2B3445] space-y-3 flex-1 min-w-0 overflow-hidden break-words">
               
               <!-- Badge Kategori Jawaban -->
               <div class="flex items-center justify-between gap-2 border-b border-[#8F8575]/15 pb-2.5">

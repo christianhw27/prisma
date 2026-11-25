@@ -522,26 +522,26 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
       <!-- Floating Pill Container (PRISMA Design System) -->
       <div
         :class="[
-          'w-full max-w-[1600px] mx-auto rounded-2xl sm:rounded-full border transition-all duration-300 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4 relative overflow-visible',
+          'w-full max-w-[1600px] mx-auto rounded-2xl sm:rounded-full border transition-all duration-300 px-3 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-4 relative overflow-visible',
           isScrolled
             ? 'bg-white/95 backdrop-blur-xl border-[#8F8575]/30 shadow-md'
             : 'bg-white/90 backdrop-blur-md border-[#8F8575]/25 shadow-sm hover:bg-white'
         ]"
       >
         <!-- Left: Combined Logo + Desktop Segmented Nav -->
-        <div class="flex items-center gap-5 lg:gap-8">
+        <div class="flex items-center gap-3 sm:gap-5 lg:gap-8 min-w-0">
           <!-- Logo Image + Stylized Text -->
           <button
             @click="navigateTo('beranda')"
-            class="flex items-center gap-2.5 sm:gap-3 group cursor-pointer shrink-0 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] rounded-xl transition-transform active:scale-95"
+            class="flex items-center gap-2 sm:gap-3 group cursor-pointer shrink-0 focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] rounded-xl transition-transform active:scale-95"
             title="Prisma - Beranda"
           >
             <img
               src="/Logo.png"
               alt="Prisma Logo"
-              class="h-9 sm:h-11 lg:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              class="h-8 sm:h-11 lg:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <span class="font-['Baloo_2'] text-2xl sm:text-3xl font-bold tracking-tight text-[#2B3445] group-hover:text-[#1E7A6F] transition-colors leading-none">Prisma</span>
+            <span class="font-['Baloo_2'] text-xl sm:text-3xl font-bold tracking-tight text-[#2B3445] group-hover:text-[#1E7A6F] transition-colors leading-none">Prisma</span>
           </button>
 
           <!-- Nav Links -->
@@ -588,11 +588,11 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
         </div>
 
         <!-- Right: Actions & Admin State -->
-        <div class="flex items-center gap-2 sm:gap-3 justify-end">
+        <div class="flex items-center gap-1.5 sm:gap-3 justify-end shrink-0">
           <!-- Accessibility / Theme Settings Button -->
           <button
             @click="openSettings('theme')"
-            class="btn-prisma-white flex items-center gap-2 h-10 px-3.5 sm:px-4 text-xs font-semibold cursor-pointer select-none"
+            class="btn-prisma-white flex items-center justify-center gap-2 h-9 sm:h-10 px-2.5 sm:px-4 text-xs font-semibold cursor-pointer select-none shrink-0"
             title="Pengaturan Tampilan"
           >
             <Settings class="w-4 h-4 text-[#1E7A6F]" />
@@ -600,13 +600,13 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
           </button>
 
           <!-- Admin Logged In Pill -->
-          <div v-if="isAdmin" class="flex items-center gap-2">
+          <div v-if="isAdmin" class="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFF8F0] border border-[#8F8575]/30 text-[#1E7A6F] text-xs font-semibold">
               Administrator
             </span>
             <button
               @click="handleLogout"
-              class="btn-prisma-white h-10 px-3.5 text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
+              class="btn-prisma-white h-9 sm:h-10 px-2.5 sm:px-3.5 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
               title="Keluar dari mode admin"
             >
               <LogOut class="w-3.5 h-3.5 text-[#5B6474]" />
@@ -617,7 +617,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
           <!-- Mobile Hamburger Toggle Button -->
           <button
             @click="isMobileMenuOpen = !isMobileMenuOpen"
-            class="md:hidden p-2.5 rounded-full bg-[#FFF8F0] border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer"
+            class="md:hidden p-2 rounded-full bg-[#FFF8F0] border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer shrink-0"
             aria-label="Toggle Menu"
           >
             <X v-if="isMobileMenuOpen" class="w-5 h-5 text-[#2B3445]" />

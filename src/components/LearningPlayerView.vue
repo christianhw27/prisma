@@ -1246,11 +1246,10 @@ onBeforeUnmount(() => {
     </button>
   </div>
 
-  <div v-else class="w-full max-w-5xl mx-auto flex flex-col space-y-6 animate-soft-pop pb-12 font-['Lexend'] text-[#2B3445]">
-    <!-- ==================== TOP BAR HEADER ==================== -->
+  <div v-else class="w-full max-w-5xl mx-auto flex flex-col space-y-6 animate-soft-pop pb-24 sm:pb-12 font-['Lexend'] text-[#2B3445]">
     <!-- ==================== TOP BAR HEADER ==================== -->
     <header class="bg-white rounded-3xl border border-[#8F8575]/25 p-4 sm:p-5 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div class="flex items-center gap-3 min-w-0">
+      <div class="flex items-start sm:items-center gap-3 w-full md:w-auto min-w-0">
         <button
           @click="emit('back')"
           class="p-2 sm:px-3.5 sm:py-2.5 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/30 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#1E7A6F] shrink-0 active:scale-95 shadow-2xs"
@@ -1260,13 +1259,13 @@ onBeforeUnmount(() => {
           <span>Kembali</span>
         </button>
 
-        <div class="min-w-0 text-left">
+        <div class="flex-1 min-w-0 text-left">
           <div class="flex items-center gap-2 flex-wrap">
             <span class="px-3 py-0.5 rounded-full text-xs font-bold bg-[#FFF8F0] text-[#1E7A6F] border border-[#1E7A6F]/25">
               {{ getKelasFromLevel(materi?.level) }} • Bab {{ chapterNumberInKelas }} dari {{ totalChaptersInKelas }}
             </span>
           </div>
-          <h1 class="text-xl sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445] leading-tight mt-1 truncate">
+          <h1 class="text-lg sm:text-2xl font-bold font-['Baloo_2'] text-[#2B3445] leading-snug mt-1 break-words sm:truncate">
             {{ materi?.title }}
           </h1>
         </div>

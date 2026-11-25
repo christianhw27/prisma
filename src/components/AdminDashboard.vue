@@ -780,30 +780,30 @@ const filteredMateri = computed(() => {
             </div>
 
             <!-- Form Body -->
-            <div class="flex-1 overflow-y-auto p-4 sm:p-6 bg-[#FFF8F0]">
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 pb-24 sm:pb-8 bg-[#FFF8F0]">
               <div class="max-w-5xl mx-auto space-y-6">
 
-                <!-- Tab Pills (3 Langkah Jelas) -->
-                <div class="flex items-center gap-2.5 overflow-x-auto pb-1">
+                <!-- Tab Pills (3 Langkah Jelas, Muat Tanpa Scroll Horizontal di Mobile) -->
+                <div class="grid grid-cols-3 sm:flex items-center gap-2 sm:gap-2.5">
                   <button
                     v-for="(label, key) in {
-                      materi: '1. Bacaan, Gambar & Audio',
+                      materi: '1. Bacaan & Audio',
                       video: '2. Video Belajar',
                       quiz: '3. Kuis & Soal'
                     }"
                     :key="key"
                     @click="activeFormTab = key"
                     :class="[
-                      'flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer border-2 shadow-2xs',
+                      'flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 py-2.5 rounded-2xl text-[11px] sm:text-sm font-bold text-center transition cursor-pointer border-2 shadow-2xs leading-tight',
                       activeFormTab === key
                         ? 'bg-[#1E7A6F] text-[#FFF8F0] border-[#1E7A6F] shadow-sm'
                         : 'bg-white text-[#2B3445]/70 border-[#8F8575]/25 hover:border-[#1E7A6F]/50 hover:text-[#2B3445]'
                     ]"
                   >
-                    <BookOpen v-if="key === 'materi'" class="w-4 h-4" />
-                    <Video v-else-if="key === 'video'" class="w-4 h-4" />
-                    <Sparkles v-else class="w-4 h-4" />
-                    {{ label }}
+                    <BookOpen v-if="key === 'materi'" class="w-4 h-4 shrink-0" />
+                    <Video v-else-if="key === 'video'" class="w-4 h-4 shrink-0" />
+                    <Sparkles v-else class="w-4 h-4 shrink-0" />
+                    <span>{{ label }}</span>
                   </button>
                 </div>
 
@@ -1496,7 +1496,7 @@ const filteredMateri = computed(() => {
           <!-- ============================================================ -->
           <!-- HALAMAN UTAMA TERPADU: RINGKASAN + KELOLA MATERI -->
           <!-- ============================================================ -->
-          <div v-else class="max-w-7xl mx-auto p-4 sm:p-6 space-y-6 font-['Lexend']">
+          <div v-else class="max-w-7xl mx-auto p-4 sm:p-6 pb-24 sm:pb-8 space-y-5 sm:space-y-6 font-['Lexend']">
             <!-- Welcome & Primary Action -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
@@ -1505,51 +1505,51 @@ const filteredMateri = computed(() => {
               </div>
               <button
                 @click="openAddForm"
-                class="btn-prisma-mint flex items-center gap-2 px-6 py-3 rounded-2xl text-[#FFF8F0] text-sm font-bold cursor-pointer active:scale-95 transition shadow-md shrink-0"
+                class="btn-prisma-mint flex items-center justify-center gap-2 px-6 py-3 rounded-2xl text-[#FFF8F0] text-sm font-bold cursor-pointer active:scale-95 transition shadow-md shrink-0 w-full sm:w-auto"
               >
                 <Plus class="w-4 h-4" /> Tambah Materi Baru
               </button>
             </div>
 
-            <!-- Stats grid (Ringkasan Singkat) -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0">
-                  <BookOpen class="w-5 h-5" />
+            <!-- Stats grid (Ringkasan Singkat, Rapi di Mobile) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div class="bg-white rounded-3xl p-3.5 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <BookOpen class="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-                <div>
-                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ materiList.length }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Total Materi Bab</p>
-                </div>
-              </div>
-
-              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-2xl bg-[#94C6FF]/30 text-[#1E7A6F] flex items-center justify-center shrink-0">
-                  <Video class="w-5 h-5 text-[#1E7A6F]" />
-                </div>
-                <div>
-                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalVideos }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Video Belajar</p>
+                <div class="min-w-0">
+                  <p class="text-xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ materiList.length }}</p>
+                  <p class="text-[11px] sm:text-xs text-[#2B3445]/60 font-semibold mt-1 leading-tight">Total Materi Bab</p>
                 </div>
               </div>
 
-              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-2xl bg-[#FFDE7A]/35 text-[#1E7A6F] flex items-center justify-center shrink-0">
-                  <Volume2 class="w-5 h-5 text-[#1E7A6F]" />
+              <div class="bg-white rounded-3xl p-3.5 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-[#94C6FF]/30 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <Video class="w-4 h-4 sm:w-5 sm:h-5 text-[#1E7A6F]" />
                 </div>
-                <div>
-                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalAudioMateri }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Materi Bersuara</p>
+                <div class="min-w-0">
+                  <p class="text-xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalVideos }}</p>
+                  <p class="text-[11px] sm:text-xs text-[#2B3445]/60 font-semibold mt-1 leading-tight">Video Belajar</p>
                 </div>
               </div>
 
-              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0">
-                  <Sparkles class="w-5 h-5 text-[#1E7A6F]" />
+              <div class="bg-white rounded-3xl p-3.5 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-[#FFDE7A]/35 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <Volume2 class="w-4 h-4 sm:w-5 sm:h-5 text-[#1E7A6F]" />
                 </div>
-                <div>
-                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalQuizQuestions }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Total Soal Kuis</p>
+                <div class="min-w-0">
+                  <p class="text-xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalAudioMateri }}</p>
+                  <p class="text-[11px] sm:text-xs text-[#2B3445]/60 font-semibold mt-1 leading-tight">Materi Bersuara</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-3xl p-3.5 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <Sparkles class="w-4 h-4 sm:w-5 sm:h-5 text-[#1E7A6F]" />
+                </div>
+                <div class="min-w-0">
+                  <p class="text-xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalQuizQuestions }}</p>
+                  <p class="text-[11px] sm:text-xs text-[#2B3445]/60 font-semibold mt-1 leading-tight">Total Soal Kuis</p>
                 </div>
               </div>
             </div>
@@ -1579,13 +1579,13 @@ const filteredMateri = computed(() => {
               </div>
             </div>
 
-            <!-- Table Card -->
+            <!-- Table Card (Desktop Table + Mobile Cards) -->
             <div class="bg-white rounded-3xl border-2 border-[#8F8575]/25 shadow-2xs overflow-hidden">
-              <div class="grid grid-cols-12 gap-3 px-5 py-3.5 border-b-2 border-[#8F8575]/20 bg-[#FFF8F0] text-xs font-bold font-['Baloo_2'] text-[#2B3445]/80 uppercase tracking-wide">
-                <div class="col-span-6 md:col-span-5">Materi Pembelajaran</div>
+              <div class="hidden sm:grid grid-cols-12 gap-3 px-5 py-3.5 border-b-2 border-[#8F8575]/20 bg-[#FFF8F0] text-xs font-bold font-['Baloo_2'] text-[#2B3445]/80 uppercase tracking-wide">
+                <div class="col-span-5">Materi Pembelajaran</div>
                 <div class="col-span-2 hidden md:block">Kelas</div>
                 <div class="col-span-3 hidden lg:block">Kelengkapan</div>
-                <div class="col-span-6 md:col-span-5 lg:col-span-2 text-right">Aksi</div>
+                <div class="col-span-7 md:col-span-5 lg:col-span-2 text-right">Aksi</div>
               </div>
 
               <div v-if="isLoadingMateri" class="py-12 text-center">
@@ -1597,13 +1597,32 @@ const filteredMateri = computed(() => {
                 <div
                   v-for="item in filteredMateri"
                   :key="item.id"
-                  class="grid grid-cols-12 gap-3 items-center px-5 py-4 hover:bg-[#FFF8F0]/70 transition group"
+                  class="flex flex-col sm:grid sm:grid-cols-12 gap-3 items-stretch sm:items-center px-4 sm:px-5 py-4 hover:bg-[#FFF8F0]/70 transition group"
                 >
-                  <div class="col-span-6 md:col-span-5 flex items-center gap-3 min-w-0">
-                    <img :src="item.image || '/es_batu_card.jpg'" :alt="item.title" class="w-12 h-12 rounded-2xl object-cover shrink-0 border-2 border-[#8F8575]/20" />
-                    <div class="min-w-0">
-                      <p class="text-sm font-bold text-[#2B3445] truncate">{{ item.title }}</p>
-                      <p class="text-xs text-[#2B3445]/60 truncate md:hidden">{{ getKelasFromLevel(item.level) }}</p>
+                  <div class="sm:col-span-5 flex items-start sm:items-center gap-3 min-w-0">
+                    <img :src="item.image || '/es_batu_card.jpg'" :alt="item.title" class="w-14 h-14 sm:w-12 sm:h-12 rounded-2xl object-cover shrink-0 border-2 border-[#8F8575]/20" />
+                    <div class="min-w-0 flex-1 space-y-1.5 sm:space-y-0">
+                      <p class="text-sm font-bold text-[#2B3445] leading-snug sm:truncate">{{ item.title }}</p>
+                      <!-- Mobile-only: Kelas & Kelengkapan Media -->
+                      <div class="flex items-center gap-1.5 flex-wrap lg:hidden">
+                        <span class="px-2 py-0.5 rounded-lg bg-[#FFF8F0] border border-[#8F8575]/25 text-[#2B3445] text-[10px] font-bold md:hidden">
+                          {{ getKelasFromLevel(item.level) }}
+                        </span>
+                        <span
+                          :class="[
+                            'px-2 py-0.5 rounded-lg text-[10px] font-bold border',
+                            hasAudio(item) ? 'bg-[#7FD4C4]/25 text-[#1E7A6F] border-[#7FD4C4]' : 'bg-gray-100 text-gray-400 border-gray-200'
+                          ]"
+                        >
+                          🔊 {{ hasAudio(item) ? 'Audio' : 'Tanpa Audio' }}
+                        </span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-[#94C6FF]/20 text-[#1E7A6F] border border-[#94C6FF]/40">
+                          🎬 {{ getVideoCount(item) }} Video
+                        </span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-[#FFDE7A]/30 text-[#2B3445] border border-[#FFDE7A]">
+                          ✍️ {{ getQuestionCount(item) }} Soal
+                        </span>
+                      </div>
                     </div>
                   </div>
 
@@ -1613,7 +1632,7 @@ const filteredMateri = computed(() => {
                     </span>
                   </div>
 
-                  <!-- Indikator Kelengkapan Media (Audio, Video, Soal) -->
+                  <!-- Desktop Indikator Kelengkapan Media (Audio, Video, Soal) -->
                   <div class="col-span-3 hidden lg:flex items-center gap-1.5 flex-wrap">
                     <span
                       :class="[
@@ -1631,15 +1650,18 @@ const filteredMateri = computed(() => {
                     </span>
                   </div>
 
-                  <div class="col-span-6 md:col-span-5 lg:col-span-2 flex items-center gap-1.5 justify-end">
-                    <button @click="emit('previewMateri', item)" class="p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 hover:bg-[#7FD4C4]/30 text-[#1E7A6F] transition cursor-pointer" title="Lihat Tampilan Siswa">
-                      <Eye class="w-4 h-4" />
+                  <div class="sm:col-span-7 md:col-span-5 lg:col-span-2 flex items-center gap-2 justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-[#8F8575]/10">
+                    <button @click="emit('previewMateri', item)" class="flex-1 sm:flex-none px-3 py-2 sm:p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 hover:bg-[#7FD4C4]/30 text-[#1E7A6F] transition cursor-pointer flex items-center justify-center gap-1.5 text-xs font-bold" title="Lihat Tampilan Siswa">
+                      <Eye class="w-4 h-4 shrink-0" />
+                      <span class="sm:hidden">Lihat</span>
                     </button>
-                    <button @click="openEditForm(item)" class="p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 hover:bg-[#FFDE7A]/40 text-[#2B3445] transition cursor-pointer" title="Edit Materi">
-                      <Edit3 class="w-4 h-4" />
+                    <button @click="openEditForm(item)" class="flex-1 sm:flex-none px-3 py-2 sm:p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 hover:bg-[#FFDE7A]/40 text-[#2B3445] transition cursor-pointer flex items-center justify-center gap-1.5 text-xs font-bold" title="Edit Materi">
+                      <Edit3 class="w-4 h-4 shrink-0" />
+                      <span class="sm:hidden">Edit</span>
                     </button>
-                    <button @click="handleDelete(item.id, item.title)" class="p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 hover:bg-rose-100 text-rose-600 transition cursor-pointer" title="Hapus Materi">
-                      <Trash2 class="w-4 h-4" />
+                    <button @click="handleDelete(item.id, item.title)" class="flex-1 sm:flex-none px-3 py-2 sm:p-2 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/20 hover:bg-rose-100 text-rose-600 transition cursor-pointer flex items-center justify-center gap-1.5 text-xs font-bold" title="Hapus Materi">
+                      <Trash2 class="w-4 h-4 shrink-0" />
+                      <span class="sm:hidden">Hapus</span>
                     </button>
                   </div>
                 </div>
