@@ -33,12 +33,12 @@ export function getYouTubeEmbedUrl(url) {
 export function getKelasFromLevel(levelStr) {
   if (!levelStr) return 'Kelas 1'
   const s = String(levelStr).toLowerCase()
-  if (s.includes('kelas 1') || (s.includes('kelas i') && !s.includes('kelas iv') && !s.includes('kelas ix'))) return 'Kelas 1'
-  if (s.includes('kelas 2') || s.includes('kelas ii')) return 'Kelas 2'
-  if (s.includes('kelas 3') || s.includes('kelas iii')) return 'Kelas 3'
-  if (s.includes('kelas 4') || s.includes('kelas iv')) return 'Kelas 4'
-  if (s.includes('kelas 5') || s.includes('kelas v')) return 'Kelas 5'
-  if (s.includes('kelas 6') || s.includes('kelas vi')) return 'Kelas 6'
+  if (s.includes('kelas 6') || /\bkelas\s*vi\b/.test(s)) return 'Kelas 6'
+  if (s.includes('kelas 5') || /\bkelas\s*v\b/.test(s)) return 'Kelas 5'
+  if (s.includes('kelas 4') || /\bkelas\s*iv\b/.test(s)) return 'Kelas 4'
+  if (s.includes('kelas 3') || /\bkelas\s*iii\b/.test(s)) return 'Kelas 3'
+  if (s.includes('kelas 2') || /\bkelas\s*ii\b/.test(s)) return 'Kelas 2'
+  if (s.includes('kelas 1') || /\bkelas\s*i\b/.test(s)) return 'Kelas 1'
   return 'Kelas 1'
 }
 
