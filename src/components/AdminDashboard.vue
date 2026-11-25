@@ -9,17 +9,13 @@ import { currentUser, isAdmin, logoutUser } from '../lib/authService'
 import { uploadVideo, uploadImage, uploadAudio, isCloudinaryConfigured } from '../lib/cloudinary'
 import { playMascotChime } from '../lib/soundEffects'
 import {
-  LayoutDashboard, BookOpen, LogOut, Plus, Trash2, Edit3, Eye,
-  X, CheckCircle2, UploadCloud, ShieldAlert, Search, ChevronRight,
+  BookOpen, LogOut, Plus, Trash2, Edit3, Eye,
+  X, CheckCircle2, UploadCloud, ShieldAlert, Search,
   RefreshCw, Sparkles, ArrowLeft, Save, ImagePlus, AlignLeft,
-  HelpCircle, FileText, Volume2, Music, Video, Menu, Link2, Check
+  HelpCircle, FileText, Volume2, Music, Video, Link2, Check
 } from '@lucide/vue'
 
 const emit = defineEmits(['previewMateri', 'backToApp', 'openAuth'])
-
-// Sidebar nav state (disederhanakan: 2 menu utama untuk guru)
-const activePage = ref('dashboard') // 'dashboard' | 'materi'
-const sidebarCollapsed = ref(false)
 
 // Modal / Form state
 const showForm = ref(false)
@@ -154,7 +150,6 @@ const openAddForm = () => {
   videoInputMode.value = { video1: 'link', video2: 'link' }
   activeFormTab.value = 'materi'
   showForm.value = true
-  activePage.value = 'materi'
 }
 
 const openEditForm = (item) => {
@@ -630,12 +625,6 @@ const filteredMateri = computed(() => {
   }
   return list
 })
-
-// Nav items (2 menu utama yang simpel dan jelas untuk guru)
-const navItems = [
-  { key: 'dashboard', label: 'Ringkasan', icon: LayoutDashboard },
-  { key: 'materi', label: 'Kelola Materi', icon: BookOpen }
-]
 </script>
 
 <template>
@@ -666,112 +655,73 @@ const navItems = [
     </div>
   </div>
 
-  <!-- ====== FULL-SCREEN PANEL GURU ====== -->
+  <!-- ====== FULL-SCREEN PANEL GURU (1 HALAMAN TERPADU TANPA SIDEBAR) ====== -->
   <template v-else>
-    <div class="fixed inset-0 z-40 flex bg-[#FFF8F0] overflow-hidden font-['Lexend'] text-[#2B3445]">
+    <div class="fixed inset-0 z-40 flex flex-col bg-[#FFF8F0] overflow-hidden font-['Lexend'] text-[#2B3445]">
 
-      <!-- ==================== SIDEBAR ==================== -->
-      <aside
-        :class="[
-          'flex flex-col shrink-0 transition-all duration-300 overflow-hidden bg-[#2B3445] border-r-2 border-[#8F8575]/25 z-20',
-          sidebarCollapsed ? 'w-16' : 'w-60'
-        ]"
-      >
-        <!-- Sidebar Header / Logo -->
-        <div class="flex items-center gap-3 px-4 py-5 border-b border-white/10 shrink-0">
-          <img src="/Logo.png" alt="Prisma" class="w-8 h-8 object-contain shrink-0" />
-          <div v-if="!sidebarCollapsed" class="overflow-hidden">
-            <p class="text-white font-bold font-['Baloo_2'] text-lg tracking-tight leading-none truncate">Prisma</p>
-            <p class="text-[#7FD4C4] text-[10px] font-bold tracking-widest uppercase mt-0.5">Panel Guru</p>
+      <!-- ==================== TOP HEADER BAR ==================== -->
+      <header class="shrink-0 flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 bg-white border-b-2 border-[#8F8575]/25 shadow-2xs flex-wrap">
+        <!-- Left: Logo & Brand -->
+        <div class="flex items-center gap-3">
+          <img src="/Logo.png" alt="Prisma" class="w-9 h-9 object-contain shrink-0" />
+          <div>
+            <div class="flex items-center gap-2">
+              <p class="font-bold font-['Baloo_2'] text-lg text-[#2B3445] leading-none">Prisma</p>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#7FD4C4]/25 text-[#1E7A6F] border border-[#7FD4C4]">
+                Panel Guru
+              </span>
+            </div>
+            <p class="text-[11px] text-[#5B6474] font-medium mt-0.5 hidden sm:block">
+              {{ showForm ? (isEditing ? 'Mengedit Materi Pembelajaran' : 'Menambah Materi Baru') : 'Kelola Bacaan, Audio, Video & Kuis Siswa' }}
+            </p>
           </div>
-          <button
-            @click="sidebarCollapsed = !sidebarCollapsed"
-            class="ml-auto text-white/60 hover:text-white p-1 rounded-lg hover:bg-white/10 transition cursor-pointer shrink-0"
-            title="Lipat Menu"
-          >
-            <Menu class="w-4 h-4" />
-          </button>
         </div>
 
-        <!-- Nav Items -->
-        <nav class="flex-1 px-3 py-4 space-y-1.5 overflow-y-auto">
-          <button
-            v-for="item in navItems"
-            :key="item.key"
-            @click="activePage = item.key; showForm = false"
-            :class="[
-              'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl transition cursor-pointer text-left group',
-              activePage === item.key
-                ? 'bg-[#1E7A6F] text-white shadow-sm font-bold'
-                : 'text-white/70 hover:text-white hover:bg-white/10 font-semibold'
-            ]"
-          >
-            <component :is="item.icon" class="w-5 h-5 shrink-0" />
-            <span v-if="!sidebarCollapsed" class="text-sm truncate">{{ item.label }}</span>
-            <div v-if="activePage === item.key" class="ml-auto w-2 h-2 rounded-full bg-[#7FD4C4] shrink-0"></div>
-          </button>
-        </nav>
+        <!-- Right: Cloud status, App link, User, Logout -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div :class="[
+            'hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border-2',
+            isSupabaseConfigured
+              ? 'bg-[#7FD4C4]/20 border-[#7FD4C4] text-[#1E7A6F]'
+              : 'bg-[#FFDE7A]/30 border-[#FFDE7A] text-[#2B3445]'
+          ]">
+            <span class="w-2 h-2 rounded-full" :class="isSupabaseConfigured ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'"></span>
+            {{ isSupabaseConfigured ? 'Tersambung ke Cloud' : 'Mode Lokal' }}
+          </div>
 
-        <!-- Sidebar Footer -->
-        <div class="px-3 py-4 border-t border-white/10 space-y-1.5 shrink-0">
           <button
             @click="emit('backToApp')"
-            class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-white/75 hover:text-white hover:bg-white/10 transition cursor-pointer font-semibold text-sm"
+            class="px-3.5 py-2 rounded-2xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border-2 border-[#8F8575]/25 text-[#2B3445] transition cursor-pointer flex items-center gap-1.5 text-xs font-bold active:scale-95"
+            title="Kembali ke Halaman Belajar Siswa"
           >
-            <ArrowLeft class="w-5 h-5 shrink-0" />
-            <span v-if="!sidebarCollapsed" class="truncate">Lihat Aplikasi Belajar</span>
+            <ArrowLeft class="w-4 h-4 text-[#1E7A6F]" />
+            <span class="hidden sm:inline">Lihat Aplikasi Belajar</span>
           </button>
+
+          <!-- User chip -->
+          <div class="hidden sm:flex items-center gap-2 pl-2 border-l-2 border-[#8F8575]/20">
+            <div class="text-right">
+              <p class="text-xs font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ currentUser?.name }}</p>
+              <p class="text-[10px] text-[#1E7A6F] font-bold mt-0.5">Guru / Pengajar</p>
+            </div>
+            <div class="w-8 h-8 rounded-xl bg-[#1E7A6F] text-[#FFF8F0] border-2 border-[#7FD4C4] flex items-center justify-center text-xs shadow-2xs font-bold">
+              {{ currentUser?.avatar || '👩‍🏫' }}
+            </div>
+          </div>
+
           <button
             @click="logoutUser(); emit('backToApp')"
-            class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-[#FFB899] hover:text-white hover:bg-[#FFB899]/20 transition cursor-pointer font-semibold text-sm"
+            class="p-2 sm:px-3 sm:py-2 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 transition cursor-pointer flex items-center gap-1.5 text-xs font-bold active:scale-95"
+            title="Keluar dari Panel Guru"
           >
-            <LogOut class="w-5 h-5 shrink-0" />
-            <span v-if="!sidebarCollapsed" class="truncate">Keluar</span>
+            <LogOut class="w-4 h-4" />
+            <span class="hidden lg:inline">Keluar</span>
           </button>
         </div>
-      </aside>
+      </header>
 
       <!-- ==================== MAIN CONTENT AREA ==================== -->
       <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#FFF8F0]">
-
-        <!-- Top Bar -->
-        <header class="shrink-0 flex items-center justify-between px-6 py-4 bg-white border-b-2 border-[#8F8575]/25 shadow-2xs">
-          <!-- Breadcrumb -->
-          <div class="flex items-center gap-2 text-sm">
-            <span class="text-[#8F8575] font-semibold">Panel Guru</span>
-            <ChevronRight class="w-4 h-4 text-[#8F8575]/50" />
-            <span class="font-bold font-['Baloo_2'] text-base text-[#1E7A6F]">
-              {{ navItems.find(n => n.key === (showForm ? 'materi' : activePage))?.label }}
-              <span v-if="showForm" class="text-[#2B3445]">
-                / {{ isEditing ? 'Edit Materi' : 'Tambah Materi' }}
-              </span>
-            </span>
-          </div>
-
-          <!-- Right: Cloud status + User -->
-          <div class="flex items-center gap-3">
-            <div :class="[
-              'hidden md:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border-2',
-              isSupabaseConfigured
-                ? 'bg-[#7FD4C4]/20 border-[#7FD4C4] text-[#1E7A6F]'
-                : 'bg-[#FFDE7A]/30 border-[#FFDE7A] text-[#2B3445]'
-            ]">
-              <span class="w-2 h-2 rounded-full" :class="isSupabaseConfigured ? 'bg-[#1E7A6F]' : 'bg-[#D97706]'"></span>
-              {{ isSupabaseConfigured ? 'Tersambung ke Cloud' : 'Mode Lokal' }}
-            </div>
-
-            <!-- User chip -->
-            <div class="flex items-center gap-2.5 pl-3 border-l-2 border-[#8F8575]/20">
-              <div class="text-right hidden sm:block">
-                <p class="text-sm font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ currentUser?.name }}</p>
-                <p class="text-[10px] text-[#1E7A6F] font-bold mt-0.5">Guru / Pengajar</p>
-              </div>
-              <div class="w-9 h-9 rounded-2xl bg-[#1E7A6F] text-[#FFF8F0] border-2 border-[#7FD4C4] flex items-center justify-center text-sm shadow-sm font-bold">
-                {{ currentUser?.avatar || '👩‍🏫' }}
-              </div>
-            </div>
-          </div>
-        </header>
 
         <!-- Toast Notifikasi Simpan Sukses -->
         <Transition
@@ -1544,123 +1494,64 @@ const navItems = [
           </div>
 
           <!-- ============================================================ -->
-          <!-- PAGE: RINGKASAN (DASHBOARD GURU) -->
+          <!-- HALAMAN UTAMA TERPADU: RINGKASAN + KELOLA MATERI -->
           <!-- ============================================================ -->
-          <div v-else-if="activePage === 'dashboard'" class="p-4 sm:p-6 space-y-6 font-['Lexend']">
-            <div>
-              <h1 class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">Selamat datang, {{ currentUser?.name?.split(' ')[0] || 'Guru' }}! 👋</h1>
-              <p class="text-[#2B3445]/60 text-sm mt-1">Kelola materi bacaan, suara narasi, video belajar, dan kuis untuk siswa PRISMA.</p>
-            </div>
-
-            <!-- Stats grid (Akurat sesuai data terbaru) -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <div class="bg-white rounded-3xl p-5 border-2 border-[#8F8575]/25 shadow-2xs space-y-2">
-                <div class="w-11 h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center">
-                  <BookOpen class="w-5 h-5" />
-                </div>
-                <div>
-                  <p class="text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">{{ materiList.length }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-0.5">Total Materi Bab</p>
-                </div>
-              </div>
-
-              <div class="bg-white rounded-3xl p-5 border-2 border-[#8F8575]/25 shadow-2xs space-y-2">
-                <div class="w-11 h-11 rounded-2xl bg-[#94C6FF]/30 text-[#1E7A6F] flex items-center justify-center">
-                  <Video class="w-5 h-5 text-[#1E7A6F]" />
-                </div>
-                <div>
-                  <p class="text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">{{ totalVideos }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-0.5">Total Video Belajar</p>
-                </div>
-              </div>
-
-              <div class="bg-white rounded-3xl p-5 border-2 border-[#8F8575]/25 shadow-2xs space-y-2">
-                <div class="w-11 h-11 rounded-2xl bg-[#FFDE7A]/35 text-[#1E7A6F] flex items-center justify-center">
-                  <Volume2 class="w-5 h-5 text-[#1E7A6F]" />
-                </div>
-                <div>
-                  <p class="text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">{{ totalAudioMateri }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-0.5">Materi Bersuara (Audio)</p>
-                </div>
-              </div>
-
-              <div class="bg-white rounded-3xl p-5 border-2 border-[#8F8575]/25 shadow-2xs space-y-2">
-                <div class="w-11 h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center">
-                  <Sparkles class="w-5 h-5 text-[#1E7A6F]" />
-                </div>
-                <div>
-                  <p class="text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">{{ totalQuizQuestions }}</p>
-                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-0.5">Total Soal Kuis</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Quick action + recent content -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-              <div class="bg-white rounded-3xl p-6 border-2 border-[#8F8575]/25 shadow-2xs space-y-3">
-                <h3 class="text-base font-bold font-['Baloo_2'] text-[#1E7A6F]">Menu Cepat</h3>
-                <button
-                  @click="openAddForm"
-                  class="btn-prisma-mint w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-[#FFF8F0] shadow-sm hover:brightness-105 active:scale-95 transition cursor-pointer"
-                >
-                  <Plus class="w-5 h-5" /> Tambah Materi Baru
-                </button>
-                <button
-                  @click="activePage = 'materi'"
-                  class="btn-prisma-white w-full flex items-center gap-3 px-4 py-3 rounded-2xl border-2 border-[#8F8575]/30 hover:bg-[#FFF8F0] text-sm font-bold text-[#2B3445] transition cursor-pointer"
-                >
-                  <BookOpen class="w-5 h-5 text-[#1E7A6F]" /> Kelola Semua Materi
-                </button>
-              </div>
-
-              <div class="lg:col-span-2 bg-white rounded-3xl p-6 border-2 border-[#8F8575]/25 shadow-2xs">
-                <div class="flex items-center justify-between mb-4">
-                  <h3 class="text-base font-bold font-['Baloo_2'] text-[#1E7A6F]">Daftar Materi Terbaru</h3>
-                  <button @click="activePage = 'materi'" class="text-xs text-[#1E7A6F] font-bold cursor-pointer hover:underline">Lihat semua →</button>
-                </div>
-                <div class="space-y-3">
-                  <div
-                    v-for="item in materiList.slice(0, 4)"
-                    :key="item.id"
-                    class="flex items-center gap-3 p-3.5 rounded-2xl bg-[#FFF8F0]/70 hover:bg-[#FFF8F0] border-2 border-[#8F8575]/15 transition group"
-                  >
-                    <img :src="item.image || '/es_batu_card.jpg'" :alt="item.title" class="w-12 h-12 rounded-xl object-cover shrink-0 border border-[#8F8575]/20" />
-                    <div class="flex-1 min-w-0">
-                      <p class="text-sm font-bold text-[#2B3445] truncate">{{ item.title }}</p>
-                      <p class="text-xs text-[#2B3445]/60 truncate">{{ getKelasFromLevel(item.level) }}</p>
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                      <button @click="emit('previewMateri', item)" class="p-2 rounded-xl bg-white border border-[#8F8575]/20 hover:bg-[#7FD4C4]/20 text-[#1E7A6F] cursor-pointer" title="Lihat Tampilan Siswa">
-                        <Eye class="w-4 h-4" />
-                      </button>
-                      <button @click="openEditForm(item)" class="p-2 rounded-xl bg-white border border-[#8F8575]/20 hover:bg-[#FFDE7A]/30 text-[#2B3445] cursor-pointer" title="Edit Materi">
-                        <Edit3 class="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                  <div v-if="materiList.length === 0" class="py-8 text-center text-[#2B3445]/60 text-sm">
-                    Belum ada materi pembelajaran. Mulai dengan menambah materi pertama!
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ============================================================ -->
-          <!-- PAGE: KELOLA MATERI (Table Simpel & Jelas) -->
-          <!-- ============================================================ -->
-          <div v-else-if="activePage === 'materi'" class="p-4 sm:p-6 space-y-5 font-['Lexend']">
+          <div v-else class="max-w-7xl mx-auto p-4 sm:p-6 space-y-6 font-['Lexend']">
+            <!-- Welcome & Primary Action -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h1 class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">Kelola Materi</h1>
-                <p class="text-[#2B3445]/60 text-sm mt-0.5">Pilih materi untuk mengedit bacaan, suara audio, video, atau soal kuis</p>
+                <h1 class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">Selamat datang, {{ currentUser?.name?.split(' ')[0] || 'Guru' }}! 👋</h1>
+                <p class="text-[#2B3445]/60 text-sm mt-0.5">Kelola materi bacaan, suara narasi, video belajar, dan soal kuis siswa PRISMA dalam satu tempat.</p>
               </div>
               <button
                 @click="openAddForm"
-                class="btn-prisma-mint flex items-center gap-2 px-6 py-2.5 rounded-2xl text-[#FFF8F0] text-sm font-bold cursor-pointer active:scale-95 transition shadow-sm shrink-0"
+                class="btn-prisma-mint flex items-center gap-2 px-6 py-3 rounded-2xl text-[#FFF8F0] text-sm font-bold cursor-pointer active:scale-95 transition shadow-md shrink-0"
               >
-                <Plus class="w-4 h-4" /> Tambah Materi
+                <Plus class="w-4 h-4" /> Tambah Materi Baru
               </button>
+            </div>
+
+            <!-- Stats grid (Ringkasan Singkat) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <BookOpen class="w-5 h-5" />
+                </div>
+                <div>
+                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ materiList.length }}</p>
+                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Total Materi Bab</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-[#94C6FF]/30 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <Video class="w-5 h-5 text-[#1E7A6F]" />
+                </div>
+                <div>
+                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalVideos }}</p>
+                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Video Belajar</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-[#FFDE7A]/35 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <Volume2 class="w-5 h-5 text-[#1E7A6F]" />
+                </div>
+                <div>
+                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalAudioMateri }}</p>
+                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Materi Bersuara</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-3xl p-4 sm:p-5 border-2 border-[#8F8575]/25 shadow-2xs flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-[#7FD4C4]/25 text-[#1E7A6F] flex items-center justify-center shrink-0">
+                  <Sparkles class="w-5 h-5 text-[#1E7A6F]" />
+                </div>
+                <div>
+                  <p class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ totalQuizQuestions }}</p>
+                  <p class="text-xs text-[#2B3445]/60 font-semibold mt-1">Total Soal Kuis</p>
+                </div>
+              </div>
             </div>
 
             <!-- Filter + Search Bar -->
