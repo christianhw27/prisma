@@ -1058,17 +1058,20 @@ export async function askGeminiWeb(prompt, base64Photo = null, mimeType = 'image
       }
     }
 
-    // Model Google Gemini yang cepat dan valid
+    // Model Google Gemini yang aktif dan mendukung teks + Vision OCR
     const candidateModels = [
       'gemini-flash-lite-latest',
-      'gemini-2.0-flash-lite',
-      'gemini-1.5-flash-latest'
+      'gemini-3.5-flash-lite',
+      'gemini-3.8-flash',
+      'gemini-flash-latest'
     ]
+
+    const timeoutMs = base64Photo ? 25000 : 10000
 
     for (const modelName of candidateModels) {
       try {
         const controller = new AbortController()
-        const timeoutId = setTimeout(() => controller.abort(), 4500)
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
 
         const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`, {
           method: 'POST',
@@ -1087,9 +1090,12 @@ export async function askGeminiWeb(prompt, base64Photo = null, mimeType = 'image
           if (textOut && textOut.trim()) {
             return cleanJawaban(textOut)
           }
+        } else {
+          const errBody = await resp.json().catch(() => ({}))
+          console.warn(`[Gemini Web] Model ${modelName} HTTP ${resp.status}:`, errBody?.error?.message || resp.statusText)
         }
       } catch (e) {
-        // Lanjut ke model berikutnya jika timeout atau error jaringan
+        console.warn(`[Gemini Web] Model ${modelName} gagal:`, e?.message || e)
       }
     }
   } catch (err) {

@@ -111,6 +111,48 @@ export async function sendChatText({ pertanyaan, kelas = '', kategori = '' }) {
  * @param {string} [params.pertanyaan]
  * @param {string} [params.kelas]
  */
+/**
+ * Kompresi dan resize gambar di browser (maks 1024px, JPEG 80%) agar upload & OCR Gemini Vision cepat
+ */
+function compressImageForVision(file, maxDim = 1024, quality = 0.8) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      const dataUrl = reader.result
+      const img = new Image()
+      img.onload = () => {
+        try {
+          let { width, height } = img
+          if (width > maxDim || height > maxDim) {
+            if (width >= height) {
+              height = Math.round((height * maxDim) / width)
+              width = maxDim
+            } else {
+              width = Math.round((width * maxDim) / height)
+              height = maxDim
+            }
+          }
+          const canvas = document.createElement('canvas')
+          canvas.width = width
+          canvas.height = height
+          const ctx = canvas.getContext('2d')
+          ctx.fillStyle = '#FFFFFF'
+          ctx.fillRect(0, 0, width, height)
+          ctx.drawImage(img, 0, 0, width, height)
+          const compressed = canvas.toDataURL('image/jpeg', quality)
+          resolve({ base64Data: compressed, mimeType: 'image/jpeg' })
+        } catch (e) {
+          resolve({ base64Data: dataUrl, mimeType: file.type || 'image/jpeg' })
+        }
+      }
+      img.onerror = () => resolve({ base64Data: dataUrl, mimeType: file.type || 'image/jpeg' })
+      img.src = dataUrl
+    }
+    reader.onerror = (err) => reject(err)
+    reader.readAsDataURL(file)
+  })
+}
+
 export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }) {
   if (!foto) {
     return {
@@ -122,18 +164,10 @@ export async function sendChatPhoto({ foto, pertanyaan = '', kelas = '' }) {
   }
 
   try {
-    // Konversi file foto menjadi Base64
-    const base64Data = await new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = () => resolve(reader.result)
-      reader.onerror = (err) => reject(err)
-      reader.readAsDataURL(foto)
-    })
-
-    const mimeType = foto.type || 'image/jpeg'
+    // Kompresi & resize foto sebelum dikirim ke Gemini Vision
+    const { base64Data, mimeType } = await compressImageForVision(foto)
     const promptText = pertanyaan || 'Tolong baca tulisan tangan atau teks soal pada foto ini dengan teliti (OCR), lalu jelaskan cara penyelesaiannya langkah demi langkah dengan ramah untuk anak SD ya Kak Defi!'
 
-    // Panggil Gemini Vision dengan model gemini-flash-lite-latest
     const visionResult = await askGeminiWeb(promptText, base64Data, mimeType, kelas)
     if (visionResult) {
       return {
