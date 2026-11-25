@@ -92,6 +92,7 @@ export function sanitizeMateriItem(item) {
   if (!item) return item
   const clean = { ...item }
   if (!clean.id || !String(clean.id).trim()) {
+    clean._rawEmptyId = true
     clean.id = `materi-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
   }
   clean.jenjang = 'SD'
@@ -845,6 +846,7 @@ export async function updateMateri(id, updatedFields) {
  * Hapus Materi
  */
 export async function deleteMateri(id) {
+  const targetItem = materiList.value.find((item) => item.id === id)
   materiList.value = materiList.value.filter((item) => item.id !== id)
   if (selectedMateri.value?.id === id) {
     selectedMateri.value = materiList.value[0] || null
@@ -853,9 +855,16 @@ export async function deleteMateri(id) {
 
   if (isSupabaseConfigured) {
     try {
-      const { error } = await supabase.from('materi').delete().eq('id', id)
-      if (error) console.warn('Supabase delete warning:', error.message)
-      else console.log(`[Prisma] ✅ Materi berhasil dihapus dari Supabase`)
+      const { data: deletedRows, error } = await supabase.from('materi').delete().eq('id', id).select('id')
+      if (error) {
+        console.warn('Supabase delete warning:', error.message)
+      } else if ((!deletedRows || deletedRows.length === 0) && (targetItem?._rawEmptyId || targetItem?.title)) {
+        // Jika baris lama di Supabase tersimpan dengan id kosong (''), hapus berdasarkan id='' & title
+        await supabase.from('materi').delete().eq('id', '').eq('title', targetItem.title)
+        console.log(`[Prisma] ✅ Materi lama (id kosong) "${targetItem.title}" berhasil dihapus dari Supabase`)
+      } else {
+        console.log(`[Prisma] ✅ Materi berhasil dihapus dari Supabase`)
+      }
     } catch (err) {
       console.warn('Supabase delete skipped:', err)
     }
