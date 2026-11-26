@@ -175,14 +175,22 @@ const resetFilters = () => {
               </label>
               <div class="flex flex-wrap gap-2">
                 <button
-                  v-for="opt in kelasOptions"
+                  v-for="(opt, idx) in kelasOptions"
                   :key="opt"
                   @click="selectedKelas = opt; playButtonPop()"
                   :class="[
                     'px-4 py-1.5 rounded-full text-xs font-semibold transition cursor-pointer border',
                     selectedKelas === opt
-                      ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]'
-                      : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#1E7A6F]'
+                      ? [
+                          'bg-[#1E7A6F] text-white border-[#1E7A6F]',
+                          'bg-[#EF4444] text-white border-[#EF4444]',
+                          'bg-[#F97316] text-white border-[#F97316]',
+                          'bg-[#16A34A] text-white border-[#16A34A]',
+                          'bg-[#2563EB] text-white border-[#2563EB]',
+                          'bg-[#7C3AED] text-white border-[#7C3AED]',
+                          'bg-[#1E7A6F] text-white border-[#1E7A6F]'
+                        ][idx % 7]
+                      : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#2563EB]'
                   ]"
                 >
                   {{ opt }}

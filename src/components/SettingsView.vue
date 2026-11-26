@@ -319,7 +319,7 @@ const THEME_OPTIONS = [
 ]
 
 // Accessibility Preferences State
-const fontSize = ref('normal') // 'normal' | 'lg' | 'xl'
+const fontSize = ref('xl') // 'normal' | 'lg' | 'xl'
 const dyslexicFont = ref(false)
 const soundEffects = ref(true)
 const reduceMotion = ref(false)
@@ -544,7 +544,7 @@ function syncFromStorage() {
   applyTheme(savedTheme)
 
   // Font size
-  const savedFontSize = localStorage.getItem('prisma_font_size') || 'normal'
+  const savedFontSize = localStorage.getItem('prisma_font_size') || 'xl'
   fontSize.value = savedFontSize
   applyFontSize(savedFontSize)
 

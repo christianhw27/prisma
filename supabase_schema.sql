@@ -71,3 +71,69 @@ CREATE POLICY "Public Delete Materi"
   FOR DELETE 
   USING (true);
 
+-- ========================================================
+-- FITUR UJIAN / ULANGAN (EXAM ROOMS & PARTICIPANTS)
+-- ========================================================
+
+CREATE TABLE IF NOT EXISTS public.exam_rooms (
+  id TEXT PRIMARY KEY,
+  room_code TEXT UNIQUE NOT NULL,
+  title TEXT NOT NULL,
+  kelas TEXT DEFAULT 'Kelas 4',
+  mata_pelajaran TEXT DEFAULT 'IPAS',
+  description TEXT DEFAULT '',
+  is_active BOOLEAN DEFAULT true,
+  status TEXT DEFAULT 'waiting', -- 'waiting' | 'running' | 'finished'
+  duration_minutes INTEGER DEFAULT 15,
+  settings JSONB DEFAULT '{"shuffleQuestions": false, "showScoreToStudent": true}'::jsonb,
+  questions JSONB DEFAULT '[]'::jsonb,
+  created_by TEXT DEFAULT 'Guru Prisma',
+  started_at TIMESTAMP WITH TIME ZONE,
+  finished_at TIMESTAMP WITH TIME ZONE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS public.exam_participants (
+  id TEXT PRIMARY KEY,
+  room_id TEXT NOT NULL REFERENCES public.exam_rooms(id) ON DELETE CASCADE,
+  student_name TEXT NOT NULL,
+  student_absen TEXT DEFAULT '',
+  status TEXT DEFAULT 'joined', -- 'joined' | 'working' | 'submitted'
+  answers JSONB DEFAULT '{}'::jsonb,
+  score INTEGER DEFAULT 0,
+  correct_count INTEGER DEFAULT 0,
+  total_count INTEGER DEFAULT 0,
+  joined_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  submitted_at TIMESTAMP WITH TIME ZONE
+);
+
+ALTER TABLE public.exam_rooms ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.exam_participants ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public All Exam Rooms" ON public.exam_rooms;
+CREATE POLICY "Public All Exam Rooms"
+  ON public.exam_rooms
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Public All Exam Participants" ON public.exam_participants;
+CREATE POLICY "Public All Exam Participants"
+  ON public.exam_participants
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
+
+-- Aktifkan Realtime agar lobby guru & layar siswa sinkron otomatis
+DO $$
+BEGIN
+  ALTER PUBLICATION supabase_realtime ADD TABLE public.exam_rooms;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
+DO $$
+BEGIN
+  ALTER PUBLICATION supabase_realtime ADD TABLE public.exam_participants;
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+

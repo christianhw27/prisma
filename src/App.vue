@@ -43,9 +43,11 @@ import {
   Eye,
   Film,
   PauseCircle,
-  Maximize2
+  Maximize2,
+  Trophy
 } from '@lucide/vue'
 import MateriView from './components/MateriView.vue'
+import ExamStudentView from './components/ExamStudentView.vue'
 import MateriDetailView from './components/MateriDetailView.vue'
 import LearningPlayerView from './components/LearningPlayerView.vue'
 import AdminDashboard from './components/AdminDashboard.vue'
@@ -139,6 +141,7 @@ const handleModuleClick = (mod) => {
 const ALL_KNOWN_ROUTES = [
   'beranda',
   'materi',
+  'ujian',
   'materi-detail',
   'learning-player',
   'admin',
@@ -509,14 +512,16 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
 
 <template>
   <div class="w-full min-h-screen bg-[#FFF8F0] text-[#2B3445] font-['Lexend'] flex flex-col overflow-x-hidden relative">
+    <!-- PRISMA Rainbow Spectrum Top Bar -->
+    <div class="fixed top-0 left-0 right-0 h-1 z-[60] prisma-spectrum-bar pointer-events-none"></div>
 
     <!-- ==================== ULTRA-MODERN FLOATING NAVBAR ==================== -->
     <header
       v-if="currentNav !== 'admin'"
       :class="[
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-3 sm:px-6 lg:px-10',
-        (isNavVisible || ['materi', 'materi-detail', 'learning-player'].includes(currentNav)) ? 'translate-y-0' : '-translate-y-full pointer-events-none',
-        isScrolled ? 'py-2 sm:py-2.5' : 'py-3 sm:py-4'
+        (isNavVisible || ['materi', 'ujian', 'materi-detail', 'learning-player'].includes(currentNav)) ? 'translate-y-0' : '-translate-y-full pointer-events-none',
+        isScrolled ? 'py-2.5 sm:py-3' : 'py-3 sm:py-4'
       ]"
     >
       <!-- Floating Pill Container (PRISMA Design System) -->
@@ -551,11 +556,11 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
               :class="[
                 'h-10 px-4 rounded-full text-xs sm:text-sm font-semibold cursor-pointer inline-flex items-center justify-center gap-2 transition-all duration-200 select-none border',
                 currentNav === 'beranda'
-                  ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm'
-                  : 'bg-transparent text-[#2B3445] border-transparent hover:bg-[#FFF8F0] hover:text-[#1E7A6F]'
+                  ? 'bg-[#16A34A] text-white border-[#16A34A] shadow-sm'
+                  : 'bg-transparent text-[#2B3445] border-transparent hover:bg-[#22C55E]/10 hover:text-[#16A34A]'
               ]"
             >
-              <Home class="w-4 h-4 shrink-0" />
+              <Home :class="['w-4 h-4 shrink-0', currentNav === 'beranda' ? 'text-white' : 'text-[#16A34A]']" />
               <span>Beranda</span>
             </button>
 
@@ -564,12 +569,25 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
               :class="[
                 'h-10 px-4 rounded-full text-xs sm:text-sm font-semibold cursor-pointer inline-flex items-center justify-center gap-2 transition-all duration-200 select-none border',
                 ['materi', 'materi-detail'].includes(currentNav)
-                  ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm'
-                  : 'bg-transparent text-[#2B3445] border-transparent hover:bg-[#FFF8F0] hover:text-[#1E7A6F]'
+                  ? 'bg-[#2563EB] text-white border-[#2563EB] shadow-sm'
+                  : 'bg-transparent text-[#2B3445] border-transparent hover:bg-[#2563EB]/10 hover:text-[#2563EB]'
               ]"
             >
-              <Compass class="w-4 h-4 shrink-0" />
+              <Compass :class="['w-4 h-4 shrink-0', ['materi', 'materi-detail'].includes(currentNav) ? 'text-white' : 'text-[#2563EB]']" />
               <span>Materi</span>
+            </button>
+
+            <button
+              @click="navigateTo('ujian')"
+              :class="[
+                'h-10 px-4 rounded-full text-xs sm:text-sm font-semibold cursor-pointer inline-flex items-center justify-center gap-2 transition-all duration-200 select-none border',
+                currentNav === 'ujian'
+                  ? 'bg-[#EA580C] text-white border-[#EA580C] shadow-sm'
+                  : 'bg-transparent text-[#2B3445] border-transparent hover:bg-[#F97316]/10 hover:text-[#EA580C]'
+              ]"
+            >
+              <Trophy :class="['w-4 h-4 shrink-0', currentNav === 'ujian' ? 'text-white' : 'text-[#EA580C]']" />
+              <span>Ujian</span>
             </button>
 
             <button
@@ -577,11 +595,11 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
               :class="[
                 'h-10 px-4 rounded-full text-xs sm:text-sm font-semibold cursor-pointer inline-flex items-center justify-center gap-2 transition-all duration-200 select-none border',
                 currentNav === 'admin'
-                  ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm'
-                  : 'bg-transparent text-[#2B3445] border-transparent hover:bg-[#FFF8F0] hover:text-[#1E7A6F]'
+                  ? 'bg-[#7C3AED] text-white border-[#7C3AED] shadow-sm'
+                  : 'bg-transparent text-[#2B3445] border-transparent hover:bg-[#7C3AED]/10 hover:text-[#7C3AED]'
               ]"
             >
-              <LayoutDashboard class="w-4 h-4 shrink-0 text-[#1E7A6F]" />
+              <LayoutDashboard :class="['w-4 h-4 shrink-0', currentNav === 'admin' ? 'text-white' : 'text-[#7C3AED]']" />
               <span>Panel Guru</span>
             </button>
           </nav>
@@ -674,6 +692,20 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
             </button>
 
             <button
+              @click="navigateTo('ujian')"
+              :class="[
+                'w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-between transition cursor-pointer',
+                currentNav === 'ujian' ? 'bg-[#1E7A6F] text-white' : 'text-[#2B3445] hover:bg-[#FFF8F0]'
+              ]"
+            >
+              <div class="flex items-center gap-2">
+                <Trophy class="w-4 h-4 opacity-80" />
+                <span>Ujian & Ulangan</span>
+              </div>
+              <ArrowRight class="w-4 h-4 opacity-70" />
+            </button>
+
+            <button
               @click="navigateTo('admin')"
               :class="[
                 'w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-between transition cursor-pointer',
@@ -728,9 +760,15 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
             <!-- LEFT: Text Content (5-6 cols) -->
             <div class="lg:col-span-6 xl:col-span-5 space-y-6 text-left relative z-20">
               
-              <!-- Eyebrow Badge (White pill with Garis border) -->
-              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#8F8575]/30 shadow-xs text-xs font-semibold text-[#1E7A6F]">
-                <span class="w-2 h-2 rounded-full bg-[#1E7A6F]"></span>
+              <!-- Eyebrow Badge (5 Warna Spektrum Prisma) -->
+              <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-[#8F8575]/30 shadow-xs text-xs font-semibold text-[#2B3445]">
+                <span class="inline-flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-[#EF4444]"></span>
+                  <span class="w-2 h-2 rounded-full bg-[#F97316]"></span>
+                  <span class="w-2 h-2 rounded-full bg-[#22C55E]"></span>
+                  <span class="w-2 h-2 rounded-full bg-[#2563EB]"></span>
+                  <span class="w-2 h-2 rounded-full bg-[#7C3AED]"></span>
+                </span>
                 <span>Platform Pembelajaran Ramah Anak dan Inklusif</span>
               </div>
 
@@ -740,7 +778,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
                   <span class="block text-3xl sm:text-5xl lg:text-[3.2rem] xl:text-[3.6rem]">
                     Belajar dengan
                   </span>
-                  <span class="block text-3xl sm:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] mt-0.5 text-[#1E7A6F]">
+                  <span class="block text-3xl sm:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] mt-0.5 prisma-spectrum-text">
                     Cara yang Sesuai
                   </span>
                   <span class="block text-3xl sm:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] mt-0.5">
@@ -803,11 +841,11 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
           <!-- 3 Feature Cards Grid -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <!-- Card 1: Multi-Sensori -->
-            <div class="card-prisma p-6 flex flex-col justify-between group reveal-on-scroll delay-100">
+            <!-- Card 1: Multi-Sensori (Oranye Prisma) -->
+            <div class="card-prisma p-6 flex flex-col justify-between group reveal-on-scroll delay-100 border-t-4 border-t-[#F97316]">
               <div class="space-y-4 text-left">
-                <div class="w-14 h-14 rounded-2xl bg-[#FFB899]/30 border border-[#8F8575]/25 text-[#2B3445] flex items-center justify-center transition-transform group-hover:scale-105">
-                  <Headphones class="w-7 h-7 text-[#1E7A6F]" />
+                <div class="w-14 h-14 rounded-2xl bg-[#F97316]/15 border border-[#F97316]/30 text-[#EA580C] flex items-center justify-center transition-transform group-hover:scale-105">
+                  <Headphones class="w-7 h-7 text-[#EA580C]" />
                 </div>
                 <h3 class="font-['Baloo_2'] text-xl font-bold text-[#2B3445]">Mode Multi-Sensori</h3>
                 <p class="text-xs sm:text-sm text-[#5B6474] font-normal leading-relaxed">
@@ -821,17 +859,17 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
                   @click="playAudioNarrationSample"
                   class="btn-prisma-white w-full py-2.5 px-3 text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer"
                 >
-                  <Volume2 :class="['w-4 h-4 text-[#1E7A6F]', isAudioNarrationPlaying ? 'animate-bounce' : '']" />
+                  <Volume2 :class="['w-4 h-4 text-[#EA580C]', isAudioNarrationPlaying ? 'animate-bounce' : '']" />
                   <span>{{ isAudioNarrationPlaying ? 'Memutar Suara Narator...' : 'Coba Contoh Suara' }}</span>
                 </button>
               </div>
             </div>
 
-            <!-- Card 2: Zero-Pressure Pace -->
-            <div class="card-prisma p-6 flex flex-col justify-between group reveal-on-scroll delay-200">
+            <!-- Card 2: Zero-Pressure Pace (Biru Prisma) -->
+            <div class="card-prisma p-6 flex flex-col justify-between group reveal-on-scroll delay-200 border-t-4 border-t-[#2563EB]">
               <div class="space-y-4 text-left">
-                <div class="w-14 h-14 rounded-2xl bg-[#94C6FF]/30 border border-[#8F8575]/25 text-[#2B3445] flex items-center justify-center transition-transform group-hover:scale-105">
-                  <Clock class="w-7 h-7 text-[#1E7A6F]" />
+                <div class="w-14 h-14 rounded-2xl bg-[#2563EB]/15 border border-[#2563EB]/30 text-[#2563EB] flex items-center justify-center transition-transform group-hover:scale-105">
+                  <Clock class="w-7 h-7 text-[#2563EB]" />
                 </div>
                 <h3 class="font-['Baloo_2'] text-xl font-bold text-[#2B3445]">Belajar Tanpa Rasa Cemas</h3>
                 <p class="text-xs sm:text-sm text-[#5B6474] font-normal leading-relaxed">
@@ -839,17 +877,17 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
                 </p>
               </div>
               <div class="pt-5 mt-4 border-t border-[#8F8575]/20">
-                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2B3445] bg-[#FFF8F0] border border-[#8F8575]/25 px-3 py-1.5 rounded-xl w-full justify-center">
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] bg-[#2563EB]/10 border border-[#2563EB]/25 px-3 py-1.5 rounded-xl w-full justify-center">
                   Bebas Batas Waktu
                 </span>
               </div>
             </div>
 
-            <!-- Card 3: Aman & Bebas Iklan -->
-            <div class="card-prisma p-6 flex flex-col justify-between group reveal-on-scroll delay-300">
+            <!-- Card 3: Aman & Bebas Iklan (Hijau Prisma) -->
+            <div class="card-prisma p-6 flex flex-col justify-between group reveal-on-scroll delay-300 border-t-4 border-t-[#22C55E]">
               <div class="space-y-4 text-left">
-                <div class="w-14 h-14 rounded-2xl bg-[#7FD4C4]/30 border border-[#8F8575]/25 text-[#2B3445] flex items-center justify-center transition-transform group-hover:scale-105">
-                  <ShieldCheck class="w-7 h-7 text-[#1E7A6F]" />
+                <div class="w-14 h-14 rounded-2xl bg-[#22C55E]/15 border border-[#22C55E]/30 text-[#16A34A] flex items-center justify-center transition-transform group-hover:scale-105">
+                  <ShieldCheck class="w-7 h-7 text-[#16A34A]" />
                 </div>
                 <h3 class="font-['Baloo_2'] text-xl font-bold text-[#2B3445]">Aman & Bebas Iklan</h3>
                 <p class="text-xs sm:text-sm text-[#5B6474] font-normal leading-relaxed">
@@ -857,7 +895,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
                 </p>
               </div>
               <div class="pt-5 mt-4 border-t border-[#8F8575]/20">
-                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2B3445] bg-[#FFF8F0] border border-[#8F8575]/25 px-3 py-1.5 rounded-xl w-full justify-center">
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#16A34A] bg-[#22C55E]/10 border border-[#22C55E]/25 px-3 py-1.5 rounded-xl w-full justify-center">
                   100% Terproteksi
                 </span>
               </div>
@@ -888,14 +926,22 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
           <!-- Filter Tabs Kelas SD (Semua Kelas, Kelas 1 - 6) -->
           <div class="flex items-center justify-center flex-wrap gap-2.5 sm:gap-3 reveal-on-scroll delay-100">
             <button
-              v-for="k in ['Semua', ...KELAS_SD_OPTIONS]"
+              v-for="(k, kIdx) in ['Semua', ...KELAS_SD_OPTIONS]"
               :key="k"
               @click="selectedKelasTab = k; playButtonPop()"
               :class="[
                 'px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer border',
                 selectedKelasTab === k
-                  ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm'
-                  : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#1E7A6F]'
+                  ? [
+                      'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm',
+                      'bg-[#EF4444] text-white border-[#EF4444] shadow-sm',
+                      'bg-[#F97316] text-white border-[#F97316] shadow-sm',
+                      'bg-[#16A34A] text-white border-[#16A34A] shadow-sm',
+                      'bg-[#2563EB] text-white border-[#2563EB] shadow-sm',
+                      'bg-[#7C3AED] text-white border-[#7C3AED] shadow-sm',
+                      'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm'
+                    ][kIdx % 7]
+                  : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#2563EB]'
               ]"
             >
               {{ k === 'Semua' ? 'Semua Kelas' : k }}
@@ -1061,6 +1107,11 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
         :search-query="searchQuery"
         @open-detail="handleOpenDetail"
       />
+    </main>
+
+    <!-- ==================== VIEW: UJIAN & ULANGAN SISWA ==================== -->
+    <main v-else-if="currentNav === 'ujian'" class="w-full flex-1 flex flex-col">
+      <ExamStudentView />
     </main>
 
     <!-- ==================== VIEW: DETAIL MATERI (LANGSUNG KE LEARNING PLAYER) ==================== -->

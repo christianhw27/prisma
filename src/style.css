@@ -36,6 +36,21 @@ body {
   caret-color: transparent;
 }
 
+/* Pastikan kursor ketik (caret) & efek fokus selalu terlihat jelas pada semua kolom input/textarea/editor */
+input,
+textarea,
+[contenteditable="true"],
+[contenteditable="true"] * {
+  caret-color: #1E7A6F !important;
+}
+
+input:focus,
+textarea:focus,
+[contenteditable="true"]:focus {
+  border-color: #1E7A6F;
+  box-shadow: 0 0 0 4px rgba(127, 212, 196, 0.35);
+}
+
 /* Enforce Lexend as primary interface & reading typeface across all elements */
 html,
 body,
@@ -54,6 +69,18 @@ h2,
   font-family: 'Baloo 2', var(--font-heading);
   font-weight: 700;
   letter-spacing: -0.01em;
+}
+
+/* PRISMA Spectrum Colors (dari Logo.png: Merah, Oranye, Hijau, Biru, Ungu) */
+.prisma-spectrum-bar {
+  background: linear-gradient(90deg, #EF4444 0%, #F97316 25%, #22C55E 50%, #2563EB 75%, #7C3AED 100%);
+}
+
+.prisma-spectrum-text {
+  background: linear-gradient(90deg, #EF4444 0%, #F97316 28%, #16A34A 55%, #2563EB 78%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Sub-heading & Bodycopy: Lexend */

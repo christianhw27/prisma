@@ -14,10 +14,14 @@ import {
   X, CheckCircle2, UploadCloud, ShieldAlert, Search,
   RefreshCw, Sparkles, ArrowLeft, Save, ImagePlus, AlignLeft,
   HelpCircle, FileText, Volume2, Music, Video, Link2, Check,
-  Bold, Italic, Underline, List, ListOrdered
+  Bold, Italic, Underline, List, ListOrdered, Trophy, GraduationCap
 } from '@lucide/vue'
+import ExamAdminPanel from './ExamAdminPanel.vue'
 
 const emit = defineEmits(['previewMateri', 'backToApp', 'openAuth'])
+
+// Section tab in Panel Guru: 'materi' | 'ujian'
+const adminSection = ref('materi')
 
 // Modal / Form state
 const showForm = ref(false)
@@ -26,10 +30,15 @@ const isSaving = ref(false)
 const activeFormTab = ref('materi') // 'materi' | 'video' | 'quiz'
 const videoInputMode = ref({ video1: 'link', video2: 'link' }) // 'link' | 'upload'
 
-// Toast notifikasi simpan sukses
-const saveToast = ref({ show: false, message: '' })
-const triggerSaveToast = (msg) => {
-  saveToast.value = { show: true, message: msg }
+// Toast notifikasi (success | error | warning)
+const saveToast = ref({ show: false, message: '', type: 'success' })
+const triggerSaveToast = (payload, type = 'success') => {
+  const isObj = payload && typeof payload === 'object'
+  saveToast.value = {
+    show: true,
+    message: isObj ? payload.message : payload,
+    type: isObj ? (payload.type || 'success') : type
+  }
   setTimeout(() => {
     saveToast.value.show = false
   }, 3500)
@@ -837,7 +846,8 @@ const filteredMateri = computed(() => {
     <div class="fixed inset-0 z-40 flex flex-col bg-[#FFF8F0] overflow-hidden font-['Lexend'] text-[#2B3445]">
 
       <!-- ==================== TOP HEADER BAR ==================== -->
-      <header class="shrink-0 flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 bg-white border-b-2 border-[#8F8575]/25 shadow-2xs flex-wrap">
+      <div class="h-1 shrink-0 prisma-spectrum-bar"></div>
+      <header class="shrink-0 flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 bg-white border-b border-[#8F8575]/20 flex-wrap">
         <!-- Left: Logo & Brand -->
         <div class="flex items-center gap-3">
           <img src="/Logo.png" alt="Prisma" class="w-9 h-9 object-contain shrink-0" />
@@ -849,7 +859,7 @@ const filteredMateri = computed(() => {
               </span>
             </div>
             <p class="text-[11px] text-[#5B6474] font-medium mt-0.5 hidden sm:block">
-              {{ showForm ? (isEditing ? 'Mengedit Materi Pembelajaran' : 'Menambah Materi Baru') : 'Kelola Bacaan, Audio, Video & Kuis Siswa' }}
+              {{ adminSection === 'ujian' ? 'Kelola Room Ujian, Kode Masuk & Pantau Siswa' : (showForm ? (isEditing ? 'Mengedit Materi Pembelajaran' : 'Menambah Materi Baru') : 'Kelola Bacaan, Audio, Video & Kuis Siswa') }}
             </p>
           </div>
         </div>
@@ -883,8 +893,8 @@ const filteredMateri = computed(() => {
                 {{ adminManagedKelas ? `Admin ${adminManagedKelas}` : 'Master Admin (Kelas 1–6)' }}
               </p>
             </div>
-            <div class="w-8 h-8 rounded-xl bg-[#1E7A6F] text-[#FFF8F0] border-2 border-[#7FD4C4] flex items-center justify-center text-xs shadow-2xs font-bold">
-              {{ currentUser?.avatar || '👩‍🏫' }}
+            <div class="w-8 h-8 rounded-xl bg-[#1E7A6F] text-[#FFF8F0] border-2 border-[#7FD4C4] flex items-center justify-center shadow-2xs">
+              <GraduationCap class="w-4 h-4" />
             </div>
           </div>
 
@@ -898,6 +908,36 @@ const filteredMateri = computed(() => {
           </button>
         </div>
       </header>
+
+      <!-- ==================== SUB-NAVIGASI PANEL GURU ==================== -->
+      <div class="shrink-0 bg-white border-b-2 border-[#8F8575]/20 px-4 sm:px-6 shadow-2xs">
+        <div class="max-w-7xl mx-auto flex items-center gap-2">
+          <button
+            @click="adminSection = 'materi'"
+            :class="[
+              'px-4 py-3 text-xs sm:text-sm font-bold inline-flex items-center gap-2 border-b-[3px] cursor-pointer transition -mb-[2px]',
+              adminSection === 'materi'
+                ? 'border-[#2563EB] text-[#2563EB]'
+                : 'border-transparent text-[#5B6474] hover:text-[#2563EB]'
+            ]"
+          >
+            <BookOpen class="w-4 h-4" />
+            <span>Kelola Materi</span>
+          </button>
+          <button
+            @click="adminSection = 'ujian'; showForm = false"
+            :class="[
+              'px-4 py-3 text-xs sm:text-sm font-bold inline-flex items-center gap-2 border-b-[3px] cursor-pointer transition -mb-[2px]',
+              adminSection === 'ujian'
+                ? 'border-[#EA580C] text-[#EA580C]'
+                : 'border-transparent text-[#5B6474] hover:text-[#EA580C]'
+            ]"
+          >
+            <Trophy class="w-4 h-4" />
+            <span>Ujian & Room</span>
+          </button>
+        </div>
+      </div>
 
       <!-- ==================== MAIN CONTENT AREA ==================== -->
       <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-[#FFF8F0]">
@@ -913,9 +953,17 @@ const filteredMateri = computed(() => {
         >
           <div
             v-if="saveToast.show"
-            class="fixed top-20 right-6 z-50 flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-[#1E7A6F] text-white shadow-xl border-2 border-[#7FD4C4] text-sm font-bold"
+            :class="[
+              'fixed top-20 right-6 z-50 flex items-center gap-2.5 px-5 py-3.5 rounded-2xl shadow-xl border-2 text-sm font-bold',
+              saveToast.type === 'error'
+                ? 'bg-rose-600 text-white border-rose-300'
+                : saveToast.type === 'warning'
+                  ? 'bg-amber-500 text-white border-amber-200'
+                  : 'bg-[#1E7A6F] text-white border-[#7FD4C4]'
+            ]"
           >
-            <CheckCircle2 class="w-5 h-5 text-[#7FD4C4] shrink-0" />
+            <ShieldAlert v-if="saveToast.type === 'error' || saveToast.type === 'warning'" class="w-5 h-5 text-white shrink-0" />
+            <CheckCircle2 v-else class="w-5 h-5 text-[#7FD4C4] shrink-0" />
             <span>{{ saveToast.message }}</span>
           </div>
         </Transition>
@@ -923,8 +971,14 @@ const filteredMateri = computed(() => {
         <!-- Page Content (scrollable) -->
         <main class="flex-1 overflow-y-auto bg-[#FFF8F0]">
 
+          <!-- ============ TAB: UJIAN & ROOM ============ -->
+          <ExamAdminPanel
+            v-if="adminSection === 'ujian'"
+            @toast="triggerSaveToast"
+          />
+
           <!-- ============ FORM EDITOR (3 Langkah Jelas untuk Guru) ============ -->
-          <div v-if="showForm" class="h-full flex flex-col font-['Lexend']">
+          <div v-else-if="showForm" class="h-full flex flex-col font-['Lexend']">
             <!-- Form Header -->
             <div class="bg-white border-b-2 border-[#8F8575]/25 px-6 py-4 flex items-center justify-between gap-3 shrink-0 shadow-2xs flex-wrap">
               <div class="flex items-center gap-3">
@@ -1394,7 +1448,7 @@ const filteredMateri = computed(() => {
                 </div>
 
                 <!-- ---- TAB 3: KUIS & SOAL (MENDUKUNG SEMUA TIPE SOAL PRISMA) ---- -->
-                <div v-if="activeFormTab === 'quiz'" class="bg-white rounded-3xl border-2 border-[#8F8575]/25 shadow-2xs overflow-hidden p-6 space-y-6">
+                <div v-if="activeFormTab === 'quiz'" class="bg-white rounded-3xl border-2 border-[#8F8575]/25 shadow-2xs p-6 space-y-6">
                   <div class="flex items-center justify-between p-4 rounded-2xl bg-[#FFDE7A]/25 border-2 border-[#FFDE7A]/70 flex-wrap gap-3">
                     <div class="flex items-center gap-3">
                       <div class="w-10 h-10 rounded-2xl bg-[#1E7A6F] text-[#FFF8F0] flex items-center justify-center font-bold text-lg shadow-sm shrink-0">
@@ -1724,6 +1778,23 @@ const filteredMateri = computed(() => {
                         />
                       </div>
                     </div>
+                  </div>
+
+                  <!-- Sticky Floating Bar: Tambah Soal mengikuti saat scroll -->
+                  <div
+                    v-if="currentForm.quiz?.questions?.length > 0"
+                    class="sticky bottom-3 z-20 flex items-center justify-between gap-3 px-4 py-3 rounded-2xl bg-white/95 backdrop-blur-md border-2 border-[#7FD4C4] shadow-lg"
+                  >
+                    <span class="text-xs font-bold text-[#5B6474]">
+                      Total: <strong class="text-[#1E7A6F]">{{ currentForm.quiz.questions.length }} Soal</strong>
+                    </span>
+                    <button
+                      type="button"
+                      @click="addQuestion"
+                      class="btn-prisma-mint px-4 py-2 rounded-xl text-[#FFF8F0] text-xs font-bold hover:brightness-105 transition cursor-pointer flex items-center gap-1.5 shadow-sm active:scale-95"
+                    >
+                      <Plus class="w-4 h-4" /> Tambah Soal
+                    </button>
                   </div>
                 </div>
 

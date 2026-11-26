@@ -8,6 +8,7 @@ import { isAdmin } from './authService'
 export const PUBLIC_ROUTES = [
   'beranda',
   'materi',
+  'ujian',
   'materi-detail',
   'learning-player',
   'settings'
