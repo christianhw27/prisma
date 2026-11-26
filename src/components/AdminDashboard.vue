@@ -119,6 +119,86 @@ const applyFormat = (cmd) => {
   onRichTextInput()
 }
 
+// Bersihkan HTML hasil copy-paste dari Microsoft Word: pertahankan Bold, Italic, Underline, List, Paragraf,
+// sambil membuang font/style bawaan Word yang berantakan.
+const sanitizeWordPasteHtml = (rawHtml) => {
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(rawHtml, 'text/html')
+
+  const walkAndClean = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      return document.createTextNode(node.textContent || '')
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE) {
+      return null
+    }
+
+    const tag = node.tagName.toLowerCase()
+    if (['style', 'script', 'meta', 'link', 'xml', 'o:p'].includes(tag)) {
+      return null
+    }
+
+    const childrenFrag = document.createDocumentFragment()
+    for (const child of Array.from(node.childNodes)) {
+      const cleanedChild = walkAndClean(child)
+      if (cleanedChild) childrenFrag.appendChild(cleanedChild)
+    }
+
+    // Pertahankan tag format dasar
+    if (['b', 'strong', 'i', 'em', 'u', 'ul', 'ol', 'li', 'br'].includes(tag)) {
+      const el = document.createElement(tag)
+      el.appendChild(childrenFrag)
+      return el
+    }
+
+    if (tag === 'p' || tag === 'div' || /^h[1-6]$/.test(tag)) {
+      const el = document.createElement('p')
+      el.appendChild(childrenFrag)
+      return el
+    }
+
+    // Untuk <span> / <font>, cek inline style bold/italic/underline dari Word
+    if (tag === 'span' || tag === 'font') {
+      const style = (node.getAttribute('style') || '').toLowerCase()
+      let wrapped = childrenFrag
+      if (/font-weight\s*:\s*(bold|[6-9]00)/.test(style)) {
+        const b = document.createElement('strong')
+        b.appendChild(wrapped)
+        wrapped = b
+      }
+      if (/font-style\s*:\s*italic/.test(style)) {
+        const i = document.createElement('em')
+        i.appendChild(wrapped)
+        wrapped = i
+      }
+      if (/text-decoration[^;]*underline/.test(style)) {
+        const u = document.createElement('u')
+        u.appendChild(wrapped)
+        wrapped = u
+      }
+      return wrapped
+    }
+
+    return childrenFrag
+  }
+
+  const container = document.createElement('div')
+  for (const child of Array.from(doc.body.childNodes)) {
+    const cleaned = walkAndClean(child)
+    if (cleaned) container.appendChild(cleaned)
+  }
+  return container.innerHTML
+}
+
+const handleRichTextPaste = (e) => {
+  const html = e.clipboardData?.getData('text/html')
+  if (!html) return // Fallback ke paste teks polos bawaan browser
+  e.preventDefault()
+  const cleanHtml = sanitizeWordPasteHtml(html)
+  document.execCommand('insertHTML', false, cleanHtml)
+  onRichTextInput()
+}
+
 watch(activeFormTab, (tab) => {
   if (tab === 'materi' && showForm.value) {
     syncRichTextFromModel()
@@ -1015,6 +1095,7 @@ const filteredMateri = computed(() => {
                           ref="richTextEditorRef"
                           contenteditable="true"
                           @input="onRichTextInput"
+                          @paste="handleRichTextPaste"
                           data-placeholder="Tuliskan cerita atau uraian materi di sini dengan bahasa yang mudah dipahami anak SD..."
                           class="rich-editor min-h-[190px] max-h-[420px] overflow-y-auto w-full px-4 py-3 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] focus:bg-white focus:border-[#1E7A6F] focus:outline-none text-sm text-[#2B3445] font-medium leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_b]:font-bold [&_strong]:font-bold [&_i]:italic [&_u]:underline"
                         ></div>
