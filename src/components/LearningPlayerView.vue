@@ -207,6 +207,31 @@ const readingText = computed(() => {
   return props.materi?.bacaan || props.materi?.materiContent?.text || ''
 })
 
+const isHtmlReading = computed(() => {
+  return /<(b|strong|i|em|u|ul|ol|li|p|br|div)\b/i.test(readingText.value || '')
+})
+
+const sanitizedReadingHtml = computed(() => {
+  const raw = readingText.value || ''
+  return raw
+    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
+    .replace(/\son\w+="[^"]*"/gi, '')
+    .replace(/\son\w+='[^']*'/gi, '')
+})
+
+const getPlainReadingText = () => {
+  const raw = readingText.value || props.materi?.description || props.materi?.title || ''
+  return raw
+    .replace(/<\/(p|div|li|br|h[1-6])>/gi, '. ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 const parsedReadingBlocks = computed(() => {
   const text = readingText.value || ''
   if (!text) return []
@@ -330,6 +355,91 @@ const isBacaanExpanded = ref(true)
 const isLearningPointsOpen = ref(false)
 const isPlayingAudio = ref(false)
 let currentAudioElement = null
+let speechSessionId = 0
+
+const pickIndonesianVoice = () => {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null
+  const voices = window.speechSynthesis.getVoices() || []
+  return (
+    voices.find(v => /google/i.test(v.name) && /^id/i.test(v.lang)) ||
+    voices.find(v => /^id[-_]?id$/i.test(v.lang)) ||
+    voices.find(v => /^id/i.test(v.lang)) ||
+    null
+  )
+}
+
+const splitTextToSpeechChunks = (text, maxLen = 180) => {
+  const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean)
+  const chunks = []
+  let current = ''
+  for (const s of sentences) {
+    if ((current + ' ' + s).trim().length <= maxLen) {
+      current = (current + ' ' + s).trim()
+    } else {
+      if (current) chunks.push(current)
+      if (s.length <= maxLen) {
+        current = s
+      } else {
+        // Potong kalimat sangat panjang berdasarkan koma/spasi
+        const words = s.split(/\s+/)
+        let part = ''
+        for (const w of words) {
+          if ((part + ' ' + w).trim().length <= maxLen) {
+            part = (part + ' ' + w).trim()
+          } else {
+            if (part) chunks.push(part)
+            part = w
+          }
+        }
+        current = part
+      }
+    }
+  }
+  if (current) chunks.push(current)
+  return chunks.length ? chunks : [text]
+}
+
+const speakWithGoogleVoice = () => {
+  const plainText = getPlainReadingText()
+  if (typeof window === 'undefined' || !('speechSynthesis' in window) || !plainText) {
+    isPlayingAudio.value = false
+    return
+  }
+
+  speechSessionId++
+  const activeSession = speechSessionId
+  window.speechSynthesis.cancel()
+
+  const chunks = splitTextToSpeechChunks(plainText, 180)
+  const voice = pickIndonesianVoice()
+  isPlayingAudio.value = true
+
+  const speakChunk = (idx) => {
+    if (activeSession !== speechSessionId || idx >= chunks.length) {
+      if (activeSession === speechSessionId) isPlayingAudio.value = false
+      return
+    }
+    const utterance = new SpeechSynthesisUtterance(chunks[idx])
+    utterance.lang = 'id-ID'
+    if (voice) utterance.voice = voice
+    utterance.rate = 0.92
+    utterance.pitch = 1.0
+    utterance.onend = () => {
+      if (activeSession === speechSessionId) speakChunk(idx + 1)
+    }
+    utterance.onerror = () => {
+      if (activeSession === speechSessionId) isPlayingAudio.value = false
+    }
+    window.speechSynthesis.speak(utterance)
+  }
+
+  // Jeda singkat 60ms setelah cancel() agar Chrome tidak membatalkan utterance baru
+  setTimeout(() => {
+    if (activeSession === speechSessionId) {
+      speakChunk(0)
+    }
+  }, 60)
+}
 
 const toggleAudioNarration = () => {
   playButtonPop()
@@ -346,27 +456,24 @@ const toggleAudioNarration = () => {
       }
       currentAudioElement = new Audio(customAudioUrl)
       currentAudioElement.onended = () => { isPlayingAudio.value = false }
-      currentAudioElement.onerror = () => { isPlayingAudio.value = false }
+      currentAudioElement.onerror = () => {
+        // Fallback otomatis ke Google Voice jika file audio gagal dimuat
+        speakWithGoogleVoice()
+      }
     }
     currentAudioElement.currentTime = 0
-    currentAudioElement.play().catch(() => { isPlayingAudio.value = false })
+    currentAudioElement.play().catch(() => {
+      speakWithGoogleVoice()
+    })
     isPlayingAudio.value = true
     return
   }
 
-  if (typeof window !== 'undefined' && 'speechSynthesis' in window && readingText.value) {
-    window.speechSynthesis.cancel()
-    const utterance = new SpeechSynthesisUtterance(readingText.value)
-    utterance.lang = 'id-ID'
-    utterance.rate = 0.9
-    utterance.onend = () => { isPlayingAudio.value = false }
-    utterance.onerror = () => { isPlayingAudio.value = false }
-    window.speechSynthesis.speak(utterance)
-    isPlayingAudio.value = true
-  }
+  speakWithGoogleVoice()
 }
 
 const stopAudioNarration = () => {
+  speechSessionId++
   if (currentAudioElement) {
     currentAudioElement.pause()
     currentAudioElement.currentTime = 0
@@ -1225,6 +1332,9 @@ watch(currentQuestionIndex, () => {
 onMounted(() => {
   window.scrollTo({ top: 0, behavior: 'instant' })
   window.addEventListener('resize', updateMatchingLines)
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    window.speechSynthesis.getVoices()
+  }
 })
 
 onBeforeUnmount(() => {
@@ -1599,7 +1709,15 @@ onBeforeUnmount(() => {
 
             <!-- Paragraf Cerita (Kanan / Bawah) -->
             <div :class="materi?.image ? 'md:col-span-7' : 'col-span-12'" class="space-y-3.5">
-              <template v-for="(block, bIdx) in parsedReadingBlocks" :key="bIdx">
+              <!-- Jika konten dibuat dengan Rich Text Editor (Bold/Italic/Underline/List) -->
+              <div
+                v-if="isHtmlReading"
+                v-html="sanitizedReadingHtml"
+                class="text-[#2B3445] font-['Lexend'] text-sm sm:text-base leading-relaxed sm:leading-loose space-y-2 select-text [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_b]:font-bold [&_strong]:font-bold [&_i]:italic [&_em]:italic [&_u]:underline"
+              ></div>
+
+              <!-- Fallback Teks Polos & Tabel Markdown -->
+              <template v-else v-for="(block, bIdx) in parsedReadingBlocks" :key="bIdx">
                 <!-- Teks Paragraf Normal -->
                 <p
                   v-if="block.type === 'paragraph'"

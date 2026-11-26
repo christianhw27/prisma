@@ -134,15 +134,37 @@ const fillDemoAdmin = () => {
             </div>
           </div>
 
-          <!-- Demo Hint Autofill Button -->
-          <button
-            type="button"
-            @click="fillDemoAdmin"
-            class="w-full py-2 px-3 rounded-xl bg-[#FFF8F0] hover:bg-[#7FD4C4]/20 border border-[#8F8575]/25 text-[#2B3445] text-xs font-semibold flex items-center justify-between transition cursor-pointer"
-          >
-            <span>Kredensial Default Admin</span>
-            <span class="font-mono bg-white px-2 py-0.5 rounded border border-[#8F8575]/30 text-[#1E7A6F]">admin123</span>
-          </button>
+          <!-- Quick Select Akun Master Admin & Admin Kelas 1-6 -->
+          <div class="p-3 rounded-xl bg-[#FFF8F0] border border-[#8F8575]/25 space-y-2 text-left">
+            <div class="flex items-center justify-between text-[11px] font-bold text-[#2B3445]">
+              <span>Pilih Akun Admin Cepat:</span>
+              <span class="font-mono text-[#1E7A6F]">Pass: admin123</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <button
+                type="button"
+                @click="email = 'admin@prisma.id'; password = 'admin123'"
+                :class="[
+                  'px-2.5 py-1 rounded-lg text-[11px] font-bold border transition cursor-pointer',
+                  email === 'admin@prisma.id' ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]' : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#1E7A6F]'
+                ]"
+              >
+                Master (1–6)
+              </button>
+              <button
+                v-for="k in 6"
+                :key="k"
+                type="button"
+                @click="email = `admin${k}@prisma.id`; password = 'admin123'"
+                :class="[
+                  'px-2 py-1 rounded-lg text-[11px] font-bold border transition cursor-pointer',
+                  email === `admin${k}@prisma.id` ? 'bg-[#1E7A6F] text-white border-[#1E7A6F]' : 'bg-white text-[#2B3445] border-[#8F8575]/30 hover:border-[#1E7A6F]'
+                ]"
+              >
+                Kelas {{ k }}
+              </button>
+            </div>
+          </div>
 
           <!-- Submit Button -->
           <div class="pt-2">

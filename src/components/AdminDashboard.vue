@@ -1,18 +1,20 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import {
   materiList, addMateri, updateMateri, deleteMateri, isLoadingMateri, RELIABLE_MODE_VIDEOS,
   KELAS_SD_OPTIONS, getKelasFromLevel, isYouTubeUrl, getYouTubeEmbedUrl
 } from '../lib/materiService'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
-import { currentUser, isAdmin, logoutUser } from '../lib/authService'
+import { currentUser, isAdmin, adminManagedKelas, logoutUser } from '../lib/authService'
 import { uploadVideo, uploadImage, uploadAudio, isCloudinaryConfigured } from '../lib/cloudinary'
+import { searchRelevantImages } from '../lib/imageSearchService'
 import { playMascotChime } from '../lib/soundEffects'
 import {
   BookOpen, LogOut, Plus, Trash2, Edit3, Eye,
   X, CheckCircle2, UploadCloud, ShieldAlert, Search,
   RefreshCw, Sparkles, ArrowLeft, Save, ImagePlus, AlignLeft,
-  HelpCircle, FileText, Volume2, Music, Video, Link2, Check
+  HelpCircle, FileText, Volume2, Music, Video, Link2, Check,
+  Bold, Italic, Underline, List, ListOrdered
 } from '@lucide/vue'
 
 const emit = defineEmits(['previewMateri', 'backToApp', 'openAuth'])
@@ -91,20 +93,93 @@ const normalizeLevelForForm = (rawLevel) => {
 // Form data
 const currentForm = ref(getEmptyForm())
 
+// Rich Text Editor (Isi Teks Bacaan)
+const richTextEditorRef = ref(null)
+const syncRichTextFromModel = () => {
+  nextTick(() => {
+    if (richTextEditorRef.value) {
+      const raw = currentForm.value.materiContent?.text || ''
+      // Jika teks polos dengan newline, ubah newline jadi <br> agar rapi di editor
+      const hasHtml = /<(b|strong|i|em|u|ul|ol|li|p|br|div)\b/i.test(raw)
+      richTextEditorRef.value.innerHTML = hasHtml ? raw : raw.replace(/\n/g, '<br>')
+    }
+  })
+}
+
+const onRichTextInput = () => {
+  if (!richTextEditorRef.value || !currentForm.value.materiContent) return
+  const html = richTextEditorRef.value.innerHTML
+  currentForm.value.materiContent.text = (html === '<br>' || html === '<div><br></div>') ? '' : html
+}
+
+const applyFormat = (cmd) => {
+  if (!richTextEditorRef.value) return
+  richTextEditorRef.value.focus()
+  document.execCommand(cmd, false, null)
+  onRichTextInput()
+}
+
+watch(activeFormTab, (tab) => {
+  if (tab === 'materi' && showForm.value) {
+    syncRichTextFromModel()
+  }
+})
+
+// Pencarian Gambar dengan Kata Kunci (Sampul Materi & Gambar Soal)
+const imageSearchModal = ref({
+  isOpen: false,
+  target: 'cover', // 'cover' | 'quiz'
+  qIdx: null,
+  query: '',
+  results: [],
+  isSearching: false
+})
+
+const openImageSearch = async (target, qIdx = null) => {
+  imageSearchModal.value = {
+    isOpen: true,
+    target,
+    qIdx,
+    query: '',
+    results: [],
+    isSearching: true
+  }
+  imageSearchModal.value.results = await searchRelevantImages('')
+  imageSearchModal.value.isSearching = false
+}
+
+const runImageSearch = async () => {
+  imageSearchModal.value.isSearching = true
+  imageSearchModal.value.results = await searchRelevantImages(imageSearchModal.value.query)
+  imageSearchModal.value.isSearching = false
+}
+
+const selectSearchedImage = (url) => {
+  if (imageSearchModal.value.target === 'cover') {
+    if (!currentForm.value.materiContent) currentForm.value.materiContent = { image: '' }
+    currentForm.value.materiContent.image = url
+    currentForm.value.image = url
+  } else if (imageSearchModal.value.target === 'quiz' && imageSearchModal.value.qIdx !== null) {
+    const q = currentForm.value.quiz?.questions?.[imageSearchModal.value.qIdx]
+    if (q) q.image = url
+  }
+  imageSearchModal.value.isOpen = false
+}
+
 function getEmptyForm() {
   return {
     id: '',
     title: '',
     jenjang: 'SD',
     mataPelajaran: 'Bahasa Indonesia & Matematika',
-    level: 'Kelas 1',
-    description: 'Yuk ikuti petualangan seru dan temukan keajaiban belajar bersama PRISMA!',
+    level: adminManagedKelas.value || 'Kelas 1',
+    description: '',
     badge: 'Gratis',
     duration: '± 5 menit',
     image: '/es_batu_card.jpg',
     types: ['Teks & Gambar', '2 Video Edukasi', 'Kuis Interaktif'],
     materiContent: {
-      text: 'Tuliskan teks bacaan cerita atau penjelasan materi di sini agar mudah dipahami siswa...',
+      text: '',
       image: '/es_batu_card.jpg',
       audioUrl: '',
       points: [
@@ -150,6 +225,7 @@ const openAddForm = () => {
   videoInputMode.value = { video1: 'link', video2: 'link' }
   activeFormTab.value = 'materi'
   showForm.value = true
+  syncRichTextFromModel()
 }
 
 const openEditForm = (item) => {
@@ -252,6 +328,7 @@ const openEditForm = (item) => {
   currentForm.value = copy
   activeFormTab.value = 'materi'
   showForm.value = true
+  syncRichTextFromModel()
 }
 
 const onQuestionTypeChange = (q) => {
@@ -602,17 +679,25 @@ const getQuestionCount = (m) => {
   return m.quiz?.questions?.length ?? m.assessment?.questions?.length ?? 0
 }
 
-// Computed stats (akurat berdasarkan struktur data terbaru)
-const totalVideos = computed(() => materiList.value.reduce((a, m) => a + getVideoCount(m), 0))
-const totalAudioMateri = computed(() => materiList.value.filter(hasAudio).length)
-const totalQuizQuestions = computed(() => materiList.value.reduce((a, m) => a + getQuestionCount(m), 0))
+// Daftar materi sesuai hak akses admin (Master Admin: semua kelas, Admin Kelas 1-6: khusus kelasnya)
+const scopedMateriList = computed(() => {
+  if (adminManagedKelas.value) {
+    return materiList.value.filter(m => normalizeLevelForForm(m.level) === adminManagedKelas.value)
+  }
+  return materiList.value
+})
+
+// Computed stats (akurat berdasarkan ruang lingkup admin)
+const totalVideos = computed(() => scopedMateriList.value.reduce((a, m) => a + getVideoCount(m), 0))
+const totalAudioMateri = computed(() => scopedMateriList.value.filter(hasAudio).length)
+const totalQuizQuestions = computed(() => scopedMateriList.value.reduce((a, m) => a + getQuestionCount(m), 0))
 
 const availableTableKelasOptions = KELAS_SD_OPTIONS
 
 // Filtered table
 const filteredMateri = computed(() => {
-  let list = materiList.value
-  if (selectedKelasFilter.value !== 'Semua') {
+  let list = scopedMateriList.value
+  if (!adminManagedKelas.value && selectedKelasFilter.value !== 'Semua') {
     list = list.filter(m => normalizeLevelForForm(m.level) === selectedKelasFilter.value)
   }
   if (tableSearch.value.trim()) {
@@ -702,7 +787,9 @@ const filteredMateri = computed(() => {
           <div class="hidden sm:flex items-center gap-2 pl-2 border-l-2 border-[#8F8575]/20">
             <div class="text-right">
               <p class="text-xs font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ currentUser?.name }}</p>
-              <p class="text-[10px] text-[#1E7A6F] font-bold mt-0.5">Guru / Pengajar</p>
+              <p class="text-[10px] text-[#1E7A6F] font-bold mt-0.5">
+                {{ adminManagedKelas ? `Admin ${adminManagedKelas}` : 'Master Admin (Kelas 1–6)' }}
+              </p>
             </div>
             <div class="w-8 h-8 rounded-xl bg-[#1E7A6F] text-[#FFF8F0] border-2 border-[#7FD4C4] flex items-center justify-center text-xs shadow-2xs font-bold">
               {{ currentUser?.avatar || '👩‍🏫' }}
@@ -849,7 +936,8 @@ const filteredMateri = computed(() => {
                           <label class="text-xs font-bold text-[#2B3445] uppercase tracking-wide block mb-1.5">Kelas</label>
                           <select
                             v-model="currentForm.level"
-                            class="w-full px-3 py-3 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] text-sm text-[#2B3445] font-semibold focus:bg-white focus:border-[#1E7A6F] focus:outline-none cursor-pointer"
+                            :disabled="Boolean(adminManagedKelas)"
+                            class="w-full px-3 py-3 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] text-sm text-[#2B3445] font-semibold focus:bg-white focus:border-[#1E7A6F] focus:outline-none cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                           >
                             <option
                               v-for="opt in levelOptions"
@@ -862,22 +950,74 @@ const filteredMateri = computed(() => {
                         </div>
                       </div>
 
-                      <!-- Isi Lengkap Teks Bacaan Materi -->
-                      <div class="pt-3 border-t-2 border-[#8F8575]/15">
-                        <div class="flex items-center justify-between mb-1.5 flex-wrap gap-2">
+                      <!-- Isi Lengkap Teks Bacaan Materi (Rich Text Editor ala Word) -->
+                      <div class="pt-3 border-t-2 border-[#8F8575]/15 space-y-2">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
                           <label class="text-xs font-bold text-[#2B3445] uppercase tracking-wide flex items-center gap-1.5">
                             <FileText class="w-4 h-4 text-[#1E7A6F]" />
                             <span>Isi Teks Bacaan Cerita *</span>
                           </label>
-                          <span class="text-xs font-bold text-[#1E7A6F] bg-[#7FD4C4]/25 px-2.5 py-0.5 rounded-full">Dibaca Siswa Sebelum Kuis</span>
+                          <span class="text-xs font-bold text-[#1E7A6F] bg-[#7FD4C4]/25 px-2.5 py-0.5 rounded-full">Tebal, Miring, Garis Bawah & Poin</span>
                         </div>
-                        <textarea
-                          v-if="currentForm.materiContent"
-                          v-model="currentForm.materiContent.text"
-                          rows="8"
-                          placeholder="Tuliskan cerita atau uraian materi di sini dengan bahasa yang mudah dipahami anak SD..."
-                          class="w-full px-4 py-3 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] focus:bg-white focus:border-[#1E7A6F] focus:outline-none text-sm text-[#2B3445] font-medium resize-y leading-relaxed"
-                        ></textarea>
+
+                        <!-- Toolbar Format Teks -->
+                        <div class="flex items-center gap-1.5 p-1.5 rounded-2xl bg-[#FFF8F0] border-2 border-[#8F8575]/25 flex-wrap">
+                          <button
+                            type="button"
+                            @mousedown.prevent="applyFormat('bold')"
+                            class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-[#7FD4C4]/25 border border-[#8F8575]/20 text-[#2B3445] text-xs font-bold flex items-center gap-1 cursor-pointer transition"
+                            title="Tebal (Bold)"
+                          >
+                            <Bold class="w-3.5 h-3.5" />
+                            <span>Tebal</span>
+                          </button>
+                          <button
+                            type="button"
+                            @mousedown.prevent="applyFormat('italic')"
+                            class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-[#7FD4C4]/25 border border-[#8F8575]/20 text-[#2B3445] text-xs font-bold flex items-center gap-1 cursor-pointer transition"
+                            title="Miring (Italic)"
+                          >
+                            <Italic class="w-3.5 h-3.5" />
+                            <span>Miring</span>
+                          </button>
+                          <button
+                            type="button"
+                            @mousedown.prevent="applyFormat('underline')"
+                            class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-[#7FD4C4]/25 border border-[#8F8575]/20 text-[#2B3445] text-xs font-bold flex items-center gap-1 cursor-pointer transition"
+                            title="Garis Bawah (Underline)"
+                          >
+                            <Underline class="w-3.5 h-3.5" />
+                            <span>Garis Bawah</span>
+                          </button>
+                          <div class="w-px h-5 bg-[#8F8575]/25 mx-0.5"></div>
+                          <button
+                            type="button"
+                            @mousedown.prevent="applyFormat('insertUnorderedList')"
+                            class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-[#7FD4C4]/25 border border-[#8F8575]/20 text-[#2B3445] text-xs font-bold flex items-center gap-1 cursor-pointer transition"
+                            title="Daftar Poin-poin"
+                          >
+                            <List class="w-3.5 h-3.5" />
+                            <span>Poin</span>
+                          </button>
+                          <button
+                            type="button"
+                            @mousedown.prevent="applyFormat('insertOrderedList')"
+                            class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-[#7FD4C4]/25 border border-[#8F8575]/20 text-[#2B3445] text-xs font-bold flex items-center gap-1 cursor-pointer transition"
+                            title="Daftar Bernomor"
+                          >
+                            <ListOrdered class="w-3.5 h-3.5" />
+                            <span>Nomor</span>
+                          </button>
+                        </div>
+
+                        <!-- Area Ketik Rich Text (dengan placeholder di latar belakang) -->
+                        <div
+                          ref="richTextEditorRef"
+                          contenteditable="true"
+                          @input="onRichTextInput"
+                          data-placeholder="Tuliskan cerita atau uraian materi di sini dengan bahasa yang mudah dipahami anak SD..."
+                          class="rich-editor min-h-[190px] max-h-[420px] overflow-y-auto w-full px-4 py-3 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] focus:bg-white focus:border-[#1E7A6F] focus:outline-none text-sm text-[#2B3445] font-medium leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_b]:font-bold [&_strong]:font-bold [&_i]:italic [&_u]:underline"
+                        ></div>
                       </div>
                     </div>
 
@@ -967,11 +1107,21 @@ const filteredMateri = computed(() => {
                         </div>
                       </div>
 
-                      <label class="btn-prisma-white w-full py-2.5 px-4 rounded-2xl border-2 border-[#8F8575]/30 hover:bg-[#FFF8F0] text-xs font-bold text-[#1E7A6F] flex items-center justify-center gap-2 transition cursor-pointer text-center">
-                        <ImagePlus class="w-4 h-4" />
-                        <span>Pilih Gambar dari Laptop</span>
-                        <input type="file" accept="image/*" class="hidden" @change="handleImageFileInput" />
-                      </label>
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <label class="btn-prisma-white py-2.5 px-3 rounded-2xl border-2 border-[#8F8575]/30 hover:bg-[#FFF8F0] text-xs font-bold text-[#1E7A6F] flex items-center justify-center gap-1.5 transition cursor-pointer text-center">
+                          <ImagePlus class="w-4 h-4 shrink-0" />
+                          <span>Pilih dari Laptop</span>
+                          <input type="file" accept="image/*" class="hidden" @change="handleImageFileInput" />
+                        </label>
+                        <button
+                          type="button"
+                          @click="openImageSearch('cover')"
+                          class="py-2.5 px-3 rounded-2xl border-2 border-[#1E7A6F]/30 bg-[#7FD4C4]/20 hover:bg-[#7FD4C4]/35 text-xs font-bold text-[#1E7A6F] flex items-center justify-center gap-1.5 transition cursor-pointer"
+                        >
+                          <Search class="w-4 h-4 shrink-0" />
+                          <span>Cari Gambar</span>
+                        </button>
+                      </div>
                     </div>
 
                     <!-- Audio Narasi Suara Materi -->
@@ -1285,12 +1435,20 @@ const filteredMateri = computed(() => {
                           <img :src="q.image" alt="Preview Gambar Soal" class="w-full h-full object-contain" />
                         </div>
 
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 flex-wrap">
                           <input
                             v-model="q.image"
                             placeholder="Tempel link gambar soal (opsional)..."
-                            class="flex-1 px-3 py-2 rounded-xl border-2 border-[#8F8575]/25 bg-[#FFF8F0] text-xs text-[#2B3445] focus:bg-white focus:border-[#1E7A6F] focus:outline-none"
+                            class="flex-1 min-w-[160px] px-3 py-2 rounded-xl border-2 border-[#8F8575]/25 bg-[#FFF8F0] text-xs text-[#2B3445] focus:bg-white focus:border-[#1E7A6F] focus:outline-none"
                           />
+                          <button
+                            type="button"
+                            @click="openImageSearch('quiz', qIdx)"
+                            class="px-3.5 py-2 rounded-xl border-2 border-[#1E7A6F]/30 bg-[#7FD4C4]/20 hover:bg-[#7FD4C4]/35 text-[#1E7A6F] text-xs font-bold flex items-center gap-1.5 cursor-pointer shrink-0 transition"
+                          >
+                            <Search class="w-3.5 h-3.5" />
+                            <span>Cari Gambar</span>
+                          </button>
                           <label class="btn-prisma-white px-3.5 py-2 rounded-xl border-2 border-[#8F8575]/30 hover:bg-[#FFF8F0] text-[#1E7A6F] text-xs font-bold flex items-center gap-1.5 cursor-pointer shrink-0">
                             <UploadCloud class="w-3.5 h-3.5" />
                             <span>{{ isUploadingQuizImage[qIdx] ? 'Mengunggah...' : 'Pilih Gambar' }}</span>
@@ -1518,7 +1676,7 @@ const filteredMateri = computed(() => {
                   <BookOpen class="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div class="min-w-0">
-                  <p class="text-xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ materiList.length }}</p>
+                  <p class="text-xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445] leading-none">{{ scopedMateriList.length }}</p>
                   <p class="text-[11px] sm:text-xs text-[#2B3445]/60 font-semibold mt-1 leading-tight">Total Materi Bab</p>
                 </div>
               </div>
@@ -1564,7 +1722,7 @@ const filteredMateri = computed(() => {
                   class="w-full pl-10 pr-4 py-2.5 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] focus:bg-white focus:border-[#1E7A6F] focus:outline-none text-sm text-[#2B3445]"
                 />
               </div>
-              <div class="flex items-center gap-1.5 flex-wrap shrink-0">
+              <div v-if="!adminManagedKelas" class="flex items-center gap-1.5 flex-wrap shrink-0">
                 <button
                   v-for="k in ['Semua', ...availableTableKelasOptions]"
                   :key="k"
@@ -1576,6 +1734,9 @@ const filteredMateri = computed(() => {
                       : 'bg-[#FFF8F0] text-[#2B3445] border-[#8F8575]/25 hover:border-[#1E7A6F]/50'
                   ]"
                 >{{ k }}</button>
+              </div>
+              <div v-else class="flex items-center gap-2 shrink-0 px-3.5 py-2 rounded-xl bg-[#7FD4C4]/20 border-2 border-[#7FD4C4] text-[#1E7A6F] text-xs font-bold">
+                <span>🔒 Khusus {{ adminManagedKelas }}</span>
               </div>
             </div>
 
@@ -1674,7 +1835,7 @@ const filteredMateri = computed(() => {
               </div>
 
               <div class="px-5 py-3.5 border-t-2 border-[#8F8575]/20 bg-[#FFF8F0] text-xs font-semibold text-[#2B3445]/70">
-                Menampilkan {{ filteredMateri.length }} dari {{ materiList.length }} materi
+                Menampilkan {{ filteredMateri.length }} dari {{ scopedMateriList.length }} materi
               </div>
             </div>
           </div>
@@ -1682,5 +1843,86 @@ const filteredMateri = computed(() => {
         </main>
       </div>
     </div>
+
+    <!-- ==================== MODAL PENCARIAN GAMBAR (KATA KUNCI) ==================== -->
+    <Teleport to="body">
+      <div
+        v-if="imageSearchModal.isOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#2B3445]/60 backdrop-blur-xs font-['Lexend']"
+        @click.self="imageSearchModal.isOpen = false"
+      >
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border-2 border-[#8F8575]/30 overflow-hidden flex flex-col max-h-[85vh]">
+          <div class="px-5 py-4 bg-[#FFF8F0] border-b-2 border-[#8F8575]/20 flex items-center justify-between gap-3">
+            <div>
+              <h3 class="font-bold font-['Baloo_2'] text-lg text-[#1E7A6F]">Cari Gambar Relevan</h3>
+              <p class="text-xs text-[#5B6474]">Ketik kata kunci (misal: apel, jam, segitiga, buku, kucing)</p>
+            </div>
+            <button
+              type="button"
+              @click="imageSearchModal.isOpen = false"
+              class="p-2 rounded-xl hover:bg-black/5 text-[#5B6474] cursor-pointer"
+            >
+              <X class="w-5 h-5" />
+            </button>
+          </div>
+
+          <form @submit.prevent="runImageSearch" class="p-4 border-b border-[#8F8575]/15 flex items-center gap-2">
+            <div class="relative flex-1">
+              <Search class="w-4 h-4 text-[#8F8575] absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                v-model="imageSearchModal.query"
+                placeholder="Ketik kata kunci gambar..."
+                class="w-full pl-10 pr-4 py-2.5 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] focus:bg-white focus:border-[#1E7A6F] focus:outline-none text-sm text-[#2B3445]"
+              />
+            </div>
+            <button
+              type="submit"
+              :disabled="imageSearchModal.isSearching"
+              class="btn-prisma-mint px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold text-[#FFF8F0] cursor-pointer shrink-0 disabled:opacity-60"
+            >
+              {{ imageSearchModal.isSearching ? 'Mencari...' : 'Cari' }}
+            </button>
+          </form>
+
+          <div class="p-4 overflow-y-auto flex-1">
+            <div v-if="imageSearchModal.isSearching" class="py-12 text-center space-y-2">
+              <RefreshCw class="w-7 h-7 animate-spin text-[#1E7A6F] mx-auto" />
+              <p class="text-xs font-semibold text-[#5B6474]">Mencari gambar relevan...</p>
+            </div>
+
+            <div v-else-if="imageSearchModal.results.length === 0" class="py-12 text-center text-sm text-[#5B6474]">
+              Tidak ditemukan gambar untuk kata kunci tersebut. Coba kata lain ya!
+            </div>
+
+            <div v-else class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <button
+                v-for="(img, idx) in imageSearchModal.results"
+                :key="idx"
+                type="button"
+                @click="selectSearchedImage(img.url)"
+                class="group rounded-2xl border-2 border-[#8F8575]/20 hover:border-[#1E7A6F] bg-[#FFF8F0]/50 overflow-hidden text-left transition cursor-pointer flex flex-col"
+              >
+                <div class="aspect-video w-full bg-white overflow-hidden">
+                  <img :src="img.url" :alt="img.title" class="w-full h-full object-contain group-hover:scale-105 transition-transform" />
+                </div>
+                <div class="p-2.5 flex items-center justify-between gap-1.5">
+                  <span class="text-[11px] font-bold text-[#2B3445] truncate">{{ img.title }}</span>
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-[#7FD4C4]/30 text-[#1E7A6F] shrink-0">{{ img.source }}</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </template>
 </template>
+
+<style scoped>
+.rich-editor:empty::before {
+  content: attr(data-placeholder);
+  color: rgba(91, 100, 116, 0.55);
+  pointer-events: none;
+  display: block;
+}
+</style>

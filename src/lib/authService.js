@@ -12,15 +12,22 @@ import { sendOtpEmail, sendPasswordResetEmail, sendEmailChangeOtp } from './emai
 
 const LEGACY_STORAGE_KEY = 'prisma_auth_session_v2'
 
-// Demo Accounts — 2 Peran Utama: Pengguna dan Administrator
+// Demo Accounts — Master Admin (Semua Kelas), Admin Kelas 1–6, dan Siswa
 const DEMO_ACCOUNTS = [
   {
     email: 'admin@prisma.id',
     password: 'admin123',
-    name: 'Admin Prisma',
+    name: 'Master Admin Prisma',
     role: 'admin',
+    managedKelas: null, // null = Master Admin (mengelola Kelas 1-6)
     avatar: '🛡️'
   },
+  { email: 'admin1@prisma.id', password: 'admin123', name: 'Admin Kelas 1', role: 'admin', managedKelas: 'Kelas 1', avatar: '👩‍🏫' },
+  { email: 'admin2@prisma.id', password: 'admin123', name: 'Admin Kelas 2', role: 'admin', managedKelas: 'Kelas 2', avatar: '👩‍🏫' },
+  { email: 'admin3@prisma.id', password: 'admin123', name: 'Admin Kelas 3', role: 'admin', managedKelas: 'Kelas 3', avatar: '👩‍🏫' },
+  { email: 'admin4@prisma.id', password: 'admin123', name: 'Admin Kelas 4', role: 'admin', managedKelas: 'Kelas 4', avatar: '👩‍🏫' },
+  { email: 'admin5@prisma.id', password: 'admin123', name: 'Admin Kelas 5', role: 'admin', managedKelas: 'Kelas 5', avatar: '👩‍🏫' },
+  { email: 'admin6@prisma.id', password: 'admin123', name: 'Admin Kelas 6', role: 'admin', managedKelas: 'Kelas 6', avatar: '👩‍🏫' },
   {
     email: 'user@prisma.id',
     password: 'user123',
@@ -83,6 +90,7 @@ function loadUserSession() {
           name: payload.name || meta.full_name || payload.email?.split('@')[0],
           email: payload.email,
           role: payload.role || meta.role || (email.includes('admin') ? 'admin' : 'user'),
+          managedKelas: payload.managedKelas ?? meta.managedKelas ?? null,
           avatar: payload.avatar || (payload.role === 'admin' ? '🛡️' : '👧'),
           isPro,
           tier: isPro ? 'pro' : 'free',
@@ -143,6 +151,7 @@ function saveUserSession(user, token = null) {
         name: user.name,
         email: user.email,
         role: user.role || 'user',
+        managedKelas: user.managedKelas ?? null,
         avatar: user.avatar,
         isPro: Boolean(user.isPro),
         tier: user.isPro ? 'pro' : 'free'
@@ -162,6 +171,13 @@ function saveUserSession(user, token = null) {
 
 export const isAuthenticated = computed(() => Boolean(currentUser.value && currentUser.value.token))
 export const isAdmin = computed(() => currentUser.value?.role === 'admin')
+export const adminManagedKelas = computed(() => {
+  if (currentUser.value?.role !== 'admin') return null
+  if (currentUser.value?.managedKelas) return currentUser.value.managedKelas
+  const email = (currentUser.value?.email || '').toLowerCase()
+  const m = email.match(/^admin([1-6])@/)
+  return m ? `Kelas ${m[1]}` : null
+})
 export const isStudent = computed(() => currentUser.value?.role === 'user')
 export const isProUser = computed(() => {
   if (!currentUser.value) return false
