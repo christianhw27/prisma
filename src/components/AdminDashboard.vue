@@ -1739,7 +1739,7 @@ const filteredMateri = computed(() => {
             <!-- Welcome & Primary Action -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h1 class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">Selamat datang, {{ currentUser?.name?.split(' ')[0] || 'Guru' }}! 👋</h1>
+                <h1 class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">Selamat datang, {{ adminManagedKelas ? `Admin ${adminManagedKelas}` : 'Master Admin' }}! 👋</h1>
                 <p class="text-[#2B3445]/60 text-sm mt-0.5">Kelola materi bacaan, suara narasi, video belajar, dan soal kuis siswa PRISMA dalam satu tempat.</p>
               </div>
               <button
