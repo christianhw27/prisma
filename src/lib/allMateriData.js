@@ -4,7 +4,7 @@
 export const allStructuredMateri = [
   {
     "id": "materi-k1-b1",
-    "title": "Bab 1: Panen Tomat di Kebun Nenek",
+    "title": "Materi 1: Panen Tomat di Kebun Nenek",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -67,7 +67,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 1: Panen Tomat di Kebun Nenek",
+      "title": "Kuis Interaktif: Materi 1: Panen Tomat di Kebun Nenek",
       "questions": [
         {
           "id": "q-materi-k1-b1-1",
@@ -172,7 +172,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T06:17:22.270Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 1: Panen Tomat di Kebun Nenek",
+      "title": "Kuis Interaktif: Materi 1: Panen Tomat di Kebun Nenek",
       "questions": [
         {
           "id": "q-materi-k1-b1-1",
@@ -248,7 +248,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k1-b2",
-    "title": "Bab 2: Kue untuk Bu Tini",
+    "title": "Materi 2: Kue untuk Bu Tini",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -306,7 +306,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 2: Kue untuk Bu Tini",
+      "title": "Kuis Interaktif: Materi 2: Kue untuk Bu Tini",
       "questions": [
         {
           "id": "q-materi-k1-b2-1",
@@ -391,7 +391,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T07:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 2: Kue untuk Bu Tini",
+      "title": "Kuis Interaktif: Materi 2: Kue untuk Bu Tini",
       "questions": [
         {
           "id": "q-materi-k1-b2-1",
@@ -453,7 +453,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k1-b3",
-    "title": "Bab 3: Kamar Rapi Rina",
+    "title": "Materi 3: Kamar Rapi Rina",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -511,7 +511,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 3: Kamar Rapi Rina",
+      "title": "Kuis Interaktif: Materi 3: Kamar Rapi Rina",
       "questions": [
         {
           "id": "q-materi-k1-b3-1",
@@ -617,7 +617,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T08:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 3: Kamar Rapi Rina",
+      "title": "Kuis Interaktif: Materi 3: Kamar Rapi Rina",
       "questions": [
         {
           "id": "q-materi-k1-b3-1",
@@ -699,7 +699,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k1-b4",
-    "title": "Bab 4: Telur di Kandang Ayam",
+    "title": "Materi 4: Telur di Kandang Ayam",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -752,7 +752,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 4: Telur di Kandang Ayam",
+      "title": "Kuis Interaktif: Materi 4: Telur di Kandang Ayam",
       "questions": [
         {
           "id": "q-materi-k1-b4-1",
@@ -847,7 +847,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T09:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 4: Telur di Kandang Ayam",
+      "title": "Kuis Interaktif: Materi 4: Telur di Kandang Ayam",
       "questions": [
         {
           "id": "q-materi-k1-b4-1",
@@ -923,7 +923,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k1-b5",
-    "title": "Bab 5: Pola Gelang Manik-Manik",
+    "title": "Materi 5: Pola Gelang Manik-Manik",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -981,7 +981,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 5: Pola Gelang Manik-Manik",
+      "title": "Kuis Interaktif: Materi 5: Pola Gelang Manik-Manik",
       "questions": [
         {
           "id": "q-materi-k1-b5-1",
@@ -1087,7 +1087,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T10:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 5: Pola Gelang Manik-Manik",
+      "title": "Kuis Interaktif: Materi 5: Pola Gelang Manik-Manik",
       "questions": [
         {
           "id": "q-materi-k1-b5-1",
@@ -1150,7 +1150,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k1-b6",
-    "title": "Bab 6: Pita untuk Lomba",
+    "title": "Materi 6: Pita untuk Lomba",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -1208,7 +1208,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 6: Pita untuk Lomba",
+      "title": "Kuis Interaktif: Materi 6: Pita untuk Lomba",
       "questions": [
         {
           "id": "q-materi-k1-b6-1",
@@ -1313,7 +1313,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T11:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 6: Pita untuk Lomba",
+      "title": "Kuis Interaktif: Materi 6: Pita untuk Lomba",
       "questions": [
         {
           "id": "q-materi-k1-b6-1",
@@ -1395,7 +1395,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k1-b7",
-    "title": "Bab 7: Hari-Hariku",
+    "title": "Materi 7: Hari-Hariku",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -1458,7 +1458,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 7: Hari-Hariku",
+      "title": "Kuis Interaktif: Materi 7: Hari-Hariku",
       "questions": [
         {
           "id": "q-materi-k1-b7-1",
@@ -1554,7 +1554,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T12:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 7: Hari-Hariku",
+      "title": "Kuis Interaktif: Materi 7: Hari-Hariku",
       "questions": [
         {
           "id": "q-materi-k1-b7-1",
@@ -1622,7 +1622,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k1-b8",
-    "title": "Bab 8: Buah Kesukaan Teman Sekelas",
+    "title": "Materi 8: Buah Kesukaan Teman Sekelas",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 1 • Fase A",
@@ -1680,7 +1680,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 8: Buah Kesukaan Teman Sekelas",
+      "title": "Kuis Interaktif: Materi 8: Buah Kesukaan Teman Sekelas",
       "questions": [
         {
           "id": "q-materi-k1-b8-1",
@@ -1769,7 +1769,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T13:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 8: Buah Kesukaan Teman Sekelas",
+      "title": "Kuis Interaktif: Materi 8: Buah Kesukaan Teman Sekelas",
       "questions": [
         {
           "id": "q-materi-k1-b8-1",
@@ -1835,7 +1835,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b1",
-    "title": "Bab 1: Sarapan Sehat, Badan Kuat",
+    "title": "Materi 1: Sarapan Sehat, Badan Kuat",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -1898,7 +1898,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 1: Sarapan Sehat, Badan Kuat",
+      "title": "Kuis Interaktif: Materi 1: Sarapan Sehat, Badan Kuat",
       "questions": [
         {
           "id": "q-materi-k2-b1-1",
@@ -2003,7 +2003,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T14:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 1: Sarapan Sehat, Badan Kuat",
+      "title": "Kuis Interaktif: Materi 1: Sarapan Sehat, Badan Kuat",
       "questions": [
         {
           "id": "q-materi-k2-b1-1",
@@ -2083,7 +2083,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b2",
-    "title": "Bab 2: Kue Bolu untuk Berbagi",
+    "title": "Materi 2: Kue Bolu untuk Berbagi",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -2141,7 +2141,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 2: Kue Bolu untuk Berbagi",
+      "title": "Kuis Interaktif: Materi 2: Kue Bolu untuk Berbagi",
       "questions": [
         {
           "id": "q-materi-k2-b2-1",
@@ -2239,7 +2239,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T15:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 2: Kue Bolu untuk Berbagi",
+      "title": "Kuis Interaktif: Materi 2: Kue Bolu untuk Berbagi",
       "questions": [
         {
           "id": "q-materi-k2-b2-1",
@@ -2313,7 +2313,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b3",
-    "title": "Bab 3: Siapa yang Lebih Panjang?",
+    "title": "Materi 3: Siapa yang Lebih Panjang?",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -2371,7 +2371,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 3: Siapa yang Lebih Panjang?",
+      "title": "Kuis Interaktif: Materi 3: Siapa yang Lebih Panjang?",
       "questions": [
         {
           "id": "q-materi-k2-b3-1",
@@ -2455,7 +2455,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T16:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 3: Siapa yang Lebih Panjang?",
+      "title": "Kuis Interaktif: Materi 3: Siapa yang Lebih Panjang?",
       "questions": [
         {
           "id": "q-materi-k2-b3-1",
@@ -2516,7 +2516,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b4",
-    "title": "Bab 4: Lompat Katak di Pematang Sawah",
+    "title": "Materi 4: Lompat Katak di Pematang Sawah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -2569,7 +2569,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 4: Lompat Katak di Pematang Sawah",
+      "title": "Kuis Interaktif: Materi 4: Lompat Katak di Pematang Sawah",
       "questions": [
         {
           "id": "q-materi-k2-b4-1",
@@ -2650,7 +2650,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T17:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 4: Lompat Katak di Pematang Sawah",
+      "title": "Kuis Interaktif: Materi 4: Lompat Katak di Pematang Sawah",
       "questions": [
         {
           "id": "q-materi-k2-b4-1",
@@ -2712,7 +2712,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b5",
-    "title": "Bab 5: Timbangan Kelereng",
+    "title": "Materi 5: Timbangan Kelereng",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -2765,7 +2765,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 5: Timbangan Kelereng",
+      "title": "Kuis Interaktif: Materi 5: Timbangan Kelereng",
       "questions": [
         {
           "id": "q-materi-k2-b5-1",
@@ -2845,7 +2845,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T18:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 5: Timbangan Kelereng",
+      "title": "Kuis Interaktif: Materi 5: Timbangan Kelereng",
       "questions": [
         {
           "id": "q-materi-k2-b5-1",
@@ -2907,7 +2907,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b6",
-    "title": "Bab 6: Tangram Kakek",
+    "title": "Materi 6: Tangram Kakek",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -2965,7 +2965,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 6: Tangram Kakek",
+      "title": "Kuis Interaktif: Materi 6: Tangram Kakek",
       "questions": [
         {
           "id": "q-materi-k2-b6-1",
@@ -3050,7 +3050,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T19:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 6: Tangram Kakek",
+      "title": "Kuis Interaktif: Materi 6: Tangram Kakek",
       "questions": [
         {
           "id": "q-materi-k2-b6-1",
@@ -3112,7 +3112,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b7",
-    "title": "Bab 7: Jam Berapa Sekarang?",
+    "title": "Materi 7: Jam Berapa Sekarang?",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -3175,7 +3175,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 7: Jam Berapa Sekarang?",
+      "title": "Kuis Interaktif: Materi 7: Jam Berapa Sekarang?",
       "questions": [
         {
           "id": "q-materi-k2-b7-1",
@@ -3279,7 +3279,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T20:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 7: Jam Berapa Sekarang?",
+      "title": "Kuis Interaktif: Materi 7: Jam Berapa Sekarang?",
       "questions": [
         {
           "id": "q-materi-k2-b7-1",
@@ -3354,7 +3354,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k2-b8",
-    "title": "Bab 8: Belanja di Warung Bu Siti",
+    "title": "Materi 8: Belanja di Warung Bu Siti",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 2 • Fase A",
@@ -3412,7 +3412,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 8: Belanja di Warung Bu Siti",
+      "title": "Kuis Interaktif: Materi 8: Belanja di Warung Bu Siti",
       "questions": [
         {
           "id": "q-materi-k2-b8-1",
@@ -3499,7 +3499,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T21:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 8: Belanja di Warung Bu Siti",
+      "title": "Kuis Interaktif: Materi 8: Belanja di Warung Bu Siti",
       "questions": [
         {
           "id": "q-materi-k2-b8-1",
@@ -3563,7 +3563,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b1",
-    "title": "Bab 1: Panen Bandeng di Tambak",
+    "title": "Materi 1: Panen Bandeng di Tambak",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -3616,7 +3616,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 1: Panen Bandeng di Tambak",
+      "title": "Kuis Interaktif: Materi 1: Panen Bandeng di Tambak",
       "questions": [
         {
           "id": "q-materi-k3-b1-1",
@@ -3695,7 +3695,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T22:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 1: Panen Bandeng di Tambak",
+      "title": "Kuis Interaktif: Materi 1: Panen Bandeng di Tambak",
       "questions": [
         {
           "id": "q-materi-k3-b1-1",
@@ -3756,7 +3756,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b2",
-    "title": "Bab 2: Kue Syukuran Kelas 3",
+    "title": "Materi 2: Kue Syukuran Kelas 3",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -3814,7 +3814,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 2: Kue Syukuran Kelas 3",
+      "title": "Kuis Interaktif: Materi 2: Kue Syukuran Kelas 3",
       "questions": [
         {
           "id": "q-materi-k3-b2-1",
@@ -3913,7 +3913,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-15T23:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 2: Kue Syukuran Kelas 3",
+      "title": "Kuis Interaktif: Materi 2: Kue Syukuran Kelas 3",
       "questions": [
         {
           "id": "q-materi-k3-b2-1",
@@ -3989,7 +3989,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b3",
-    "title": "Bab 3: Mengukur Tubuh di UKS",
+    "title": "Materi 3: Mengukur Tubuh di UKS",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -4047,7 +4047,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 3: Mengukur Tubuh di UKS",
+      "title": "Kuis Interaktif: Materi 3: Mengukur Tubuh di UKS",
       "questions": [
         {
           "id": "q-materi-k3-b3-1",
@@ -4146,7 +4146,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T00:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 3: Mengukur Tubuh di UKS",
+      "title": "Kuis Interaktif: Materi 3: Mengukur Tubuh di UKS",
       "questions": [
         {
           "id": "q-materi-k3-b3-1",
@@ -4222,7 +4222,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b4",
-    "title": "Bab 4: Pameran Kerajinan Sekolah",
+    "title": "Materi 4: Pameran Kerajinan Sekolah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -4275,7 +4275,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 4: Pameran Kerajinan Sekolah",
+      "title": "Kuis Interaktif: Materi 4: Pameran Kerajinan Sekolah",
       "questions": [
         {
           "id": "q-materi-k3-b4-1",
@@ -4354,7 +4354,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T01:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 4: Pameran Kerajinan Sekolah",
+      "title": "Kuis Interaktif: Materi 4: Pameran Kerajinan Sekolah",
       "questions": [
         {
           "id": "q-materi-k3-b4-1",
@@ -4415,7 +4415,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b5",
-    "title": "Bab 5: Roti Bakar Dibagi Rata",
+    "title": "Materi 5: Roti Bakar Dibagi Rata",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -4473,7 +4473,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 5: Roti Bakar Dibagi Rata",
+      "title": "Kuis Interaktif: Materi 5: Roti Bakar Dibagi Rata",
       "questions": [
         {
           "id": "q-materi-k3-b5-1",
@@ -4581,7 +4581,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T02:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 5: Roti Bakar Dibagi Rata",
+      "title": "Kuis Interaktif: Materi 5: Roti Bakar Dibagi Rata",
       "questions": [
         {
           "id": "q-materi-k3-b5-1",
@@ -4665,7 +4665,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b6",
-    "title": "Bab 6: Jadwal Wisata Kelas 3",
+    "title": "Materi 6: Jadwal Wisata Kelas 3",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -4723,7 +4723,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 6: Jadwal Wisata Kelas 3",
+      "title": "Kuis Interaktif: Materi 6: Jadwal Wisata Kelas 3",
       "questions": [
         {
           "id": "q-materi-k3-b6-1",
@@ -4808,7 +4808,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T03:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 6: Jadwal Wisata Kelas 3",
+      "title": "Kuis Interaktif: Materi 6: Jadwal Wisata Kelas 3",
       "questions": [
         {
           "id": "q-materi-k3-b6-1",
@@ -4870,7 +4870,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b7",
-    "title": "Bab 7: Layang-Layang Arif",
+    "title": "Materi 7: Layang-Layang Arif",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -4928,7 +4928,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 7: Layang-Layang Arif",
+      "title": "Kuis Interaktif: Materi 7: Layang-Layang Arif",
       "questions": [
         {
           "id": "q-materi-k3-b7-1",
@@ -5012,7 +5012,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T04:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 7: Layang-Layang Arif",
+      "title": "Kuis Interaktif: Materi 7: Layang-Layang Arif",
       "questions": [
         {
           "id": "q-materi-k3-b7-1",
@@ -5073,7 +5073,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k3-b8",
-    "title": "Bab 8: Lomba Kebersihan Kelas",
+    "title": "Materi 8: Lomba Kebersihan Kelas",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 3 • Fase B",
@@ -5131,7 +5131,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 8: Lomba Kebersihan Kelas",
+      "title": "Kuis Interaktif: Materi 8: Lomba Kebersihan Kelas",
       "questions": [
         {
           "id": "q-materi-k3-b8-1",
@@ -5217,7 +5217,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T05:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 8: Lomba Kebersihan Kelas",
+      "title": "Kuis Interaktif: Materi 8: Lomba Kebersihan Kelas",
       "questions": [
         {
           "id": "q-materi-k3-b8-1",
@@ -5280,7 +5280,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b1",
-    "title": "Bab 1: Martabak Pesanan Pak RT",
+    "title": "Materi 1: Martabak Pesanan Pak RT",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -5333,7 +5333,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 1: Martabak Pesanan Pak RT",
+      "title": "Kuis Interaktif: Materi 1: Martabak Pesanan Pak RT",
       "questions": [
         {
           "id": "q-materi-k4-b1-1",
@@ -5412,7 +5412,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T06:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 1: Martabak Pesanan Pak RT",
+      "title": "Kuis Interaktif: Materi 1: Martabak Pesanan Pak RT",
       "questions": [
         {
           "id": "q-materi-k4-b1-1",
@@ -5473,7 +5473,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b2",
-    "title": "Bab 2: Belanja Hemat di Koperasi",
+    "title": "Materi 2: Belanja Hemat di Koperasi",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -5531,7 +5531,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 2: Belanja Hemat di Koperasi",
+      "title": "Kuis Interaktif: Materi 2: Belanja Hemat di Koperasi",
       "questions": [
         {
           "id": "q-materi-k4-b2-1",
@@ -5636,7 +5636,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T07:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 2: Belanja Hemat di Koperasi",
+      "title": "Kuis Interaktif: Materi 2: Belanja Hemat di Koperasi",
       "questions": [
         {
           "id": "q-materi-k4-b2-1",
@@ -5718,7 +5718,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b3",
-    "title": "Bab 3: Kebun Sayur Sekolah",
+    "title": "Materi 3: Kebun Sayur Sekolah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -5776,7 +5776,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 3: Kebun Sayur Sekolah",
+      "title": "Kuis Interaktif: Materi 3: Kebun Sayur Sekolah",
       "questions": [
         {
           "id": "q-materi-k4-b3-1",
@@ -5862,7 +5862,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T08:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 3: Kebun Sayur Sekolah",
+      "title": "Kuis Interaktif: Materi 3: Kebun Sayur Sekolah",
       "questions": [
         {
           "id": "q-materi-k4-b3-1",
@@ -5924,7 +5924,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b4",
-    "title": "Bab 4: Mengecat Pagar Sekolah",
+    "title": "Materi 4: Mengecat Pagar Sekolah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -5977,7 +5977,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 4: Mengecat Pagar Sekolah",
+      "title": "Kuis Interaktif: Materi 4: Mengecat Pagar Sekolah",
       "questions": [
         {
           "id": "q-materi-k4-b4-1",
@@ -6057,7 +6057,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T09:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 4: Mengecat Pagar Sekolah",
+      "title": "Kuis Interaktif: Materi 4: Mengecat Pagar Sekolah",
       "questions": [
         {
           "id": "q-materi-k4-b4-1",
@@ -6119,7 +6119,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b5",
-    "title": "Bab 5: Telur dari Peternakan Pak Bowo",
+    "title": "Materi 5: Telur dari Peternakan Pak Bowo",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -6172,7 +6172,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 5: Telur dari Peternakan Pak Bowo",
+      "title": "Kuis Interaktif: Materi 5: Telur dari Peternakan Pak Bowo",
       "questions": [
         {
           "id": "q-materi-k4-b5-1",
@@ -6251,7 +6251,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T10:17:22.271Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 5: Telur dari Peternakan Pak Bowo",
+      "title": "Kuis Interaktif: Materi 5: Telur dari Peternakan Pak Bowo",
       "questions": [
         {
           "id": "q-materi-k4-b5-1",
@@ -6312,7 +6312,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b6",
-    "title": "Bab 6: Kursi Pentas Seni",
+    "title": "Materi 6: Kursi Pentas Seni",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -6365,7 +6365,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 6: Kursi Pentas Seni",
+      "title": "Kuis Interaktif: Materi 6: Kursi Pentas Seni",
       "questions": [
         {
           "id": "q-materi-k4-b6-1",
@@ -6444,7 +6444,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T11:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 6: Kursi Pentas Seni",
+      "title": "Kuis Interaktif: Materi 6: Kursi Pentas Seni",
       "questions": [
         {
           "id": "q-materi-k4-b6-1",
@@ -6505,7 +6505,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b7",
-    "title": "Bab 7: Pagar Kandang Kambing",
+    "title": "Materi 7: Pagar Kandang Kambing",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -6558,7 +6558,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 7: Pagar Kandang Kambing",
+      "title": "Kuis Interaktif: Materi 7: Pagar Kandang Kambing",
       "questions": [
         {
           "id": "q-materi-k4-b7-1",
@@ -6652,7 +6652,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T12:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 7: Pagar Kandang Kambing",
+      "title": "Kuis Interaktif: Materi 7: Pagar Kandang Kambing",
       "questions": [
         {
           "id": "q-materi-k4-b7-1",
@@ -6727,7 +6727,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k4-b8",
-    "title": "Bab 8: Toko Kue Bu Ratna",
+    "title": "Materi 8: Toko Kue Bu Ratna",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 4 • Fase B",
@@ -6780,7 +6780,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 8: Toko Kue Bu Ratna",
+      "title": "Kuis Interaktif: Materi 8: Toko Kue Bu Ratna",
       "questions": [
         {
           "id": "q-materi-k4-b8-1",
@@ -6865,7 +6865,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T13:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 8: Toko Kue Bu Ratna",
+      "title": "Kuis Interaktif: Materi 8: Toko Kue Bu Ratna",
       "questions": [
         {
           "id": "q-materi-k4-b8-1",
@@ -6932,7 +6932,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b1",
-    "title": "Bab 1: Menabung untuk Sepeda",
+    "title": "Materi 1: Menabung untuk Sepeda",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -6990,7 +6990,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 1: Menabung untuk Sepeda",
+      "title": "Kuis Interaktif: Materi 1: Menabung untuk Sepeda",
       "questions": [
         {
           "id": "q-materi-k5-b1-1",
@@ -7076,7 +7076,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T14:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 1: Menabung untuk Sepeda",
+      "title": "Kuis Interaktif: Materi 1: Menabung untuk Sepeda",
       "questions": [
         {
           "id": "q-materi-k5-b1-1",
@@ -7139,7 +7139,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b2",
-    "title": "Bab 2: Resep Es Buah Segar",
+    "title": "Materi 2: Resep Es Buah Segar",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -7197,7 +7197,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 2: Resep Es Buah Segar",
+      "title": "Kuis Interaktif: Materi 2: Resep Es Buah Segar",
       "questions": [
         {
           "id": "q-materi-k5-b2-1",
@@ -7290,7 +7290,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T15:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 2: Resep Es Buah Segar",
+      "title": "Kuis Interaktif: Materi 2: Resep Es Buah Segar",
       "questions": [
         {
           "id": "q-materi-k5-b2-1",
@@ -7360,7 +7360,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b3",
-    "title": "Bab 3: Taman Bermain Balai Desa",
+    "title": "Materi 3: Taman Bermain Balai Desa",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -7418,7 +7418,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 3: Taman Bermain Balai Desa",
+      "title": "Kuis Interaktif: Materi 3: Taman Bermain Balai Desa",
       "questions": [
         {
           "id": "q-materi-k5-b3-1",
@@ -7503,7 +7503,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T16:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 3: Taman Bermain Balai Desa",
+      "title": "Kuis Interaktif: Materi 3: Taman Bermain Balai Desa",
       "questions": [
         {
           "id": "q-materi-k5-b3-1",
@@ -7564,7 +7564,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b4",
-    "title": "Bab 4: Jadwal Kerja Bakti dan Bingkisan",
+    "title": "Materi 4: Jadwal Kerja Bakti dan Bingkisan",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -7617,7 +7617,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 4: Jadwal Kerja Bakti dan Bingkisan",
+      "title": "Kuis Interaktif: Materi 4: Jadwal Kerja Bakti dan Bingkisan",
       "questions": [
         {
           "id": "q-materi-k5-b4-1",
@@ -7711,7 +7711,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T17:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 4: Jadwal Kerja Bakti dan Bingkisan",
+      "title": "Kuis Interaktif: Materi 4: Jadwal Kerja Bakti dan Bingkisan",
       "questions": [
         {
           "id": "q-materi-k5-b4-1",
@@ -7787,7 +7787,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b5",
-    "title": "Bab 5: Jarum Jam Menara Balai Desa",
+    "title": "Materi 5: Jarum Jam Menara Balai Desa",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -7845,7 +7845,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 5: Jarum Jam Menara Balai Desa",
+      "title": "Kuis Interaktif: Materi 5: Jarum Jam Menara Balai Desa",
       "questions": [
         {
           "id": "q-materi-k5-b5-1",
@@ -7952,7 +7952,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T18:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 5: Jarum Jam Menara Balai Desa",
+      "title": "Kuis Interaktif: Materi 5: Jarum Jam Menara Balai Desa",
       "questions": [
         {
           "id": "q-materi-k5-b5-1",
@@ -8035,7 +8035,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b6",
-    "title": "Bab 6: Akuarium Kelas Lima",
+    "title": "Materi 6: Akuarium Kelas Lima",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -8093,7 +8093,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 6: Akuarium Kelas Lima",
+      "title": "Kuis Interaktif: Materi 6: Akuarium Kelas Lima",
       "questions": [
         {
           "id": "q-materi-k5-b6-1",
@@ -8179,7 +8179,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T19:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 6: Akuarium Kelas Lima",
+      "title": "Kuis Interaktif: Materi 6: Akuarium Kelas Lima",
       "questions": [
         {
           "id": "q-materi-k5-b6-1",
@@ -8241,7 +8241,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b7",
-    "title": "Bab 7: Panen Padi Meningkat",
+    "title": "Materi 7: Panen Padi Meningkat",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -8294,7 +8294,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 7: Panen Padi Meningkat",
+      "title": "Kuis Interaktif: Materi 7: Panen Padi Meningkat",
       "questions": [
         {
           "id": "q-materi-k5-b7-1",
@@ -8388,7 +8388,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T20:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 7: Panen Padi Meningkat",
+      "title": "Kuis Interaktif: Materi 7: Panen Padi Meningkat",
       "questions": [
         {
           "id": "q-materi-k5-b7-1",
@@ -8464,7 +8464,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k5-b8",
-    "title": "Bab 8: Lomba Lompat Jauh",
+    "title": "Materi 8: Lomba Lompat Jauh",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 5 • Fase C",
@@ -8522,7 +8522,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 8: Lomba Lompat Jauh",
+      "title": "Kuis Interaktif: Materi 8: Lomba Lompat Jauh",
       "questions": [
         {
           "id": "q-materi-k5-b8-1",
@@ -8614,7 +8614,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T21:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 8: Lomba Lompat Jauh",
+      "title": "Kuis Interaktif: Materi 8: Lomba Lompat Jauh",
       "questions": [
         {
           "id": "q-materi-k5-b8-1",
@@ -8683,7 +8683,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b1",
-    "title": "Bab 1: Takaran Pupuk Pak Darto",
+    "title": "Materi 1: Takaran Pupuk Pak Darto",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -8741,7 +8741,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 1: Takaran Pupuk Pak Darto",
+      "title": "Kuis Interaktif: Materi 1: Takaran Pupuk Pak Darto",
       "questions": [
         {
           "id": "q-materi-k6-b1-1",
@@ -8825,7 +8825,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T22:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 1: Takaran Pupuk Pak Darto",
+      "title": "Kuis Interaktif: Materi 1: Takaran Pupuk Pak Darto",
       "questions": [
         {
           "id": "q-materi-k6-b1-1",
@@ -8886,7 +8886,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b2",
-    "title": "Bab 2: Peta Harta Karun Perkemahan",
+    "title": "Materi 2: Peta Harta Karun Perkemahan",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -8944,7 +8944,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 2: Peta Harta Karun Perkemahan",
+      "title": "Kuis Interaktif: Materi 2: Peta Harta Karun Perkemahan",
       "questions": [
         {
           "id": "q-materi-k6-b2-1",
@@ -9029,7 +9029,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-16T23:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 2: Peta Harta Karun Perkemahan",
+      "title": "Kuis Interaktif: Materi 2: Peta Harta Karun Perkemahan",
       "questions": [
         {
           "id": "q-materi-k6-b2-1",
@@ -9091,7 +9091,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b3",
-    "title": "Bab 3: Survei Botol Minum Kelas 6",
+    "title": "Materi 3: Survei Botol Minum Kelas 6",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -9144,7 +9144,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 3: Survei Botol Minum Kelas 6",
+      "title": "Kuis Interaktif: Materi 3: Survei Botol Minum Kelas 6",
       "questions": [
         {
           "id": "q-materi-k6-b3-1",
@@ -9223,7 +9223,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T00:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 3: Survei Botol Minum Kelas 6",
+      "title": "Kuis Interaktif: Materi 3: Survei Botol Minum Kelas 6",
       "questions": [
         {
           "id": "q-materi-k6-b3-1",
@@ -9284,7 +9284,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b4",
-    "title": "Bab 4: Undian Doorprize Jalan Sehat",
+    "title": "Materi 4: Undian Doorprize Jalan Sehat",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -9342,7 +9342,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 4: Undian Doorprize Jalan Sehat",
+      "title": "Kuis Interaktif: Materi 4: Undian Doorprize Jalan Sehat",
       "questions": [
         {
           "id": "q-materi-k6-b4-1",
@@ -9448,7 +9448,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T01:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 4: Undian Doorprize Jalan Sehat",
+      "title": "Kuis Interaktif: Materi 4: Undian Doorprize Jalan Sehat",
       "questions": [
         {
           "id": "q-materi-k6-b4-1",
@@ -9531,7 +9531,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b5",
-    "title": "Bab 5: Belanja Perlengkapan Kemah",
+    "title": "Materi 5: Belanja Perlengkapan Kemah",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -9584,7 +9584,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 5: Belanja Perlengkapan Kemah",
+      "title": "Kuis Interaktif: Materi 5: Belanja Perlengkapan Kemah",
       "questions": [
         {
           "id": "q-materi-k6-b5-1",
@@ -9664,7 +9664,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T02:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 5: Belanja Perlengkapan Kemah",
+      "title": "Kuis Interaktif: Materi 5: Belanja Perlengkapan Kemah",
       "questions": [
         {
           "id": "q-materi-k6-b5-1",
@@ -9726,7 +9726,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b6",
-    "title": "Bab 6: Sumur dan Tampah Nenek",
+    "title": "Materi 6: Sumur dan Tampah Nenek",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -9784,7 +9784,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 6: Sumur dan Tampah Nenek",
+      "title": "Kuis Interaktif: Materi 6: Sumur dan Tampah Nenek",
       "questions": [
         {
           "id": "q-materi-k6-b6-1",
@@ -9871,7 +9871,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T03:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 6: Sumur dan Tampah Nenek",
+      "title": "Kuis Interaktif: Materi 6: Sumur dan Tampah Nenek",
       "questions": [
         {
           "id": "q-materi-k6-b6-1",
@@ -9935,7 +9935,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b7",
-    "title": "Bab 7: Tinggi Tanaman Kacang Hijau",
+    "title": "Materi 7: Tinggi Tanaman Kacang Hijau",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -9993,7 +9993,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 7: Tinggi Tanaman Kacang Hijau",
+      "title": "Kuis Interaktif: Materi 7: Tinggi Tanaman Kacang Hijau",
       "questions": [
         {
           "id": "q-materi-k6-b7-1",
@@ -10077,7 +10077,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T04:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 7: Tinggi Tanaman Kacang Hijau",
+      "title": "Kuis Interaktif: Materi 7: Tinggi Tanaman Kacang Hijau",
       "questions": [
         {
           "id": "q-materi-k6-b7-1",
@@ -10138,7 +10138,7 @@ export const allStructuredMateri = [
   },
   {
     "id": "materi-k6-b8",
-    "title": "Bab 8: Peta Desa Kami",
+    "title": "Materi 8: Peta Desa Kami",
     "jenjang": "SD",
     "mataPelajaran": "Matematika & Bahasa Indonesia",
     "level": "Kelas 6 • Fase C",
@@ -10196,7 +10196,7 @@ export const allStructuredMateri = [
       }
     },
     "quiz": {
-      "title": "Kuis Interaktif: Bab 8: Peta Desa Kami",
+      "title": "Kuis Interaktif: Materi 8: Peta Desa Kami",
       "questions": [
         {
           "id": "q-materi-k6-b8-1",
@@ -10281,7 +10281,7 @@ export const allStructuredMateri = [
     ],
     "created_at": "2026-11-17T05:17:22.272Z",
     "assessment": {
-      "title": "Kuis Interaktif: Bab 8: Peta Desa Kami",
+      "title": "Kuis Interaktif: Materi 8: Peta Desa Kami",
       "questions": [
         {
           "id": "q-materi-k6-b8-1",

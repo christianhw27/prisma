@@ -34,7 +34,7 @@ const handleLogin = async () => {
     const res = await loginUser(email.value.trim(), password.value)
     if (res.success) {
       if (res.user?.role !== 'admin') {
-        errorMessage.value = 'Akun ini bukan administrator.'
+        errorMessage.value = 'Akun ini tidak memiliki akses Panel Guru.'
         return
       }
       emit('authenticated', res.user)
@@ -73,7 +73,7 @@ const handleLogin = async () => {
             <img src="/Logo.png" alt="Prisma Logo" class="w-full h-full object-contain" />
           </div>
 
-          <h2 class="font-['Baloo_2'] text-2xl font-bold tracking-tight text-white">Login CMS Administrator</h2>
+          <h2 class="font-['Baloo_2'] text-2xl font-bold tracking-tight text-white">Masuk Panel Guru</h2>
           <p class="font-['Lexend'] text-xs text-[#FFF8F0]/90 mt-1 font-normal">
             Masuk untuk mengelola materi, modul, dan konten Prisma
           </p>
@@ -92,7 +92,7 @@ const handleLogin = async () => {
 
           <!-- Email Field -->
           <div class="space-y-1.5 text-left">
-            <label class="text-xs font-semibold text-[#2B3445] block">Email Administrator</label>
+            <label class="text-xs font-semibold text-[#2B3445] block">Email Guru / Pengajar</label>
             <div class="relative">
               <Mail class="w-4 h-4 text-[#5B6474] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
@@ -136,7 +136,7 @@ const handleLogin = async () => {
               class="btn-prisma-mint w-full py-3 text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
             >
               <span v-if="isSubmitting">Memverifikasi...</span>
-              <span v-else>Masuk ke Dashboard Admin</span>
+              <span v-else>Masuk ke Panel Guru</span>
             </button>
           </div>
         </form>

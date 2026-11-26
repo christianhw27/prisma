@@ -91,6 +91,12 @@ export function sanitizeVideoUrl(url, mode = 'standard') {
 export function sanitizeMateriItem(item) {
   if (!item) return item
   const clean = { ...item }
+  const normalizeBabTitle = (text) =>
+    typeof text === 'string' ? text.replace(/\bBab(\s+\d+)\b/g, 'Materi$1') : text
+  if (clean.title) clean.title = normalizeBabTitle(clean.title)
+  if (clean.quiz?.title) {
+    clean.quiz = { ...clean.quiz, title: normalizeBabTitle(clean.quiz.title) }
+  }
   if (!clean.id || !String(clean.id).trim()) {
     clean._rawEmptyId = true
     clean.id = `materi-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`

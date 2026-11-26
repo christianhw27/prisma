@@ -694,7 +694,7 @@ onMounted(async () => {
                   :class="isAdmin ? 'bg-orange-100 text-[#FF7315] border border-orange-200' : 'bg-blue-100 text-[#3587CE] border border-blue-200'"
                 >
                   <span>{{ isAdmin ? '🛡️' : '🎓' }}</span>
-                  <span>{{ isAdmin ? 'Administrator Prisma' : 'Siswa Pelajar' }}</span>
+                  <span>{{ isAdmin ? 'Guru / Pengajar Prisma' : 'Siswa Pelajar' }}</span>
                 </span>
               </div>
             </div>
@@ -841,8 +841,8 @@ onMounted(async () => {
               <div class="w-8 h-8 rounded-xl bg-white/20 text-white flex items-center justify-center">
                 <LayoutDashboard class="w-4 h-4" />
               </div>
-              <span class="flex-1">Dashboard Admin</span>
-              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">CMS</span>
+              <span class="flex-1">Panel Guru</span>
+              <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">Guru</span>
             </button>
 
             <!-- 6. Ulasan Website Saya (Tampil di Landing Page) -->

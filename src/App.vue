@@ -582,7 +582,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
               ]"
             >
               <LayoutDashboard class="w-4 h-4 shrink-0 text-[#1E7A6F]" />
-              <span>CMS Admin</span>
+              <span>Panel Guru</span>
             </button>
           </nav>
         </div>
@@ -602,12 +602,12 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
           <!-- Admin Logged In Pill -->
           <div v-if="isAdmin" class="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#FFF8F0] border border-[#8F8575]/30 text-[#1E7A6F] text-xs font-semibold">
-              Administrator
+              Guru / Pengajar
             </span>
             <button
               @click="handleLogout"
               class="btn-prisma-white h-9 sm:h-10 px-2.5 sm:px-3.5 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
-              title="Keluar dari mode admin"
+              title="Keluar dari Panel Guru"
             >
               <LogOut class="w-3.5 h-3.5 text-[#5B6474]" />
               <span class="hidden sm:inline">Keluar</span>
@@ -682,7 +682,7 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
             >
               <div class="flex items-center gap-2">
                 <LayoutDashboard class="w-4 h-4 text-[#1E7A6F]" />
-                <span>CMS Admin Prisma</span>
+                <span>Panel Guru Prisma</span>
               </div>
               <ArrowRight class="w-4 h-4 opacity-70" />
             </button>
@@ -1098,16 +1098,16 @@ watch([currentNav, isAdmin], ([newNav, isAdm]) => {
             🛡️
           </div>
           <div>
-            <h2 class="font-['Baloo_2'] text-2xl font-bold text-[#2B3445]">CMS Administrator</h2>
+            <h2 class="font-['Baloo_2'] text-2xl font-bold text-[#2B3445]">Panel Guru PRISMA</h2>
             <p class="text-xs sm:text-sm text-[#5B6474] mt-1 leading-relaxed font-normal">
-              Halaman ini diperuntukkan bagi administrator untuk mengelola konten dan materi pembelajaran Prisma.
+              Halaman ini diperuntukkan bagi guru atau pengajar untuk mengelola konten dan materi pembelajaran Prisma.
             </p>
           </div>
           <button
             @click="showAdminLoginModal = true"
             class="btn-prisma-mint w-full py-3.5 text-xs font-semibold cursor-pointer shadow-sm"
           >
-            Masuk sebagai Administrator
+            Masuk ke Panel Guru
           </button>
         </div>
       </div>

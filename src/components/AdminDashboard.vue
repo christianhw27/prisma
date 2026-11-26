@@ -774,6 +774,18 @@ const totalQuizQuestions = computed(() => scopedMateriList.value.reduce((a, m) =
 
 const availableTableKelasOptions = KELAS_SD_OPTIONS
 
+const getKelasGreetingColor = (kelas) => {
+  const map = {
+    'Kelas 1': 'text-[#1E7A6F]',
+    'Kelas 2': 'text-[#2563EB]',
+    'Kelas 3': 'text-[#D97706]',
+    'Kelas 4': 'text-[#7C3AED]',
+    'Kelas 5': 'text-[#059669]',
+    'Kelas 6': 'text-[#E11D48]'
+  }
+  return map[kelas] || 'text-[#1E7A6F]'
+}
+
 // Filtered table
 const filteredMateri = computed(() => {
   let list = scopedMateriList.value
@@ -986,7 +998,7 @@ const filteredMateri = computed(() => {
                         <label class="text-xs font-bold text-[#2B3445] uppercase tracking-wide block mb-1.5">Judul Materi *</label>
                         <input
                           v-model="currentForm.title"
-                          placeholder="Contoh: Bab 1: Panen Tomat di Kebun Nenek"
+                          placeholder="Contoh: Materi 1: Panen Tomat di Kebun Nenek"
                           class="w-full px-4 py-3 rounded-2xl border-2 border-[#8F8575]/30 bg-[#FFF8F0] focus:bg-white focus:border-[#1E7A6F] focus:outline-none text-sm text-[#2B3445] font-bold"
                         />
                       </div>
@@ -1739,7 +1751,15 @@ const filteredMateri = computed(() => {
             <!-- Welcome & Primary Action -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h1 class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">Selamat datang, {{ adminManagedKelas ? `Admin ${adminManagedKelas}` : 'Master Admin' }}! 👋</h1>
+                <h1 class="text-2xl sm:text-3xl font-bold font-['Baloo_2'] text-[#2B3445]">
+                  Selamat datang,
+                  <template v-if="adminManagedKelas">
+                    Admin <span :class="getKelasGreetingColor(adminManagedKelas)">{{ adminManagedKelas }}</span>! 👋
+                  </template>
+                  <template v-else>
+                    <span class="text-[#1E7A6F]">Master Admin</span>! 👋
+                  </template>
+                </h1>
                 <p class="text-[#2B3445]/60 text-sm mt-0.5">Kelola materi bacaan, suara narasi, video belajar, dan soal kuis siswa PRISMA dalam satu tempat.</p>
               </div>
               <button

@@ -12,7 +12,9 @@ import {
   Sparkles,
   Clock,
   Video,
-  BookOpen
+  BookOpen,
+  Search,
+  X
 } from '@lucide/vue'
 import DoodleOrnament from './DoodleOrnament.vue'
 import { playButtonPop } from '../lib/soundEffects'
@@ -30,6 +32,10 @@ const handleOpenItem = (item) => {
 
 // Filter States (Khusus Jenjang SD: Kelas 1 sampai 6)
 const selectedKelas = ref('Semua')
+const localSearch = ref('')
+
+// Gabungkan pencarian lokal di Katalog Materi dengan searchQuery dari props (jika ada)
+const effectiveSearch = computed(() => (localSearch.value || props.searchQuery || '').trim())
 
 // Filter Options
 const kelasOptions = ['Semua', ...KELAS_SD_OPTIONS]
@@ -37,7 +43,7 @@ const kelasOptions = ['Semua', ...KELAS_SD_OPTIONS]
 // Detection for Category in Development (Empty category in database vs search mismatch)
 const isCategoryInDevelopment = computed(() => {
   if (filteredMateri.value.length > 0) return false
-  if (props.searchQuery.trim() !== '') return false
+  if (effectiveSearch.value !== '') return false
 
   const categoryTotal = materiList.value.filter((item) => {
     if (selectedKelas.value !== 'Semua') {
@@ -56,7 +62,7 @@ const developmentCategoryLabel = computed(() => {
 
 const hasActiveFilter = computed(() =>
   selectedKelas.value !== 'Semua' ||
-  props.searchQuery.trim() !== ''
+  effectiveSearch.value !== ''
 )
 
 const filteredMateri = computed(() => {
@@ -65,8 +71,8 @@ const filteredMateri = computed(() => {
       const k = getKelasFromLevel(item.level)
       if (k !== selectedKelas.value) return false
     }
-    if (props.searchQuery.trim()) {
-      const q = props.searchQuery.toLowerCase()
+    if (effectiveSearch.value) {
+      const q = effectiveSearch.value.toLowerCase()
       if (
         !item.title?.toLowerCase().includes(q) &&
         !item.description?.toLowerCase().includes(q) &&
@@ -81,6 +87,7 @@ const filteredMateri = computed(() => {
 const resetFilters = () => {
   playButtonPop()
   selectedKelas.value = 'Semua'
+  localSearch.value = ''
 }
 </script>
 
@@ -135,7 +142,32 @@ const resetFilters = () => {
           </div>
 
           <!-- Filter Area -->
-          <div class="space-y-3 bg-[#FFF8F0] p-4 sm:p-5 rounded-2xl border border-[#8F8575]/20">
+          <div class="space-y-4 bg-[#FFF8F0] p-4 sm:p-5 rounded-2xl border border-[#8F8575]/20">
+            <!-- Cari Materi -->
+            <div class="space-y-1.5 text-left">
+              <label class="text-xs font-semibold text-[#2B3445] block">
+                Cari Materi
+              </label>
+              <div class="relative">
+                <Search class="w-4 h-4 text-[#5B6474] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  v-model="localSearch"
+                  type="text"
+                  placeholder="Ketik judul bab, topik, atau mata pelajaran (misal: Pecahan, Panjang, Tomat)..."
+                  class="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-2xl border-2 border-[#8F8575]/25 bg-white text-xs sm:text-sm text-[#2B3445] font-medium focus:border-[#1E7A6F] focus:outline-none transition"
+                />
+                <button
+                  v-if="localSearch"
+                  type="button"
+                  @click="localSearch = ''"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-black/5 text-[#5B6474] cursor-pointer"
+                  title="Hapus pencarian"
+                >
+                  <X class="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
             <!-- Filter: Tingkat Kelas -->
             <div class="space-y-2 text-left">
               <label class="text-xs font-semibold text-[#2B3445] block">

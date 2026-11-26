@@ -422,7 +422,7 @@ const toggleReduceMotion = () => {
                     <div class="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#8F8575]/25 bg-[#FFF8F0]">
                       <ShieldCheck class="w-4 h-4 shrink-0 text-[#1E7A6F]" />
                       <span class="text-xs font-semibold text-[#2B3445]">
-                        {{ isAdmin ? 'Administrator Platform' : 'Siswa / Pengguna Belajar' }}
+                        {{ isAdmin ? 'Guru / Pengajar' : 'Siswa / Pengguna Belajar' }}
                       </span>
                     </div>
                   </div>
