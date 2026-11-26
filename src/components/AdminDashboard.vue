@@ -1022,6 +1022,8 @@ const filteredMateri = computed(() => {
                             <option value="IPAS">IPAS</option>
                             <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
                             <option value="Seni Budaya">Seni Budaya</option>
+                            <option value="Bahasa Inggris">Bahasa Inggris</option>
+                            <option value="Agama">Agama</option>
                           </select>
                         </div>
                         <div>
