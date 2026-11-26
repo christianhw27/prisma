@@ -55,13 +55,18 @@ const currentQuestion = computed(() => {
   return questions.value[currentIndex.value] || null
 })
 
+function isQuestionAnswered(idx) {
+  const val = answers.value[idx]
+  if (Array.isArray(val)) return val.length > 0
+  if (typeof val === 'string') return val.trim().length > 0
+  if (val && typeof val === 'object') {
+    return Object.values(val).some(v => String(v || '').trim().length > 0)
+  }
+  return val !== undefined && val !== null
+}
+
 const answeredCount = computed(() => {
-  return questions.value.filter((_, idx) => {
-    const val = answers.value[idx]
-    if (Array.isArray(val)) return val.length > 0
-    if (typeof val === 'string') return val.trim().length > 0
-    return val !== undefined && val !== null
-  }).length
+  return questions.value.filter((_, idx) => isQuestionAnswered(idx)).length
 })
 
 const formattedTimer = computed(() => {
@@ -279,7 +284,16 @@ async function handleSubmitExam(auto = false) {
   stopSpeaking()
 
   try {
-    const { score, correctCount, totalCount } = gradeExamAnswers(questions.value, answers.value)
+    // Pastikan soal bertipe ordering yang belum digeser tetap memakai urutan yang tampil di layar siswa
+    const finalAnswers = { ...answers.value }
+    questions.value.forEach((q, idx) => {
+      if (q.type === 'ordering' && !Array.isArray(finalAnswers[idx]) && Array.isArray(q._initialOrder)) {
+        finalAnswers[idx] = [...q._initialOrder]
+      }
+    })
+    answers.value = finalAnswers
+
+    const { score, correctCount, totalCount } = gradeExamAnswers(questions.value, finalAnswers)
     const submittedAt = new Date().toISOString()
     const updated = await updateParticipantProgress(activeParticipant.value.id, activeRoom.value.id, {
       status: 'submitted',
@@ -337,10 +351,15 @@ function speakCurrentQuestion() {
   }
   window.speechSynthesis.cancel()
   const q = currentQuestion.value
-  const optionsText = Array.isArray(q.options) && q.options.length
-    ? '. Pilihan jawaban: ' + q.options.map((o, i) => `${String.fromCharCode(65 + i)}, ${o.text || ''}`).join('. ')
-    : ''
-  const utterance = new SpeechSynthesisUtterance(`${q.question || ''}${optionsText}`)
+  let extraText = ''
+  if (q.type === 'matching' && Array.isArray(q.pairs)) {
+    extraText = '. Pasangkan item berikut: ' + q.pairs.map((p, i) => `${i + 1}, ${p.left || ''}`).join('. ')
+  } else if (q.type === 'ordering' && Array.isArray(q.correctOrder)) {
+    extraText = '. Urutkan kartu berikut: ' + getOrderingList(currentIndex.value, q).join(', ')
+  } else if (Array.isArray(q.options) && q.options.length && q.type !== 'fill_in_blank') {
+    extraText = '. Pilihan jawaban: ' + q.options.map((o, i) => `${String.fromCharCode(65 + i)}, ${o.text || ''}`).join('. ')
+  }
+  const utterance = new SpeechSynthesisUtterance(`${q.question || ''}${extraText}`)
   utterance.lang = 'id-ID'
   utterance.rate = 0.92
   utterance.onend = () => { isSpeaking.value = false }
@@ -367,7 +386,8 @@ onMounted(async () => {
       const parsed = JSON.parse(saved)
       if (parsed?.roomCode && parsed?.participant) {
         const room = await findExamRoomByCode(parsed.roomCode)
-        if (room) {
+        const sameSession = room && Number(room.sessionNumber || 1) === Number(parsed.participant.sessionNumber || 1)
+        if (room && sameSession) {
           activeRoom.value = room
           activeParticipant.value = parsed.participant
           answers.value = parsed.answers || {}
@@ -565,7 +585,7 @@ onUnmounted(() => {
             'w-9 h-9 rounded-xl text-xs font-extrabold border-2 transition cursor-pointer',
             currentIndex === idx
               ? 'bg-[#1E7A6F] text-white border-[#1E7A6F] shadow-sm'
-              : (answers[idx] !== undefined && answers[idx] !== '' && (!Array.isArray(answers[idx]) || answers[idx].length > 0))
+              : isQuestionAnswered(idx)
                 ? 'bg-[#7FD4C4]/30 text-[#1E7A6F] border-[#7FD4C4]'
                 : 'bg-white text-[#5B6474] border-[#8F8575]/25 hover:border-[#1E7A6F]/50'
           ]"

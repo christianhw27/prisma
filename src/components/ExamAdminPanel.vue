@@ -416,6 +416,7 @@ async function handleStartSession() {
     startedAt: new Date().toISOString()
   })
   lobbyRoom.value = updated
+  selectedSession.value = Number(updated.sessionNumber || 1)
   emit('toast', 'Sesi ujian dimulai! Layar siswa otomatis berpindah ke soal.')
 }
 
